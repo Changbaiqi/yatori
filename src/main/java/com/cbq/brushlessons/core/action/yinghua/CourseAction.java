@@ -80,7 +80,6 @@ public class CourseAction {
         try {
             Response response = client.newCall(request).execute();
             String json = response.body().string();
-            System.out.println(json);
             VideoRequest videoRequest = ConverterVideo.fromJsonString(json);
             return videoRequest;
         } catch (IOException e) {

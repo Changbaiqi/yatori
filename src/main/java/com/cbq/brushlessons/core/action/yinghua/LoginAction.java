@@ -3,11 +3,14 @@ package com.cbq.brushlessons.core.action.yinghua;
 import com.cbq.brushlessons.core.entity.AccountCacheYingHua;
 import com.cbq.brushlessons.core.entity.User;
 import com.cbq.brushlessons.core.utils.FileUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +23,6 @@ public class LoginAction {
         Request request = new Request.Builder()
                 .url(user.getUrl()+"/service/code?r={time()}")
                 .method("GET", null)
-                .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                 .build();
         try {
             Response response = client.newCall(request).execute();
@@ -58,7 +60,7 @@ public class LoginAction {
      * 登录
      * @param user
      */
-    public static void toLogin(User user){
+    public static Map<String,Object> toLogin(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
@@ -69,13 +71,14 @@ public class LoginAction {
                 .addFormDataPart("redirect","")
                 .build();
         Request request = new Request.Builder()
-                .url(user.getUrl()+"/user/login")
+                .url(user.getUrl()+"/user/login.json")
                 .method("POST", body)
                 .addHeader("Cookie", ((AccountCacheYingHua)user.getCache()).getSession())
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            String json = response.body().string();
             String cookies=response.header("Cookie");
             //记录token
             Pattern pattern = Pattern.compile("token=([^;]+);");
@@ -83,7 +86,9 @@ public class LoginAction {
             if(matcher.find()){
                 ((AccountCacheYingHua)user.getCache()).setToken(matcher.group(1));
             }
-            System.out.println(response.body().string());
+//            System.out.println(response.body().string());
+            Map<String,Object> result = new ObjectMapper().readValue(json,Map.class);
+            return result;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-    private AccountType type;
+    private AccountType accountType;
     private String url;
     private String account;
     private String password;

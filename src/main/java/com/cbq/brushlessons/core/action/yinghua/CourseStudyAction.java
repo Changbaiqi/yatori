@@ -5,20 +5,20 @@ import com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseInform;
 import com.cbq.brushlessons.core.action.yinghua.entity.allvideo.NodeList;
 import com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoList;
 import com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoRequest;
+import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.ConverterSubmitStudyTime;
 import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitData;
 import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitStudyTimeRequest;
 import com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformStudyTotal;
 import com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformRequest;
 import com.cbq.brushlessons.core.entity.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Slf4j
-public class CourseStudyAction {
+public class CourseStudyAction implements Runnable {
 
     private User user;
     private CourseInform courseInform;
@@ -28,8 +28,22 @@ public class CourseStudyAction {
     private List<NodeList> videoInforms=new ArrayList<>();
     //学习Id
     private long studyId=0;
-
+    private Boolean newThread=false;
     public void toStudy(){
+        if(newThread){
+            new Thread(this).start();
+        }else {
+            study();
+            log.info("{}刷课完毕！",courseInform.getName());
+        }
+    }
+
+    @Override
+    public void run() {
+        study();
+        log.info("{}刷课完毕！",courseInform.getName());
+    }
+    private void study(){
         for (int i = 0; i < videoInforms.size(); i++) {
             NodeList videoInform = videoInforms.get(i);
             //当视屏没有被锁时
@@ -58,16 +72,24 @@ public class CourseStudyAction {
                     //成功提交
                     SubmitData data = submitStudyTimeRequest.getResult().getData();
                     studyId=data!=null?data.getStudyId():0;
-                    log.info("\n服务器端信息：>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
-                            submitStudyTimeRequest,videoInform.getName(),
-                            videoDuration,
-                            studyTime);
-                    //延时8秒
                     try {
-                        Thread.sleep(8000);
-                    } catch (InterruptedException e) {
+                        log.info("\n服务器端信息：>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
+                                ConverterSubmitStudyTime.toJsonString(submitStudyTimeRequest),
+                                videoInform.getName(),
+                                videoDuration,
+                                studyTime);
+                    } catch (JsonProcessingException e) {
                         throw new RuntimeException(e);
                     }
+                    //延时8秒
+                    if(studyTime<videoDuration) {
+                        try {
+                            Thread.sleep(8000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    //更新视屏信息列表
                     if(studyTime>=videoDuration){update();}
                 }
 
@@ -95,6 +117,8 @@ public class CourseStudyAction {
         return new Builder();
     }
 
+
+
     public static class Builder{
         private CourseStudyAction courseStudyAction=new CourseStudyAction();
 
@@ -104,6 +128,10 @@ public class CourseStudyAction {
         }
         public Builder courseInform(CourseInform courseInform){
             courseStudyAction.courseInform=courseInform;
+            return this;
+        }
+        public Builder newThread(Boolean newThread) {
+            courseStudyAction.newThread = newThread;
             return this;
         }
         public CourseStudyAction build(){
