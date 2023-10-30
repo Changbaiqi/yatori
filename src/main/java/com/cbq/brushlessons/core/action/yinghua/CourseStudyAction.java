@@ -53,7 +53,7 @@ public class CourseStudyAction {
                 while((studyTime+=8)<=videoDuration){
                     SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitStudyTime(user, videoInform, studyTime, studyId);
                     SubmitData data = submitStudyTimeRequest.getResult().getData();
-                    studyId=data!=data?data.getStudyId():0;
+                    studyId=data!=null?data.getStudyId():0;
                     System.out.println(submitStudyTimeRequest);
 
                     //延时8秒
