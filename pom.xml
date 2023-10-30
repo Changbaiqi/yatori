@@ -51,5 +51,149 @@
             <version>1.0</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <id>package-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.cbq.brushlessons.Application</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.graalvm.nativeimage</groupId>
+                <artifactId>native-image-maven-plugin</artifactId>
+                <version>21.0.0.2</version>
+                <configuration>
+                    <!-- imageName用于设置生成的二进制文件名称 -->
+                    <imageName>${project.artifactId}</imageName>
+                    <!-- mainClass用于指定main方法类路径 -->
+                    <mainClass>com.cbq.brushlessons.Application</mainClass>
+                    <!-- native image 编译参数文档：https://docs.oracle.com/en/graalvm/enterprise/20/docs/reference-manual/native-image/NativeImageMavenPlugin/ -->
+                    <buildArgs>
+                        --no-fallback
+
+                        --initialize-at-build-time=org.apache.log4j.PatternLayout
+                        --initialize-at-build-time=org.apache.log4j.Layout
+
+                        --initialize-at-build-time=org.slf4j.MDC
+                        --initialize-at-build-time=org.slf4j.LoggerFactory
+                        --initialize-at-build-time=org.slf4j.impl.StaticLoggerBinder
+                        --initialize-at-build-time=org.apache.log4j.helpers.Loader
+                        --initialize-at-build-time=org.apache.log4j.Logger
+                        --initialize-at-build-time=org.apache.log4j.helpers.LogLog
+                        --initialize-at-build-time=org.apache.log4j.LogManager
+                        --initialize-at-build-time=org.apache.log4j.spi.LoggingEvent
+                        --initialize-at-build-time=org.slf4j.impl.Log4jLoggerFactory
+                        --initialize-at-build-time=org.slf4j.impl.Log4jLoggerAdapter
+                        --initialize-at-build-time=com.lang.server.handler.FarChannelHandler
+                        --initialize-at-build-time=java.beans.Introspector
+                        --initialize-at-build-time=com.sun.beans.introspect.ClassInfo
+                        --initialize-at-build-time=ch.qos.logback.core.status.StatusBase
+                        --initialize-at-build-time=ch.qos.logback.classic.Logger
+                        --initialize-at-build-time=ch.qos.logback.classic.Level
+                        --initialize-at-build-time=ch.qos.logback.core.util.StatusPrinter
+                        --initialize-at-build-time=ch.qos.logback.core.status.InfoStatus
+                        --initialize-at-build-time=ch.qos.logback.core.util.Loader
+
+                        --initialize-at-run-time=io.netty.channel.epoll.Epoll
+                        --initialize-at-run-time=io.netty.channel.epoll.Native
+                        --initialize-at-run-time=io.netty.channel.epoll.EpollEventLoop
+                        --initialize-at-run-time=io.netty.channel.epoll.EpollEventArray
+                        --initialize-at-run-time=io.netty.channel.DefaultFileRegion
+                        --initialize-at-run-time=io.netty.channel.kqueue.KQueueEventArray
+                        --initialize-at-run-time=io.netty.channel.kqueue.KQueveEventLoop
+                        --initialize-at-run-time=io.netty.channel.kqueue.Native
+                        --initialize-at-run-time=io.netty.channel.unix.Errors
+                        --initialize-at-run-time=io.netty.channel.unix.1ovArray
+                        --initialize-at-run-time=io.netty.channel.unix.Limits
+                        --initialize-at-run-time=io.netty.util.internal.logging.Log4JLogger
+                        --initialize-at-run-time=io.netty.channel.unix.Socket
+                        --initialize-at-run-time=io.netty.channel.ChannelHandlerMask
+
+                        --report-unsupported-elements-at-runtime
+                        --allow-incomplete-classpath
+                        --enable-url-protocols=http
+                        -H:+ReportExceptionStackTraces
+                        -H:EnableURLProtocols=http
+                        -H:EnableURLProtocols=https
+                        <!--                        -H:ReflectionConfigurationFiles=E:\AAAA_CODE\new-eclipse-workspace\native-netty-log4j\reflect-config.json-->
+
+                        <!--                        新增-->
+
+                        <!--trace 表示编译时 进行 跟踪，有些情况下可能会报错，比如在这里设置了A类，但是A类没有MAIN方法 会导致报错-->
+                        <!--                        -trace-class-initialization=org.apache.log4j.PatternLayout-->
+                        --trace-class-initialization=org.apache.log4j.Layout
+                        --trace-class-initialization=java.beans.Introspector
+                        --trace-class-initialization=com.sun.beans.introspect.ClassInfo
+                        --trace-class-initialization=ch.qos.logback.core.status.StatusBase
+                        --trace-class-initialization=ch.qos.logback.classic.Logger
+                        --trace-class-initialization=ch.qos.logback.classic.Level
+                        --trace-class-initialization=ch.qos.logback.core.util.StatusPrinter
+                        --trace-class-initialization=ch.qos.logback.core.status.InfoStatus
+                        --trace-class-initialization=ch.qos.logback.core.util.Loader
+
+                        -Dio.netty.tryReflectionSetAccessible=true
+
+<!--                        &#45;&#45;add-exports=java.base/java.nio=ALL-UNNAMED-->
+
+<!--                        &#45;&#45;add-opens java.base/java.nio=ALL-UNNAMED-->
+                        <!--                        -language:js-->
+                    </buildArgs>
+                </configuration>
+
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>native-image</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>java-agent</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <workingDirectory>${project.build.directory}</workingDirectory>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <classpath/>
+                                <argument>com.cbq.brushlessons.Application</argument>
+                            </arguments>
+                        </configuration>
+
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

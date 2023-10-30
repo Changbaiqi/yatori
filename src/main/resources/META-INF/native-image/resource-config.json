@@ -1,5 +1,26 @@
 {
   "resources":{
-  "includes":[]},
-  "bundles":[]
+  "includes":[
+    {
+      "pattern":"\\QMETA-INF/services/ch.qos.logback.classic.spi.Configurator\\E"
+    }, 
+    {
+      "pattern":"\\QMETA-INF/services/org.slf4j.spi.SLF4JServiceProvider\\E"
+    }, 
+    {
+      "pattern":"\\Qai/onnxruntime/native/win-x64/onnxruntime.dll\\E"
+    }, 
+    {
+      "pattern":"\\Qai/onnxruntime/native/win-x64/onnxruntime4j_jni.dll\\E"
+    }, 
+    {
+      "pattern":"\\Qd4/common_old1.onnx\\E"
+    }, 
+    {
+      "pattern":"\\Qd4/common_old_charset.json\\E"
+    }
+  ]},
+  "bundles":[{
+      "name":"sun.awt.resources.awt"
+    }]
 }

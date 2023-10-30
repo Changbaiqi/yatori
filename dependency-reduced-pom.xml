@@ -39,8 +39,7 @@
           </execution>
         </executions>
         <configuration>
-          <skip>false</skip>
-          <imageName>brushlessons</imageName>
+          <imageName>${project.artifactId}</imageName>
           <mainClass>com.cbq.brushlessons.Application</mainClass>
           <buildArgs>--no-fallback
 
@@ -60,6 +59,12 @@
                         --initialize-at-build-time=com.lang.server.handler.FarChannelHandler
                         --initialize-at-build-time=java.beans.Introspector
                         --initialize-at-build-time=com.sun.beans.introspect.ClassInfo
+                        --initialize-at-build-time=ch.qos.logback.core.status.StatusBase
+                        --initialize-at-build-time=ch.qos.logback.classic.Logger
+                        --initialize-at-build-time=ch.qos.logback.classic.Level
+                        --initialize-at-build-time=ch.qos.logback.core.util.StatusPrinter
+                        --initialize-at-build-time=ch.qos.logback.core.status.InfoStatus
+                        --initialize-at-build-time=ch.qos.logback.core.util.Loader
 
                         --initialize-at-run-time=io.netty.channel.epoll.Epoll
                         --initialize-at-run-time=io.netty.channel.epoll.Native
@@ -82,13 +87,46 @@
                         -H:+ReportExceptionStackTraces
                         -H:EnableURLProtocols=http
                         -H:EnableURLProtocols=https
+                        
 
+                        
+
+                        
+                        
                         --trace-class-initialization=org.apache.log4j.Layout
                         --trace-class-initialization=java.beans.Introspector
                         --trace-class-initialization=com.sun.beans.introspect.ClassInfo
+                        --trace-class-initialization=ch.qos.logback.core.status.StatusBase
+                        --trace-class-initialization=ch.qos.logback.classic.Logger
+                        --trace-class-initialization=ch.qos.logback.classic.Level
+                        --trace-class-initialization=ch.qos.logback.core.util.StatusPrinter
+                        --trace-class-initialization=ch.qos.logback.core.status.InfoStatus
+                        --trace-class-initialization=ch.qos.logback.core.util.Loader
 
                         -Dio.netty.tryReflectionSetAccessible=true</buildArgs>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <id>java-agent</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>java</executable>
+              <workingDirectory>${project.build.directory}</workingDirectory>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath />
+                <argument>com.cbq.brushlessons.Application</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
