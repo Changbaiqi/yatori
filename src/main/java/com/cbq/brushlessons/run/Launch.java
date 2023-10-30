@@ -6,7 +6,6 @@ import com.cbq.brushlessons.core.action.yinghua.LoginAction;
 import com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseInform;
 import com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheYingHua;
-import com.cbq.brushlessons.core.entity.AccountType;
 import com.cbq.brushlessons.core.entity.Config;
 import com.cbq.brushlessons.core.entity.User;
 import com.cbq.brushlessons.core.utils.ConfigUtils;
@@ -14,7 +13,6 @@ import com.cbq.brushlessons.core.utils.VerificationCodeUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.nio.channels.FileChannel;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
