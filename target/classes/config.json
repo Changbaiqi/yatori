@@ -1,0 +1,19 @@
+{
+  "setting": {
+    "notice": false
+  },
+  "users": [
+    {
+      "accountType": "CANGHUI",
+      "aiCode": true,
+      "account": "21060231",
+      "password": "21060231"
+    },
+    {
+      "accountType": "YINGHUA",
+      "aiCode": true,
+      "account": "21060231",
+      "password": "21060231"
+    }
+  ]
+}
