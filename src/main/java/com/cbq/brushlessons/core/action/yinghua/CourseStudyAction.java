@@ -50,12 +50,18 @@ public class CourseStudyAction {
 
 
                 //循环进行学习
-                while((studyTime+=8)<=videoDuration){
+                while((studyTime+=8)<=videoDuration+8){
                     SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitStudyTime(user, videoInform, studyTime, studyId);
+                    //如果未成功提交
+                    if(submitStudyTimeRequest==null){ studyTime-=8; continue;}
+
+                    //成功提交
                     SubmitData data = submitStudyTimeRequest.getResult().getData();
                     studyId=data!=null?data.getStudyId():0;
-                    System.out.println(submitStudyTimeRequest);
-
+                    log.info("\n服务器端信息：>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
+                            submitStudyTimeRequest,videoInform.getName(),
+                            videoDuration,
+                            studyTime);
                     //延时8秒
                     try {
                         Thread.sleep(8000);

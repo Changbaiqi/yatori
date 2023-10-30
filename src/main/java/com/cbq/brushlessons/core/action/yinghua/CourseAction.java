@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.time.Duration;
 
 @Slf4j
 public class CourseAction {
@@ -135,6 +137,7 @@ public class CourseAction {
      */
     public static SubmitStudyTimeRequest submitStudyTime(User user, NodeList videoInform, long studyTime, long studyId){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(Duration.ofSeconds(7))
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -156,7 +159,10 @@ public class CourseAction {
             String json = response.body().string();
             SubmitStudyTimeRequest submitStudyTimeRequest = ConverterSubmitStudyTime.fromJsonString(json);
             return submitStudyTimeRequest;
-        } catch (IOException e) {
+        }catch (SocketTimeoutException e){
+            return null;
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
