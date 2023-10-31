@@ -10,6 +10,7 @@ import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitData;
 import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitStudyTimeRequest;
 import com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformStudyTotal;
 import com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformRequest;
+import com.cbq.brushlessons.core.entity.AccountCacheYingHua;
 import com.cbq.brushlessons.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,8 @@ public class CourseStudyAction implements Runnable {
     //学习Id
     private long studyId=0;
     private Boolean newThread=false;
+
+    private long studyInterval=8;
     public void toStudy(){
         if(newThread){
             new Thread(this).start();
@@ -44,6 +47,7 @@ public class CourseStudyAction implements Runnable {
         log.info("{}刷课完毕！",courseInform.getName());
     }
     private void study(){
+        AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         for (int i = 0; i < videoInforms.size(); i++) {
             NodeList videoInform = videoInforms.get(i);
             //当视屏没有被锁时
@@ -64,11 +68,24 @@ public class CourseStudyAction implements Runnable {
 
 
                 //循环进行学习
-                while((studyTime+=8)<=videoDuration+8){
+                while((studyTime+=studyInterval)<=videoDuration+studyInterval){
+                    //这里根据账号账号登录状态进行策划行为
+                    switch (cache.getStatus()){//未登录则跳出
+                        case 0->{
+                            log.info("账号未登录，禁止刷课！");
+                            return;
+                        }
+                        case 2->{//如果登录超时，则堵塞等待
+                            studyTime-=studyInterval;
+                            continue;
+                        }
+                    }
+
                     SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitStudyTime(user, videoInform, studyTime, studyId);
                     //如果未成功提交
-                    if(submitStudyTimeRequest==null){ studyTime-=8; continue;}
-
+                    if(submitStudyTimeRequest==null){ studyTime-=studyInterval; continue;}
+                    //检测是否登录超时
+                    if(submitStudyTimeRequest.getMsg().contains("登录超时")){cache.setStatus(2);studyTime-=studyInterval; continue;}
                     //成功提交
                     SubmitData data = submitStudyTimeRequest.getResult().getData();
                     studyId=data!=null?data.getStudyId():0;
@@ -84,7 +101,7 @@ public class CourseStudyAction implements Runnable {
                     //延时8秒
                     if(studyTime<videoDuration) {
                         try {
-                            Thread.sleep(8000);
+                            Thread.sleep(1000*studyInterval);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }

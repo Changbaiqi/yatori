@@ -3,7 +3,9 @@ package com.cbq.brushlessons.core.action.yinghua;
 import com.cbq.brushlessons.core.entity.AccountCacheYingHua;
 import com.cbq.brushlessons.core.entity.User;
 import com.cbq.brushlessons.core.utils.FileUtils;
+import com.cbq.brushlessons.core.utils.VerificationCodeUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.File;
@@ -14,6 +16,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Slf4j
 public class LoginAction {
     public static String getSESSION(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
@@ -93,4 +96,36 @@ public class LoginAction {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * 用于维持登录状态
+     * @param user
+     * @return 如果返回true则表示正常登录状态，false表示登录失败
+     */
+    public static Map online(User user){
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("platform","Android")
+                .addFormDataPart("version","1.4.8")
+                .addFormDataPart("token",((AccountCacheYingHua)user.getCache()).getToken())
+                .addFormDataPart("schoolId","0")
+                .build();
+        Request request = new Request.Builder()
+                .url(user.getUrl()+"/api/online.json")
+                .method("POST", body)
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String json = response.body().string();
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map map = objectMapper.readValue(json, Map.class);
+            return map;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

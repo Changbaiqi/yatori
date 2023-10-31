@@ -18,6 +18,12 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * @description: 加载启动程序
+ * @author 长白崎
+ * @date 2023/10/31 8:45
+ * @version 1.0
+ */
 @Slf4j
 public class Launch {
     private Config config;
@@ -50,7 +56,36 @@ public class Launch {
                             result = LoginAction.toLogin(user);
                         }while (!(Boolean) result.get("status") && ((String)result.get("msg")).contains("验证码有误"));
                         //对结果进行判定
-                        if((Boolean) result.get("status")){log.info("{}登录成功！",user.getAccount());}else{ log.info("{}登录失败，服务器信息>>>{}",user.getAccount(),((String)result.get("msg"))); return;}
+                        if((Boolean) result.get("status")){accountCacheYingHua.setStatus(1); log.info("{}登录成功！",user.getAccount());}else{ log.info("{}登录失败，服务器信息>>>{}",user.getAccount(),((String)result.get("msg"))); return;}
+
+                        //为账号维持登录状态-----------------------------------
+                        new Thread(()->{while(true){
+                            Map online = LoginAction.online(user);
+                            //如果含有登录超时字样
+                            if(((String)online.get("msg")).contains("更新成功")){
+                                accountCacheYingHua.setStatus(1);
+                            }else if(((String)online.get("msg")).contains("登录超时")){
+                                accountCacheYingHua.setStatus(2);//设定登录状态为超时
+                                log.info("{}登录超时，正在重新登录...",user.getAccount());
+                                //进行登录
+                                Map<String, Object> map;
+                                do{
+                                    //获取验证码
+                                    File code = LoginAction.getCode(user);
+                                    ((AccountCacheYingHua)user.getCache()).setCode(VerificationCodeUtil.aiDiscern(code));
+                                    //进行登录操作
+                                    map = LoginAction.toLogin(user);
+                                }while (!(Boolean) map.get("status") && ((String)map.get("msg")).contains("验证码有误"));
+                                //对结果进行判定
+                                if((Boolean) map.get("status")){accountCacheYingHua.setStatus(1); log.info("{}登录成功！",user.getAccount());}else{ log.info("{}登录失败，服务器信息>>>{}",user.getAccount(),((String)map.get("msg")));}
+                            }
+                            try {
+                                Thread.sleep(1000*60);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }}).start();
+
 
                         //获取全部课程
                         CourseRequest allCourseList = CourseAction.getAllCourseRequest(user);
