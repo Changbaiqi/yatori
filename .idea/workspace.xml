@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="优化验证码机制">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/ccc.png" beforeDir="false" afterPath="$PROJECT_DIR$/cache/ccc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/ccc.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +190,7 @@
       <workItem from="1698329931291" duration="29803000" />
       <workItem from="1698583004590" duration="26889000" />
       <workItem from="1698625603971" duration="15374000" />
-      <workItem from="1698645980224" duration="30110000" />
+      <workItem from="1698645980224" duration="31054000" />
     </task>
     <task id="LOCAL-00001" summary="删除缓存">
       <created>1698641822577</created>
