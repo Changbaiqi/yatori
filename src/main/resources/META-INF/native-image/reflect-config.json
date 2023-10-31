@@ -1,751 +1,393 @@
 [
 {
-  "name":"[B"}
-,
+  "name":"[B"
+},
 {
-  "name":"[Lcom.fasterxml.jackson.databind.deser.Deserializers;"}
-,
+  "name":"[Lcom.fasterxml.jackson.databind.deser.Deserializers;"
+},
 {
-  "name":"[Ljava.lang.String;"}
-,
+  "name":"[Ljava.lang.String;"
+},
 {
-  "name":"[Lsun.security.pkcs.SignerInfo;"}
-,
+  "name":"[Lsun.security.pkcs.SignerInfo;"
+},
 {
-  "name":"[[J"}
-,
+  "name":"[[J"
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Banner",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setImage","parameterTypes":["java.lang.String"] }, 
-    {"name":"setName","parameterTypes":["java.lang.String"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setId","parameterTypes":["java.lang.String"] }, {"name":"setImage","parameterTypes":["java.lang.String"] }, {"name":"setName","parameterTypes":["java.lang.String"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseAnnouncement",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setCount","parameterTypes":["long"] }, 
-    {"name":"setId","parameterTypes":["long"] }, 
-    {"name":"setTitle","parameterTypes":["java.lang.String"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCount","parameterTypes":["long"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setTitle","parameterTypes":["java.lang.String"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseFinishInform",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setAddDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setAddTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCateBid","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCateMid","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCategoryId","parameterTypes":["long"] }, 
-    {"name":"setCategoryName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setClassTeacher","parameterTypes":["java.lang.String"] }, 
-    {"name":"setClusterId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCode","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCollegeId","parameterTypes":["long"] }, 
-    {"name":"setCollegeName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCover","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCreateId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCredit","parameterTypes":["java.lang.String"] }, 
-    {"name":"setEndDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setId","parameterTypes":["long"] }, 
-    {"name":"setIntro","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLastNodeId","parameterTypes":["long"] }, 
-    {"name":"setLearned","parameterTypes":["long"] }, 
-    {"name":"setLearning","parameterTypes":["long"] }, 
-    {"name":"setLecturerName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLecturers","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLineLock","parameterTypes":["java.lang.String"] }, 
-    {"name":"setMission","parameterTypes":["java.lang.String"] }, 
-    {"name":"setMode","parameterTypes":["long"] }, 
-    {"name":"setName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setOffline","parameterTypes":["java.lang.String"] }, 
-    {"name":"setPeriodName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setProclamation","parameterTypes":["java.lang.Object"] }, 
-    {"name":"setProgress","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseProgress"] }, 
-    {"name":"setProgress1","parameterTypes":["java.lang.String"] }, 
-    {"name":"setResultRank","parameterTypes":["long"] }, 
-    {"name":"setResultScore","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseProgress"] }, 
-    {"name":"setSchoolId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setScoreRuleUrl","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSign","parameterTypes":["long"] }, 
-    {"name":"setSignClass","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignEndTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignInId","parameterTypes":["long"] }, 
-    {"name":"setSignLimit","parameterTypes":["long"] }, 
-    {"name":"setSignScope","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignStartTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignState","parameterTypes":["long"] }, 
-    {"name":"setSignedIn","parameterTypes":["long"] }, 
-    {"name":"setStartDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setState","parameterTypes":["long"] }, 
-    {"name":"setStuCount","parameterTypes":["java.lang.String"] }, 
-    {"name":"setStudentCount","parameterTypes":["long"] }, 
-    {"name":"setTabExam","parameterTypes":["boolean"] }, 
-    {"name":"setTabFile","parameterTypes":["boolean"] }, 
-    {"name":"setTabVideo","parameterTypes":["boolean"] }, 
-    {"name":"setTabVote","parameterTypes":["boolean"] }, 
-    {"name":"setTabWork","parameterTypes":["boolean"] }, 
-    {"name":"setTeachers","parameterTypes":["java.lang.String"] }, 
-    {"name":"setTplId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setVideoCount","parameterTypes":["long"] }, 
-    {"name":"setVideoLearned","parameterTypes":["long"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAddDate","parameterTypes":["java.lang.String"] }, {"name":"setAddTime","parameterTypes":["java.lang.String"] }, {"name":"setCateBid","parameterTypes":["java.lang.String"] }, {"name":"setCateMid","parameterTypes":["java.lang.String"] }, {"name":"setCategoryId","parameterTypes":["long"] }, {"name":"setCategoryName","parameterTypes":["java.lang.String"] }, {"name":"setClassTeacher","parameterTypes":["java.lang.String"] }, {"name":"setClusterId","parameterTypes":["java.lang.String"] }, {"name":"setCode","parameterTypes":["java.lang.String"] }, {"name":"setCollegeId","parameterTypes":["long"] }, {"name":"setCollegeName","parameterTypes":["java.lang.String"] }, {"name":"setCover","parameterTypes":["java.lang.String"] }, {"name":"setCreateId","parameterTypes":["java.lang.String"] }, {"name":"setCredit","parameterTypes":["java.lang.String"] }, {"name":"setEndDate","parameterTypes":["java.lang.String"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setIntro","parameterTypes":["java.lang.String"] }, {"name":"setLastNodeId","parameterTypes":["long"] }, {"name":"setLearned","parameterTypes":["long"] }, {"name":"setLearning","parameterTypes":["long"] }, {"name":"setLecturerName","parameterTypes":["java.lang.String"] }, {"name":"setLecturers","parameterTypes":["java.lang.String"] }, {"name":"setLineLock","parameterTypes":["java.lang.String"] }, {"name":"setMission","parameterTypes":["java.lang.String"] }, {"name":"setMode","parameterTypes":["long"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setOffline","parameterTypes":["java.lang.String"] }, {"name":"setPeriodName","parameterTypes":["java.lang.String"] }, {"name":"setProclamation","parameterTypes":["java.lang.Object"] }, {"name":"setProgress","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseProgress"] }, {"name":"setProgress1","parameterTypes":["java.lang.String"] }, {"name":"setResultRank","parameterTypes":["long"] }, {"name":"setResultScore","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseProgress"] }, {"name":"setSchoolId","parameterTypes":["java.lang.String"] }, {"name":"setScoreRuleUrl","parameterTypes":["java.lang.String"] }, {"name":"setSign","parameterTypes":["long"] }, {"name":"setSignClass","parameterTypes":["java.lang.String"] }, {"name":"setSignEndTime","parameterTypes":["java.lang.String"] }, {"name":"setSignInId","parameterTypes":["long"] }, {"name":"setSignLimit","parameterTypes":["long"] }, {"name":"setSignScope","parameterTypes":["java.lang.String"] }, {"name":"setSignStartTime","parameterTypes":["java.lang.String"] }, {"name":"setSignState","parameterTypes":["long"] }, {"name":"setSignedIn","parameterTypes":["long"] }, {"name":"setStartDate","parameterTypes":["java.lang.String"] }, {"name":"setState","parameterTypes":["long"] }, {"name":"setStuCount","parameterTypes":["java.lang.String"] }, {"name":"setStudentCount","parameterTypes":["long"] }, {"name":"setTabExam","parameterTypes":["boolean"] }, {"name":"setTabFile","parameterTypes":["boolean"] }, {"name":"setTabVideo","parameterTypes":["boolean"] }, {"name":"setTabVote","parameterTypes":["boolean"] }, {"name":"setTabWork","parameterTypes":["boolean"] }, {"name":"setTeachers","parameterTypes":["java.lang.String"] }, {"name":"setTplId","parameterTypes":["java.lang.String"] }, {"name":"setVideoCount","parameterTypes":["long"] }, {"name":"setVideoLearned","parameterTypes":["long"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseInform",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setAddDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setAddTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCateBid","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCateMid","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCategoryId","parameterTypes":["long"] }, 
-    {"name":"setCategoryName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setClassTeacher","parameterTypes":["java.lang.String"] }, 
-    {"name":"setClusterId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCode","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCollegeId","parameterTypes":["long"] }, 
-    {"name":"setCollegeName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCover","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCreateId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCredit","parameterTypes":["java.lang.String"] }, 
-    {"name":"setEndDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setId","parameterTypes":["long"] }, 
-    {"name":"setIntro","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLastNodeId","parameterTypes":["long"] }, 
-    {"name":"setLearned","parameterTypes":["long"] }, 
-    {"name":"setLearning","parameterTypes":["long"] }, 
-    {"name":"setLecturerName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLecturers","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLineLock","parameterTypes":["java.lang.String"] }, 
-    {"name":"setMission","parameterTypes":["java.lang.String"] }, 
-    {"name":"setMode","parameterTypes":["long"] }, 
-    {"name":"setName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setOffline","parameterTypes":["java.lang.String"] }, 
-    {"name":"setPeriodName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setProclamation","parameterTypes":["java.lang.Object"] }, 
-    {"name":"setProgress","parameterTypes":["long"] }, 
-    {"name":"setProgress1","parameterTypes":["java.lang.String"] }, 
-    {"name":"setResultRank","parameterTypes":["long"] }, 
-    {"name":"setResultScore","parameterTypes":["long"] }, 
-    {"name":"setSchoolId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setScoreRuleUrl","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSign","parameterTypes":["long"] }, 
-    {"name":"setSignClass","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignEndTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignInId","parameterTypes":["long"] }, 
-    {"name":"setSignLimit","parameterTypes":["long"] }, 
-    {"name":"setSignScope","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignStartTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignState","parameterTypes":["long"] }, 
-    {"name":"setSignedIn","parameterTypes":["long"] }, 
-    {"name":"setStartDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setState","parameterTypes":["long"] }, 
-    {"name":"setStuCount","parameterTypes":["java.lang.String"] }, 
-    {"name":"setStudentCount","parameterTypes":["long"] }, 
-    {"name":"setTabExam","parameterTypes":["boolean"] }, 
-    {"name":"setTabFile","parameterTypes":["boolean"] }, 
-    {"name":"setTabVideo","parameterTypes":["boolean"] }, 
-    {"name":"setTabVote","parameterTypes":["boolean"] }, 
-    {"name":"setTabWork","parameterTypes":["boolean"] }, 
-    {"name":"setTeachers","parameterTypes":["java.lang.String"] }, 
-    {"name":"setTplId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setVideoCount","parameterTypes":["long"] }, 
-    {"name":"setVideoLearned","parameterTypes":["long"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAddDate","parameterTypes":["java.lang.String"] }, {"name":"setAddTime","parameterTypes":["java.lang.String"] }, {"name":"setCateBid","parameterTypes":["java.lang.String"] }, {"name":"setCateMid","parameterTypes":["java.lang.String"] }, {"name":"setCategoryId","parameterTypes":["long"] }, {"name":"setCategoryName","parameterTypes":["java.lang.String"] }, {"name":"setClassTeacher","parameterTypes":["java.lang.String"] }, {"name":"setClusterId","parameterTypes":["java.lang.String"] }, {"name":"setCode","parameterTypes":["java.lang.String"] }, {"name":"setCollegeId","parameterTypes":["long"] }, {"name":"setCollegeName","parameterTypes":["java.lang.String"] }, {"name":"setCover","parameterTypes":["java.lang.String"] }, {"name":"setCreateId","parameterTypes":["java.lang.String"] }, {"name":"setCredit","parameterTypes":["java.lang.String"] }, {"name":"setEndDate","parameterTypes":["java.lang.String"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setIntro","parameterTypes":["java.lang.String"] }, {"name":"setLastNodeId","parameterTypes":["long"] }, {"name":"setLearned","parameterTypes":["long"] }, {"name":"setLearning","parameterTypes":["long"] }, {"name":"setLecturerName","parameterTypes":["java.lang.String"] }, {"name":"setLecturers","parameterTypes":["java.lang.String"] }, {"name":"setLineLock","parameterTypes":["java.lang.String"] }, {"name":"setMission","parameterTypes":["java.lang.String"] }, {"name":"setMode","parameterTypes":["long"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setOffline","parameterTypes":["java.lang.String"] }, {"name":"setPeriodName","parameterTypes":["java.lang.String"] }, {"name":"setProclamation","parameterTypes":["java.lang.Object"] }, {"name":"setProgress","parameterTypes":["long"] }, {"name":"setProgress1","parameterTypes":["java.lang.String"] }, {"name":"setResultRank","parameterTypes":["long"] }, {"name":"setResultScore","parameterTypes":["long"] }, {"name":"setSchoolId","parameterTypes":["java.lang.String"] }, {"name":"setScoreRuleUrl","parameterTypes":["java.lang.String"] }, {"name":"setSign","parameterTypes":["long"] }, {"name":"setSignClass","parameterTypes":["java.lang.String"] }, {"name":"setSignEndTime","parameterTypes":["java.lang.String"] }, {"name":"setSignInId","parameterTypes":["long"] }, {"name":"setSignLimit","parameterTypes":["long"] }, {"name":"setSignScope","parameterTypes":["java.lang.String"] }, {"name":"setSignStartTime","parameterTypes":["java.lang.String"] }, {"name":"setSignState","parameterTypes":["long"] }, {"name":"setSignedIn","parameterTypes":["long"] }, {"name":"setStartDate","parameterTypes":["java.lang.String"] }, {"name":"setState","parameterTypes":["long"] }, {"name":"setStuCount","parameterTypes":["java.lang.String"] }, {"name":"setStudentCount","parameterTypes":["long"] }, {"name":"setTabExam","parameterTypes":["boolean"] }, {"name":"setTabFile","parameterTypes":["boolean"] }, {"name":"setTabVideo","parameterTypes":["boolean"] }, {"name":"setTabVote","parameterTypes":["boolean"] }, {"name":"setTabWork","parameterTypes":["boolean"] }, {"name":"setTeachers","parameterTypes":["java.lang.String"] }, {"name":"setTplId","parameterTypes":["java.lang.String"] }, {"name":"setVideoCount","parameterTypes":["long"] }, {"name":"setVideoLearned","parameterTypes":["long"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseProgress$Deserializer",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseRequest",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setCode","parameterTypes":["long"] }, 
-    {"name":"setMsg","parameterTypes":["java.lang.String"] }, 
-    {"name":"setResult","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseResult"] }, 
-    {"name":"setStatus","parameterTypes":["boolean"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCode","parameterTypes":["long"] }, {"name":"setMsg","parameterTypes":["java.lang.String"] }, {"name":"setResult","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseResult"] }, {"name":"setStatus","parameterTypes":["boolean"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseResult",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setAnnouncement","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseAnnouncement"] }, 
-    {"name":"setBanner","parameterTypes":["java.util.List"] }, 
-    {"name":"setEnlist","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Enlist"] }, 
-    {"name":"setFinish","parameterTypes":["java.util.List"] }, 
-    {"name":"setList","parameterTypes":["java.util.List"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAnnouncement","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseAnnouncement"] }, {"name":"setBanner","parameterTypes":["java.util.List"] }, {"name":"setEnlist","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Enlist"] }, {"name":"setFinish","parameterTypes":["java.util.List"] }, {"name":"setList","parameterTypes":["java.util.List"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Enlist",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setList","parameterTypes":["java.util.List"] }, 
-    {"name":"setPageInfo","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.PageInfo"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setList","parameterTypes":["java.util.List"] }, {"name":"setPageInfo","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allcourse.PageInfo"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.EnlistList",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setAddDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setAddTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCateBid","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCateMid","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCategoryId","parameterTypes":["long"] }, 
-    {"name":"setCategoryName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setClassTeacher","parameterTypes":["java.lang.String"] }, 
-    {"name":"setClusterId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCode","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCollegeId","parameterTypes":["long"] }, 
-    {"name":"setCollegeName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCover","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCreateId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setCredit","parameterTypes":["java.lang.String"] }, 
-    {"name":"setEndDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setId","parameterTypes":["long"] }, 
-    {"name":"setIntro","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLastNodeId","parameterTypes":["long"] }, 
-    {"name":"setLearned","parameterTypes":["long"] }, 
-    {"name":"setLearning","parameterTypes":["long"] }, 
-    {"name":"setLecturerName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLecturers","parameterTypes":["java.lang.String"] }, 
-    {"name":"setLineLock","parameterTypes":["java.lang.String"] }, 
-    {"name":"setMission","parameterTypes":["java.lang.String"] }, 
-    {"name":"setMode","parameterTypes":["long"] }, 
-    {"name":"setName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setOffline","parameterTypes":["java.lang.String"] }, 
-    {"name":"setPeriodName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setProclamation","parameterTypes":["java.lang.Object"] }, 
-    {"name":"setProgress","parameterTypes":["double"] }, 
-    {"name":"setProgress1","parameterTypes":["java.lang.String"] }, 
-    {"name":"setResultRank","parameterTypes":["long"] }, 
-    {"name":"setResultScore","parameterTypes":["long"] }, 
-    {"name":"setSchoolId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setScoreRuleUrl","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSign","parameterTypes":["long"] }, 
-    {"name":"setSignClass","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignEndTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignInId","parameterTypes":["long"] }, 
-    {"name":"setSignLimit","parameterTypes":["long"] }, 
-    {"name":"setSignScope","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignStartTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setSignState","parameterTypes":["long"] }, 
-    {"name":"setSignedIn","parameterTypes":["long"] }, 
-    {"name":"setStartDate","parameterTypes":["java.lang.String"] }, 
-    {"name":"setState","parameterTypes":["long"] }, 
-    {"name":"setStuCount","parameterTypes":["java.lang.String"] }, 
-    {"name":"setStudentCount","parameterTypes":["long"] }, 
-    {"name":"setTabExam","parameterTypes":["boolean"] }, 
-    {"name":"setTabFile","parameterTypes":["boolean"] }, 
-    {"name":"setTabVideo","parameterTypes":["boolean"] }, 
-    {"name":"setTabVote","parameterTypes":["boolean"] }, 
-    {"name":"setTabWork","parameterTypes":["boolean"] }, 
-    {"name":"setTeachers","parameterTypes":["java.lang.String"] }, 
-    {"name":"setTplId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setVideoCount","parameterTypes":["long"] }, 
-    {"name":"setVideoLearned","parameterTypes":["long"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAddDate","parameterTypes":["java.lang.String"] }, {"name":"setAddTime","parameterTypes":["java.lang.String"] }, {"name":"setCateBid","parameterTypes":["java.lang.String"] }, {"name":"setCateMid","parameterTypes":["java.lang.String"] }, {"name":"setCategoryId","parameterTypes":["long"] }, {"name":"setCategoryName","parameterTypes":["java.lang.String"] }, {"name":"setClassTeacher","parameterTypes":["java.lang.String"] }, {"name":"setClusterId","parameterTypes":["java.lang.String"] }, {"name":"setCode","parameterTypes":["java.lang.String"] }, {"name":"setCollegeId","parameterTypes":["long"] }, {"name":"setCollegeName","parameterTypes":["java.lang.String"] }, {"name":"setCover","parameterTypes":["java.lang.String"] }, {"name":"setCreateId","parameterTypes":["java.lang.String"] }, {"name":"setCredit","parameterTypes":["java.lang.String"] }, {"name":"setEndDate","parameterTypes":["java.lang.String"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setIntro","parameterTypes":["java.lang.String"] }, {"name":"setLastNodeId","parameterTypes":["long"] }, {"name":"setLearned","parameterTypes":["long"] }, {"name":"setLearning","parameterTypes":["long"] }, {"name":"setLecturerName","parameterTypes":["java.lang.String"] }, {"name":"setLecturers","parameterTypes":["java.lang.String"] }, {"name":"setLineLock","parameterTypes":["java.lang.String"] }, {"name":"setMission","parameterTypes":["java.lang.String"] }, {"name":"setMode","parameterTypes":["long"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setOffline","parameterTypes":["java.lang.String"] }, {"name":"setPeriodName","parameterTypes":["java.lang.String"] }, {"name":"setProclamation","parameterTypes":["java.lang.Object"] }, {"name":"setProgress","parameterTypes":["double"] }, {"name":"setProgress1","parameterTypes":["java.lang.String"] }, {"name":"setResultRank","parameterTypes":["long"] }, {"name":"setResultScore","parameterTypes":["long"] }, {"name":"setSchoolId","parameterTypes":["java.lang.String"] }, {"name":"setScoreRuleUrl","parameterTypes":["java.lang.String"] }, {"name":"setSign","parameterTypes":["long"] }, {"name":"setSignClass","parameterTypes":["java.lang.String"] }, {"name":"setSignEndTime","parameterTypes":["java.lang.String"] }, {"name":"setSignInId","parameterTypes":["long"] }, {"name":"setSignLimit","parameterTypes":["long"] }, {"name":"setSignScope","parameterTypes":["java.lang.String"] }, {"name":"setSignStartTime","parameterTypes":["java.lang.String"] }, {"name":"setSignState","parameterTypes":["long"] }, {"name":"setSignedIn","parameterTypes":["long"] }, {"name":"setStartDate","parameterTypes":["java.lang.String"] }, {"name":"setState","parameterTypes":["long"] }, {"name":"setStuCount","parameterTypes":["java.lang.String"] }, {"name":"setStudentCount","parameterTypes":["long"] }, {"name":"setTabExam","parameterTypes":["boolean"] }, {"name":"setTabFile","parameterTypes":["boolean"] }, {"name":"setTabVideo","parameterTypes":["boolean"] }, {"name":"setTabVote","parameterTypes":["boolean"] }, {"name":"setTabWork","parameterTypes":["boolean"] }, {"name":"setTeachers","parameterTypes":["java.lang.String"] }, {"name":"setTplId","parameterTypes":["java.lang.String"] }, {"name":"setVideoCount","parameterTypes":["long"] }, {"name":"setVideoLearned","parameterTypes":["long"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.PageInfo",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setKeyName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setOnlyCount","parameterTypes":["long"] }, 
-    {"name":"setPage","parameterTypes":["long"] }, 
-    {"name":"setPageCount","parameterTypes":["long"] }, 
-    {"name":"setPageSize","parameterTypes":["long"] }, 
-    {"name":"setRecordsCount","parameterTypes":["long"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.allvideo.NodeList",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setDuration","parameterTypes":["java.lang.String"] }, 
-    {"name":"setId","parameterTypes":["long"] }, 
-    {"name":"setIdx","parameterTypes":["long"] }, 
-    {"name":"setIndex","parameterTypes":["java.lang.String"] }, 
-    {"name":"setName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setNodeLock","parameterTypes":["long"] }, 
-    {"name":"setTabExam","parameterTypes":["boolean"] }, 
-    {"name":"setTabFile","parameterTypes":["boolean"] }, 
-    {"name":"setTabVideo","parameterTypes":["boolean"] }, 
-    {"name":"setTabVote","parameterTypes":["boolean"] }, 
-    {"name":"setTabWork","parameterTypes":["boolean"] }, 
-    {"name":"setUnlockTime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setUnlockTimeStamp","parameterTypes":["long"] }, 
-    {"name":"setVideoDuration","parameterTypes":["java.lang.String"] }, 
-    {"name":"setVideoState","parameterTypes":["long"] }, 
-    {"name":"setVoteUrl","parameterTypes":["java.lang.String"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoList",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setId","parameterTypes":["long"] }, 
-    {"name":"setIdx","parameterTypes":["long"] }, 
-    {"name":"setName","parameterTypes":["java.lang.String"] }, 
-    {"name":"setNodeList","parameterTypes":["java.util.List"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoRequest",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setCode","parameterTypes":["long"] }, 
-    {"name":"setMsg","parameterTypes":["java.lang.String"] }, 
-    {"name":"setResult","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoResult"] }, 
-    {"name":"setStatus","parameterTypes":["boolean"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoResult",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setList","parameterTypes":["java.util.List"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitData",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"getStudyId","parameterTypes":[] }, 
-    {"name":"setStudyId","parameterTypes":["long"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitResult",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"getData","parameterTypes":[] }, 
-    {"name":"setData","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitData"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitStudyTimeRequest",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"getCode","parameterTypes":[] }, 
-    {"name":"getMsg","parameterTypes":[] }, 
-    {"name":"getResult","parameterTypes":[] }, 
-    {"name":"isStatus","parameterTypes":[] }, 
-    {"name":"setCode","parameterTypes":["long"] }, 
-    {"name":"setMsg","parameterTypes":["java.lang.String"] }, 
-    {"name":"setResult","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitResult"] }, 
-    {"name":"setStatus","parameterTypes":["boolean"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformCheat",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setDuration","parameterTypes":["long"] }, 
-    {"name":"setState","parameterTypes":["long"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformData",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setCheat","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformCheat"] }, 
-    {"name":"setStudyTotal","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformStudyTotal"] }, 
-    {"name":"setVideoDuration","parameterTypes":["long"] }, 
-    {"name":"setVideoId","parameterTypes":["java.lang.String"] }, 
-    {"name":"setVideoMime","parameterTypes":["java.lang.String"] }, 
-    {"name":"setVideoToken","parameterTypes":["java.lang.String"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformRequest",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setCode","parameterTypes":["long"] }, 
-    {"name":"setMsg","parameterTypes":["java.lang.String"] }, 
-    {"name":"setResult","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformResult"] }, 
-    {"name":"setStatus","parameterTypes":["boolean"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformResult",
-  "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setData","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformData"] }
-  ]}
-,
-{
-  "name":"com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformStudyTotal$Deserializer",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setKeyName","parameterTypes":["java.lang.String"] }, {"name":"setOnlyCount","parameterTypes":["long"] }, {"name":"setPage","parameterTypes":["long"] }, {"name":"setPageCount","parameterTypes":["long"] }, {"name":"setPageSize","parameterTypes":["long"] }, {"name":"setRecordsCount","parameterTypes":["long"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.entity.AccountCache",
-  "queryAllDeclaredMethods":true}
-,
+  "queryAllDeclaredMethods":true
+},
 {
   "name":"com.cbq.brushlessons.core.entity.AccountType",
   "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true}
-,
+  "queryAllDeclaredMethods":true
+},
 {
   "name":"com.cbq.brushlessons.core.entity.Config",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setUsers","parameterTypes":["java.util.List"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setUsers","parameterTypes":["java.util.List"] }]
+},
 {
   "name":"com.cbq.brushlessons.core.entity.User",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[
-    {"name":"<init>","parameterTypes":[] }, 
-    {"name":"setAccount","parameterTypes":["java.lang.String"] }, 
-    {"name":"setAccountType","parameterTypes":["com.cbq.brushlessons.core.entity.AccountType"] }, 
-    {"name":"setPassword","parameterTypes":["java.lang.String"] }, 
-    {"name":"setUrl","parameterTypes":["java.lang.String"] }
-  ]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAccount","parameterTypes":["java.lang.String"] }, {"name":"setAccountType","parameterTypes":["com.cbq.brushlessons.core.entity.AccountType"] }, {"name":"setExcludeCourses","parameterTypes":["java.util.HashSet"] }, {"name":"setIncludeCourses","parameterTypes":["java.util.HashSet"] }, {"name":"setPassword","parameterTypes":["java.lang.String"] }, {"name":"setUrl","parameterTypes":["java.lang.String"] }]
+},
 {
   "name":"com.fasterxml.jackson.databind.ext.Java7HandlersImpl",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.AESCipher$General",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.ARCFOURCipher",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.ChaCha20Cipher$ChaCha20Poly1305",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.DESCipher",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.DESedeCipher",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.DHParameters",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.GaloisCounterMode$AESGCM",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.TlsKeyMaterialGenerator",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.TlsMasterSecretGenerator",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"com.sun.crypto.provider.TlsPrfGenerator$V12",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
-  "name":"java.io.FilePermission"}
-,
+  "name":"java.io.FilePermission"
+},
 {
-  "name":"java.lang.AutoCloseable"}
-,
+  "name":"java.lang.AutoCloseable"
+},
 {
   "name":"java.lang.Enum",
-  "queryAllDeclaredMethods":true}
-,
+  "queryAllDeclaredMethods":true
+},
 {
-  "name":"java.lang.RuntimePermission"}
-,
+  "name":"java.lang.RuntimePermission"
+},
 {
-  "name":"java.lang.String"}
-,
+  "name":"java.lang.String"
+},
 {
-  "name":"java.net.NetPermission"}
-,
+  "name":"java.lang.Thread",
+  "fields":[{"name":"threadLocalRandomProbe"}]
+},
 {
-  "name":"java.net.SocketPermission"}
-,
+  "name":"java.net.NetPermission"
+},
+{
+  "name":"java.net.SocketPermission"
+},
 {
   "name":"java.net.URLPermission",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]
+},
 {
-  "name":"java.security.AlgorithmParametersSpi"}
-,
+  "name":"java.security.AlgorithmParametersSpi"
+},
 {
-  "name":"java.security.AllPermission"}
-,
+  "name":"java.security.AllPermission"
+},
 {
-  "name":"java.security.KeyStoreSpi"}
-,
+  "name":"java.security.KeyStoreSpi"
+},
 {
-  "name":"java.security.SecureRandomParameters"}
-,
+  "name":"java.security.SecureRandomParameters"
+},
 {
-  "name":"java.security.SecurityPermission"}
-,
+  "name":"java.security.SecurityPermission"
+},
 {
-  "name":"java.security.interfaces.RSAPrivateKey"}
-,
+  "name":"java.security.interfaces.RSAPrivateKey"
+},
 {
-  "name":"java.security.interfaces.RSAPublicKey"}
-,
+  "name":"java.security.interfaces.RSAPublicKey"
+},
 {
-  "name":"java.util.Date"}
-,
+  "name":"java.util.Date"
+},
 {
-  "name":"java.util.Deque"}
-,
+  "name":"java.util.Deque"
+},
 {
   "name":"java.util.HashSet",
   "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true}
-,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
-  "name":"java.util.PropertyPermission"}
-,
+  "name":"java.util.PropertyPermission"
+},
 {
-  "name":"javax.imageio.spi.ImageReaderSpi"}
-,
+  "name":"java.util.concurrent.atomic.AtomicBoolean",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"java.util.concurrent.atomic.AtomicReference",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"java.util.concurrent.atomic.Striped64",
+  "fields":[{"name":"base"}, {"name":"cellsBusy"}]
+},
+{
+  "name":"javax.imageio.spi.ImageReaderSpi"
+},
 {
   "name":"javax.imageio.spi.ImageReaderWriterSpi",
-  "queriedMethods":[
-    {"name":"getFileSuffixes","parameterTypes":[] }, 
-    {"name":"getFormatNames","parameterTypes":[] }, 
-    {"name":"getMIMETypes","parameterTypes":[] }
-  ]}
-,
+  "methods":[{"name":"getFileSuffixes","parameterTypes":[] }, {"name":"getFormatNames","parameterTypes":[] }, {"name":"getMIMETypes","parameterTypes":[] }]
+},
 {
-  "name":"javax.imageio.spi.ImageWriterSpi"}
-,
+  "name":"javax.imageio.spi.ImageWriterSpi"
+},
 {
   "name":"javax.security.auth.x500.X500Principal",
   "fields":[{"name":"thisX500Name"}],
-  "methods":[{"name":"<init>","parameterTypes":["sun.security.x509.X500Name"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["sun.security.x509.X500Name"] }]
+},
+{
+  "name":"javax.smartcardio.CardPermission"
+},
 {
   "name":"sun.java2d.marlin.DMarlinRenderingEngine",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.pkcs12.PKCS12KeyStore",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.pkcs12.PKCS12KeyStore$DualFormatPKCS12",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.DRBG",
-  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+},
 {
   "name":"sun.security.provider.DSA$SHA224withDSA",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.DSA$SHA256withDSA",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.JavaKeyStore$JKS",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.SHA",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.SHA2$SHA224",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.SHA2$SHA256",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.SHA5$SHA384",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.SHA5$SHA512",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.X509Factory",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.provider.certpath.PKIXCertPathValidator",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.rsa.PSSParameters",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.rsa.RSAKeyFactory$Legacy",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.rsa.RSAPSSSignature",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.rsa.RSASignature$SHA224withRSA",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.rsa.RSASignature$SHA256withRSA",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.rsa.RSASignature$SHA384withRSA",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.ssl.SSLContextImpl$TLSContext",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
   "name":"sun.security.ssl.TrustManagerFactoryImpl$PKIXFactory",
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
 {
-  "name":"sun.security.util.ObjectIdentifier"}
-,
+  "name":"sun.security.util.ObjectIdentifier"
+},
 {
   "name":"sun.security.x509.AuthorityInfoAccessExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.AuthorityKeyIdentifierExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.BasicConstraintsExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.CRLDistributionPointsExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
-  "name":"sun.security.x509.CertificateExtensions"}
-,
+  "name":"sun.security.x509.CertificateExtensions"
+},
 {
   "name":"sun.security.x509.CertificatePoliciesExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.ExtendedKeyUsageExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.IssuerAlternativeNameExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.KeyUsageExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.NetscapeCertTypeExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.PrivateKeyUsageExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.SubjectAlternativeNameExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-,
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
 {
   "name":"sun.security.x509.SubjectKeyIdentifierExtension",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
-
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+}
 ]
