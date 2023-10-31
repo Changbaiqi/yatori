@@ -17,4 +17,42 @@
 
 ### 食用方式：
 
-> 施工中。。。
+#### 代码食用：
+
+> 施工中...
+
+#### 直接食用:
+
+> 下载releases然后解压修改config配置文件之后点击exe启动即可。
+>
+> 配置文件说明：
+>
+> 刷课支持多账号，根据需求自行进行改动
+>
+> ```json
+> {
+>   "setting": {
+>     "autoCode": true,
+>     "notice": true
+>   },
+>   "users": [
+>     {
+>       "accountType": "YINGHUA",
+>       "url": "张三的url",
+>       "account": "张三的账号",
+>       "password": "张三的密码",
+>       "model": 1
+>     },
+>     {
+>       "accountType": "YINGHUA",
+>       "url": "李四的url",
+>       "account": "李四的账号",
+>       "password": "李四的密码",
+>       "model": 1
+>     }
+>   ]
+> }
+> 
+> ```
+>
+> 
