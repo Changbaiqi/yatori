@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新配置文件说明">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
-    </list>
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复token续航函数超时引发的报错bug，以及预防刷课时候刷新视屏列表信息超时引发的报错bug" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -194,7 +188,7 @@
       <workItem from="1698583004590" duration="26889000" />
       <workItem from="1698625603971" duration="15374000" />
       <workItem from="1698645980224" duration="36201000" />
-      <workItem from="1698743548198" duration="10995000" />
+      <workItem from="1698743548198" duration="11592000" />
     </task>
     <task id="LOCAL-00001" summary="删除缓存">
       <created>1698641822577</created>
@@ -378,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698769578449</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="修复token续航函数超时引发的报错bug，以及预防刷课时候刷新视屏列表信息超时引发的报错bug">
+      <created>1698771332134</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1698771332134</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -427,7 +428,8 @@
     <MESSAGE value="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明" />
     <MESSAGE value="添加Set相关native-image配置" />
     <MESSAGE value="更新配置文件说明" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新配置文件说明" />
+    <MESSAGE value="修复token续航函数超时引发的报错bug，以及预防刷课时候刷新视屏列表信息超时引发的报错bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复token续航函数超时引发的报错bug，以及预防刷课时候刷新视屏列表信息超时引发的报错bug" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
