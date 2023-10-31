@@ -6,7 +6,9 @@
 
 <div align="center"><h2>Yatori</h2></div>
 
+## 问题咨询
 
+> QQ交流群：932447008
 
 ## 当前支持平台：
 
