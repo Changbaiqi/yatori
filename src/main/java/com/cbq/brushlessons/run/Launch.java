@@ -9,6 +9,7 @@ import com.cbq.brushlessons.core.entity.AccountCacheYingHua;
 import com.cbq.brushlessons.core.entity.Config;
 import com.cbq.brushlessons.core.entity.User;
 import com.cbq.brushlessons.core.utils.ConfigUtils;
+import com.cbq.brushlessons.core.utils.FileUtils;
 import com.cbq.brushlessons.core.utils.VerificationCodeUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,6 +53,7 @@ public class Launch {
                             //获取验证码
                             File code = LoginAction.getCode(user);
                             accountCacheYingHua.setCode(VerificationCodeUtil.aiDiscern(code));
+                            FileUtils.deleteFile(code);//删除验证码文件
                             //进行登录操作
                             result = LoginAction.toLogin(user);
                         }while (!(Boolean) result.get("status") && ((String)result.get("msg")).contains("验证码有误"));
@@ -73,6 +75,7 @@ public class Launch {
                                     //获取验证码
                                     File code = LoginAction.getCode(user);
                                     ((AccountCacheYingHua)user.getCache()).setCode(VerificationCodeUtil.aiDiscern(code));
+                                    FileUtils.deleteFile(code);//删除验证码文件
                                     //进行登录操作
                                     map = LoginAction.toLogin(user);
                                 }while (!(Boolean) map.get("status") && ((String)map.get("msg")).contains("验证码有误"));

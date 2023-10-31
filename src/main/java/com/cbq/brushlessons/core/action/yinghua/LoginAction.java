@@ -51,7 +51,7 @@ public class LoginAction {
         try {
             Response response = client.newCall(request).execute();
             byte[] bytes = response.body().bytes();
-            File file = FileUtils.saveFile(bytes, "ccc.png");
+            File file = FileUtils.saveFile(bytes, user.getAccountType().name()+"_"+user.getAccount()+".png");
             return file;
         } catch (IOException e) {
             throw new RuntimeException(e);
