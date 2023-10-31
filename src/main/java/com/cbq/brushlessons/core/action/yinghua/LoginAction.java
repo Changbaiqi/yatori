@@ -10,6 +10,7 @@ import okhttp3.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,13 @@ public class LoginAction {
             byte[] bytes = response.body().bytes();
             File file = FileUtils.saveFile(bytes, user.getAccountType().name()+"_"+user.getAccount()+".png");
             return file;
+        }catch (SocketTimeoutException e){
+            try {
+                Thread.sleep(1000*2);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+            return getCode(user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -123,6 +131,8 @@ public class LoginAction {
             ObjectMapper objectMapper = new ObjectMapper();
             Map map = objectMapper.readValue(json, Map.class);
             return map;
+        }catch (SocketTimeoutException e){
+            return null;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -62,7 +62,9 @@ public class Launch {
 
                         //为账号维持登录状态-----------------------------------
                         new Thread(()->{while(true){
-                            Map online = LoginAction.online(user);
+                            Map online;
+                            //避免超时
+                            while((online=LoginAction.online(user))==null){try {Thread.sleep(1000*5);} catch (InterruptedException e) {throw new RuntimeException(e);}}
                             //如果含有登录超时字样
                             if(((String)online.get("msg")).contains("更新成功")){
                                 accountCacheYingHua.setStatus(1);

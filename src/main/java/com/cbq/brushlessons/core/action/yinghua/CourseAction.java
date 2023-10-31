@@ -82,6 +82,8 @@ public class CourseAction {
             String json = response.body().string();
             VideoRequest videoRequest = ConverterVideo.fromJsonString(json);
             return videoRequest;
+        }catch (SocketTimeoutException e){
+            return null;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

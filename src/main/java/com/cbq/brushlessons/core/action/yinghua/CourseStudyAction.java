@@ -121,7 +121,7 @@ public class CourseStudyAction implements Runnable {
 
     private void update(){
         //初始化视屏列表
-        courseVideosList = CourseAction.getCourseVideosList(user, courseInform);
+        while((courseVideosList = CourseAction.getCourseVideosList(user, courseInform))==null){try {Thread.sleep(1000*3);} catch (InterruptedException e) {throw new RuntimeException(e);}}
         //章节
         List<VideoList> zList = courseVideosList.getResult().getList();
         //将所有视屏都加入到集合里面
