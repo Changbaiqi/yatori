@@ -90,8 +90,10 @@ public class CourseStudyAction implements Runnable {
                     SubmitData data = submitStudyTimeRequest.getResult().getData();
                     studyId=data!=null?data.getStudyId():0;
                     try {
-                        log.info("\n服务器端信息：>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
+                        log.info("\n服务器端信息：>>>{}\n刷课账号>>>{}\n刷课平台>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
                                 ConverterSubmitStudyTime.toJsonString(submitStudyTimeRequest),
+                                user.getAccount(),
+                                user.getAccountType().name(),
                                 videoInform.getName(),
                                 videoDuration,
                                 studyTime);
