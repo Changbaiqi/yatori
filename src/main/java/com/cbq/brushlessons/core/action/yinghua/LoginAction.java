@@ -14,6 +14,7 @@ import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,7 +53,7 @@ public class LoginAction {
         try {
             Response response = client.newCall(request).execute();
             byte[] bytes = response.body().bytes();
-            File file = FileUtils.saveFile(bytes, user.getAccountType().name()+"_"+user.getAccount()+".png");
+            File file = FileUtils.saveFile(bytes, user.getAccountType().name()+"_"+user.getAccount()+"_"+(int)Math.random()*99999+".png");
             return file;
         }catch (SocketTimeoutException e){
             try {

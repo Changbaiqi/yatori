@@ -98,13 +98,15 @@ public class Launch {
                         for (CourseInform courseInform : allCourseList.getResult().getList()) {
                             //课程排除配置
                             if(user.getExcludeCourses()!=null) {
-                                if (user.getExcludeCourses().contains(courseInform.getName()))
-                                    continue;
+                                if(user.getExcludeCourses().size()!=0)
+                                    if (user.getExcludeCourses().contains(courseInform.getName()))
+                                        continue;
                             }
                             //如果有指定课程包含设定，那么就执行
                             if(user.getIncludeCourses()!=null){
-                                if(!user.getIncludeCourses().contains(courseInform.getName()))
-                                    continue;
+                                if(user.getIncludeCourses().size()!=0)
+                                    if(!user.getIncludeCourses().contains(courseInform.getName()))
+                                        continue;
                             }
                             CourseStudyAction bulild = CourseStudyAction.builder()
                                     .user(user)
