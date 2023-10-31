@@ -1,8 +1,8 @@
-<div><h1>Yatori课程助手</h1></div>
+<div align="center"><h1>Yatori课程助手</h1></div>
 
 ---
 
-<div align=center><img width="200" src="https://q1.qlogo.cn/g?b=qq&nk=2084069833&s=640"></img></div>
+<div align="center"><img width="200" src="https://q1.qlogo.cn/g?b=qq&nk=2084069833&s=640"></img></div>
 
 <div align="center"><h2>Yatori</h2></div>
 
