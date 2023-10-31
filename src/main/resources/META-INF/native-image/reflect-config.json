@@ -216,7 +216,67 @@
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.EnlistList",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true}
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"setAddDate","parameterTypes":["java.lang.String"] }, 
+    {"name":"setAddTime","parameterTypes":["java.lang.String"] }, 
+    {"name":"setCateBid","parameterTypes":["java.lang.String"] }, 
+    {"name":"setCateMid","parameterTypes":["java.lang.String"] }, 
+    {"name":"setCategoryId","parameterTypes":["long"] }, 
+    {"name":"setCategoryName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setClassTeacher","parameterTypes":["java.lang.String"] }, 
+    {"name":"setClusterId","parameterTypes":["java.lang.String"] }, 
+    {"name":"setCode","parameterTypes":["java.lang.String"] }, 
+    {"name":"setCollegeId","parameterTypes":["long"] }, 
+    {"name":"setCollegeName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setCover","parameterTypes":["java.lang.String"] }, 
+    {"name":"setCreateId","parameterTypes":["java.lang.String"] }, 
+    {"name":"setCredit","parameterTypes":["java.lang.String"] }, 
+    {"name":"setEndDate","parameterTypes":["java.lang.String"] }, 
+    {"name":"setId","parameterTypes":["long"] }, 
+    {"name":"setIntro","parameterTypes":["java.lang.String"] }, 
+    {"name":"setLastNodeId","parameterTypes":["long"] }, 
+    {"name":"setLearned","parameterTypes":["long"] }, 
+    {"name":"setLearning","parameterTypes":["long"] }, 
+    {"name":"setLecturerName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setLecturers","parameterTypes":["java.lang.String"] }, 
+    {"name":"setLineLock","parameterTypes":["java.lang.String"] }, 
+    {"name":"setMission","parameterTypes":["java.lang.String"] }, 
+    {"name":"setMode","parameterTypes":["long"] }, 
+    {"name":"setName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setOffline","parameterTypes":["java.lang.String"] }, 
+    {"name":"setPeriodName","parameterTypes":["java.lang.String"] }, 
+    {"name":"setProclamation","parameterTypes":["java.lang.Object"] }, 
+    {"name":"setProgress","parameterTypes":["double"] }, 
+    {"name":"setProgress1","parameterTypes":["java.lang.String"] }, 
+    {"name":"setResultRank","parameterTypes":["long"] }, 
+    {"name":"setResultScore","parameterTypes":["long"] }, 
+    {"name":"setSchoolId","parameterTypes":["java.lang.String"] }, 
+    {"name":"setScoreRuleUrl","parameterTypes":["java.lang.String"] }, 
+    {"name":"setSign","parameterTypes":["long"] }, 
+    {"name":"setSignClass","parameterTypes":["java.lang.String"] }, 
+    {"name":"setSignEndTime","parameterTypes":["java.lang.String"] }, 
+    {"name":"setSignInId","parameterTypes":["long"] }, 
+    {"name":"setSignLimit","parameterTypes":["long"] }, 
+    {"name":"setSignScope","parameterTypes":["java.lang.String"] }, 
+    {"name":"setSignStartTime","parameterTypes":["java.lang.String"] }, 
+    {"name":"setSignState","parameterTypes":["long"] }, 
+    {"name":"setSignedIn","parameterTypes":["long"] }, 
+    {"name":"setStartDate","parameterTypes":["java.lang.String"] }, 
+    {"name":"setState","parameterTypes":["long"] }, 
+    {"name":"setStuCount","parameterTypes":["java.lang.String"] }, 
+    {"name":"setStudentCount","parameterTypes":["long"] }, 
+    {"name":"setTabExam","parameterTypes":["boolean"] }, 
+    {"name":"setTabFile","parameterTypes":["boolean"] }, 
+    {"name":"setTabVideo","parameterTypes":["boolean"] }, 
+    {"name":"setTabVote","parameterTypes":["boolean"] }, 
+    {"name":"setTabWork","parameterTypes":["boolean"] }, 
+    {"name":"setTeachers","parameterTypes":["java.lang.String"] }, 
+    {"name":"setTplId","parameterTypes":["java.lang.String"] }, 
+    {"name":"setVideoCount","parameterTypes":["long"] }, 
+    {"name":"setVideoLearned","parameterTypes":["long"] }
+  ]}
 ,
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.PageInfo",
@@ -298,7 +358,12 @@
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitData",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true}
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"getStudyId","parameterTypes":[] }, 
+    {"name":"setStudyId","parameterTypes":["long"] }
+  ]}
 ,
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitResult",
@@ -307,7 +372,8 @@
   "queryAllDeclaredConstructors":true,
   "methods":[
     {"name":"<init>","parameterTypes":[] }, 
-    {"name":"getData","parameterTypes":[] }
+    {"name":"getData","parameterTypes":[] }, 
+    {"name":"setData","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitData"] }
   ]}
 ,
 {
@@ -331,7 +397,12 @@
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformCheat",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true}
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"setDuration","parameterTypes":["long"] }, 
+    {"name":"setState","parameterTypes":["long"] }
+  ]}
 ,
 {
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformData",
@@ -340,6 +411,7 @@
   "queryAllDeclaredConstructors":true,
   "methods":[
     {"name":"<init>","parameterTypes":[] }, 
+    {"name":"setCheat","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformCheat"] }, 
     {"name":"setStudyTotal","parameterTypes":["com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformStudyTotal"] }, 
     {"name":"setVideoDuration","parameterTypes":["long"] }, 
     {"name":"setVideoId","parameterTypes":["java.lang.String"] }, 
@@ -402,7 +474,6 @@
     {"name":"<init>","parameterTypes":[] }, 
     {"name":"setAccount","parameterTypes":["java.lang.String"] }, 
     {"name":"setAccountType","parameterTypes":["com.cbq.brushlessons.core.entity.AccountType"] }, 
-    {"name":"setIncludeCourses","parameterTypes":["java.util.Set"] }, 
     {"name":"setPassword","parameterTypes":["java.lang.String"] }, 
     {"name":"setUrl","parameterTypes":["java.lang.String"] }
   ]}
@@ -511,8 +582,7 @@
 {
   "name":"java.util.HashSet",
   "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true,
-  "methods":[{"name":"<init>","parameterTypes":[] }]}
+  "queryAllDeclaredConstructors":true}
 ,
 {
   "name":"java.util.PropertyPermission"}
