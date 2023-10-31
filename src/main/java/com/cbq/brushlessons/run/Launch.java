@@ -94,6 +94,16 @@ public class Launch {
                         CourseRequest allCourseList = CourseAction.getAllCourseRequest(user);
 
                         for (CourseInform courseInform : allCourseList.getResult().getList()) {
+                            //课程排除配置
+                            if(user.getExcludeCourses()!=null) {
+                                if (user.getExcludeCourses().contains(courseInform.getName()))
+                                    continue;
+                            }
+                            //如果有指定课程包含设定，那么就执行
+                            if(user.getIncludeCourses()!=null){
+                                if(!user.getIncludeCourses().contains(courseInform.getName()))
+                                    continue;
+                            }
                             CourseStudyAction bulild = CourseStudyAction.builder()
                                     .user(user)
                                     .courseInform(courseInform)

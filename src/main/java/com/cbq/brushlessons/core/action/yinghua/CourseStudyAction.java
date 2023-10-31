@@ -36,15 +36,17 @@ public class CourseStudyAction implements Runnable {
         if(newThread){
             new Thread(this).start();
         }else {
+            log.info("{}:正在学习课程>>>{}",user.getAccount(),courseInform.getName());
             study();
-            log.info("{}刷课完毕！",courseInform.getName());
+            log.info("{}:{}学习完毕！",user.getAccount(),courseInform.getName());
         }
     }
 
     @Override
     public void run() {
+        log.info("{}:正在学习课程>>>{}",user.getAccount(),courseInform.getName());
         study();
-        log.info("{}刷课完毕！",courseInform.getName());
+        log.info("{}:{}学习完毕！",user.getAccount(),courseInform.getName());
     }
     private void study(){
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
@@ -90,7 +92,7 @@ public class CourseStudyAction implements Runnable {
                     SubmitData data = submitStudyTimeRequest.getResult().getData();
                     studyId=data!=null?data.getStudyId():0;
                     try {
-                        log.info("\n服务器端信息：>>>{}\n刷课账号>>>{}\n刷课平台>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
+                        log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
                                 ConverterSubmitStudyTime.toJsonString(submitStudyTimeRequest),
                                 user.getAccount(),
                                 user.getAccountType().name(),
