@@ -6,9 +6,7 @@
 
 <div align="center"><h2>Yatori</h2></div>
 
-## 技术实现：
 
-> 网站逆向+爬虫
 
 ## 当前支持平台：
 
