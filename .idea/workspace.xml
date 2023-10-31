@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="优化验证码机制">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/ccc.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "E:/IntelliJ_WorkSpace/QuickBotTest",
+    "last_opened_file_path": "E:/IntelliJ_WorkSpace/TDJ",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -99,7 +98,7 @@
       <recent name="com.cbq.brushlessons.core.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.Application" />
       <module name="brushlessons" />
@@ -162,14 +161,14 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Application" />
       <item itemvalue="JUnit.ConfigUtilsTest.load" />
       <item itemvalue="JUnit.CourseActionTest.courseAll" />
       <item itemvalue="JUnit.LoginActionTest.testLogin" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.LoginActionTest.testLogin" />
         <item itemvalue="JUnit.ConfigUtilsTest.load" />
         <item itemvalue="JUnit.CourseActionTest.courseAll" />
@@ -190,7 +189,8 @@
       <workItem from="1698329931291" duration="29803000" />
       <workItem from="1698583004590" duration="26889000" />
       <workItem from="1698625603971" duration="15374000" />
-      <workItem from="1698645980224" duration="31054000" />
+      <workItem from="1698645980224" duration="36201000" />
+      <workItem from="1698743548198" duration="8614000" />
     </task>
     <task id="LOCAL-00001" summary="删除缓存">
       <created>1698641822577</created>
@@ -297,7 +297,63 @@
       <option name="project" value="LOCAL" />
       <updated>1698717174529</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="开始适配仓辉平台">
+      <created>1698743629711</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1698743629711</updated>
+    </task>
+    <task id="LOCAL-00017" summary="更新免责声明">
+      <created>1698744681144</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1698744681144</updated>
+    </task>
+    <task id="LOCAL-00018" summary="更新README格式">
+      <created>1698744939870</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1698744939870</updated>
+    </task>
+    <task id="LOCAL-00019" summary="更新README格式">
+      <created>1698745021633</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1698745021633</updated>
+    </task>
+    <task id="LOCAL-00020" summary="更新README格式">
+      <created>1698745196630</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1698745196630</updated>
+    </task>
+    <task id="LOCAL-00021" summary="添加交流群">
+      <created>1698763617065</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1698763617065</updated>
+    </task>
+    <task id="LOCAL-00022" summary="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明">
+      <created>1698768087091</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1698768087091</updated>
+    </task>
+    <task id="LOCAL-00023" summary="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明">
+      <created>1698768624388</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1698768624388</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,6 +383,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="删除缓存" />
     <MESSAGE value="更新README" />
     <MESSAGE value="添加文件过滤以及修复提交时间不记录bug" />
@@ -337,7 +394,13 @@
     <MESSAGE value="修复graalvm打包运行报错问题" />
     <MESSAGE value="添加登录超时重登机制，避免刷课中断" />
     <MESSAGE value="优化验证码机制" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化验证码机制" />
+    <MESSAGE value="更新食用方式" />
+    <MESSAGE value="开始适配仓辉平台" />
+    <MESSAGE value="更新免责声明" />
+    <MESSAGE value="更新README格式" />
+    <MESSAGE value="添加交流群" />
+    <MESSAGE value="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
