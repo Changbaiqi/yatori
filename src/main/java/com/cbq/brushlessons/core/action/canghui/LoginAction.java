@@ -1,8 +1,15 @@
 package com.cbq.brushlessons.core.action.canghui;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cbq.brushlessons.core.action.canghui.entity.loginresponse.ConverterLoginResponse;
+import com.cbq.brushlessons.core.action.canghui.entity.loginresponse.LoginResponseRequest;
+import com.cbq.brushlessons.core.action.canghui.entity.tologin.ConverterToLogin;
+import com.cbq.brushlessons.core.action.canghui.entity.tologin.ToLoginRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
 import com.cbq.brushlessons.core.entity.User;
+import com.cbq.brushlessons.core.utils.FileUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.*;
@@ -13,6 +20,7 @@ import java.io.*;
  * @date 2023/10/23 15:19
  * @version 1.0
  */
+@Slf4j
 public class LoginAction {
 
     /**
@@ -68,17 +76,8 @@ public class LoginAction {
 
             Response response = client.newCall(request).execute();
             byte[] bytes = response.body().bytes();
-            InputStream in = new ByteArrayInputStream(bytes);
-            FileOutputStream file = new FileOutputStream("code_" + user.getAccount() + ".jpeg");
-            int j;
-            while ((j = in.read()) != -1) {
-                file.write(j);
-            }
-            file.flush();
-            file.close();
-            in.close();
-            File file1 = new File("code_" +user.getAccount()+ ".jpeg");
-            return file1;
+            File file =FileUtils.saveFile(bytes,user.getAccountType().name()+"_"+user.getAccount()+"_"+(int)Math.random()*99999+".png");
+            return file;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -95,11 +94,18 @@ public class LoginAction {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType, "{\n" +
-                "    \"code\": \"" + ((AccountCacheCangHui)user.getCache()).getCode() + "\",\n" +
-                "    \"account\": \"" + user.getAccount() + "\",\n" +
-                "    \"password\": \"" + user.getPassword() + "\"\n" +
-                "}");
+
+        //构建登录json
+        ToLoginRequest loginRequest = new ToLoginRequest();
+        loginRequest.setCode(((AccountCacheCangHui)user.getCache()).getCode());
+        loginRequest.setAccount(user.getAccount());
+        loginRequest.setPassword(user.getPassword());
+        RequestBody body = null;
+        try {
+            body = RequestBody.create(mediaType, ConverterToLogin.toJsonString(loginRequest));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         Request request = new Request.Builder()
                 .url(user.getUrl() + "/api/v1/auth")
@@ -108,19 +114,22 @@ public class LoginAction {
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                 .addHeader("Content-Type", "application/json")
                 .build();
+
         try {
             Response response = client.newCall(request).execute();
-            JSONObject jsonObject = JSONObject.parseObject(response.body().string());
-            if (jsonObject.getInteger("code") == -1002) {
+            String json = response.body().string();
+            LoginResponseRequest loginResponseRequest = ConverterLoginResponse.fromJsonString(json);
+
+            if (loginResponseRequest.getCode() == -1002) {
                 return "-1002";
             }
-            if (jsonObject.getInteger("code") == -1001) {
-                System.out.println(jsonObject.get("msg"));
+            if (loginResponseRequest.getCode() == -1001) {
+//                System.out.println(jsonObject.get("msg"));
+                log.info(loginResponseRequest.getMsg());
                 return "-1001";
             }
-            //System.out.println(jsonObject.toString());
-            System.out.println("登录成功！");
-            return jsonObject.getJSONObject("data").getString("token");
+            log.info("登录成功");
+            return loginResponseRequest.getData().getToken();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
