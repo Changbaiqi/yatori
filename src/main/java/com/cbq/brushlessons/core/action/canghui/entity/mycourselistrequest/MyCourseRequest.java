@@ -1,5 +1,7 @@
 package com.cbq.brushlessons.core.action.canghui.entity.mycourselistrequest;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Request
  */

@@ -1,6 +1,7 @@
 package com.cbq.brushlessons.core.action.canghui;
 
 import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.ConverterCourseDetail;
+import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.CourseDetailData;
 import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.CourseDetailRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistrequest.ConverterMyCourseRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistrequest.MyCourseRequest;
@@ -95,7 +96,7 @@ public class CourseAction {
      * @param courseId
      * @return
      */
-    public static JSONObject getCourseDetail(User user, Long courseId) {
+    public static CourseDetailData getCourseDetail(User user, Long courseId) {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
@@ -136,15 +137,15 @@ public class CourseAction {
      *
      * @param user    课程的semesterId
      * @param course  课程的sectionId
-     * @param section 课程需要提交的学时（单位s)
      */
-    public static void submitLearnTime(User user, MyCourse course, Section section) {
+    public static void submitLearnTime(User user, MyCourse course) {
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"semesterId\": " + course.getSemesterId() + ",\r\n    \"sectionId\": \"" + section.getId() + "\",\r\n    \"position\": " + section.getProgress() + "\r\n}");
+            //RequestBody body = RequestBody.create(mediaType, "{\r\n    \"semesterId\": " + course.getSemesterId() + ",\r\n    \"sectionId\": \"" + section.getId() + "\",\r\n    \"position\": " + section.getProgress() + "\r\n}");
+            RequestBody body = RequestBody.create(mediaType,"");
             Request request = new Request.Builder()
                     .url(user.getUrl() + "/api/v1/course/study/upload/progress")
                     .method("POST", body)
@@ -158,12 +159,13 @@ public class CourseAction {
                     .build();
             Response response = client.newCall(request).execute();
             //System.out.println(response.body().string());
-            JSONObject jsonObject = JSONObject.parseObject(response.body().string());
-            if (jsonObject.getInteger("code") != 0) {
-                System.out.printf("!!!!!!%s课程!!!!!!\nid：%s\n名称：%s\n状态：提交学时失败。\n失败原因：%s\n", user.getAccount(), section.getId(), section.getName(), jsonObject.getString("msg"));
-                return;
-            }
-            System.out.printf("------%s课程------\nid：%s\n名称：%s\n状态：提交学时%s。当前学时：%d\n视屏总时长:%d\n", user.getAccount(), section.getId(), section.getName(), jsonObject.getString("msg"), section.getProgress(), section.getTotalProgress());
+            response.body().string();
+//            JSONObject jsonObject = JSONObject.parseObject(response.body().string());
+//            if (jsonObject.getInteger("code") != 0) {
+//                System.out.printf("!!!!!!%s课程!!!!!!\nid：%s\n名称：%s\n状态：提交学时失败。\n失败原因：%s\n", user.getAccount(), section.getId(), section.getName(), jsonObject.getString("msg"));
+//                return;
+//            }
+//            System.out.printf("------%s课程------\nid：%s\n名称：%s\n状态：提交学时%s。当前学时：%d\n视屏总时长:%d\n", user.getAccount(), section.getId(), section.getName(), jsonObject.getString("msg"), section.getProgress(), section.getTotalProgress());
         } catch (SocketTimeoutException e){
             System.out.println("有一个提交请求连接超时。");
         } catch (IOException e) {

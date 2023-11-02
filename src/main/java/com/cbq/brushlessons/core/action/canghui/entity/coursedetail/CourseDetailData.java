@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @lombok.Data
-public class Data {
+public class CourseDetailData {
     @lombok.Getter(onMethod_ = {@JsonProperty("access")})
     @lombok.Setter(onMethod_ = {@JsonProperty("access")})
     private long access;

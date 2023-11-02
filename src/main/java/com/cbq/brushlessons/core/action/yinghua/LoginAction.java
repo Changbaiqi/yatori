@@ -35,8 +35,10 @@ public class LoginAction {
 //            System.out.println(session);
             return session;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            log.error(e.getMessage());
         }
+        return null;
     }
 
     public static File getCode(User user){
@@ -59,12 +61,15 @@ public class LoginAction {
             try {
                 Thread.sleep(1000*2);
             } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
+//                throw new RuntimeException(ex);
+                log.error(ex.getMessage());
             }
             return getCode(user);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            log.error(e.getMessage());
         }
+        return null;
     }
 
 
@@ -102,8 +107,10 @@ public class LoginAction {
             Map<String,Object> result = new ObjectMapper().readValue(json,Map.class);
             return result;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            log.error(e.getMessage());
         }
+        return null;
     }
 
     /**
@@ -135,8 +142,10 @@ public class LoginAction {
         }catch (SocketTimeoutException e){
             return null;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            log.error(e.getMessage());
         }
+        return null;
     }
 
 }

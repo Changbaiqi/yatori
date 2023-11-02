@@ -12,7 +12,7 @@ public class CourseDetailRequest {
     private long code;
     @lombok.Getter(onMethod_ = {@JsonProperty("data")})
     @lombok.Setter(onMethod_ = {@JsonProperty("data")})
-    private Data data;
+    private CourseDetailData data;
     @lombok.Getter(onMethod_ = {@JsonProperty("msg")})
     @lombok.Setter(onMethod_ = {@JsonProperty("msg")})
     private String msg;
