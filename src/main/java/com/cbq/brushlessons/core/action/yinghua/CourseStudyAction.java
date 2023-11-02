@@ -31,7 +31,7 @@ public class CourseStudyAction implements Runnable {
     private long studyId=0;
     private Boolean newThread=false;
 
-    private long studyInterval=8;
+    private long studyInterval=5;
     public void toStudy(){
         if(newThread){
             new Thread(this).start();
@@ -121,7 +121,7 @@ public class CourseStudyAction implements Runnable {
 
     private void update(){
         //初始化视屏列表
-        while((courseVideosList = CourseAction.getCourseVideosList(user, courseInform))==null){try {Thread.sleep(1000*3);} catch (InterruptedException e) {throw new RuntimeException(e);}}
+        while((courseVideosList = CourseAction.getCourseVideosList(user, courseInform))==null){try {Thread.sleep(1000*5);} catch (InterruptedException e) {throw new RuntimeException(e);}}
         //章节
         List<VideoList> zList = courseVideosList.getResult().getList();
         //将所有视屏都加入到集合里面

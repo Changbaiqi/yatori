@@ -52,8 +52,10 @@ public class CourseAction {
             CourseRequest courseRequest = ConverterAllCourse.fromJsonString(json);
             return courseRequest;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            log.error(e.getMessage());
         }
+        return null;
     }
 
     /**
@@ -85,8 +87,10 @@ public class CourseAction {
         }catch (SocketTimeoutException e){
             return null;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            log.error(e.getMessage());
         }
+        return null;
     }
 
     /**
@@ -122,9 +126,11 @@ public class CourseAction {
                 videoInformRequest.getResult().getData().setStudyTotal(videoInformStudyTotal);
             }
             return videoInformRequest;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+//            throw new RuntimeException(e);
+            log.error(e.getMessage());
         }
+        return null;
     }
 
 
@@ -163,9 +169,10 @@ public class CourseAction {
         }catch (SocketTimeoutException e){
             return null;
         }
-        catch (IOException e) {
-            throw new RuntimeException(e);
+        catch (Exception e) {
+            log.error(e.getMessage());
         }
+        return null;
     }
 
 
