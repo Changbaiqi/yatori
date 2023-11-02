@@ -18,6 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @description: TODO
+ * @author 长白崎
+ * @date 2023/11/2 14:34
+ * @version 1.0
+ */
 @Slf4j
 public class CourseStudyAction implements Runnable {
 
@@ -58,7 +64,9 @@ public class CourseStudyAction implements Runnable {
                 if (videoInform.getVideoState()==2)
                     continue;
                 //获取到视屏观看信息
-                VideoInformRequest videMessage = CourseAction.getVideMessage(user, videoInform);
+                VideoInformRequest videMessage = null;
+                while((videMessage=CourseAction.getVideMessage(user, videoInform))==null);
+
                 //视屏总时长
                 long videoDuration = videMessage.getResult().getData().getVideoDuration();
                 //当前学习进度
@@ -85,7 +93,7 @@ public class CourseStudyAction implements Runnable {
 
                     SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitStudyTime(user, videoInform, studyTime, studyId);
                     //如果未成功提交
-                    if(submitStudyTimeRequest==null){ studyTime-=studyInterval; continue;}
+                    if(submitStudyTimeRequest==null){ continue;}
                     //检测是否登录超时
                     if(submitStudyTimeRequest.getMsg().contains("登录超时")){cache.setStatus(2);studyTime-=studyInterval; continue;}
                     //成功提交
@@ -121,7 +129,7 @@ public class CourseStudyAction implements Runnable {
 
     private void update(){
         //初始化视屏列表
-        while((courseVideosList = CourseAction.getCourseVideosList(user, courseInform))==null){try {Thread.sleep(1000*5);} catch (InterruptedException e) {throw new RuntimeException(e);}}
+        while((courseVideosList = CourseAction.getCourseVideosList(user, courseInform))==null);
         //章节
         List<VideoList> zList = courseVideosList.getResult().getList();
         //将所有视屏都加入到集合里面
@@ -157,7 +165,9 @@ public class CourseStudyAction implements Runnable {
         }
         public CourseStudyAction build(){
             //初始化视屏列表
-            courseStudyAction.courseVideosList = CourseAction.getCourseVideosList(courseStudyAction.user, courseStudyAction.courseInform);
+            courseStudyAction.courseVideosList=null;
+            while ((courseStudyAction.courseVideosList = CourseAction.getCourseVideosList(courseStudyAction.user, courseStudyAction.courseInform))==null);
+
             //章节
             List<VideoList> zList = courseStudyAction.courseVideosList.getResult().getList();
             //将所有视屏都加入到集合里面

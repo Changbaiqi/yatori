@@ -51,6 +51,8 @@ public class CourseAction {
             String json = response.body().string();
             CourseRequest courseRequest = ConverterAllCourse.fromJsonString(json);
             return courseRequest;
+        } catch (SocketTimeoutException e){
+            return null;
         } catch (IOException e) {
 //            throw new RuntimeException(e);
             log.error(e.getMessage());
@@ -126,6 +128,8 @@ public class CourseAction {
                 videoInformRequest.getResult().getData().setStudyTotal(videoInformStudyTotal);
             }
             return videoInformRequest;
+        } catch (SocketTimeoutException e){
+            return null;
         } catch (Exception e) {
 //            throw new RuntimeException(e);
             log.error(e.getMessage());
@@ -144,7 +148,7 @@ public class CourseAction {
      */
     public static SubmitStudyTimeRequest submitStudyTime(User user, NodeList videoInform, long studyTime, long studyId){
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(Duration.ofSeconds(7))
+                .connectTimeout(Duration.ofSeconds(10))
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -168,8 +172,7 @@ public class CourseAction {
             return submitStudyTimeRequest;
         }catch (SocketTimeoutException e){
             return null;
-        }
-        catch (Exception e) {
+        } catch (IOException e) {
             log.error(e.getMessage());
         }
         return null;

@@ -34,6 +34,8 @@ public class LoginAction {
             String session = response.header("Set-Cookie");
 //            System.out.println(session);
             return session;
+        }catch (SocketTimeoutException e){
+            return null;
         } catch (IOException e) {
 //            throw new RuntimeException(e);
             log.error(e.getMessage());
@@ -58,13 +60,7 @@ public class LoginAction {
             File file = FileUtils.saveFile(bytes, user.getAccountType().name()+"_"+user.getAccount()+"_"+(int)Math.random()*99999+".png");
             return file;
         }catch (SocketTimeoutException e){
-            try {
-                Thread.sleep(1000*2);
-            } catch (InterruptedException ex) {
-//                throw new RuntimeException(ex);
-                log.error(ex.getMessage());
-            }
-            return getCode(user);
+            return null;
         } catch (IOException e) {
 //            throw new RuntimeException(e);
             log.error(e.getMessage());
@@ -106,6 +102,8 @@ public class LoginAction {
 //            System.out.println(response.body().string());
             Map<String,Object> result = new ObjectMapper().readValue(json,Map.class);
             return result;
+        }catch (SocketTimeoutException e){
+            return null;
         } catch (IOException e) {
 //            throw new RuntimeException(e);
             log.error(e.getMessage());
