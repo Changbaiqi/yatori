@@ -1,26 +1,32 @@
 package com.cbq.brushlessons.core.action.canghui;
 
+import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.ConverterCourseDetail;
+import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.CourseDetailRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistrequest.ConverterMyCourseRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistrequest.MyCourseRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.ConverterMyCourseResponse;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourse;
+import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourseData;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourseDataRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
 import com.cbq.brushlessons.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class CourseAction {
 
     /**
      * 获取我需要刷的课程列表
      */
-    public static MyCourse myCourseList(User user) {
+    public static MyCourseData myCourseList(User user) {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
@@ -58,23 +64,24 @@ public class CourseAction {
                 throw new Exception(json);
             }
             if (dataRequest.getMsg().equals("暂无数据")) {
-                System.out.println(user.getAccount() + "已刷完");
-                return new MyCourse();
+//                System.out.println(user.getAccount() + "已刷完");
+                log.info("{}已刷完",user.getAccount());
+                return new MyCourseData();
             }
 
-            JSONObject data = jsonObject.getJSONObject("data");
-            JSONArray lists = data.getJSONArray("lists");
-            //用于寄存详细课程内容
-            JSONArray courseDetailsArray = new JSONArray();
-            for (int i = 0; i < lists.size(); ++i) {
-                JSONObject resCourse = lists.getJSONObject(i);
-                Long courseId = resCourse.getLong("courseId");
-                //将相应的详细课表json加入列表中
-                courseDetailsArray.add(getCourseDetail(user, courseId));
-            }
+//            JSONObject data = jsonObject.getJSONObject("data");
+//            JSONArray lists = data.getJSONArray("lists");
+//            //用于寄存详细课程内容
+//            JSONArray courseDetailsArray = new JSONArray();
+//            for (int i = 0; i < lists.size(); ++i) {
+//                JSONObject resCourse = lists.getJSONObject(i);
+//                Long courseId = resCourse.getLong("courseId");
+//                //将相应的详细课表json加入列表中
+//                courseDetailsArray.add(getCourseDetail(user, courseId));
+//            }
             //装载
             //System.out.println(jsonObject.toString());
-            return new MyCourse().build(courseDetailsArray);
+            return dataRequest.getData();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -109,15 +116,16 @@ public class CourseAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            JSONObject jsonObject = JSONObject.parseObject(response.body().string());
+            String json = response.body().string();
+            CourseDetailRequest courseDetailRequest = ConverterCourseDetail.fromJsonString(json);
             //System.out.println(jsonObject.toString());
-            if (jsonObject.getInteger("code") != 0) {
-                throw new Exception(jsonObject.toString());
+            if (courseDetailRequest.getCode() != 0) {
+                throw new Exception(json);
             }
 
             //装载
             //System.out.println(jsonObject.toString());
-            return jsonObject.getJSONObject("data");
+            return courseDetailRequest.getData();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -130,7 +138,7 @@ public class CourseAction {
      * @param course  课程的sectionId
      * @param section 课程需要提交的学时（单位s)
      */
-    public static void submitLearnTime(User user, Course course, Section section) {
+    public static void submitLearnTime(User user, MyCourse course, Section section) {
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .connectTimeout(10, TimeUnit.SECONDS)
@@ -138,11 +146,11 @@ public class CourseAction {
             MediaType mediaType = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediaType, "{\r\n    \"semesterId\": " + course.getSemesterId() + ",\r\n    \"sectionId\": \"" + section.getId() + "\",\r\n    \"position\": " + section.getProgress() + "\r\n}");
             Request request = new Request.Builder()
-                    .url(user.getMainUrl() + "/api/v1/course/study/upload/progress")
+                    .url(user.getUrl() + "/api/v1/course/study/upload/progress")
                     .method("POST", body)
-                    .addHeader("Member-Token", user.getMember_Token())
-                    .addHeader("Origin", user.getMainUrl())
-                    .addHeader("Cookie", "SESSION=" + user.getSESSION() + ";Member-Token=" + user.getMember_Token() + ";Member-schoolId=" + user.getMember_schoolld() + "")
+                    .addHeader("Member-Token", ((AccountCacheCangHui)user.getCache()).getToken())
+                    .addHeader("Origin", user.getUrl())
+                    .addHeader("Cookie", ((AccountCacheCangHui)user.getCache()).getSession())
                     .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "*/*")
@@ -171,17 +179,17 @@ public class CourseAction {
      * @param myCourse
      * @return
      */
-    public static int calcSections(MyCourse myCourse) {
-        int ans = 0;
-        ArrayList<Course> courseArrayList = myCourse.getCourseArrayList();
-        for (int i = 0; i < courseArrayList.size(); ++i) {
-            if (courseArrayList.get(i).getSw().compareTo(Boolean.FALSE) == 0)
-                continue;
-            ArrayList<Section> sections = courseArrayList.get(i).getSections();
-            ans += sections.size();
-        }
-        return ans;
-    }
+//    public static int calcSections(MyCourseData myCourse) {
+//        int ans = 0;
+//        List<MyCourse> courseArrayList = myCourse.getLists();
+//        for (int i = 0; i < courseArrayList.size(); ++i) {
+//            if (courseArrayList.get(i).getSw().compareTo(Boolean.FALSE) == 0)
+//                continue;
+//            ArrayList<Section> sections = courseArrayList.get(i).getSections();
+//            ans += sections.size();
+//        }
+//        return ans;
+//    }
 
 
 }

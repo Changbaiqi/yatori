@@ -1,4 +1,4 @@
-package com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse;
+package com.cbq.brushlessons.core.action.canghui.entity.coursedetail;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Request
  */
 @lombok.Data
-public class MyCourseDataRequest {
+public class CourseDetailRequest {
     @lombok.Getter(onMethod_ = {@JsonProperty("code")})
     @lombok.Setter(onMethod_ = {@JsonProperty("code")})
     private long code;
     @lombok.Getter(onMethod_ = {@JsonProperty("data")})
     @lombok.Setter(onMethod_ = {@JsonProperty("data")})
-    private MyCourseData data;
+    private Data data;
     @lombok.Getter(onMethod_ = {@JsonProperty("msg")})
     @lombok.Setter(onMethod_ = {@JsonProperty("msg")})
     private String msg;
