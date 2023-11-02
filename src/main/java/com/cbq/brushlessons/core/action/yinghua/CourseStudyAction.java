@@ -99,16 +99,16 @@ public class CourseStudyAction implements Runnable {
                                 videoInform.getName(),
                                 videoDuration,
                                 studyTime);
-                    } catch (JsonProcessingException e) {
-                        throw new RuntimeException(e);
-                    }
                     //延时8秒
                     if(studyTime<videoDuration) {
-                        try {
                             Thread.sleep(1000*studyInterval);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
                         }
+                    } catch (JsonProcessingException e) {
+//                        throw new RuntimeException(e);
+                        log.error(e.getMessage());
+                    } catch (InterruptedException e) {
+//                        throw new RuntimeException(e);
+                        log.error(e.getMessage());
                     }
                     //更新视屏信息列表
                     if(studyTime>=videoDuration){update();}
