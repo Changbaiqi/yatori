@@ -183,7 +183,7 @@
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true,
-  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAccount","parameterTypes":["java.lang.String"] }, {"name":"setAccountType","parameterTypes":["com.cbq.brushlessons.core.entity.AccountType"] }, {"name":"setPassword","parameterTypes":["java.lang.String"] }, {"name":"setUrl","parameterTypes":["java.lang.String"] }]
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAccount","parameterTypes":["java.lang.String"] }, {"name":"setAccountType","parameterTypes":["com.cbq.brushlessons.core.entity.AccountType"] }, {"name":"setExcludeCourses","parameterTypes":["java.util.Set"] }, {"name":"setIncludeCourses","parameterTypes":["java.util.Set"] }, {"name":"setPassword","parameterTypes":["java.lang.String"] }, {"name":"setUrl","parameterTypes":["java.lang.String"] }]
 },
 {
   "name":"com.fasterxml.jackson.databind.ext.Java7HandlersImpl",
@@ -293,7 +293,8 @@
 {
   "name":"java.util.HashSet",
   "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]
 },
 {
   "name":"java.util.PropertyPermission"
