@@ -96,7 +96,7 @@ public class Course {
     private String recommendTag;
     @lombok.Getter(onMethod_ = {@JsonProperty("router")})
     @lombok.Setter(onMethod_ = {@JsonProperty("router")})
-    private Router router;
+    private VideoRouter router;
     @lombok.Getter(onMethod_ = {@JsonProperty("rules")})
     @lombok.Setter(onMethod_ = {@JsonProperty("rules")})
     private String rules;

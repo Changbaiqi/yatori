@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @lombok.Data
-public class Router {
+public class VideoRouter {
     /**
      * 这个存的是真正的视屏课程
      */
