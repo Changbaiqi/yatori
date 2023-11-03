@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新仓辉">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复graalvm">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/mycourselistresponse/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/mycourselistresponse/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/mycourselistresponse/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/mycourselistresponse/VideoRouter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +71,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "E:/IntelliJ_WorkSpace/TDJ",
+    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -200,6 +196,7 @@
       <workItem from="1698743548198" duration="12614000" />
       <workItem from="1698774853870" duration="2847000" />
       <workItem from="1698778036950" duration="22444000" />
+      <workItem from="1698976991193" duration="752000" />
     </task>
     <task id="LOCAL-00001" summary="删除缓存">
       <created>1698641822577</created>
@@ -460,7 +457,28 @@
       <option name="project" value="LOCAL" />
       <updated>1698928639174</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="修复graalvm">
+      <created>1698977062457</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1698977062457</updated>
+    </task>
+    <task id="LOCAL-00039" summary="更新仓辉">
+      <created>1698977072887</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1698977072887</updated>
+    </task>
+    <task id="LOCAL-00040" summary="修复graalvm">
+      <created>1698977319467</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1698977319468</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,7 +509,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="删除缓存" />
     <MESSAGE value="更新README" />
     <MESSAGE value="添加文件过滤以及修复提交时间不记录bug" />
     <MESSAGE value="修复超时提交链接超时引起的程序中断bug" />
@@ -516,7 +533,8 @@
     <MESSAGE value="优化逻辑机制及速度" />
     <MESSAGE value="修复graalvm的bug" />
     <MESSAGE value="更新仓辉" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新仓辉" />
+    <MESSAGE value="修复graalvm" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复graalvm" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -25,20 +25,26 @@
 
 > 下载releases然后解压修改config配置文件之后点击exe启动即可。
 >
+> 注意：填url的时候是填写学校英华的根链接，不能带uri，
+>
+> 比如https://mooc.xxx.edu.com/，而不是https://mooc.xxx.edu.cn/xx/xx
+>
+> 以及不能用https://mooc.yinghualine.com/，要用自己学校的链接，比如https://mooc.xxx.cn/，每个学校的链接都不同，这个可以自己去找去问。
+>
 > 配置文件说明：
 >
 > ```json
 > {
->   "users": [
->     {
->       "accountType": "YINGHUA",//指定平台，"YINGHUA"代表英华学堂，CANGHUI代表仓辉平台
->       "url": "url",//平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
->       "account": "账号",//账号
->       "password": "",//密码
->       "excludeCourses": ["课程1", "课程2"],//这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
->       "includeCourses": ["课程3", "课程4"]//这个指的是需要刷的课程，如果不填默认刷全部课程除非设置了排除课程
->     }
->   ]
+> "users": [
+>  {
+>    "accountType": "YINGHUA",//指定平台，"YINGHUA"代表英华学堂，CANGHUI代表仓辉平台
+>    "url": "url",//平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
+>    "account": "账号",//账号
+>    "password": "",//密码
+>    "excludeCourses": ["课程1", "课程2"],//这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
+>    "includeCourses": ["课程3", "课程4"]//这个指的是需要刷的课程，如果不填默认刷全部课程除非设置了排除课程
+>  }
+> ]
 > }
 > ```
 >
@@ -49,18 +55,18 @@
 > ```json
 > {
 > "users": [
->  {
->    "accountType": "YINGHUA",
->    "url": "张三的url",
->    "account": "张三的账号",
->    "password": "张三的密码"
->  },
->  {
->    "accountType": "YINGHUA",
->    "url": "李四的url",
->    "account": "李四的账号",
->    "password": "李四的密码"
->  }
+> {
+> "accountType": "YINGHUA",
+> "url": "张三的url",
+> "account": "张三的账号",
+> "password": "张三的密码"
+> },
+> {
+> "accountType": "YINGHUA",
+> "url": "李四的url",
+> "account": "李四的账号",
+> "password": "李四的密码"
+> }
 > ]
 > }
 > ```
