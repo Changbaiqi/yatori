@@ -54,8 +54,8 @@ public class CourseAction {
         } catch (SocketTimeoutException e){
             return null;
         } catch (IOException e) {
-//            throw new RuntimeException(e);
-            log.error(e.getMessage());
+            log.error("");
+            e.printStackTrace();
         }
         return null;
     }
@@ -89,8 +89,8 @@ public class CourseAction {
         }catch (SocketTimeoutException e){
             return null;
         } catch (IOException e) {
-//            throw new RuntimeException(e);
-            log.error(e.getMessage());
+            log.error("");
+            e.printStackTrace();
         }
         return null;
     }
@@ -131,8 +131,8 @@ public class CourseAction {
         } catch (SocketTimeoutException e){
             return null;
         } catch (Exception e) {
-//            throw new RuntimeException(e);
-            log.error(e.getMessage());
+            log.error("");
+            e.printStackTrace();
         }
         return null;
     }
@@ -173,7 +173,8 @@ public class CourseAction {
         }catch (SocketTimeoutException e){
             return null;
         } catch (IOException e) {
-            log.error(e.getMessage());
+            log.error("");
+            e.printStackTrace();
         }
         return null;
     }
