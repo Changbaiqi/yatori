@@ -129,7 +129,10 @@ public class CourseStudyAction implements Runnable {
                     }
                     //更新视屏信息列表
                     if (studyTime >= videoDuration) {
-                        update();
+                        if(submitStudyTimeRequest==null)
+                            studyTime-=studyInterval;
+                        else
+                            update();
                     }
                 }
 
