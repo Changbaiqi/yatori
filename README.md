@@ -23,13 +23,13 @@
 
 ### 直接食用:
 
-> 下载releases然后解压修改config配置文件之后点击exe启动即可。
+> 下载releases然后解压修改config配置文件之后点击start.bat启动即可。
 >
 > 注意：填url的时候是填写学校英华的根链接，不能带uri，
 >
-> 比如https://mooc.xxx.edu.com/，而不是https://mooc.xxx.edu.cn/xx/xx
+> 比如[https://mooc.xxx.edu.com/](https://mooc.xxx.edu.com/)，而不是[https://mooc.xxx.edu.cn/xx/xx](https://mooc.xxx.edu.cn/xx/xx)
 >
-> 以及不能用https://mooc.yinghualine.com/，要用自己学校的链接，比如https://mooc.xxx.cn/，每个学校的链接都不同，这个可以自己去找去问。
+> 以及不能用[https://mooc.yinghuaonline.com/](https://mooc.yinghuaonline.com/)，要用自己学校的链接，比如[https://mooc.xxx.cn/](https://mooc.xxx.cn/)，每个学校的链接都不同，这个可以自己去找去问。
 >
 > 配置文件说明：
 >
