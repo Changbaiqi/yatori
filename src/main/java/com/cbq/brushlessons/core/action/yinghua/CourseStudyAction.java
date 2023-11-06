@@ -7,6 +7,7 @@ import com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoList;
 import com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoRequest;
 import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.ConverterSubmitStudyTime;
 import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitData;
+import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitResult;
 import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitStudyTimeRequest;
 import com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformStudyTotal;
 import com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformRequest;
@@ -104,8 +105,11 @@ public class CourseStudyAction implements Runnable {
                                 continue;
                             }
                             //成功提交
-                            SubmitData data = submitStudyTimeRequest.getResult().getData();
-                            studyId = data != null ? data.getStudyId() : 0;
+                            SubmitResult result = submitStudyTimeRequest.getResult();
+                            if(result!=null)
+                                if(result.getData()!=null)
+                                    studyId = result.getData() != null ? result.getData().getStudyId() : studyId;
+
 
                             log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
                                     ConverterSubmitStudyTime.toJsonString(submitStudyTimeRequest),
