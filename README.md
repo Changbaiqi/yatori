@@ -1,7 +1,7 @@
 <div align="center"><h1>Yatori课程助手</h1></div>
 
 ---
-<div align="center"><img width="100" src="https://img.shields.io/badge/Java17-passing-r.svg"></img><img width="100" src="https://img.shields.io/badge/Maven3.8.1-building-r.svg"></img></div>
+<div align="center"><img width="100px" src="https://img.shields.io/badge/Java17-passing-r.svg"></img> <img width="125px" src="https://img.shields.io/badge/Maven3.8.1-building-r.svg"></img></div>
 
 <div align="center"><img width="200" src="https://q1.qlogo.cn/g?b=qq&nk=2084069833&s=640"></img></div>
 
