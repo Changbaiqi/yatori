@@ -9,10 +9,13 @@ import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
 import com.cbq.brushlessons.core.entity.User;
 import com.cbq.brushlessons.core.utils.FileUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.*;
+import java.net.SocketTimeoutException;
+import java.util.Map;
 
 /**
  * @description: 登录相关的Action
@@ -52,7 +55,8 @@ public class LoginAction {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error("");
+            e.printStackTrace();
         }
         return null;
     }
@@ -78,10 +82,14 @@ public class LoginAction {
             byte[] bytes = response.body().bytes();
             File file =FileUtils.saveFile(bytes,user.getAccountType().name()+"_"+user.getAccount()+"_"+(int)Math.random()*99999+".png");
             return file;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (SocketTimeoutException e){
+            return null;
+        }catch (IOException e) {
+            log.error("");
+            e.printStackTrace();
         }
         //CodeUtil.getData(bytes);
+        return null;
     }
 
 
@@ -89,7 +97,7 @@ public class LoginAction {
      * -1002代表验证码错误
      * 登录
      */
-    public static String getToKen(User user) {
+    public static LoginResponseRequest toLogin(User user) {
 
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
@@ -121,18 +129,52 @@ public class LoginAction {
             LoginResponseRequest loginResponseRequest = ConverterLoginResponse.fromJsonString(json);
 
             if (loginResponseRequest.getCode() == -1002) {
-                return "-1002";
+                return loginResponseRequest;
             }
             if (loginResponseRequest.getCode() == -1001) {
 //                System.out.println(jsonObject.get("msg"));
                 log.info(loginResponseRequest.getMsg());
-                return "-1001";
+                return loginResponseRequest;
             }
-            log.info("登录成功");
-            return loginResponseRequest.getData().getToken();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+//            log.info("登录成功");
+//            return loginResponseRequest.getData().getToken();
+            return loginResponseRequest;
+        } catch (SocketTimeoutException e){
+            return null;
+        }catch (IOException e) {
+            log.error("");
+            e.printStackTrace();
         }
+        return null;
+    }
+
+
+    public static Map online(User user){
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        Request request = new Request.Builder()
+                .url(user.getUrl()+"/api/v1/report/submit")
+                .method("GET", null)
+                .addHeader("Member-Token", ((AccountCacheCangHui)user.getCache()).getToken())
+                .addHeader("Origin", user.getUrl())
+                .addHeader("Cookie", "SESSION="+((AccountCacheCangHui)user.getCache()).getSession()+
+                        ";Member-Token="+((AccountCacheCangHui)user.getCache()).getToken()+";" +
+                        "Member-schoolId=0")
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String json = response.body().string();
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map map = objectMapper.readValue(json, Map.class);
+        } catch (SocketTimeoutException e){
+            return null;
+        }catch (IOException e) {
+            log.error("");
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

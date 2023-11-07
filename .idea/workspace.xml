@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复graalvm">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更改提交学时算法">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/submitstudy/ConverterSubmitStudyTime.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/submitstudy/SubmitStudyTimeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/cbq/brushlessons/core/action/canghui/LoginActionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/mycourselistresponse/RouterDatum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/mycourselistresponse/RouterDatum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/AccountCacheCangHui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/AccountCacheCangHui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +81,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/screenshot&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -97,6 +104,7 @@
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.cbq.brushlessons.core.action.canghui" />
       <recent name="com.cbq.brushlessons.core.action.yinghua" />
       <recent name="com.cbq.brushlessons.core.utils" />
     </key>
@@ -118,38 +126,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ConfigUtilsTest.load" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brushlessons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.ConfigUtilsTest" />
-      <option name="METHOD_NAME" value="load" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CourseActionTest.courseAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brushlessons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.action.yinghua.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.yinghua" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.yinghua.CourseActionTest" />
-      <option name="METHOD_NAME" value="courseAll" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="LoginActionTest.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="brushlessons" />
       <extension name="coverage">
@@ -166,18 +142,68 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LoginActionTest.toBrushLessons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="brushlessons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.brushlessons.core.action.canghui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.canghui" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.canghui.LoginActionTest" />
+      <option name="METHOD_NAME" value="toBrushLessons" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginActionTest.toCourse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="brushlessons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.brushlessons.core.action.canghui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.canghui" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.canghui.LoginActionTest" />
+      <option name="METHOD_NAME" value="toCourse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginActionTest.toLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="brushlessons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.brushlessons.core.action.canghui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.canghui" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.canghui.LoginActionTest" />
+      <option name="METHOD_NAME" value="toLogin" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Application" />
-      <item itemvalue="JUnit.ConfigUtilsTest.load" />
-      <item itemvalue="JUnit.CourseActionTest.courseAll" />
+      <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
+      <item itemvalue="JUnit.LoginActionTest.toCourse" />
+      <item itemvalue="JUnit.LoginActionTest.toLogin" />
       <item itemvalue="JUnit.LoginActionTest.testLogin" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
+        <item itemvalue="JUnit.LoginActionTest.toCourse" />
+        <item itemvalue="JUnit.LoginActionTest.toLogin" />
         <item itemvalue="JUnit.LoginActionTest.testLogin" />
-        <item itemvalue="JUnit.ConfigUtilsTest.load" />
-        <item itemvalue="JUnit.CourseActionTest.courseAll" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +226,12 @@
       <workItem from="1698774853870" duration="2847000" />
       <workItem from="1698778036950" duration="22444000" />
       <workItem from="1698976991193" duration="752000" />
-      <workItem from="1699009285058" duration="2183000" />
+      <workItem from="1699009285058" duration="9373000" />
+      <workItem from="1699099438826" duration="285000" />
+      <workItem from="1699108826722" duration="693000" />
+      <workItem from="1699249983349" duration="791000" />
+      <workItem from="1699257467671" duration="1043000" />
+      <workItem from="1699348492630" duration="14264000" />
     </task>
     <task id="LOCAL-00001" summary="删除缓存">
       <created>1698641822577</created>
@@ -482,7 +513,42 @@
       <option name="project" value="LOCAL" />
       <updated>1698977319468</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="更改抛错方式">
+      <created>1699074602496</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1699074602496</updated>
+    </task>
+    <task id="LOCAL-00042" summary="更改抛错方式">
+      <created>1699080067423</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1699080067423</updated>
+    </task>
+    <task id="LOCAL-00043" summary="修复视屏课程学习逻辑，修复视屏未学完bug">
+      <created>1699096602677</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1699096602677</updated>
+    </task>
+    <task id="LOCAL-00044" summary="修复学时提交空指针bug">
+      <created>1699250337018</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1699250337018</updated>
+    </task>
+    <task id="LOCAL-00045" summary="更改提交学时算法">
+      <created>1699355181925</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1699355181925</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,10 +579,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新README" />
-    <MESSAGE value="添加文件过滤以及修复提交时间不记录bug" />
-    <MESSAGE value="修复超时提交链接超时引起的程序中断bug" />
-    <MESSAGE value="更新README文档" />
     <MESSAGE value="功能优化防止错误密码等情况陷入死循环" />
     <MESSAGE value="英华学堂基本功能完善" />
     <MESSAGE value="修复graalvm打包运行报错问题" />
@@ -538,7 +600,11 @@
     <MESSAGE value="修复graalvm的bug" />
     <MESSAGE value="更新仓辉" />
     <MESSAGE value="修复graalvm" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复graalvm" />
+    <MESSAGE value="更改抛错方式" />
+    <MESSAGE value="修复视屏课程学习逻辑，修复视屏未学完bug" />
+    <MESSAGE value="修复学时提交空指针bug" />
+    <MESSAGE value="更改提交学时算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="更改提交学时算法" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

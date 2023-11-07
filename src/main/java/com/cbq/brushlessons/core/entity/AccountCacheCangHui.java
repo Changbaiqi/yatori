@@ -13,4 +13,5 @@ public class AccountCacheCangHui implements AccountCache {
     private String session;
     private String code;
     private String token;
+    private Integer status=0;
 }

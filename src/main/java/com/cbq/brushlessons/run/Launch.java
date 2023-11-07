@@ -1,10 +1,15 @@
 package com.cbq.brushlessons.run;
 
+import com.cbq.brushlessons.core.action.canghui.entity.loginresponse.LoginResponseRequest;
+import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Course;
+import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourse;
+import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourseData;
 import com.cbq.brushlessons.core.action.yinghua.CourseAction;
 import com.cbq.brushlessons.core.action.yinghua.CourseStudyAction;
 import com.cbq.brushlessons.core.action.yinghua.LoginAction;
 import com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseInform;
 import com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseRequest;
+import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
 import com.cbq.brushlessons.core.entity.AccountCacheYingHua;
 import com.cbq.brushlessons.core.entity.Config;
 import com.cbq.brushlessons.core.entity.User;
@@ -44,7 +49,7 @@ public class Launch {
                       :  \\  \\;  :   .'   \\ |  ,   /  `----'   ---'    ;  :    ;\s
                        \\  ' ;|  ,     .-./  ---`-'                    |  ,   / \s
                         `--`  `--`---'                                 ---`-'  \s
-                                Yatori v1.0.2-Beta-2
+                                Yatori v1.1.0-Beta-1
                 """);
     }
 
@@ -135,6 +140,80 @@ public class Launch {
                         }
                     }).start();
                 }
+                case CANGHUI -> {
+                    AccountCacheCangHui accountCacheCangHui = new AccountCacheCangHui();
+                    user.setCache(accountCacheCangHui);
+                    //refresh_code:1代表密码错误，
+                    LoginResponseRequest result=null;
+                    do {
+                        //获取SESSION
+                        String session = null;
+                        while ((session = com.cbq.brushlessons.core.action.canghui.LoginAction.getSESSION(user)) == null) ;
+                        accountCacheCangHui.setSession(session);
+                        //获取验证码
+                        File code = null;
+                        while ((code = com.cbq.brushlessons.core.action.canghui.LoginAction.getCode(user)) == null) ;
+                        accountCacheCangHui.setCode(VerificationCodeUtil.aiDiscern(code));
+                        FileUtils.deleteFile(code);//删除验证码文件
+                        //进行登录操作
+                        while ((result = com.cbq.brushlessons.core.action.canghui.LoginAction.toLogin(user)) == null) ;
+                    } while (result.getCode()==-1002);
+                    //对结果进行判定
+                    if (result.getCode()==0) {
+                        accountCacheCangHui.setToken(result.getData().getToken());
+                        accountCacheCangHui.setStatus(1);
+                        log.info("{}登录成功！", user.getAccount());
+                    } else {
+                        log.info("{}登录失败，服务器信息>>>{}", user.getAccount(), result.getMsg());
+                        return;
+                    }
+
+
+                    //为账号维持登录状态-----------------------------------
+                    new Thread(() -> {
+                        while (true) {
+                            Map online;
+                            //避免超时
+                            while ((online = com.cbq.brushlessons.core.action.canghui.LoginAction.online(user)) == null) {
+                                try {
+                                    Thread.sleep(1000 * 5);
+                                } catch (InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                            //如果含有登录超时字样
+                            if (((String) online.get("msg")).contains("成功")) {
+                                accountCacheCangHui.setStatus(1);
+                            } else if (((String) online.get("msg")).contains("登录超时")) {
+                                accountCacheCangHui.setStatus(2);//设定登录状态为超时
+                                log.info("{}登录超时，正在重新登录...", user.getAccount());
+                                //进行登录
+                                LoginResponseRequest map=null;
+                                do {
+                                    //获取验证码
+                                    File code = com.cbq.brushlessons.core.action.canghui.LoginAction.getCode(user);
+                                    ((AccountCacheYingHua) user.getCache()).setCode(VerificationCodeUtil.aiDiscern(code));
+                                    FileUtils.deleteFile(code);//删除验证码文件
+                                    //进行登录操作
+                                    while ((map=com.cbq.brushlessons.core.action.canghui.LoginAction.toLogin(user))==null);
+                                } while (map.getCode()==-1002);
+                                //对结果进行判定
+                                if (map.getCode()==0) {
+                                    accountCacheCangHui.setStatus(1);
+                                    log.info("{}登录成功！", user.getAccount());
+                                } else {
+                                    log.info("{}登录失败，服务器信息>>>{}", user.getAccount(), map.getMsg());
+                                }
+                            }
+                            try {
+                                Thread.sleep(1000 * 60);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }).start();
+                }
+
             }
         }
 
@@ -163,6 +242,37 @@ public class Launch {
                             CourseStudyAction bulild = CourseStudyAction.builder()
                                     .user(user)
                                     .courseInform(courseInform)
+                                    .newThread(true)
+                                    .build();
+                            bulild.toStudy();
+                        }
+                    }).start();
+                }
+                case CANGHUI -> {
+                    new Thread(()->{
+                        //获取全部课程
+//                        CourseRequest allCourseList = null;
+                        MyCourseData myCourseData = null;
+
+                        while((myCourseData= com.cbq.brushlessons.core.action.canghui.CourseAction.myCourseList(user))==null);
+
+                        for (MyCourse list : myCourseData.getLists()) {
+                            Course courseInform = list.getCourse();
+                            //课程排除配置
+                            if (user.getExcludeCourses() != null) {
+                                if (user.getExcludeCourses().size() != 0)
+                                    if (user.getExcludeCourses().contains(courseInform.getTitle()))
+                                        continue;
+                            }
+                            //如果有指定课程包含设定，那么就执行
+                            if (user.getIncludeCourses() != null) {
+                                if (user.getIncludeCourses().size() != 0)
+                                    if (!user.getIncludeCourses().contains(courseInform.getTitle()))
+                                        continue;
+                            }
+                            com.cbq.brushlessons.core.action.canghui.CourseStudyAction bulild = com.cbq.brushlessons.core.action.canghui.CourseStudyAction.builder()
+                                    .user(user)
+                                    .courseInform(list)
                                     .newThread(true)
                                     .build();
                             bulild.toStudy();

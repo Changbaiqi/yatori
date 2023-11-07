@@ -1,8 +1,10 @@
 package com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class RouterDatum {
     @lombok.Getter(onMethod_ = {@JsonProperty("id")})
     @lombok.Setter(onMethod_ = {@JsonProperty("id")})
@@ -16,4 +18,7 @@ public class RouterDatum {
     @lombok.Getter(onMethod_ = {@JsonProperty("videoDuration")})
     @lombok.Setter(onMethod_ = {@JsonProperty("videoDuration")})
     private long videoDuration;
+
+
+    private long progress;
 }

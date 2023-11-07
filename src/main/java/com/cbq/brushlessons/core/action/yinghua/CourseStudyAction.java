@@ -106,6 +106,7 @@ public class CourseStudyAction implements Runnable {
                             }
                             //成功提交
                             SubmitResult result = submitStudyTimeRequest.getResult();
+                            //根据反馈内容修改studyId
                             if(result!=null)
                                 if(result.getData()!=null)
                                     studyId = result.getData() != null ? result.getData().getStudyId() : studyId;

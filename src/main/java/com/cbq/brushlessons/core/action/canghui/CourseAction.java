@@ -6,6 +6,8 @@ import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.CourseDetail
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistrequest.ConverterMyCourseRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistrequest.MyCourseRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.*;
+import com.cbq.brushlessons.core.action.canghui.entity.submitstudy.ConverterSubmitStudyTime;
+import com.cbq.brushlessons.core.action.canghui.entity.submitstudy.SubmitStudyTimeRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.upload.ConverterUpload;
 import com.cbq.brushlessons.core.action.canghui.entity.upload.UploadRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
@@ -40,7 +42,9 @@ public class CourseAction {
         try {
             body = RequestBody.create(mediaType, ConverterMyCourseRequest.toJsonString(courseRequest));
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            log.error("");
+            e.printStackTrace();
         }
         Request request = new Request.Builder()
                 .url(user.getUrl() + "/api/v1/course/study/my")
@@ -61,7 +65,8 @@ public class CourseAction {
             MyCourseDataRequest dataRequest = ConverterMyCourseResponse.fromJsonString(json);
             //System.out.println(jsonObject.toString());
             if (dataRequest.getCode() != 0) {
-                throw new Exception(json);
+//                throw new Exception(json);
+                log.error(json);
             }
             if (dataRequest.getMsg().equals("暂无数据")) {
 //                System.out.println(user.getAccount() + "已刷完");
@@ -69,23 +74,13 @@ public class CourseAction {
                 return new MyCourseData();
             }
 
-//            JSONObject data = jsonObject.getJSONObject("data");
-//            JSONArray lists = data.getJSONArray("lists");
-//            //用于寄存详细课程内容
-//            JSONArray courseDetailsArray = new JSONArray();
-//            for (int i = 0; i < lists.size(); ++i) {
-//                JSONObject resCourse = lists.getJSONObject(i);
-//                Long courseId = resCourse.getLong("courseId");
-//                //将相应的详细课表json加入列表中
-//                courseDetailsArray.add(getCourseDetail(user, courseId));
-//            }
-            //装载
-            //System.out.println(jsonObject.toString());
             return dataRequest.getData();
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("");
+            e.printStackTrace();
         }
+        return null;
     }
 
     /**
@@ -127,30 +122,34 @@ public class CourseAction {
             //System.out.println(jsonObject.toString());
             return courseDetailRequest.getData();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("");
+            e.printStackTrace();
         }
+        return null;
     }
 
     /**
      * 提交学时
      *
      * @param user    课程的semesterId
-     * @param course  课程的sectionId
+     * @param sectionId  视屏的sectionId，也就是id
      */
-    public static void submitLearnTime(User user, MyCourse course, ProgressDetailDatum detailDatum) {
+    public static SubmitStudyTimeRequest submitLearnTime(User user, MyCourse course,Long sectionId,Long studyTime) {
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"semesterId\": " + course.getSemesterId() + ",\r\n    \"sectionId\": \"" + detailDatum.getId() + "\",\r\n    \"position\": " + detailDatum.getProgress() + "\r\n}");
+            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"semesterId\": " + course.getSemesterId() + ",\r\n    \"sectionId\": \"" + sectionId + "\",\r\n    \"position\": " + studyTime + "\r\n}");
             //RequestBody body = RequestBody.create(mediaType,"");
             Request request = new Request.Builder()
                     .url(user.getUrl() + "/api/v1/course/study/upload/progress")
                     .method("POST", body)
                     .addHeader("Member-Token", ((AccountCacheCangHui)user.getCache()).getToken())
                     .addHeader("Origin", user.getUrl())
-                    .addHeader("Cookie", ((AccountCacheCangHui)user.getCache()).getSession())
+                    .addHeader("Cookie", "SESSION="+((AccountCacheCangHui)user.getCache()).getSession()+";"+
+                            "Member-Token="+((AccountCacheCangHui) user.getCache()).getToken()+";"+
+                            "Member-schoolId="+"0")
                     .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "*/*")
@@ -159,38 +158,22 @@ public class CourseAction {
             Response response = client.newCall(request).execute();
             //System.out.println(response.body().string());
             String json= response.body().string();
-            UploadRequest upload= ConverterUpload.fromJsonString(json);
-            if (upload.getCode() != 0) {
-                System.out.printf("!!!!!!%s课程!!!!!!\nid：%s\n状态：提交学时失败。\n失败原因：%s\n", user.getAccount(), detailDatum.getId(), upload.getMsg());
-                return;
+//            UploadRequest upload= ConverterUpload.fromJsonString(json);
+            SubmitStudyTimeRequest submit = ConverterSubmitStudyTime.fromJsonString(json);
+            if (submit.getCode() != 0) {
+//                System.out.printf("!!!!!!%s课程!!!!!!\nid：%s\n状态：提交学时失败。\n失败原因：%s\n", user.getAccount(), detailDatum.getId(), upload.getMsg());
+                log.info("提交学时失败!!!");
+                return null;
             }
-            System.out.printf("------%s课程------\nid：%s\n名称：%s\n状态：提交学时%s。当前学时：%d\n视屏总时长:%d\n", user.getAccount(), detailDatum.getId(),upload.getMsg(), detailDatum.getProgress(), detailDatum.getTotalProgress());
+            return submit;
+//            System.out.printf("------%s课程------\nid：%s\n名称：%s\n状态：提交学时%s。当前学时：%d\n视屏总时长:%d\n", user.getAccount(), detailDatum.getId(),upload.getMsg(), detailDatum.getProgress(), detailDatum.getTotalProgress());
         } catch (SocketTimeoutException e){
-            System.out.println("有一个提交请求连接超时。");
+            return null;
         } catch (IOException e) {
-            System.out.println("检测到未知报错信息：");
-            throw new RuntimeException(e);
+            log.error("");
+            e.printStackTrace();
         }
+        return null;
     }
-
-
-    /**
-     * 统计刷课量
-     *
-     * @param myCourse
-     * @return
-     */
-//    public static int calcSections(MyCourseData myCourse) {
-//        int ans = 0;
-//        List<MyCourse> courseArrayList = myCourse.getLists();
-//        for (int i = 0; i < courseArrayList.size(); ++i) {
-//            if (courseArrayList.get(i).getSw().compareTo(Boolean.FALSE) == 0)
-//                continue;
-//            ArrayList<Section> sections = courseArrayList.get(i).getSections();
-//            ans += sections.size();
-//        }
-//        return ans;
-//    }
-
 
 }
