@@ -15,6 +15,216 @@
   "name":"[[J"
 },
 {
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Chapter",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCourse","parameterTypes":["java.lang.Object"] }, {"name":"setCourseId","parameterTypes":["long"] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setSections","parameterTypes":["java.util.List"] }, {"name":"setSort","parameterTypes":["long"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.College",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setMembers","parameterTypes":["java.lang.Object"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setSchoolId","parameterTypes":["long"] }, {"name":"setStatus","parameterTypes":["long"] }, {"name":"setSummary","parameterTypes":["java.lang.String"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.CourseDetailData",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAccess","parameterTypes":["long"] }, {"name":"setBanner","parameterTypes":["java.lang.String"] }, {"name":"setCategories","parameterTypes":["java.lang.Object"] }, {"name":"setChapters","parameterTypes":["java.util.List"] }, {"name":"setClassHour","parameterTypes":["long"] }, {"name":"setCode","parameterTypes":["java.lang.String"] }, {"name":"setCollege","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.coursedetail.College"] }, {"name":"setCollegeId","parameterTypes":["long"] }, {"name":"setCover","parameterTypes":["java.lang.String"] }, {"name":"setCreateUserId","parameterTypes":["long"] }, {"name":"setCreateUserName","parameterTypes":["java.lang.String"] }, {"name":"setCreateUserType","parameterTypes":["long"] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setCredit","parameterTypes":["java.lang.String"] }, {"name":"setCurrentSemesterId","parameterTypes":["long"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setDetails","parameterTypes":["java.lang.String"] }, {"name":"setDuration","parameterTypes":["long"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setIsOpen","parameterTypes":["long"] }, {"name":"setJoinCount","parameterTypes":["long"] }, {"name":"setKeywords","parameterTypes":["java.lang.String"] }, {"name":"setLearnedCount","parameterTypes":["long"] }, {"name":"setLecturerInfo","parameterTypes":["java.lang.String"] }, {"name":"setMainTeacher","parameterTypes":["java.lang.String"] }, {"name":"setMissionDesc","parameterTypes":["java.lang.String"] }, {"name":"setMissionStandard","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.coursedetail.MissionStandard"] }, {"name":"setOpenMode","parameterTypes":["long"] }, {"name":"setPrice","parameterTypes":["long"] }, {"name":"setQuoteCourseId","parameterTypes":["long"] }, {"name":"setRecommendTag","parameterTypes":["java.lang.String"] }, {"name":"setRouter","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Router"] }, {"name":"setRules","parameterTypes":["java.lang.String"] }, {"name":"setSchoolId","parameterTypes":["long"] }, {"name":"setSemesterEndTime","parameterTypes":["java.lang.String"] }, {"name":"setSemesterStartTime","parameterTypes":["java.lang.String"] }, {"name":"setSemesters","parameterTypes":["java.lang.Object"] }, {"name":"setSort","parameterTypes":["long"] }, {"name":"setSource","parameterTypes":["java.lang.String"] }, {"name":"setStatus","parameterTypes":["long"] }, {"name":"setSubjectId","parameterTypes":["long"] }, {"name":"setSummary","parameterTypes":["java.lang.String"] }, {"name":"setTitle","parameterTypes":["java.lang.String"] }, {"name":"setType","parameterTypes":["long"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.CourseDetailRequest",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCode","parameterTypes":["long"] }, {"name":"setData","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.coursedetail.CourseDetailData"] }, {"name":"setMsg","parameterTypes":["java.lang.String"] }, {"name":"setSubCode","parameterTypes":["long"] }, {"name":"setSubMsg","parameterTypes":["java.lang.Object"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Datum",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setType","parameterTypes":["long"] }, {"name":"setVideoDuration","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.MissionStandard",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setHomeworkCount","parameterTypes":["long"] }, {"name":"setQuestionCount","parameterTypes":["long"] }, {"name":"setQuizCount","parameterTypes":["long"] }, {"name":"setReplyCount","parameterTypes":["long"] }, {"name":"setVideo","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Process",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setEndTime","parameterTypes":["java.lang.String"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setProgress","parameterTypes":["long"] }, {"name":"setStartTime","parameterTypes":["java.lang.String"] }, {"name":"setStatus","parameterTypes":["long"] }, {"name":"setStudyCount","parameterTypes":["long"] }, {"name":"setTotalProgress","parameterTypes":["long"] }, {"name":"setType","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Router",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setData","parameterTypes":["java.util.List"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Section",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAttachments","parameterTypes":["java.util.List"] }, {"name":"setChapter","parameterTypes":["java.lang.Object"] }, {"name":"setChapterId","parameterTypes":["long"] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setKey","parameterTypes":["java.lang.String"] }, {"name":"setLink","parameterTypes":["java.lang.String"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setProcess","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Process"] }, {"name":"setSort","parameterTypes":["long"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }, {"name":"setVideo","parameterTypes":["java.lang.String"] }, {"name":"setVideoDuration","parameterTypes":["long"] }, {"name":"setVideoName","parameterTypes":["java.lang.String"] }, {"name":"setViewCount","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.loginresponse.LoginResponseData",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAccount","parameterTypes":["java.lang.String"] }, {"name":"setAdmin","parameterTypes":["boolean"] }, {"name":"setAge","parameterTypes":["long"] }, {"name":"setAvatar","parameterTypes":["java.lang.String"] }, {"name":"setBirthday","parameterTypes":["java.lang.Object"] }, {"name":"setCollegeId","parameterTypes":["long"] }, {"name":"setEmail","parameterTypes":["java.lang.String"] }, {"name":"setGender","parameterTypes":["long"] }, {"name":"setIDCard","parameterTypes":["java.lang.String"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setIdentity","parameterTypes":["long"] }, {"name":"setMemberRolesId","parameterTypes":["java.lang.Object"] }, {"name":"setPermission","parameterTypes":["java.lang.Object"] }, {"name":"setPhone","parameterTypes":["java.lang.String"] }, {"name":"setRealName","parameterTypes":["java.lang.String"] }, {"name":"setSchoolId","parameterTypes":["long"] }, {"name":"setSchoolType","parameterTypes":["long"] }, {"name":"setStatus","parameterTypes":["long"] }, {"name":"setStudentNo","parameterTypes":["java.lang.String"] }, {"name":"setToken","parameterTypes":["java.lang.String"] }, {"name":"setWeChat","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.loginresponse.LoginResponseRequest",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCode","parameterTypes":["long"] }, {"name":"setData","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.loginresponse.LoginResponseData"] }, {"name":"setMsg","parameterTypes":["java.lang.String"] }, {"name":"setSubCode","parameterTypes":["long"] }, {"name":"setSubMsg","parameterTypes":["java.lang.Object"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistrequest.MyCourseRequest",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"getPage","parameterTypes":[] }, {"name":"getPageSize","parameterTypes":[] }, {"name":"getStatus","parameterTypes":[] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Course",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAccess","parameterTypes":["long"] }, {"name":"setBanner","parameterTypes":["java.lang.String"] }, {"name":"setCategories","parameterTypes":["java.lang.Object"] }, {"name":"setChapters","parameterTypes":["java.lang.Object"] }, {"name":"setClassHour","parameterTypes":["long"] }, {"name":"setCode","parameterTypes":["java.lang.String"] }, {"name":"setCollegeId","parameterTypes":["long"] }, {"name":"setCover","parameterTypes":["java.lang.String"] }, {"name":"setCreateUserId","parameterTypes":["long"] }, {"name":"setCreateUserName","parameterTypes":["java.lang.String"] }, {"name":"setCreateUserType","parameterTypes":["long"] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setCredit","parameterTypes":["java.lang.String"] }, {"name":"setCurrentSemesterId","parameterTypes":["long"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setDetails","parameterTypes":["java.lang.String"] }, {"name":"setDuration","parameterTypes":["long"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setIsOpen","parameterTypes":["long"] }, {"name":"setJoinCount","parameterTypes":["long"] }, {"name":"setKeywords","parameterTypes":["java.lang.String"] }, {"name":"setLearnedCount","parameterTypes":["long"] }, {"name":"setLecturerInfo","parameterTypes":["java.lang.String"] }, {"name":"setMainTeacher","parameterTypes":["java.lang.String"] }, {"name":"setMissionDesc","parameterTypes":["java.lang.String"] }, {"name":"setMissionStandard","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MissionStandard"] }, {"name":"setOpenMode","parameterTypes":["long"] }, {"name":"setPrice","parameterTypes":["long"] }, {"name":"setQuoteCourseId","parameterTypes":["long"] }, {"name":"setRecommendTag","parameterTypes":["java.lang.String"] }, {"name":"setRouter","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.VideoRouter"] }, {"name":"setRules","parameterTypes":["java.lang.String"] }, {"name":"setSchoolId","parameterTypes":["long"] }, {"name":"setSemesterEndTime","parameterTypes":["java.lang.String"] }, {"name":"setSemesterStartTime","parameterTypes":["java.lang.String"] }, {"name":"setSemesters","parameterTypes":["java.lang.Object"] }, {"name":"setSort","parameterTypes":["long"] }, {"name":"setSource","parameterTypes":["java.lang.String"] }, {"name":"setStatus","parameterTypes":["long"] }, {"name":"setSubjectId","parameterTypes":["long"] }, {"name":"setSummary","parameterTypes":["java.lang.String"] }, {"name":"setTitle","parameterTypes":["java.lang.String"] }, {"name":"setType","parameterTypes":["long"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.HomeworkCount",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCompleteCount","parameterTypes":["long"] }, {"name":"setTotalCount","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.LastSection",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAttachments","parameterTypes":["java.lang.Object"] }, {"name":"setChapter","parameterTypes":["java.lang.Object"] }, {"name":"setChapterId","parameterTypes":["long"] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setKey","parameterTypes":["java.lang.String"] }, {"name":"setLink","parameterTypes":["java.lang.String"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setProcess","parameterTypes":["java.lang.Object"] }, {"name":"setSort","parameterTypes":["long"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }, {"name":"setVideo","parameterTypes":["java.lang.String"] }, {"name":"setVideoDuration","parameterTypes":["long"] }, {"name":"setVideoName","parameterTypes":["java.lang.String"] }, {"name":"setViewCount","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Member",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setAccount","parameterTypes":["java.lang.String"] }, {"name":"setAdmin","parameterTypes":["boolean"] }, {"name":"setAge","parameterTypes":["long"] }, {"name":"setAvatar","parameterTypes":["java.lang.String"] }, {"name":"setBirthday","parameterTypes":["java.lang.Object"] }, {"name":"setClassId","parameterTypes":["java.lang.Object"] }, {"name":"setCollegeId","parameterTypes":["java.lang.Object"] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setEmail","parameterTypes":["java.lang.String"] }, {"name":"setGender","parameterTypes":["long"] }, {"name":"setGradeId","parameterTypes":["java.lang.Object"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setIdCard","parameterTypes":["java.lang.String"] }, {"name":"setIdentity","parameterTypes":["long"] }, {"name":"setLastLoginDuration","parameterTypes":["long"] }, {"name":"setLastLoginIp","parameterTypes":["java.lang.String"] }, {"name":"setLastLoginTime","parameterTypes":["long"] }, {"name":"setLoginCount","parameterTypes":["long"] }, {"name":"setMajorId","parameterTypes":["java.lang.Object"] }, {"name":"setMemberRolesId","parameterTypes":["java.lang.Object"] }, {"name":"setNickName","parameterTypes":["java.lang.String"] }, {"name":"setOpenId","parameterTypes":["java.lang.String"] }, {"name":"setPassword","parameterTypes":["java.lang.String"] }, {"name":"setPhone","parameterTypes":["java.lang.String"] }, {"name":"setRealName","parameterTypes":["java.lang.String"] }, {"name":"setSchoolId","parameterTypes":["long"] }, {"name":"setSign","parameterTypes":["java.lang.String"] }, {"name":"setStatus","parameterTypes":["long"] }, {"name":"setStudentNo","parameterTypes":["java.lang.String"] }, {"name":"setTotalLoginDuration","parameterTypes":["long"] }, {"name":"setUnionId","parameterTypes":["java.lang.String"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }, {"name":"setWeChat","parameterTypes":["java.lang.String"] }, {"name":"setWxAppOpenId","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MissionStandard",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setHomeworkCount","parameterTypes":["long"] }, {"name":"setQuestionCount","parameterTypes":["long"] }, {"name":"setQuizCount","parameterTypes":["long"] }, {"name":"setReplyCount","parameterTypes":["long"] }, {"name":"setVideo","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourse",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCourse","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Course"] }, {"name":"setCourseId","parameterTypes":["java.lang.Long"] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setEndTime","parameterTypes":["java.lang.String"] }, {"name":"setHomeworkCount","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.HomeworkCount"] }, {"name":"setId","parameterTypes":["java.lang.Long"] }, {"name":"setLastPosition","parameterTypes":["java.lang.Long"] }, {"name":"setLastSection","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.LastSection"] }, {"name":"setLastSectionId","parameterTypes":["java.lang.Long"] }, {"name":"setMember","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Member"] }, {"name":"setMemberId","parameterTypes":["java.lang.Long"] }, {"name":"setProgress","parameterTypes":["java.lang.Long"] }, {"name":"setProgressDetail","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.ProgressDetail"] }, {"name":"setQuizCount","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.QuizCount"] }, {"name":"setResultScore","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.ResultScore"] }, {"name":"setSectionCount","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.SectionCount"] }, {"name":"setSemester","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Semester"] }, {"name":"setSemesterId","parameterTypes":["java.lang.Long"] }, {"name":"setStartTime","parameterTypes":["java.lang.String"] }, {"name":"setStatus","parameterTypes":["java.lang.Long"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourseData",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setLists","parameterTypes":["java.util.List"] }, {"name":"setPageNo","parameterTypes":["long"] }, {"name":"setTotal","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourseDataRequest",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCode","parameterTypes":["long"] }, {"name":"setData","parameterTypes":["com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourseData"] }, {"name":"setMsg","parameterTypes":["java.lang.String"] }, {"name":"setSubCode","parameterTypes":["long"] }, {"name":"setSubMsg","parameterTypes":["java.lang.Object"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.ProgressDetail",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setData","parameterTypes":["java.util.List"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.ProgressDetailDatum",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setEndTime","parameterTypes":["java.lang.String"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setProgress","parameterTypes":["long"] }, {"name":"setStartTime","parameterTypes":["java.lang.String"] }, {"name":"setStatus","parameterTypes":["long"] }, {"name":"setStudyCount","parameterTypes":["long"] }, {"name":"setTotalProgress","parameterTypes":["long"] }, {"name":"setType","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.QuizCount",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCompleteCount","parameterTypes":["long"] }, {"name":"setTotalCount","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.ResultScore",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setDiscussScore","parameterTypes":["long"] }, {"name":"setExamScore","parameterTypes":["long"] }, {"name":"setExtraScore","parameterTypes":["long"] }, {"name":"setHomeworkScore","parameterTypes":["long"] }, {"name":"setQuizScore","parameterTypes":["long"] }, {"name":"setTotalScore","parameterTypes":["long"] }, {"name":"setVideoScore","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.RouterDatum",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setName","parameterTypes":["java.lang.String"] }, {"name":"setType","parameterTypes":["long"] }, {"name":"setVideoDuration","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.SectionCount",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCompleteCount","parameterTypes":["long"] }, {"name":"setTotalCount","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Semester",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setCourseId","parameterTypes":["long"] }, {"name":"setCreatedAt","parameterTypes":["java.lang.String"] }, {"name":"setDeletedAt","parameterTypes":["java.lang.Object"] }, {"name":"setEndTime","parameterTypes":["java.lang.String"] }, {"name":"setEnrollClasses","parameterTypes":["java.lang.String"] }, {"name":"setEnrollScope","parameterTypes":["long"] }, {"name":"setExams","parameterTypes":["java.lang.Object"] }, {"name":"setId","parameterTypes":["long"] }, {"name":"setJoinCount","parameterTypes":["long"] }, {"name":"setJoinEndTime","parameterTypes":["long"] }, {"name":"setJoinLimit","parameterTypes":["long"] }, {"name":"setJoinStartTime","parameterTypes":["long"] }, {"name":"setMemberId","parameterTypes":["long"] }, {"name":"setRules","parameterTypes":["java.lang.String"] }, {"name":"setSchoolId","parameterTypes":["long"] }, {"name":"setStartTime","parameterTypes":["java.lang.String"] }, {"name":"setStatus","parameterTypes":["long"] }, {"name":"setStudents","parameterTypes":["java.lang.Object"] }, {"name":"setStudentsCount","parameterTypes":["long"] }, {"name":"setTitle","parameterTypes":["java.lang.String"] }, {"name":"setUpdatedAt","parameterTypes":["java.lang.String"] }, {"name":"setViewCount","parameterTypes":["long"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.VideoRouter",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"setData","parameterTypes":["java.util.List"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.submitstudy.SubmitStudyTimeRequest",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"getCode","parameterTypes":[] }, {"name":"getData","parameterTypes":[] }, {"name":"getMsg","parameterTypes":[] }, {"name":"getSubCode","parameterTypes":[] }, {"name":"getSubMsg","parameterTypes":[] }, {"name":"setCode","parameterTypes":["long"] }, {"name":"setData","parameterTypes":["java.lang.Object"] }, {"name":"setMsg","parameterTypes":["java.lang.String"] }, {"name":"setSubCode","parameterTypes":["long"] }, {"name":"setSubMsg","parameterTypes":["java.lang.Object"] }]
+},
+{
+  "name":"com.cbq.brushlessons.core.action.canghui.entity.tologin.ToLoginRequest",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"getAccount","parameterTypes":[] }, {"name":"getCode","parameterTypes":[] }, {"name":"getPassword","parameterTypes":[] }]
+},
+{
   "name":"com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Banner",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
