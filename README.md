@@ -9,6 +9,10 @@
 ## 问题咨询
 
 > QQ交流群：932447008
+>
+> 个人博客：[长白崎的个人博客 (changbaiqi.github.io)](https://changbaiqi.github.io/)
+>
+> 技术打赏：[技术打赏 | 长白崎的个人博客 (changbaiqi.github.io)](https://changbaiqi.github.io/post/ji-zhu-da-shang/)
 
 ## 当前支持平台：
 
