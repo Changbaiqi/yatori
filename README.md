@@ -1,6 +1,7 @@
 <div align="center"><h1>Yatori课程助手</h1></div>
 
 ---
+<div align="center"><img width="100" src="https://img.shields.io/badge/Java17-passing-r.svg"></img><img width="100" src="https://img.shields.io/badge/Maven3.8.1-building-r.svg"></img></div>
 
 <div align="center"><img width="200" src="https://q1.qlogo.cn/g?b=qq&nk=2084069833&s=640"></img></div>
 
@@ -14,7 +15,16 @@
 >
 > 技术打赏：[技术打赏 | 长白崎的个人博客 (changbaiqi.github.io)](https://changbaiqi.github.io/post/ji-zhu-da-shang/)
 
-## 当前支持平台：
+## 功能支持及特性：
+
+> - [x] 独立程序，不依赖浏览器
+> - [x] AI自动识别跳过验证码
+> - [x] 多账号同刷
+> - [x] 灵活配置文件
+> - [x] 自动继续上次记录时长刷课
+> - [x] 可部署服务器
+
+## 支持平台：
 
 > - [x] 英华学堂
 > - [x] 仓辉实训
