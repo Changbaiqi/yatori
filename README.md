@@ -23,11 +23,12 @@
 > - [x] 灵活配置文件
 > - [x] 自动继续上次记录时长刷课
 > - [x] 可部署服务器
+> - [ ] 部分平台支持暴力模式（无视前置课程学习限制，一门课所有视屏同刷！！！）
 
 ## 支持平台：
 
-> - [x] 英华学堂
-> - [x] 仓辉实训
+> - [x] 英华学堂（不支持暴力模式）
+> - [x] 仓辉实训（支持暴力模式）
 
 ## 食用方式：
 
@@ -50,14 +51,15 @@
 > ```json
 > {
 > "users": [
->  {
->    "accountType": "YINGHUA",//指定平台，"YINGHUA"代表英华学堂，CANGHUI代表仓辉平台
->    "url": "url",//平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
->    "account": "账号",//账号
->    "password": "",//密码
->    "excludeCourses": ["课程1", "课程2"],//这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
->    "includeCourses": ["课程3", "课程4"]//这个指的是需要刷的课程，如果不填默认刷全部课程除非设置了排除课程
->  }
+> {
+> "accountType": "YINGHUA",//指定平台，"YINGHUA"代表英华学堂，CANGHUI代表仓辉平台
+> "url": "url",//平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
+> "account": "账号",//账号
+> "password": "",//密码
+> "model": 1,//刷课模式，0为普通模式，1为暴力模式
+> "excludeCourses": ["课程1", "课程2"],//这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
+> "includeCourses": ["课程3", "课程4"]//这个指的是需要刷的课程，如果不填默认刷全部课程除非设置了排除课程
+> }
 > ]
 > }
 > ```
@@ -76,10 +78,11 @@
 > 		"password": "张三的密码"
 > 	},
 > 	{
-> 		"accountType": "YINGHUA",
+> 		"accountType": "CANGHUI",
 > 		"url": "李四的url",
 > 		"account": "李四的账号",
-> 		"password": "李四的密码"
+> 		"password": "李四的密码",
+>          "model": 1
 > 	}
 > ]
 > }

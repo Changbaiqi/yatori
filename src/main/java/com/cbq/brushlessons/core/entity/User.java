@@ -21,6 +21,7 @@ public class User {
     private String url;
     private String account;
     private String password;
+    private Integer model;
     private Set<String> excludeCourses;
     private Set<String> includeCourses;
     private AccountCache cache;
