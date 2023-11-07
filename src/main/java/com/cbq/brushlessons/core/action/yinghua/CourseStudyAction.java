@@ -81,7 +81,7 @@ public class CourseStudyAction implements Runnable {
 
 
                 //循环进行学习
-                while ((studyTime += studyInterval) <= videoDuration + studyInterval) {
+                while ((studyTime += studyInterval) < videoDuration + studyInterval) {
                     //这里根据账号账号登录状态进行策划行为
                     switch (cache.getStatus()) {//未登录则跳出
                         case 0 -> {
