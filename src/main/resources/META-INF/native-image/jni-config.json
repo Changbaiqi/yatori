@@ -28,10 +28,6 @@
   "methods":[{"name":"mapFromInt","parameterTypes":["int"] }]
 },
 {
-  "name":"com.sun.imageio.plugins.jpeg.JPEGImageReader",
-  "methods":[{"name":"acceptPixels","parameterTypes":["int","boolean"] }, {"name":"passComplete","parameterTypes":[] }, {"name":"passStarted","parameterTypes":["int"] }, {"name":"pushBack","parameterTypes":["int"] }, {"name":"readInputData","parameterTypes":["byte[]","int","int"] }, {"name":"setImageData","parameterTypes":["int","int","int","int","int","byte[]"] }, {"name":"skipInputBytes","parameterTypes":["long"] }, {"name":"skipPastImage","parameterTypes":["int"] }, {"name":"warningOccurred","parameterTypes":["int"] }, {"name":"warningWithMessage","parameterTypes":["java.lang.String"] }]
-},
-{
   "name":"java.awt.AWTEvent",
   "fields":[{"name":"bdata"}, {"name":"consumed"}, {"name":"id"}]
 },
@@ -116,14 +112,6 @@
 },
 {
   "name":"java.lang.String"
-},
-{
-  "name":"javax.imageio.plugins.jpeg.JPEGHuffmanTable",
-  "fields":[{"name":"lengths"}, {"name":"values"}]
-},
-{
-  "name":"javax.imageio.plugins.jpeg.JPEGQTable",
-  "fields":[{"name":"qTable"}]
 },
 {
   "name":"sun.awt.AWTAutoShutdown",

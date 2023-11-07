@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更改提交学时算法">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="仓辉平台正式上线">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
     </list>
@@ -224,7 +223,8 @@
       <workItem from="1699108826722" duration="693000" />
       <workItem from="1699249983349" duration="791000" />
       <workItem from="1699257467671" duration="1043000" />
-      <workItem from="1699348492630" duration="14777000" />
+      <workItem from="1699348492630" duration="15483000" />
+      <workItem from="1699367620338" duration="438000" />
     </task>
     <task id="LOCAL-00001" summary="删除缓存">
       <created>1698641822577</created>
@@ -541,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699355181925</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="仓辉平台正式上线">
+      <created>1699364350612</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1699364350612</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,7 +579,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="功能优化防止错误密码等情况陷入死循环" />
     <MESSAGE value="英华学堂基本功能完善" />
     <MESSAGE value="修复graalvm打包运行报错问题" />
     <MESSAGE value="添加登录超时重登机制，避免刷课中断" />
@@ -597,7 +603,8 @@
     <MESSAGE value="修复视屏课程学习逻辑，修复视屏未学完bug" />
     <MESSAGE value="修复学时提交空指针bug" />
     <MESSAGE value="更改提交学时算法" />
-    <option name="LAST_COMMIT_MESSAGE" value="更改提交学时算法" />
+    <MESSAGE value="仓辉平台正式上线" />
+    <option name="LAST_COMMIT_MESSAGE" value="仓辉平台正式上线" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
