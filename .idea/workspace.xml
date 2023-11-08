@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复graalvm配置文件">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更改README">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +23,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -223,21 +229,7 @@
       <workItem from="1699257467671" duration="1043000" />
       <workItem from="1699348492630" duration="15483000" />
       <workItem from="1699367620338" duration="4427000" />
-      <workItem from="1699373521427" duration="12650000" />
-    </task>
-    <task id="LOCAL-00009" summary="功能优化防止错误密码等情况陷入死循环">
-      <created>1698662267296</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1698662267296</updated>
-    </task>
-    <task id="LOCAL-00010" summary="功能优化防止错误密码等情况陷入死循环">
-      <created>1698662525355</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1698662525355</updated>
+      <workItem from="1699373521427" duration="13720000" />
     </task>
     <task id="LOCAL-00011" summary="英华学堂基本功能完善">
       <created>1698667102488</created>
@@ -568,7 +560,21 @@
       <option name="project" value="LOCAL" />
       <updated>1699417983853</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="更改README">
+      <created>1699425291051</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1699425291051</updated>
+    </task>
+    <task id="LOCAL-00059" summary="更改README">
+      <created>1699426398758</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1699426398758</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +605,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新食用方式" />
     <MESSAGE value="开始适配仓辉平台" />
     <MESSAGE value="更新免责声明" />
     <MESSAGE value="更新README格式" />
@@ -624,7 +629,8 @@
     <MESSAGE value="更新README" />
     <MESSAGE value="更新v1.1.1版本，并且支持仓辉暴力模式" />
     <MESSAGE value="修复graalvm配置文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复graalvm配置文件" />
+    <MESSAGE value="更改README" />
+    <option name="LAST_COMMIT_MESSAGE" value="更改README" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
