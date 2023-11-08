@@ -2,3 +2,4 @@ target
 config.json
 cache
 *.drawio
+src\main\resources\config.json
