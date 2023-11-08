@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复graalvm配置文件">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,7 +223,7 @@
       <workItem from="1699257467671" duration="1043000" />
       <workItem from="1699348492630" duration="15483000" />
       <workItem from="1699367620338" duration="4427000" />
-      <workItem from="1699373521427" duration="9482000" />
+      <workItem from="1699373521427" duration="10081000" />
     </task>
     <task id="LOCAL-00008" summary="功能优化防止错误密码等情况陷入死循环">
       <created>1698661893393</created>
