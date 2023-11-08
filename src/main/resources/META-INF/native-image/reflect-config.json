@@ -15,6 +15,36 @@
     "name": "[[J"
   },
   {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Banner",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setImage",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
     "name": "com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Chapter",
     "allDeclaredFields": true,
     "queryAllDeclaredMethods": true,
@@ -142,6 +172,507 @@
         "name": "setUpdatedAt",
         "parameterTypes": [
           "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseAnnouncement",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setCount",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setTitle",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseFinishInform",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseInform",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setAddDate",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setAddTime",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCateBid",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCateMid",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCategoryId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setCategoryName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setClassTeacher",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setClusterId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCode",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCollegeId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setCollegeName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCover",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCreateId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCredit",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setEndDate",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setIntro",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setLastNodeId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setLearned",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setLearning",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setLecturerName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setLecturers",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setLineLock",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setMission",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setMode",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setOffline",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setPeriodName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setProclamation",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setProgress",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setProgress1",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setResultRank",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setResultScore",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSchoolId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setScoreRuleUrl",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSign",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSignClass",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSignEndTime",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSignInId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSignLimit",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSignScope",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSignStartTime",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSignState",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSignedIn",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setStartDate",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setState",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setStuCount",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setStudentCount",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setTabExam",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTabFile",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTabVideo",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTabVote",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTabWork",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTeachers",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setTplId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setVideoCount",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setVideoLearned",
+        "parameterTypes": [
+          "long"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseProgress$Deserializer",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseRequest",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setCode",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setMsg",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setResult",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseResult"
+        ]
+      },
+      {
+        "name": "setStatus",
+        "parameterTypes": [
+          "boolean"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseResult",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setAnnouncement",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseAnnouncement"
+        ]
+      },
+      {
+        "name": "setBanner",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      },
+      {
+        "name": "setEnlist",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Enlist"
+        ]
+      },
+      {
+        "name": "setFinish",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Enlist",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      },
+      {
+        "name": "setPageInfo",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.PageInfo"
         ]
       }
     ]
@@ -2347,6 +2878,360 @@
     "allDeclaredFields": true,
     "queryAllDeclaredMethods": true,
     "queryAllDeclaredConstructors": true
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.EnlistList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setAddDate",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setAddTime",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCateBid",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCateMid",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCategoryId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setCategoryName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setClassTeacher",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setClusterId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCode",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCollegeId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setCollegeName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCover",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCreateId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCredit",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setEndDate",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setIntro",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setLastNodeId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setLearned",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setLearning",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setLecturerName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setLecturers",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setLineLock",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setMission",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setMode",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setOffline",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setPeriodName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setProclamation",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setProgress",
+        "parameterTypes": [
+          "double"
+        ]
+      },
+      {
+        "name": "setProgress1",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setResultRank",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setResultScore",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSchoolId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setScoreRuleUrl",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSign",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSignClass",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSignEndTime",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSignInId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSignLimit",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSignScope",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSignStartTime",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSignState",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSignedIn",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setStartDate",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setState",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setStuCount",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setStudentCount",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setTabExam",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTabFile",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTabVideo",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTabVote",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTabWork",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setTeachers",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setTplId",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setVideoCount",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setVideoLearned",
+        "parameterTypes": [
+          "long"
+        ]
+      }
+    ]
   },
   {
     "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseInform",
