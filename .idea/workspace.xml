@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="仓辉平台正式上线">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复graalvm配置文件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,49 +222,8 @@
       <workItem from="1699249983349" duration="791000" />
       <workItem from="1699257467671" duration="1043000" />
       <workItem from="1699348492630" duration="15483000" />
-      <workItem from="1699367620338" duration="438000" />
-    </task>
-    <task id="LOCAL-00001" summary="删除缓存">
-      <created>1698641822577</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1698641822577</updated>
-    </task>
-    <task id="LOCAL-00002" summary="删除缓存">
-      <created>1698644890323</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1698644890323</updated>
-    </task>
-    <task id="LOCAL-00003" summary="更新README">
-      <created>1698644974511</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1698644974511</updated>
-    </task>
-    <task id="LOCAL-00004" summary="更新README">
-      <created>1698645125369</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1698645125369</updated>
-    </task>
-    <task id="LOCAL-00005" summary="添加文件过滤以及修复提交时间不记录bug">
-      <created>1698647611295</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1698647611295</updated>
-    </task>
-    <task id="LOCAL-00006" summary="修复超时提交链接超时引起的程序中断bug">
-      <created>1698652060288</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1698652060288</updated>
+      <workItem from="1699367620338" duration="4427000" />
+      <workItem from="1699373521427" duration="8369000" />
     </task>
     <task id="LOCAL-00007" summary="更新README文档">
       <created>1698654002026</created>
@@ -548,7 +505,70 @@
       <option name="project" value="LOCAL" />
       <updated>1699364350612</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="修复graalvm配置bug">
+      <created>1699368161503</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1699368161503</updated>
+    </task>
+    <task id="LOCAL-00048" summary="修复graalvm配置bug">
+      <created>1699368400228</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1699368400228</updated>
+    </task>
+    <task id="LOCAL-00049" summary="修复graalvm配置bug">
+      <created>1699370153338</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1699370153338</updated>
+    </task>
+    <task id="LOCAL-00050" summary="更新README">
+      <created>1699370882383</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1699370882384</updated>
+    </task>
+    <task id="LOCAL-00051" summary="更新README">
+      <created>1699371453774</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1699371453774</updated>
+    </task>
+    <task id="LOCAL-00052" summary="更新README">
+      <created>1699371558517</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1699371558517</updated>
+    </task>
+    <task id="LOCAL-00053" summary="更新v1.1.1版本，并且支持仓辉暴力模式">
+      <created>1699378627752</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1699378627753</updated>
+    </task>
+    <task id="LOCAL-00054" summary="更新v1.1.1版本，并且支持仓辉暴力模式">
+      <created>1699379437897</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1699379437897</updated>
+    </task>
+    <task id="LOCAL-00055" summary="修复graalvm配置文件">
+      <created>1699413664153</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1699413664153</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -579,10 +599,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="英华学堂基本功能完善" />
-    <MESSAGE value="修复graalvm打包运行报错问题" />
-    <MESSAGE value="添加登录超时重登机制，避免刷课中断" />
-    <MESSAGE value="优化验证码机制" />
     <MESSAGE value="更新食用方式" />
     <MESSAGE value="开始适配仓辉平台" />
     <MESSAGE value="更新免责声明" />
@@ -604,7 +620,11 @@
     <MESSAGE value="修复学时提交空指针bug" />
     <MESSAGE value="更改提交学时算法" />
     <MESSAGE value="仓辉平台正式上线" />
-    <option name="LAST_COMMIT_MESSAGE" value="仓辉平台正式上线" />
+    <MESSAGE value="修复graalvm配置bug" />
+    <MESSAGE value="更新README" />
+    <MESSAGE value="更新v1.1.1版本，并且支持仓辉暴力模式" />
+    <MESSAGE value="修复graalvm配置文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复graalvm配置文件" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
