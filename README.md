@@ -56,7 +56,7 @@
 > {
 >   "users": [
 >     {
->       "accountType": "YINGHUA", //指定平台，"YINGHUA"代表英华学堂，CANGHUI代表仓辉平台
+>       "accountType": "YINGHUA", //指定平台，"YINGHUA"代表英华学堂，CANGHUI代表仓辉平台，XUEXIGONGSHE代表学习公社，XUEXITONG代表学习通
 >       "url": "url", //平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
 >       "account": "账号", //账号
 >       "password": "", //密码
