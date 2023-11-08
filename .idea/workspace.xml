@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复graalvm配置文件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,14 +223,7 @@
       <workItem from="1699257467671" duration="1043000" />
       <workItem from="1699348492630" duration="15483000" />
       <workItem from="1699367620338" duration="4427000" />
-      <workItem from="1699373521427" duration="11656000" />
-    </task>
-    <task id="LOCAL-00008" summary="功能优化防止错误密码等情况陷入死循环">
-      <created>1698661893393</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1698661893393</updated>
+      <workItem from="1699373521427" duration="12650000" />
     </task>
     <task id="LOCAL-00009" summary="功能优化防止错误密码等情况陷入死循环">
       <created>1698662267296</created>
@@ -570,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699414527177</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="修复graalvm配置文件">
+      <created>1699417983853</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1699417983853</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
