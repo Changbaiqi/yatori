@@ -12,6 +12,7 @@ import com.cbq.brushlessons.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -61,9 +62,10 @@ public class CourseStudyAction implements Runnable {
     public void study1() {
         AccountCacheCangHui cache = (AccountCacheCangHui) user.getCache();
         Iterator<Long> iterator = map.keySet().iterator();
-
-        while (iterator.hasNext()) {
-            Long videoId = iterator.next();
+        Long arr[] = map.keySet().toArray(new Long[0]);
+        Arrays.sort(arr);
+        for(int i =0 ;i < arr.length;++i){
+            Long videoId = arr[i];
             RouterDatum routerDatum = map.get(videoId);
 
             long studyTime = routerDatum.getProgress();//当前学习时间

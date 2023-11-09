@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更改README">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新graalvm配置文件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +78,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/screenshot&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons/src/main/resources/META-INF/native-image&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -94,21 +95,22 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\META-INF\native-image" />
       <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.cbq.brushlessons.core.utils" />
       <recent name="com.cbq.brushlessons.core.action.canghui" />
       <recent name="com.cbq.brushlessons.core.action.yinghua" />
-      <recent name="com.cbq.brushlessons.core.utils" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.cbq.brushlessons.core.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunManager" selected="JUnit.MD5UtilsTest.testTime">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.Application" />
       <module name="brushlessons" />
@@ -118,22 +120,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginActionTest.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brushlessons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.action.yinghua.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.yinghua" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.yinghua.LoginActionTest" />
-      <option name="METHOD_NAME" value="testLogin" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -170,17 +156,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginActionTest.toLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MD5UtilsTest.testGetMD5Str" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="brushlessons" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.action.canghui.*" />
+          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.canghui" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.canghui.LoginActionTest" />
-      <option name="METHOD_NAME" value="toLogin" />
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.MD5UtilsTest" />
+      <option name="METHOD_NAME" value="testGetMD5Str" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MD5UtilsTest.testTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="brushlessons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.MD5UtilsTest" />
+      <option name="METHOD_NAME" value="testTime" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -188,18 +190,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
+      <item itemvalue="JUnit.MD5UtilsTest.testGetMD5Str" />
+      <item itemvalue="JUnit.MD5UtilsTest.testTime" />
       <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
       <item itemvalue="JUnit.LoginActionTest.toCourse" />
-      <item itemvalue="JUnit.LoginActionTest.toLogin" />
-      <item itemvalue="JUnit.LoginActionTest.testLogin" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MD5UtilsTest.testTime" />
+        <item itemvalue="JUnit.MD5UtilsTest.testGetMD5Str" />
         <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
         <item itemvalue="JUnit.LoginActionTest.toCourse" />
-        <item itemvalue="JUnit.LoginActionTest.toLogin" />
-        <item itemvalue="JUnit.LoginActionTest.testLogin" />
       </list>
     </recent_temporary>
   </component>
@@ -230,34 +232,10 @@
       <workItem from="1699348492630" duration="15483000" />
       <workItem from="1699367620338" duration="4427000" />
       <workItem from="1699373521427" duration="13720000" />
-    </task>
-    <task id="LOCAL-00011" summary="英华学堂基本功能完善">
-      <created>1698667102488</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1698667102488</updated>
-    </task>
-    <task id="LOCAL-00012" summary="修复graalvm打包运行报错问题">
-      <created>1698669667365</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1698669667365</updated>
-    </task>
-    <task id="LOCAL-00013" summary="修复graalvm打包运行报错问题">
-      <created>1698675515692</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1698675515692</updated>
-    </task>
-    <task id="LOCAL-00014" summary="添加登录超时重登机制，避免刷课中断">
-      <created>1698716912705</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1698716912705</updated>
+      <workItem from="1699432835768" duration="24000" />
+      <workItem from="1699435725909" duration="4497000" />
+      <workItem from="1699447469959" duration="2155000" />
+      <workItem from="1699500958508" duration="206000" />
     </task>
     <task id="LOCAL-00015" summary="优化验证码机制">
       <created>1698717174529</created>
@@ -574,7 +552,35 @@
       <option name="project" value="LOCAL" />
       <updated>1699426398758</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="学习公社逆向登录成功">
+      <created>1699439377309</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1699439377309</updated>
+    </task>
+    <task id="LOCAL-00061" summary="修复graalvm配置文件缺漏">
+      <created>1699448011062</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1699448011063</updated>
+    </task>
+    <task id="LOCAL-00062" summary="更新README">
+      <created>1699448024943</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1699448024943</updated>
+    </task>
+    <task id="LOCAL-00063" summary="更新graalvm配置文件">
+      <created>1699449023679</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1699449023679</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,9 +611,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="开始适配仓辉平台" />
-    <MESSAGE value="更新免责声明" />
-    <MESSAGE value="更新README格式" />
     <MESSAGE value="添加交流群" />
     <MESSAGE value="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明" />
     <MESSAGE value="添加Set相关native-image配置" />
@@ -626,11 +629,14 @@
     <MESSAGE value="更改提交学时算法" />
     <MESSAGE value="仓辉平台正式上线" />
     <MESSAGE value="修复graalvm配置bug" />
-    <MESSAGE value="更新README" />
     <MESSAGE value="更新v1.1.1版本，并且支持仓辉暴力模式" />
     <MESSAGE value="修复graalvm配置文件" />
     <MESSAGE value="更改README" />
-    <option name="LAST_COMMIT_MESSAGE" value="更改README" />
+    <MESSAGE value="学习公社逆向登录成功" />
+    <MESSAGE value="修复graalvm配置文件缺漏" />
+    <MESSAGE value="更新README" />
+    <MESSAGE value="更新graalvm配置文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新graalvm配置文件" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
