@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复正常模式刷课乱序bug">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复超时提示bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +20,8 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="JUnit3 Test Class" />
         <option value="Class" />
+        <option value="JUnit3 Test Class" />
       </list>
     </option>
   </component>
@@ -104,9 +104,9 @@
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.cbq.brushlessons.core.action.yinghua" />
       <recent name="com.cbq.brushlessons.core.utils" />
       <recent name="com.cbq.brushlessons.core.action.canghui" />
-      <recent name="com.cbq.brushlessons.core.action.yinghua" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.cbq.brushlessons.core.utils" />
@@ -126,6 +126,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LoginActionTest.testGetCode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="brushlessons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.brushlessons.core.action.yinghua.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.yinghua" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.yinghua.LoginActionTest" />
+      <option name="METHOD_NAME" value="testGetCode" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoginActionTest.toBrushLessons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="brushlessons" />
       <extension name="coverage">
@@ -137,22 +153,6 @@
       <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.canghui" />
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.canghui.LoginActionTest" />
       <option name="METHOD_NAME" value="toBrushLessons" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginActionTest.toCourse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brushlessons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.action.canghui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.canghui" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.canghui.LoginActionTest" />
-      <option name="METHOD_NAME" value="toCourse" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -192,18 +192,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
+      <item itemvalue="JUnit.LoginActionTest.testGetCode" />
       <item itemvalue="JUnit.MD5UtilsTest.testGetMD5Str" />
       <item itemvalue="JUnit.MD5UtilsTest.testTime" />
       <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
-      <item itemvalue="JUnit.LoginActionTest.toCourse" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.LoginActionTest.testGetCode" />
         <item itemvalue="JUnit.MD5UtilsTest.testTime" />
         <item itemvalue="JUnit.MD5UtilsTest.testGetMD5Str" />
         <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
-        <item itemvalue="JUnit.LoginActionTest.toCourse" />
       </list>
     </recent_temporary>
   </component>
@@ -241,14 +241,7 @@
       <workItem from="1699604514746" duration="2949000" />
       <workItem from="1699716057133" duration="1809000" />
       <workItem from="1699862051971" duration="3526000" />
-      <workItem from="1699969337026" duration="536000" />
-    </task>
-    <task id="LOCAL-00016" summary="开始适配仓辉平台">
-      <created>1698743629711</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1698743629711</updated>
+      <workItem from="1699969337026" duration="3670000" />
     </task>
     <task id="LOCAL-00017" summary="更新免责声明">
       <created>1698744681144</created>
@@ -586,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699501224315</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="修复超时提示bug">
+      <created>1699969895456</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1699969895456</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +617,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明" />
     <MESSAGE value="添加Set相关native-image配置" />
     <MESSAGE value="更新配置文件说明" />
     <MESSAGE value="修复token续航函数超时引发的报错bug，以及预防刷课时候刷新视屏列表信息超时引发的报错bug" />
@@ -642,7 +641,19 @@
     <MESSAGE value="更新README" />
     <MESSAGE value="更新graalvm配置文件" />
     <MESSAGE value="修复正常模式刷课乱序bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复正常模式刷课乱序bug" />
+    <MESSAGE value="修复超时提示bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复超时提示bug" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/cbq/brushlessons/core/action/yinghua/LoginActionTest.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

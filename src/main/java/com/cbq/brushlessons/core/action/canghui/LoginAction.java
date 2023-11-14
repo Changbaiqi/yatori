@@ -71,7 +71,7 @@ public class LoginAction {
         MediaType mediaType = MediaType.parse("text/plain");
         //RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url(user.getUrl() + "/api/v1/Kaptcha?v=0.5168877616823098")
+                .url(user.getUrl() + "/api/v1/Kaptcha?v=%7Btime%28%29%7D")
                 .addHeader("Cookie", "SESSION=" + ((AccountCacheCangHui)user.getCache()).getSession())
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                 .build();

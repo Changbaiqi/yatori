@@ -26,13 +26,14 @@ public class LoginAction {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url(user.getUrl()+"/service/code?r={time()}")
+                .url(user.getUrl()+"/service/code?r=%7Btime%28%29%7D")
                 .method("GET", null)
                 .build();
         try {
             Response response = client.newCall(request).execute();
             String session = response.header("Set-Cookie");
-//            System.out.println(session);
+            if(session==null)
+                session = response.header("Cookie");
             return session;
         }catch (SocketTimeoutException e){
             return null;
