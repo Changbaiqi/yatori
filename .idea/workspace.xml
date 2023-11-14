@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="新添支持创能平台">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="新添支持创能平台" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -238,7 +236,7 @@
       <workItem from="1699604514746" duration="2949000" />
       <workItem from="1699716057133" duration="1809000" />
       <workItem from="1699862051971" duration="3526000" />
-      <workItem from="1699969337026" duration="5050000" />
+      <workItem from="1699969337026" duration="5672000" />
     </task>
     <task id="LOCAL-00019" summary="更新README格式">
       <created>1698745021633</created>
