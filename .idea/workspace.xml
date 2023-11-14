@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="新添支持创能平台">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -238,14 +239,7 @@
       <workItem from="1699604514746" duration="2949000" />
       <workItem from="1699716057133" duration="1809000" />
       <workItem from="1699862051971" duration="3526000" />
-      <workItem from="1699969337026" duration="3756000" />
-    </task>
-    <task id="LOCAL-00018" summary="更新README格式">
-      <created>1698744939870</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1698744939870</updated>
+      <workItem from="1699969337026" duration="4454000" />
     </task>
     <task id="LOCAL-00019" summary="更新README格式">
       <created>1698745021633</created>
@@ -583,7 +577,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699973822120</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="新添支持创能平台">
+      <created>1699973877369</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1699973877369</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,6 +649,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/com/cbq/brushlessons/core/action/yinghua/LoginActionTest.java</url>
           <line>26</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java</url>
+          <line>177</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

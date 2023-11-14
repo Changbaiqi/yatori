@@ -35,8 +35,7 @@ public class LoginAction {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
-        //https://kkzxsx.bwgl.cn/api/v1/home/school_info
-        //https://zxsx.canghuikeji.com/api
+
         Request request = new Request.Builder()
                 .url(user.getUrl() + "/api/v1/home/school_info")
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
