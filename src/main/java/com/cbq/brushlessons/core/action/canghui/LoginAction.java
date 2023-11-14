@@ -1,6 +1,5 @@
 package com.cbq.brushlessons.core.action.canghui;
 
-import com.alibaba.fastjson.JSONObject;
 import com.cbq.brushlessons.core.action.canghui.entity.loginresponse.ConverterLoginResponse;
 import com.cbq.brushlessons.core.action.canghui.entity.loginresponse.LoginResponseRequest;
 import com.cbq.brushlessons.core.action.canghui.entity.tologin.ConverterToLogin;

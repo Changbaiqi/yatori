@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复超时提示bug">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="新添支持创能平台">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,14 +238,7 @@
       <workItem from="1699604514746" duration="2949000" />
       <workItem from="1699716057133" duration="1809000" />
       <workItem from="1699862051971" duration="3526000" />
-      <workItem from="1699969337026" duration="3670000" />
-    </task>
-    <task id="LOCAL-00017" summary="更新免责声明">
-      <created>1698744681144</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1698744681144</updated>
+      <workItem from="1699969337026" duration="3756000" />
     </task>
     <task id="LOCAL-00018" summary="更新README格式">
       <created>1698744939870</created>
@@ -586,7 +576,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699969895456</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="新添支持创能平台">
+      <created>1699973822120</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1699973822120</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +614,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="添加Set相关native-image配置" />
     <MESSAGE value="更新配置文件说明" />
     <MESSAGE value="修复token续航函数超时引发的报错bug，以及预防刷课时候刷新视屏列表信息超时引发的报错bug" />
     <MESSAGE value="修复native-image打包参数bug" />
@@ -642,7 +638,8 @@
     <MESSAGE value="更新graalvm配置文件" />
     <MESSAGE value="修复正常模式刷课乱序bug" />
     <MESSAGE value="修复超时提示bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复超时提示bug" />
+    <MESSAGE value="新添支持创能平台" />
+    <option name="LAST_COMMIT_MESSAGE" value="新添支持创能平台" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
