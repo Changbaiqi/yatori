@@ -53,7 +53,6 @@ public class CourseStudyAction implements Runnable {
                 study2();
             }
         }
-
     }
 
     /**
@@ -146,6 +145,7 @@ public class CourseStudyAction implements Runnable {
                 long studyTime = routerDatum.getProgress() == 0 ? studyInterval : routerDatum.getProgress();//当前学习时间
                 long videoDuration = routerDatum.getVideoDuration();//视屏总时长
                 String title = routerDatum.getName();//视屏名称
+
                 //循环开始学习
                 while (studyTime < videoDuration) {
                     //这里根据账号账号登录状态进行策划行为

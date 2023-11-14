@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新graalvm配置文件">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复正常模式刷课乱序bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +80,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons/src/main/resources/META-INF/native-image&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/QuickBotTest&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -88,7 +90,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -110,7 +112,7 @@
       <recent name="com.cbq.brushlessons.core.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MD5UtilsTest.testTime">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.Application" />
       <module name="brushlessons" />
@@ -197,9 +199,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.MD5UtilsTest.testTime" />
         <item itemvalue="JUnit.MD5UtilsTest.testGetMD5Str" />
-        <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
         <item itemvalue="JUnit.LoginActionTest.toCourse" />
       </list>
@@ -235,14 +237,11 @@
       <workItem from="1699432835768" duration="24000" />
       <workItem from="1699435725909" duration="4497000" />
       <workItem from="1699447469959" duration="2155000" />
-      <workItem from="1699500958508" duration="206000" />
-    </task>
-    <task id="LOCAL-00015" summary="优化验证码机制">
-      <created>1698717174529</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1698717174529</updated>
+      <workItem from="1699500958508" duration="5186000" />
+      <workItem from="1699604514746" duration="2949000" />
+      <workItem from="1699716057133" duration="1809000" />
+      <workItem from="1699862051971" duration="3526000" />
+      <workItem from="1699969337026" duration="536000" />
     </task>
     <task id="LOCAL-00016" summary="开始适配仓辉平台">
       <created>1698743629711</created>
@@ -580,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699449023679</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="修复正常模式刷课乱序bug">
+      <created>1699501224314</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1699501224315</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +617,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="添加交流群" />
     <MESSAGE value="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明" />
     <MESSAGE value="添加Set相关native-image配置" />
     <MESSAGE value="更新配置文件说明" />
@@ -636,7 +641,12 @@
     <MESSAGE value="修复graalvm配置文件缺漏" />
     <MESSAGE value="更新README" />
     <MESSAGE value="更新graalvm配置文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新graalvm配置文件" />
+    <MESSAGE value="修复正常模式刷课乱序bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复正常模式刷课乱序bug" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

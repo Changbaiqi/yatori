@@ -114,10 +114,15 @@ public class CourseAction {
             String json = response.body().string();
             CourseDetailRequest courseDetailRequest = ConverterCourseDetail.fromJsonString(json);
             //System.out.println(jsonObject.toString());
+
+            //网络繁忙
+            if(courseDetailRequest.getCode()==-8000){
+                return null;
+            }
+            //其他未知错误
             if (courseDetailRequest.getCode() != 0) {
                 throw new Exception(json);
             }
-
             //装载
             //System.out.println(jsonObject.toString());
             return courseDetailRequest.getData();
