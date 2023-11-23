@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="新添支持创能平台" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新README">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +79,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/QuickBotTest&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/nnlg&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -236,14 +240,11 @@
       <workItem from="1699604514746" duration="2949000" />
       <workItem from="1699716057133" duration="1809000" />
       <workItem from="1699862051971" duration="3526000" />
-      <workItem from="1699969337026" duration="5672000" />
-    </task>
-    <task id="LOCAL-00019" summary="更新README格式">
-      <created>1698745021633</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1698745021633</updated>
+      <workItem from="1699969337026" duration="6387000" />
+      <workItem from="1700449334424" duration="1540000" />
+      <workItem from="1700470388599" duration="1224000" />
+      <workItem from="1700636361194" duration="9564000" />
+      <workItem from="1700723839770" duration="87000" />
     </task>
     <task id="LOCAL-00020" summary="更新README格式">
       <created>1698745196630</created>
@@ -581,7 +582,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699973877369</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="更新README">
+      <created>1699979518884</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1699979518884</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,12 +640,12 @@
     <MESSAGE value="更改README" />
     <MESSAGE value="学习公社逆向登录成功" />
     <MESSAGE value="修复graalvm配置文件缺漏" />
-    <MESSAGE value="更新README" />
     <MESSAGE value="更新graalvm配置文件" />
     <MESSAGE value="修复正常模式刷课乱序bug" />
     <MESSAGE value="修复超时提示bug" />
     <MESSAGE value="新添支持创能平台" />
-    <option name="LAST_COMMIT_MESSAGE" value="新添支持创能平台" />
+    <MESSAGE value="更新README" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新README" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

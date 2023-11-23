@@ -147,6 +147,11 @@ public class LoginAction {
     }
 
 
+    /**
+     * token续航
+     * @param user
+     * @return
+     */
     public static Map online(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
