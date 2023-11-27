@@ -4,15 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新README">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="优化部分代码">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/Topic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/utils/ExcelUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,34 +72,38 @@
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="2X9X57bo05YYW134VQWkgg8sNKm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/nnlg&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15136719",
+    "project.structure.side.proportion": "0.343318",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\META-INF\native-image" />
@@ -103,15 +113,15 @@
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.cbq.brushlessons.core.action.yinghua" />
       <recent name="com.cbq.brushlessons.core.utils" />
+      <recent name="com.cbq.brushlessons.core.action.yinghua" />
       <recent name="com.cbq.brushlessons.core.action.canghui" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.cbq.brushlessons.core.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunManager" selected="JUnit.ExcelUtilsTest.testTest1">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.Application" />
       <module name="brushlessons" />
@@ -121,6 +131,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExcelUtilsTest.testTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="brushlessons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.ExcelUtilsTest" />
+      <option name="METHOD_NAME" value="testTest1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -136,22 +162,6 @@
       <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.yinghua" />
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.yinghua.LoginActionTest" />
       <option name="METHOD_NAME" value="testGetCode" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginActionTest.toBrushLessons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brushlessons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.action.canghui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.canghui" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.canghui.LoginActionTest" />
-      <option name="METHOD_NAME" value="toBrushLessons" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -191,18 +201,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
+      <item itemvalue="JUnit.ExcelUtilsTest.testTest1" />
       <item itemvalue="JUnit.LoginActionTest.testGetCode" />
       <item itemvalue="JUnit.MD5UtilsTest.testGetMD5Str" />
       <item itemvalue="JUnit.MD5UtilsTest.testTime" />
-      <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ExcelUtilsTest.testTest1" />
         <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.LoginActionTest.testGetCode" />
         <item itemvalue="JUnit.MD5UtilsTest.testTime" />
         <item itemvalue="JUnit.MD5UtilsTest.testGetMD5Str" />
-        <item itemvalue="JUnit.LoginActionTest.toBrushLessons" />
       </list>
     </recent_temporary>
   </component>
@@ -244,14 +254,9 @@
       <workItem from="1700449334424" duration="1540000" />
       <workItem from="1700470388599" duration="1224000" />
       <workItem from="1700636361194" duration="9564000" />
-      <workItem from="1700723839770" duration="87000" />
-    </task>
-    <task id="LOCAL-00020" summary="更新README格式">
-      <created>1698745196630</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1698745196630</updated>
+      <workItem from="1700723839770" duration="1418000" />
+      <workItem from="1700791851024" duration="1487000" />
+      <workItem from="1701086544376" duration="3435000" />
     </task>
     <task id="LOCAL-00021" summary="添加交流群">
       <created>1698763617065</created>
@@ -589,7 +594,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699979518884</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="优化部分代码">
+      <created>1700723978530</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1700723978531</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,7 +632,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新配置文件说明" />
     <MESSAGE value="修复token续航函数超时引发的报错bug，以及预防刷课时候刷新视屏列表信息超时引发的报错bug" />
     <MESSAGE value="修复native-image打包参数bug" />
     <MESSAGE value="修复参数为空时触发报错bug" />
@@ -645,7 +656,8 @@
     <MESSAGE value="修复超时提示bug" />
     <MESSAGE value="新添支持创能平台" />
     <MESSAGE value="更新README" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新README" />
+    <MESSAGE value="优化部分代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化部分代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
