@@ -2,5 +2,7 @@ target
 config.json
 cache
 *.drawio
+*.xlsx
+*.xls
 src/main/resources/config.json
 src/test/

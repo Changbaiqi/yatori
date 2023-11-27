@@ -29,31 +29,6 @@
 
 ## 支持平台：
 
-<div style="display: flex;
-    justify-content: space-between;">
-      <div
-        style=" border-radius: 15px; background-color: rgb(255, 255, 255); height:50px; width: 130px;box-shadow: 1px 1px 8px rgba(98, 98, 98, 0.8);"><img
-          src="https://mooc.yinghuaonline.com/static/favicon/yinghua.ico"
-          width="30px"
-          style="float: left; margin-left: 10px; margin-top: 13px;"><div
-          style="float: left;margin-left: 10px;margin-top: 13px; color: black;">英华学堂</div></div>
-      <div
-        style=" border-radius: 15px; background-color: rgb(255, 255, 255); height:50px; width: 130px; box-shadow: 1px 1px 8px rgba(98, 98, 98, 0.8);"><img
-          src="
-https://www.yinghuaonline.com/lib/template_sxsx/assets/images/canghui.png"
-          width="30px"
-          style="float: left; margin-left: 10px; margin-top: 13px;"><div
-          style="float: left;margin-left: 10px;margin-top: 13px; color: black;">仓辉实训</div></div>
-      <div
-        style=" border-radius: 15px; background-color: rgb(255, 255, 255); height:50px; width: 130px; box-shadow: 1px 1px 8px rgba(98, 98, 98, 0.8);"><img
-          src="https://www.yinghuaonline.com/lib/template_sxsx/assets/images/chuangneng108.png"
-          width="30px"
-          style="float: left; margin-left: 10px; margin-top: 13px;"><div
-          style="float: left;margin-left: 10px;margin-top: 13px; color: black;">创能实训</div></div>
-    </div>
-
-### 说明：
-
 > - [x] 英华学堂（不支持暴力模式）
 > - [x] 创能平台（不支持暴力模式）
 > - [x] 仓辉实训（支持暴力模式）
