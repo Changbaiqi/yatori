@@ -50,4 +50,33 @@ public class FileUtils {
         }
         return false;
     }
+
+    /**
+     * 读取指定路径下的文本文件并返回文本字符串
+     * @param file
+     * @return
+     */
+    public static String readTxt(File file){
+        if(!file.exists()){
+            System.out.println("配置文件不存在!!!");
+            return null;
+        }
+
+        String text = "";
+        try {
+            InputStream inputStream = new FileInputStream(file);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+            //FileReader fileReader = new FileReader(file);
+            BufferedReader br = new BufferedReader(inputStreamReader);
+            String res = null;
+            while((res = br.readLine())!=null){
+                text+=res;
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return text;
+    }
 }
