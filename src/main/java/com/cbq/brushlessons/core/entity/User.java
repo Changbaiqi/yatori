@@ -22,7 +22,7 @@ public class User {
     private String account; //密码
     private String password; //账号
     private Integer model; //视屏刷课模式
-    private Boolean autoExam; //是否自动考试
+    private Integer autoExam; //是否自动考试
     private Set<String> excludeCourses; //排除课程
     private Set<String> includeCourses; //包含课程
     private AccountCache cache;

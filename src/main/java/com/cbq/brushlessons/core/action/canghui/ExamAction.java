@@ -12,9 +12,12 @@ import com.cbq.brushlessons.core.action.canghui.entity.startexam.StartExam;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
 import com.cbq.brushlessons.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @description: TODO 考试相关
@@ -22,6 +25,7 @@ import java.io.IOException;
  * @date 2023/11/28 1:21
  * @version 1.0
  */
+@Slf4j
 public class ExamAction {
 
     /**
@@ -54,9 +58,13 @@ public class ExamAction {
             String string = response.body().string();
             ExamJson examJson = ConverterExam.fromJsonString(string);
             return examJson;
+        } catch(SocketTimeoutException socketTimeoutException){
+            return null;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error("");
+            e.printStackTrace();
         }
+        return null;
     }
 
     /**
@@ -89,9 +97,13 @@ public class ExamAction {
             String string = response.body().string();
             StartExam startExam = ConverterStartExam.fromJsonString(string);
             return startExam;
+        } catch(SocketTimeoutException socketTimeoutException){
+            return null;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error("");
+            e.printStackTrace();
         }
+        return null;
     }
 
     /**
@@ -113,15 +125,15 @@ public class ExamAction {
         Request request = new Request.Builder()
                 .url("https://kkzxsx.lidapoly.edu.cn/api/v1/course/study/submit/exam")
                 .method("POST", body)
-                .addHeader("member-token", "0a513a7a3aebceb9d3de5456dcc897f0")
-                .addHeader("Origin", "https://kkzxsx.lidapoly.edu.cn")
+                .addHeader("member-token", ((AccountCacheCangHui)user.getCache()).getToken())
+                .addHeader("Origin", user.getUrl())
                 .addHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\",\"Chromium\";v=\"114\",\"Microsoft Edge\";v=\"114\"")
                 .addHeader("sec-ch-ua-platform", "Windows")
-                .addHeader("Cookie", "SESSION=MGUyZmZhZWYtMzMwMC00MWZlLWJkZDYtYjZlOWEzZTg5MmE4; SESSION=YzdjNjhjZWMtODNmYy00MWM5LWExNDUtYWQyY2EyNTc5ODZj")
+                .addHeader("Cookie", "SESSION="+((AccountCacheCangHui)user.getCache()).getSession())
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "*/*")
-                .addHeader("Host", "kkzxsx.lidapoly.edu.cn")
+                .addHeader("Host", user.getUrl().replace("https://","").replace("http://",""))
                 .addHeader("Connection", "keep-alive")
                 .build();
         try {
@@ -129,8 +141,12 @@ public class ExamAction {
             String string = response.body().string();
             ExamSubmitResponse examSubmitResponse = ConverterExamSubmitResponse.fromJsonString(string);
             return examSubmitResponse;
+        } catch(SocketTimeoutException socketTimeoutException){
+            return null;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.error("");
+            e.printStackTrace();
         }
+        return null;
     }
 }

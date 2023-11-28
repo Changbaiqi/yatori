@@ -39,86 +39,107 @@ public class ConverterExam {
             String title = (String) list.get("title");
             examCourse.setTitle(title);
 
-            //以下为library里面的
-            if(!list.containsKey("library"))
-                continue;
-
-            LinkedHashMap<String,Object> library = (LinkedHashMap<String,Object>)list.get("library");
-
-            if(!library.containsKey("content"))
-                continue;
-
-            LinkedHashMap<String,Object> content = (LinkedHashMap<String,Object>)library.get("content");
-
-            if(!content.containsKey("data"))
-                continue;
-
-            LinkedHashMap<String,Object> contentData = (LinkedHashMap<String,Object>)content.get("data");
-
             LinkedHashMap<String, ExamTopic> exams = new LinkedHashMap<>(); //综合试题
-            for (String s1 : contentData.keySet()) {
-                LinkedHashMap<String,Object> topicJson = ( LinkedHashMap<String,Object>)contentData.get(s1);
 
-                ExamTopic topic = new ExamTopic();
-                topic.setId((int)topicJson.get("id"));
-                topic.setTitle((String) topicJson.get("title"));
-                topic.setType((int)topicJson.get("type"));
-                topic.setDifficulty((int)topicJson.get("difficulty"));
-                topic.setItem(new ArrayList<>());
-
-                ArrayList<LinkedHashMap<String,Object>> items =(ArrayList<LinkedHashMap<String,Object>>) topicJson.get("item");
-                for (LinkedHashMap<String, Object> item : items) {
-                    String key = (String) item.get("key");
-                    String value = (String) item.get("value");
-                    Integer score = (int)item.get("score");
-                    Boolean isCorrect =(boolean) item.get("isCorrect");
-                    topic.getItem().add(new ExamItem(key,value,score,isCorrect));
-                }
-                exams.put(s1,topic);
-            }
-
-
-            //以下为result里面的-------------------------------------------
-            if(!list.containsKey("result"))
-                continue;
-
-            LinkedHashMap<String,Object> result = (LinkedHashMap<String,Object>)list.get("result");
-
-            if(!result.containsKey("content"))
-                continue;
-
-            LinkedHashMap<String,Object> contentResult = (LinkedHashMap<String,Object>)result.get("content");
-
-            if(!contentResult.containsKey("data"))
-                continue;
-
-            LinkedHashMap<String,Object> contentDataResult = (LinkedHashMap<String,Object>)contentResult.get("data");
-
-            for (String s1 : contentDataResult.keySet()) {
-                LinkedHashMap<String,Object> topicJson = ( LinkedHashMap<String,Object>)contentDataResult.get(s1);
-
-                ExamTopic topic = new ExamTopic();
-                topic.setId((int)topicJson.get("id"));
-                topic.setTitle((String) topicJson.get("title"));
-                topic.setType((int)topicJson.get("type"));
-                topic.setDifficulty((int)topicJson.get("difficulty"));
-                topic.setItem(new ArrayList<>());
-
-                ArrayList<LinkedHashMap<String,Object>> items =(ArrayList<LinkedHashMap<String,Object>>) topicJson.get("item");
-                for (LinkedHashMap<String, Object> item : items) {
-                    String key = (String) item.get("key");
-                    String value = (String) item.get("value");
-                    Integer score = (int)item.get("score");
-                    Boolean isCorrect =(boolean) item.get("isCorrect");
-                    topic.getItem().add(new ExamItem(key,value,score,isCorrect));
-                }
-                exams.put(s1,topic);
-            }
+            getLibrary(list,exams);
+            getLibrary(list,exams);
 
             examCourse.setExamTopics(exams);
             examJson.getExamCourses().add(examCourse);
         }
 
         return examJson;
+    }
+
+    /**
+     * library检测
+     * @param list
+     * @param exams
+     */
+    public static void getLibrary(LinkedHashMap<String,Object> list,LinkedHashMap<String,ExamTopic> exams){
+        //以下为library里面的-----------------------------------------------------
+        if(!list.containsKey("library"))
+            return;
+
+        LinkedHashMap<String,Object> library = (LinkedHashMap<String,Object>)list.get("library");
+
+        if(!library.containsKey("content"))
+            return;
+
+        LinkedHashMap<String,Object> content = (LinkedHashMap<String,Object>)library.get("content");
+
+        if(!content.containsKey("data"))
+            return;
+
+        LinkedHashMap<String,Object> contentData = (LinkedHashMap<String,Object>)content.get("data");
+
+        for (String s1 : contentData.keySet()) {
+            LinkedHashMap<String,Object> topicJson = ( LinkedHashMap<String,Object>)contentData.get(s1);
+
+            ExamTopic topic = new ExamTopic();
+            topic.setId((int)topicJson.get("id"));
+            topic.setTitle((String) topicJson.get("title"));
+            topic.setType((int)topicJson.get("type"));
+            topic.setDifficulty((int)topicJson.get("difficulty"));
+            topic.setItem(new ArrayList<>());
+
+            ArrayList<LinkedHashMap<String,Object>> items =(ArrayList<LinkedHashMap<String,Object>>) topicJson.get("item");
+            for (LinkedHashMap<String, Object> item : items) {
+                String key = (String) item.get("key");
+                String value = (String) item.get("value");
+                Integer score = (int)item.get("score");
+                Boolean isCorrect =(boolean) item.get("isCorrect");
+                topic.getItem().add(new ExamItem(key,value,score,isCorrect));
+            }
+            exams.put(s1,topic);
+        }
+
+
+    }
+
+    /**
+     * result检测
+     * @param list
+     * @param exams
+     */
+    public static void getResult(LinkedHashMap<String,Object> list,LinkedHashMap<String,ExamTopic> exams){
+//以下为result里面的-------------------------------------------
+        if(!list.containsKey("result"))
+            return;
+
+        LinkedHashMap<String,Object> result = (LinkedHashMap<String,Object>)list.get("result");
+        if(result==null || result.isEmpty())
+            return;
+
+        if(!result.containsKey("content"))
+            return;
+
+        LinkedHashMap<String,Object> contentResult = (LinkedHashMap<String,Object>)result.get("content");
+
+        if(!contentResult.containsKey("data"))
+            return;
+
+        LinkedHashMap<String,Object> contentDataResult = (LinkedHashMap<String,Object>)contentResult.get("data");
+
+        for (String s1 : contentDataResult.keySet()) {
+            LinkedHashMap<String,Object> topicJson = ( LinkedHashMap<String,Object>)contentDataResult.get(s1);
+
+            ExamTopic topic = new ExamTopic();
+            topic.setId((int)topicJson.get("id"));
+            topic.setTitle((String) topicJson.get("title"));
+            topic.setType((int)topicJson.get("type"));
+            topic.setDifficulty((int)topicJson.get("difficulty"));
+            topic.setItem(new ArrayList<>());
+
+            ArrayList<LinkedHashMap<String,Object>> items =(ArrayList<LinkedHashMap<String,Object>>) topicJson.get("item");
+            for (LinkedHashMap<String, Object> item : items) {
+                String key = (String) item.get("key");
+                String value = (String) item.get("value");
+                Integer score = (int)item.get("score");
+                Boolean isCorrect =(boolean) item.get("isCorrect");
+                topic.getItem().add(new ExamItem(key,value,score,isCorrect));
+            }
+            exams.put(s1,topic);
+        }
     }
 }

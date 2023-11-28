@@ -4,7 +4,15 @@ import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Chapter;
 import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.CourseDetailData;
 import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Process;
 import com.cbq.brushlessons.core.action.canghui.entity.coursedetail.Section;
+import com.cbq.brushlessons.core.action.canghui.entity.exam.ExamCourse;
+import com.cbq.brushlessons.core.action.canghui.entity.exam.ExamItem;
+import com.cbq.brushlessons.core.action.canghui.entity.exam.ExamJson;
+import com.cbq.brushlessons.core.action.canghui.entity.exam.ExamTopic;
+import com.cbq.brushlessons.core.action.canghui.entity.examsubmit.TopicAnswer;
+import com.cbq.brushlessons.core.action.canghui.entity.examsubmit.TopicRequest;
+import com.cbq.brushlessons.core.action.canghui.entity.examsubmitrespose.ExamSubmitResponse;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.*;
+import com.cbq.brushlessons.core.action.canghui.entity.startexam.StartExam;
 import com.cbq.brushlessons.core.action.canghui.entity.submitstudy.ConverterSubmitStudyTime;
 import com.cbq.brushlessons.core.action.canghui.entity.submitstudy.SubmitStudyTimeRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
@@ -12,10 +20,7 @@ import com.cbq.brushlessons.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class CourseStudyAction implements Runnable {
@@ -45,6 +50,11 @@ public class CourseStudyAction implements Runnable {
                     log.info("{}:正在学习课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
                     study1();
                     log.info("{}:{}学习完毕！", user.getAccount(), myCourse.getCourse().getTitle());
+                    if(user.getAutoExam()==1){
+                        log.info("{}:正在考试课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
+                        autoExamAction();
+                        log.info("{}:{}考试完毕！", user.getAccount(), myCourse.getCourse().getTitle());
+                    }
                 }
             }
             //暴力模式
@@ -207,6 +217,59 @@ public class CourseStudyAction implements Runnable {
                     }
                 }
             }).start();
+        }
+    }
+
+    /**
+     * 自动考试
+     */
+    public void autoExamAction(){
+        AccountCacheCangHui cacheCangHui=(AccountCacheCangHui) user.getCache();
+
+        //获取考试
+        ExamJson examList = null;
+        while((examList=ExamAction.getExamList(user, String.valueOf(myCourse.getCourseId())))==null);
+
+        cacheCangHui.setExamJson(examList);
+
+        for (ExamCourse examCours : examList.getExamCourses()) {
+            Integer id = examCours.getId();
+            StartExam startExam = null;
+            while((startExam=ExamAction.startExam(user, String.valueOf(id)))==null);
+            if (startExam.getCode() == -1) {//代表考试考过了
+                log.info(startExam.getMsg());
+                continue;
+            }
+            TopicRequest topicRequest = new TopicRequest();
+            topicRequest.setId(String.valueOf(id));
+            topicRequest.setExamId(String.valueOf(id));
+            List<TopicAnswer> list = new ArrayList<>();
+            topicRequest.setAnswers(list);
+
+            //获取对应考试题目
+            LinkedHashMap<String, ExamTopic> examTopics = examCours.getExamTopics();
+            //答案装载
+            examTopics.forEach((k, v) -> {
+                for (ExamItem examItem : v.getItem()) {
+                    if (v.getType() == 5) {
+                        list.add(new TopicAnswer(List.of(examItem.getKey()), Long.parseLong(k)));
+                        break;
+                    }
+                    if (examItem.getIsCorrect() == true) {
+                        list.add(new TopicAnswer(List.of(examItem.getValue()), Long.parseLong(k)));
+                        break;
+                    }
+                }
+
+            });
+
+            ExamSubmitResponse examSubmitResponse = null;
+            while ((examSubmitResponse=ExamAction.submitExam(user, topicRequest))==null);
+            if (examSubmitResponse.getCode() != 0) {
+                log.info(examSubmitResponse.getMsg());
+                continue;
+            }
+            log.info(examSubmitResponse.getMsg());
         }
     }
 
