@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新README">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/ExamAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ConverterExam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ExamCourse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ExamItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ExamJson.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ExamTopic.java" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="爬取考试答案">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/examsubmit/ConverterExamSubmit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/examsubmit/TopicAnswer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/examsubmit/TopicRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/examsubmitrespose/ConverterExamSubmitResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/examsubmitrespose/ExamSubmitResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/startexam/ConverterStartExam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/startexam/StartExam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/ExamAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/ExamAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ConverterExam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ConverterExam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ExamCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/entity/exam/ExamCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/AccountCacheCangHui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/AccountCacheCangHui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +128,7 @@
       <recent name="com.cbq.brushlessons.core.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CC.test">
+  <component name="RunManager" selected="JUnit.CC.test1">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.Application" />
       <module name="brushlessons" />
@@ -148,6 +153,22 @@
       <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core" />
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.CC" />
       <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CC.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="brushlessons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.brushlessons.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.CC" />
+      <option name="METHOD_NAME" value="test1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -185,36 +206,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MD5UtilsTest.testTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brushlessons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.MD5UtilsTest" />
-      <option name="METHOD_NAME" value="testTime" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Application" />
       <item itemvalue="JUnit.CC.test" />
+      <item itemvalue="JUnit.CC.test1" />
       <item itemvalue="JUnit.ExcelUtilsTest.testTest1" />
       <item itemvalue="JUnit.LoginActionTest.testGetCode" />
-      <item itemvalue="JUnit.MD5UtilsTest.testTime" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CC.test1" />
         <item itemvalue="JUnit.CC.test" />
         <item itemvalue="JUnit.ExcelUtilsTest.testTest1" />
         <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.LoginActionTest.testGetCode" />
-        <item itemvalue="JUnit.MD5UtilsTest.testTime" />
       </list>
     </recent_temporary>
   </component>
@@ -259,14 +264,7 @@
       <workItem from="1700723839770" duration="1418000" />
       <workItem from="1700791851024" duration="1487000" />
       <workItem from="1701086544376" duration="4279000" />
-      <workItem from="1701096883111" duration="6589000" />
-    </task>
-    <task id="LOCAL-00023" summary="更新添加可自定义课程学习以及可自定义排除指定课程学习配置，详细看README或者release中的config配置文件说明">
-      <created>1698768624388</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1698768624388</updated>
+      <workItem from="1701096883111" duration="16421000" />
     </task>
     <task id="LOCAL-00024" summary="添加Set相关native-image配置">
       <created>1698769230532</created>
@@ -604,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701090269305</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="爬取考试答案">
+      <created>1701105418078</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1701105418079</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -635,7 +640,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="修复native-image打包参数bug" />
     <MESSAGE value="修复参数为空时触发报错bug" />
     <MESSAGE value="仓辉相关代码" />
     <MESSAGE value="优化逻辑机制及速度" />
@@ -660,7 +664,8 @@
     <MESSAGE value="优化部分代码" />
     <MESSAGE value="添加Excel表格读取范式，准备实现写题功能" />
     <MESSAGE value="更新README" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新README" />
+    <MESSAGE value="爬取考试答案" />
+    <option name="LAST_COMMIT_MESSAGE" value="爬取考试答案" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -677,6 +682,11 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="examList.examCourses" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

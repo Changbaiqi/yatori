@@ -1,5 +1,6 @@
 package com.cbq.brushlessons.core.entity;
 
+import com.cbq.brushlessons.core.action.canghui.entity.exam.ExamJson;
 import lombok.Data;
 
 /**
@@ -14,4 +15,6 @@ public class AccountCacheCangHui implements AccountCache {
     private String code;
     private String token;
     private Integer status=0;
+
+    private ExamJson examJson; //我的考试
 }
