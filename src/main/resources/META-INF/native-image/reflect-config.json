@@ -1614,6 +1614,84 @@
     ]
   },
   {
+    "name": "com.cbq.brushlessons.core.action.canghui.entity.examsubmit.TopicAnswer",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "getAnswers",
+        "parameterTypes": []
+      },
+      {
+        "name": "getId",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.canghui.entity.examsubmit.TopicRequest",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "getAnswers",
+        "parameterTypes": []
+      },
+      {
+        "name": "getExamId",
+        "parameterTypes": []
+      },
+      {
+        "name": "getId",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.canghui.entity.examsubmitrespose.ExamSubmitResponse",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setCode",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setData",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setMsg",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSubCode",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSubMsg",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      }
+    ]
+  },
+  {
     "name": "com.cbq.brushlessons.core.action.canghui.entity.loginresponse.LoginResponseData",
     "allDeclaredFields": true,
     "queryAllDeclaredMethods": true,
