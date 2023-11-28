@@ -138,6 +138,13 @@ public class CourseStudyAction implements Runnable {
                 }
             }
         }
+
+        //自动考试
+        if(user.getAutoExam()==1){
+            log.info("{}:正在考试课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
+            autoExamAction();
+            log.info("{}:{}考试完毕！", user.getAccount(), myCourse.getCourse().getTitle());
+        }
     }
 
     /**
@@ -237,7 +244,7 @@ public class CourseStudyAction implements Runnable {
             StartExam startExam = null;
             while((startExam=ExamAction.startExam(user, String.valueOf(id)))==null);
             if (startExam.getCode() == -1) {//代表考试考过了
-                log.info(startExam.getMsg());
+                log.info("{}:课程:{}考试失败！失败原因：{}",user.getAccount(),myCourse.getCourse().getTitle(),startExam.getMsg());
                 continue;
             }
             TopicRequest topicRequest = new TopicRequest();
@@ -266,10 +273,10 @@ public class CourseStudyAction implements Runnable {
             ExamSubmitResponse examSubmitResponse = null;
             while ((examSubmitResponse=ExamAction.submitExam(user, topicRequest))==null);
             if (examSubmitResponse.getCode() != 0) {
-                log.info(examSubmitResponse.getMsg());
+                log.info("{}:课程:{}考试失败！失败原因：{}",user.getAccount(),myCourse.getCourse().getTitle(),examSubmitResponse.getMsg());
                 continue;
             }
-            log.info(examSubmitResponse.getMsg());
+            log.info("{}:课程:{}考试成功！服务器信息：{}",user.getAccount(),myCourse.getCourse().getTitle(),examSubmitResponse.getMsg());
         }
     }
 

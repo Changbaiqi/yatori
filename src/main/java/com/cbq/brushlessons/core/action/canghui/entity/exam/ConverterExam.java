@@ -8,14 +8,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class ConverterExam {
-    public static ExamJson fromJsonString(String jsonStr){
+    public static ExamJson fromJsonString(String jsonStr) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         HashMap<String,Object> json = null;
-        try {
-            json = objectMapper.readValue(jsonStr, HashMap.class);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+
+        json = objectMapper.readValue(jsonStr, HashMap.class);
+
 
         LinkedHashMap<String,Object> data = (LinkedHashMap<String, Object>)  json.get("data");
         if(data==null)

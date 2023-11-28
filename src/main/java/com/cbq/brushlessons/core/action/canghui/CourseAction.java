@@ -12,6 +12,7 @@ import com.cbq.brushlessons.core.action.canghui.entity.upload.ConverterUpload;
 import com.cbq.brushlessons.core.action.canghui.entity.upload.UploadRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
 import com.cbq.brushlessons.core.entity.User;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -173,6 +174,9 @@ public class CourseAction {
             return submit;
 //            System.out.printf("------%s课程------\nid：%s\n名称：%s\n状态：提交学时%s。当前学时：%d\n视屏总时长:%d\n", user.getAccount(), detailDatum.getId(),upload.getMsg(), detailDatum.getProgress(), detailDatum.getTotalProgress());
         } catch (SocketTimeoutException e){
+            return null;
+        }catch (JsonParseException e){
+
             return null;
         } catch (IOException e) {
             log.error("");

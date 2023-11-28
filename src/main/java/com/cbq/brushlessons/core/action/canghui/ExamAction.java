@@ -11,6 +11,7 @@ import com.cbq.brushlessons.core.action.canghui.entity.startexam.ConverterStartE
 import com.cbq.brushlessons.core.action.canghui.entity.startexam.StartExam;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
 import com.cbq.brushlessons.core.entity.User;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -39,18 +40,19 @@ public class ExamAction {
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\r\n    \"pageSize\": 99,\r\n    \"courseId\": \""+courseId+"\",\r\n    \"page\": 1\r\n}");
+        AccountCacheCangHui cache = (AccountCacheCangHui) user.getCache();
         Request request = new Request.Builder()
-                .url(user.getUrl()+"/api/v1/course/study/my/exam")
+                .url("https://kkzxsx.lidapoly.edu.cn/api/v1/course/study/my/exam")
                 .method("POST", body)
-                .addHeader("member-token", ((AccountCacheCangHui)user.getCache()).getToken())
-                .addHeader("Origin", "https://kkzxsx.lidapoly.edu.cn")
+                .addHeader("member-token", cache.getToken())
+                .addHeader("Origin", user.getUrl())
                 .addHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\",\"Chromium\";v=\"114\",\"Microsoft Edge\";v=\"114\"")
                 .addHeader("sec-ch-ua-platform", "Windows")
-                .addHeader("Cookie", "SESSION="+((AccountCacheCangHui)user.getCache()).getSession())
+                .addHeader("Cookie", "SESSION="+cache.getSession())
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "*/*")
-                .addHeader("Host", user.getUrl().replace("https://","").replace("http://",""))
+                .addHeader("Host", user.getUrl().replace("https://","").replace("http://","").replace("/",""))
                 .addHeader("Connection", "keep-alive")
                 .build();
         try {
@@ -59,6 +61,8 @@ public class ExamAction {
             ExamJson examJson = ConverterExam.fromJsonString(string);
             return examJson;
         } catch(SocketTimeoutException socketTimeoutException){
+            return null;
+        }catch (JsonParseException e){
             return null;
         } catch (IOException e) {
             log.error("");
@@ -78,18 +82,19 @@ public class ExamAction {
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\"examId\":\""+examId+"\"}");
+        AccountCacheCangHui cache = (AccountCacheCangHui)user.getCache();
         Request request = new Request.Builder()
                 .url(user.getUrl()+"/api/v1/course/study/start/exam")
                 .method("POST", body)
-                .addHeader("member-token", ((AccountCacheCangHui)user.getCache()).getToken())
+                .addHeader("member-token", cache.getToken())
                 .addHeader("Origin", user.getUrl())
                 .addHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\",\"Chromium\";v=\"114\",\"Microsoft Edge\";v=\"114\"")
                 .addHeader("sec-ch-ua-platform", "Windows")
-                .addHeader("Cookie", "SESSION="+((AccountCacheCangHui)user.getCache()).getSession())
+                .addHeader("Cookie", "SESSION="+cache.getSession())
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "*/*")
-                .addHeader("Host", user.getUrl().replace("https://","").replace("http://",""))
+                .addHeader("Host", user.getUrl().replace("https://","").replace("http://","").replace("/",""))
                 .addHeader("Connection", "keep-alive")
                 .build();
         try {
@@ -122,18 +127,19 @@ public class ExamAction {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+        AccountCacheCangHui cache = (AccountCacheCangHui)user.getCache();
         Request request = new Request.Builder()
                 .url("https://kkzxsx.lidapoly.edu.cn/api/v1/course/study/submit/exam")
                 .method("POST", body)
-                .addHeader("member-token", ((AccountCacheCangHui)user.getCache()).getToken())
+                .addHeader("member-token", cache.getToken())
                 .addHeader("Origin", user.getUrl())
                 .addHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\",\"Chromium\";v=\"114\",\"Microsoft Edge\";v=\"114\"")
                 .addHeader("sec-ch-ua-platform", "Windows")
-                .addHeader("Cookie", "SESSION="+((AccountCacheCangHui)user.getCache()).getSession())
+                .addHeader("Cookie", "SESSION="+cache.getSession())
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "*/*")
-                .addHeader("Host", user.getUrl().replace("https://","").replace("http://",""))
+                .addHeader("Host", user.getUrl().replace("https://","").replace("http://","").replace("/",""))
                 .addHeader("Connection", "keep-alive")
                 .build();
         try {

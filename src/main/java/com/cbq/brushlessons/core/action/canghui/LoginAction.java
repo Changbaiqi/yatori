@@ -7,6 +7,7 @@ import com.cbq.brushlessons.core.action.canghui.entity.tologin.ToLoginRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
 import com.cbq.brushlessons.core.entity.User;
 import com.cbq.brushlessons.core.utils.FileUtils;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -156,25 +157,34 @@ public class LoginAction {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
+        AccountCacheCangHui cache = (AccountCacheCangHui)user.getCache();
         Request request = new Request.Builder()
                 .url(user.getUrl()+"/api/v1/report/submit")
                 .method("GET", null)
-                .addHeader("Member-Token", ((AccountCacheCangHui)user.getCache()).getToken())
+                .addHeader("member-token", cache.getToken())
                 .addHeader("Origin", user.getUrl())
-                .addHeader("Cookie", "SESSION="+((AccountCacheCangHui)user.getCache()).getSession()+
-                        ";Member-Token="+((AccountCacheCangHui)user.getCache()).getToken()+";" +
-                        "Member-schoolId=0")
-                .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
+                .addHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\",\"Chromium\";v=\"114\",\"Microsoft Edge\";v=\"114\"")
+                .addHeader("sec-ch-ua-platform", "Windows")
+                .addHeader("Cookie", "SESSION="+cache.getSession())
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", user.getUrl().replace("https://","").replace("http://","").replace("/",""))
+                .addHeader("Connection", "keep-alive")
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            String json = response.body().string();
+            ResponseBody body = response.body();
+            String json = body.string();
+            body.close();
             ObjectMapper objectMapper = new ObjectMapper();
             Map map = objectMapper.readValue(json, Map.class);
 
         } catch (SocketTimeoutException e){
             return null;
-        }catch (IOException e) {
+        }catch (JsonParseException e){
+          return null;
+        } catch (IOException e) {
             log.error("");
             e.printStackTrace();
         }

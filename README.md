@@ -22,6 +22,7 @@
 > - [x] 独立程序，不依赖浏览器
 > - [x] AI自动识别跳过验证码
 > - [x] 多账号同刷
+> - [x] 支持自动考试（目前只支持仓辉。别问，问就是只有人提供了仓辉的账号我才能开发，没人提供其他平台账号测试我也没办法）
 > - [x] 灵活配置文件
 > - [x] 自动继续上次记录时长刷课
 > - [x] 可部署服务器
@@ -31,7 +32,7 @@
 
 > - [x] 英华学堂（不支持暴力模式）
 > - [x] 创能平台（不支持暴力模式）
-> - [x] 仓辉实训（支持暴力模式）
+> - [x] 仓辉实训（支持暴力模式，支持自动考试）
 > - [ ] 学习通（暂不支持，除非有人提供账号支持开发测试）
 > - [ ] 学习公社（暂不支持，除非有人提供账号支持开发测试）
 
@@ -55,17 +56,18 @@
 >
 > ```json
 > {
->   "users": [
->     {
->       "accountType": "YINGHUA", //指定平台，"YINGHUA"代表英华学堂（创能同样用这个），CANGHUI代表仓辉平台，XUEXIGONGSHE代表学习公社，XUEXITONG代表学习通
->       "url": "url", //平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
->       "account": "账号", //账号
->       "password": "", //密码
->       "model": 1, //刷课模式，0为普通模式，1为暴力模式
->       "excludeCourses": ["课程1", "课程2"], //这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
->       "includeCourses": ["课程3", "课程4"] //这个指的是需要刷的课程，如果不填默认刷全部课程除非设置了排除课程
->     }
->   ]
+> "users": [
+>  {
+>    "accountType": "YINGHUA", //指定平台，"YINGHUA"代表英华学堂（创能同样用这个），CANGHUI代表仓辉平台，XUEXIGONGSHE代表学习公社，XUEXITONG代表学习通
+>    "url": "url", //平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
+>    "account": "账号", //账号
+>    "password": "", //密码
+>    "model": 1, //刷课模式，0为普通模式，1为暴力模式
+>    "autoExam": 1,//自动考试，目前仅支持仓辉
+>    "excludeCourses": ["课程1", "课程2"], //这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
+>    "includeCourses": ["课程3", "课程4"] //这个指的是需要刷的课程，如果不填默认刷全部课程除非设置了排除课程
+>  }
+> ]
 > }
 > ```
 >
@@ -75,21 +77,22 @@
 >
 > ```json
 > {
->   "users": [
->     {
->       "accountType": "YINGHUA",
->       "url": "张三的url",
->       "account": "张三的账号",
->       "password": "张三的密码"
->     },
->     {
->       "accountType": "CANGHUI",
->       "url": "李四的url",
->       "account": "李四的账号",
->       "password": "李四的密码",
->       "model": 1
->     }
->   ]
+> "users": [
+>  {
+>    "accountType": "YINGHUA",
+>    "url": "张三的url",
+>    "account": "张三的账号",
+>    "password": "张三的密码"
+>  },
+>  {
+>    "accountType": "CANGHUI",
+>    "url": "李四的url",
+>    "account": "李四的账号",
+>    "password": "李四的密码",
+>    "model": 1,
+>    "autoExam": 1
+>  }
+> ]
 > }
 > ```
 >

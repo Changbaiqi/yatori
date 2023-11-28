@@ -4,5 +4,6 @@ cache
 *.drawio
 *.xlsx
 *.xls
+*.txt
 src/main/resources/config.json
 src/test/
