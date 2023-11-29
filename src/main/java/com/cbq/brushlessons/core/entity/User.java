@@ -1,7 +1,9 @@
 package com.cbq.brushlessons.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,15 +17,16 @@ import java.util.Set;
  * @version 1.0
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-    private AccountType accountType;
+    private AccountType accountType; //对应账号平台类型
     private String url; //课程平台url
     private String account; //密码
     private String password; //账号
     private Integer model; //视屏刷课模式
     private Integer autoExam; //是否自动考试
-    private Set<String> excludeCourses; //排除课程
-    private Set<String> includeCourses; //包含课程
-    private AccountCache cache;
+    private AccountCache cache; //账号缓存信息
+    private CoursesCostom coursesCostom; //客制化课程
 }

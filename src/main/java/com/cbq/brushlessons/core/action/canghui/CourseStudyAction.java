@@ -16,6 +16,7 @@ import com.cbq.brushlessons.core.action.canghui.entity.startexam.StartExam;
 import com.cbq.brushlessons.core.action.canghui.entity.submitstudy.ConverterSubmitStudyTime;
 import com.cbq.brushlessons.core.action.canghui.entity.submitstudy.SubmitStudyTimeRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
+import com.cbq.brushlessons.core.entity.CoursesSetting;
 import com.cbq.brushlessons.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,7 @@ public class CourseStudyAction implements Runnable {
                     log.info("{}:正在学习课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
                     study1();
                     log.info("{}:{}学习完毕！", user.getAccount(), myCourse.getCourse().getTitle());
-                    if(user.getAutoExam()==1){
+                    if (user.getAutoExam() == 1) {
                         log.info("{}:正在考试课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
                         autoExamAction();
                         log.info("{}:{}考试完毕！", user.getAccount(), myCourse.getCourse().getTitle());
@@ -73,7 +74,7 @@ public class CourseStudyAction implements Runnable {
         Iterator<Long> iterator = map.keySet().iterator();
         Long arr[] = map.keySet().toArray(new Long[0]);
         Arrays.sort(arr);
-        for(int i =0 ;i < arr.length;++i){
+        for (int i = 0; i < arr.length; ++i) {
             Long videoId = arr[i];
             RouterDatum routerDatum = map.get(videoId);
 
@@ -140,7 +141,7 @@ public class CourseStudyAction implements Runnable {
         }
 
         //自动考试
-        if(user.getAutoExam()==1){
+        if (user.getAutoExam() == 1) {
             log.info("{}:正在考试课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
             autoExamAction();
             log.info("{}:{}考试完毕！", user.getAccount(), myCourse.getCourse().getTitle());
@@ -230,21 +231,63 @@ public class CourseStudyAction implements Runnable {
     /**
      * 自动考试
      */
-    public void autoExamAction(){
-        AccountCacheCangHui cacheCangHui=(AccountCacheCangHui) user.getCache();
+    public void autoExamAction() {
+        AccountCacheCangHui cacheCangHui = (AccountCacheCangHui) user.getCache();
 
         //获取考试
         ExamJson examList = null;
-        while((examList=ExamAction.getExamList(user, String.valueOf(myCourse.getCourseId())))==null);
+        while ((examList = ExamAction.getExamList(user, String.valueOf(myCourse.getCourseId()))) == null) ;
 
         cacheCangHui.setExamJson(examList);
 
         for (ExamCourse examCours : examList.getExamCourses()) {
+
+            boolean interceptFlag = false; //是否拦截，true为拦截，反之不拦截
+            if (user.getCoursesCostom() != null) {//是否配置了课程定制
+                if (user.getCoursesCostom().getCoursesSettings() != null) { //是否配置了指定课程配置文件
+                    ArrayList<CoursesSetting> coursesSettings = user.getCoursesCostom().getCoursesSettings();
+                    for (CoursesSetting coursesSetting : coursesSettings) {
+                        if (!coursesSetting.getName().equals(myCourse.getCourse().getTitle())) //是否有匹配的定制配置
+                            continue;
+                        //是否包含指定考试
+                        Set<String> includeExams = coursesSetting.getIncludeExams();
+                        if (includeExams != null) {
+                            if (includeExams.size() != 0) {
+                                boolean resState = false;//标记
+                                for (String includeExam : includeExams) {
+                                    if (includeExam.equals(examCours.getTitle())) { //判断是否与当前考试标签相等
+                                        resState = true;
+                                        break;
+                                    }
+                                }
+                                interceptFlag = resState ? false : true;
+                            }
+                        }
+                        //是否包含排除指定考试
+                        Set<String> excludeExams = coursesSetting.getExcludeExams();
+                        if (excludeExams != null) {
+                            if (excludeExams.size() != 0) {
+                                boolean resState = false;//标记
+                                for (String excludeExam : excludeExams) {
+                                    if (excludeExam.equals(examCours.getTitle())) { //判断是否与当前考试标签相等
+                                        resState = true;
+                                        break;
+                                    }
+                                }
+                                interceptFlag = resState ? true : false;
+                            }
+                        }
+                    }
+                }
+            }
+            if(interceptFlag)//是否触发拦截
+                continue;
+
             Integer id = examCours.getId();
             StartExam startExam = null;
-            while((startExam=ExamAction.startExam(user, String.valueOf(id)))==null);
+            while ((startExam = ExamAction.startExam(user, String.valueOf(id))) == null) ;
             if (startExam.getCode() == -1) {//代表考试考过了
-                log.info("{}:课程:{}考试失败！失败原因：{}",user.getAccount(),myCourse.getCourse().getTitle(),startExam.getMsg());
+                log.info("{}:课程:{}考试失败！对应考试试卷{}，失败原因：{}", user.getAccount(), myCourse.getCourse().getTitle(),examCours.getTitle(), startExam.getMsg());
                 continue;
             }
             TopicRequest topicRequest = new TopicRequest();
@@ -257,26 +300,33 @@ public class CourseStudyAction implements Runnable {
             LinkedHashMap<String, ExamTopic> examTopics = examCours.getExamTopics();
             //答案装载
             examTopics.forEach((k, v) -> {
+                boolean flag = true;
                 for (ExamItem examItem : v.getItem()) {
                     if (v.getType() == 5) {
+                        flag = false;
                         list.add(new TopicAnswer(List.of(examItem.getKey()), Long.parseLong(k)));
                         break;
                     }
                     if (examItem.getIsCorrect() == true) {
+                        flag = false;
                         list.add(new TopicAnswer(List.of(examItem.getValue()), Long.parseLong(k)));
                         break;
                     }
+                }
+                if (flag) {
+                    int choose = (int) (Math.random() * v.getItem().size()) + 0;
+                    list.add(new TopicAnswer(List.of(v.getItem().get(choose).getValue()), Long.parseLong(k)));
                 }
 
             });
 
             ExamSubmitResponse examSubmitResponse = null;
-            while ((examSubmitResponse=ExamAction.submitExam(user, topicRequest))==null);
+            while ((examSubmitResponse = ExamAction.submitExam(user, topicRequest)) == null) ;
             if (examSubmitResponse.getCode() != 0) {
-                log.info("{}:课程:{}考试失败！失败原因：{}",user.getAccount(),myCourse.getCourse().getTitle(),examSubmitResponse.getMsg());
+                log.info("{}:课程:{}考试失败！对应考试试卷{}，失败原因：{}", user.getAccount(), myCourse.getCourse().getTitle(),examCours.getTitle(), startExam.getMsg());
                 continue;
             }
-            log.info("{}:课程:{}考试成功！服务器信息：{}",user.getAccount(),myCourse.getCourse().getTitle(),examSubmitResponse.getMsg());
+            log.info("{}:课程:{}考试成功！对应考试试卷{}，服务器信息：{}", user.getAccount(), myCourse.getCourse().getTitle(),examCours.getTitle(), examSubmitResponse.getMsg());
         }
     }
 

@@ -49,7 +49,7 @@ public class Launch {
                       :  \\  \\;  :   .'   \\ |  ,   /  `----'   ---'    ;  :    ;\s
                        \\  ' ;|  ,     .-./  ---`-'                    |  ,   / \s
                         `--`  `--`---'                                 ---`-'  \s
-                                Yatori v1.2.2-Beta-1
+                                Yatori v1.2.3-Beta-1
                          仅用于学习交流，请勿用于违法和商业用途！！！
                 """);
     }
@@ -229,16 +229,18 @@ public class Launch {
 
                         for (CourseInform courseInform : allCourseList.getResult().getList()) {
                             //课程排除配置
-                            if (user.getExcludeCourses() != null) {
-                                if (user.getExcludeCourses().size() != 0)
-                                    if (user.getExcludeCourses().contains(courseInform.getName()))
-                                        continue;
-                            }
-                            //如果有指定课程包含设定，那么就执行
-                            if (user.getIncludeCourses() != null) {
-                                if (user.getIncludeCourses().size() != 0)
-                                    if (!user.getIncludeCourses().contains(courseInform.getName()))
-                                        continue;
+                            if(user.getCoursesCostom()!=null) {
+                                if (user.getCoursesCostom().getExcludeCourses() != null) {
+                                    if (user.getCoursesCostom().getExcludeCourses().size() != 0)
+                                        if (user.getCoursesCostom().getExcludeCourses().contains(courseInform.getName()))
+                                            continue;
+                                }
+                                //如果有指定课程包含设定，那么就执行
+                                if (user.getCoursesCostom().getIncludeCourses() != null) {
+                                    if (user.getCoursesCostom().getIncludeCourses().size() != 0)
+                                        if (!user.getCoursesCostom().getIncludeCourses().contains(courseInform.getName()))
+                                            continue;
+                                }
                             }
                             CourseStudyAction bulild = CourseStudyAction.builder()
                                     .user(user)
@@ -260,16 +262,18 @@ public class Launch {
                         for (MyCourse list : myCourseData.getLists()) {
                             Course courseInform = list.getCourse();
                             //课程排除配置
-                            if (user.getExcludeCourses() != null) {
-                                if (user.getExcludeCourses().size() != 0)
-                                    if (user.getExcludeCourses().contains(courseInform.getTitle()))
-                                        continue;
-                            }
-                            //如果有指定课程包含设定，那么就执行
-                            if (user.getIncludeCourses() != null) {
-                                if (user.getIncludeCourses().size() != 0)
-                                    if (!user.getIncludeCourses().contains(courseInform.getTitle()))
-                                        continue;
+                            if(user.getCoursesCostom()!=null) {
+                                if (user.getCoursesCostom().getExcludeCourses() != null) {
+                                    if (user.getCoursesCostom().getExcludeCourses().size() != 0)
+                                        if (user.getCoursesCostom().getExcludeCourses().contains(courseInform.getTitle()))
+                                            continue;
+                                }
+                                //如果有指定课程包含设定，那么就执行
+                                if (user.getCoursesCostom().getIncludeCourses() != null) {
+                                    if (user.getCoursesCostom().getIncludeCourses().size() != 0)
+                                        if (!user.getCoursesCostom().getIncludeCourses().contains(courseInform.getTitle()))
+                                            continue;
+                                }
                             }
                             com.cbq.brushlessons.core.action.canghui.CourseStudyAction bulild = com.cbq.brushlessons.core.action.canghui.CourseStudyAction.builder()
                                     .user(user)
