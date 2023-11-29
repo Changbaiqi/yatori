@@ -3240,6 +3240,33 @@
     ]
   },
   {
+    "name": "com.cbq.brushlessons.core.entity.AccountCache",
+    "queryAllDeclaredMethods": true
+  },
+  {
+    "name": "com.cbq.brushlessons.core.entity.AccountType",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true
+  },
+  {
+    "name": "com.cbq.brushlessons.core.entity.Config",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setUsers",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
     "name": "com.cbq.brushlessons.core.action.yinghua.entity.allcourse.Banner",
     "allDeclaredFields": true,
     "queryAllDeclaredMethods": true,
@@ -4287,6 +4314,66 @@
     ]
   },
   {
+    "name": "com.cbq.brushlessons.core.entity.CoursesCostom",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setCoursesSettings",
+        "parameterTypes": [
+          "java.util.ArrayList"
+        ]
+      },
+      {
+        "name": "setExcludeCourses",
+        "parameterTypes": [
+          "java.util.Set"
+        ]
+      },
+      {
+        "name": "setIncludeCourses",
+        "parameterTypes": [
+          "java.util.Set"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.entity.CoursesSetting",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setExcludeExams",
+        "parameterTypes": [
+          "java.util.Set"
+        ]
+      },
+      {
+        "name": "setIncludeExams",
+        "parameterTypes": [
+          "java.util.Set"
+        ]
+      },
+      {
+        "name": "setName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
     "name": "com.cbq.brushlessons.core.action.yinghua.entity.allvideo.VideoList",
     "allDeclaredFields": true,
     "queryAllDeclaredMethods": true,
@@ -4654,6 +4741,18 @@
         "name": "setAccountType",
         "parameterTypes": [
           "com.cbq.brushlessons.core.entity.AccountType"
+        ]
+      },
+      {
+        "name": "setAutoExam",
+        "parameterTypes": [
+          "java.lang.Integer"
+        ]
+      },
+      {
+        "name": "setCoursesCostom",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.entity.CoursesCostom"
         ]
       },
       {
