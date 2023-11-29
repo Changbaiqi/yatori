@@ -141,10 +141,12 @@ public class CourseStudyAction implements Runnable {
         }
 
         //自动考试
-        if (user.getAutoExam() == 1) {
-            log.info("{}:正在考试课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
-            autoExamAction();
-            log.info("{}:{}考试完毕！", user.getAccount(), myCourse.getCourse().getTitle());
+        if(user.getAutoExam()!=null) {
+            if (user.getAutoExam() == 1) {
+                log.info("{}:正在考试课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
+                autoExamAction();
+                log.info("{}:{}考试完毕！", user.getAccount(), myCourse.getCourse().getTitle());
+            }
         }
     }
 
