@@ -56,27 +56,27 @@
 >
 > ```json
 > {
->   "users": [
->     {
->       "accountType": "CANGHUI",//指定平台，"YINGHUA"代表英华学堂（创能平台也使用这个），CANGHUI代表仓辉平台
->       "url": "url",//平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
->       "account": "账号",//账号
->       "password": "密码",//密码
->       "autoExam": 1,//模式设定，0为普通模式，1为暴力模式，暴力模式目前只支持仓辉
->       "model": 0,//是否自动考试，0代表不考，1代表考，注意，目前自动考试只支持仓辉！！！
->       "coursesCostom": {
->         "excludeCourses": ["课程1", "课程2"],//这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
->         "includeCourses": ["课程3", "课程4"],//这个指的是需要刷的课程，如果不填默认刷全部课程除非设置了排除课程
->         "coursesSettings": [
->           {
->             "name": "大学生劳动教育", //对应需要单独需要客制化的课程名称
->             "includeExams": ["试卷名称1","试卷名称2"],//对应课程需要考试的试卷名称
->             "excludeExams": ["试卷名称3","试卷名称4"],//对应课程不需要考试的试卷名称
->           }
->         ]
->       }
->     }
->   ]
+>     "users": [
+>         {
+>             "accountType": "CANGHUI",//指定平台，"YINGHUA"代表英华学堂（创能平台也使用这个），CANGHUI代表仓辉平台
+>             "url": "url",//平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
+>             "account": "账号",//账号
+>             "password": "密码",//密码
+>             "coursesCostom": {
+>                 "videoModel": 1,//模式设定，0代表不刷视屏，1为普通模式，2为暴力模式，默认为1，暴力模式目前只支持仓辉
+>                 "autoExam": 1,//是否自动考试，0代表不考，1代表考，默认为0，注意，目前自动考试只支持仓辉！！！
+>                 "excludeCourses": ["课程1", "课程2"],//这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
+>                 "includeCourses": ["课程3", "课程4"],//这个指的是需要刷的课程，如果不填默认刷全部课程除非设置了排除课程
+>                 "coursesSettings": [
+>                     {
+>                         "name": "大学生劳动教育", //对应需要单独需要客制化的课程名称
+>                         "includeExams": ["试卷名称1","试卷名称2"],//对应课程需要考试的试卷名称
+>                         "excludeExams": ["试卷名称3","试卷名称4"],//对应课程不需要考试的试卷名称
+>                     }
+>                 ]
+>             }
+>         }
+>     ]
 > }
 > ```
 >
@@ -86,22 +86,24 @@
 >
 > ```json
 > {
-> 	"users": [
+>     "users": [
 >         {
-> 			"accountType": "YINGHUA",
-> 			"url": "张三的url",
-> 			"account": "张三的账号",
-> 			"password": "张三的密码"
-> 		},
-> 		{
-> 			"accountType": "CANGHUI",
-> 			"url": "李四的url",
-> 			"account": "李四的账号",
-> 			"password": "李四的密码",
-> 			"model": 1,
-> 			"autoExam": 1
-> 		}
-> 	]
+>             "accountType": "YINGHUA",
+>             "url": "张三的url",
+>             "account": "张三的账号",
+>             "password": "张三的密码"
+>         },
+>         {
+>             "accountType": "CANGHUI",
+>             "url": "李四的url",
+>             "account": "李四的账号",
+>             "password": "李四的密码",
+>             "coursesCostom": {
+>                 "videoModel": 2,
+>                 "autoExam": 1
+>             }
+>         }
+>     ]
 > }
 > ```
 >
