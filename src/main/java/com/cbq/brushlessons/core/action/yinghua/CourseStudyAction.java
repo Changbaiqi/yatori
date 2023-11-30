@@ -12,6 +12,7 @@ import com.cbq.brushlessons.core.action.yinghua.entity.submitstudy.SubmitStudyTi
 import com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformStudyTotal;
 import com.cbq.brushlessons.core.action.yinghua.entity.videomessage.VideoInformRequest;
 import com.cbq.brushlessons.core.entity.AccountCacheYingHua;
+import com.cbq.brushlessons.core.entity.CoursesCostom;
 import com.cbq.brushlessons.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -29,9 +30,9 @@ import java.util.List;
 public class CourseStudyAction implements Runnable {
 
     private User user;
-    private CourseInform courseInform;
+    private CourseInform courseInform; //当前课程的对象
 
-    private VideoRequest courseVideosList;
+    private VideoRequest courseVideosList; //视屏列表
     //需要看的视屏集合
     private List<NodeList> videoInforms = new ArrayList<>();
     //学习Id
@@ -40,32 +41,51 @@ public class CourseStudyAction implements Runnable {
 
     private long studyInterval = 5;
 
+    private Long accoVideo = 0L;
     public void toStudy() {
-        if (newThread) {
-            new Thread(this).start();
-        } else {
-            log.info("{}:正在学习课程>>>{}", user.getAccount(), courseInform.getName());
-            study();
-            log.info("{}:{}学习完毕！", user.getAccount(), courseInform.getName());
+        CoursesCostom coursesCostom = user.getCoursesCostom();
+
+        //视屏刷课模式
+        switch (coursesCostom.getVideoModel()) {
+            case 0 -> {
+                accoVideo = (long) videoInforms.size();
+            }
+            //普通模式
+            case 1 -> {
+                if (newThread) {
+                    new Thread(this).start();
+                } else {
+                    log.info("{}:正在学习课程>>>{}", user.getAccount(), courseInform.getName());
+                    study1();
+                    log.info("{}:{}学习完毕！", user.getAccount(), courseInform.getName());
+                }
+            }
+            //暴力模式
+            case 2 -> {
+//                log.info("{}:正在学习课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
+//                study2();
+            }
         }
     }
 
     @Override
     public void run() {
         log.info("{}:正在学习课程>>>{}", user.getAccount(), courseInform.getName());
-        study();
+        study1();
         log.info("{}:{}学习完毕！", user.getAccount(), courseInform.getName());
     }
 
-    private void study() {
+    private void study1() {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         for (int i = 0; i < videoInforms.size(); i++) {
             NodeList videoInform = videoInforms.get(i);
             //当视屏没有被锁时
             if (videoInform.getNodeLock() == 0) {
                 //如果此视屏看完了则直接跳过
-                if (videoInform.getVideoState() == 2)
+                if (videoInform.getVideoState() == 2) {
+                    addAcco();
                     continue;
+                }
                 //获取到视屏观看信息
                 VideoInformRequest videMessage = null;
                 while ((videMessage = CourseAction.getVideMessage(user, videoInform)) == null) ;
@@ -140,8 +160,20 @@ public class CourseStudyAction implements Runnable {
                             update();
                     }
                 }
-
             }
+            addAcco();
+        }
+    }
+
+    public void addAcco() {
+        synchronized (accoVideo) {
+            ++accoVideo;
+        }
+    }
+
+    public long getAcco() {
+        synchronized (accoVideo) {
+            return this.accoVideo;
         }
     }
 

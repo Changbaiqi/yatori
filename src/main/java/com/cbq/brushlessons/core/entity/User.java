@@ -25,8 +25,6 @@ public class User {
     private String url; //课程平台url
     private String account; //密码
     private String password; //账号
-    private Integer model; //视屏刷课模式
-    private Integer autoExam; //是否自动考试
     private AccountCache cache; //账号缓存信息
-    private CoursesCostom coursesCostom; //客制化课程
+    private CoursesCostom coursesCostom=new CoursesCostom(); //客制化课程
 }

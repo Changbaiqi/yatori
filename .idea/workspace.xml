@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="正式更新仓辉自动考试功能，并且优化仓辉刷课代码和部分bug。">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/CoursesCostom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/CoursesSetting.java" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新v1.2.3-beta.2版本参数说明">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/CoursesCostom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/CoursesCostom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,30 +80,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
-    "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "E:/IntelliJ_WorkSpace/AutoBigStudy",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15136719",
-    "project.structure.side.proportion": "0.343318",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/AutoBigStudy&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\META-INF\native-image" />
@@ -168,7 +167,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CC.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CC.synTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="brushlessons" />
       <extension name="coverage">
         <pattern>
@@ -178,7 +177,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core" />
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.CC" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="METHOD_NAME" value="synTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -202,18 +201,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
+      <item itemvalue="JUnit.CC.synTest" />
       <item itemvalue="JUnit.CC.randomTopic" />
       <item itemvalue="JUnit.CC.autoExam" />
-      <item itemvalue="JUnit.CC.test" />
       <item itemvalue="JUnit.CC.test1" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.CC.synTest" />
         <item itemvalue="JUnit.CC.randomTopic" />
         <item itemvalue="JUnit.CC.autoExam" />
         <item itemvalue="JUnit.CC.test1" />
-        <item itemvalue="JUnit.CC.test" />
       </list>
     </recent_temporary>
   </component>
@@ -261,56 +260,9 @@
       <workItem from="1701096883111" duration="17326000" />
       <workItem from="1701141988973" duration="13530000" />
       <workItem from="1701167311053" duration="947000" />
-      <workItem from="1701241138052" duration="7285000" />
-    </task>
-    <task id="LOCAL-00028" summary="修复native-image打包参数bug">
-      <created>1698775445485</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1698775445485</updated>
-    </task>
-    <task id="LOCAL-00029" summary="修复native-image打包参数bug">
-      <created>1698780204283</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1698780204283</updated>
-    </task>
-    <task id="LOCAL-00030" summary="修复native-image打包参数bug">
-      <created>1698781205611</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1698781205611</updated>
-    </task>
-    <task id="LOCAL-00031" summary="修复native-image打包参数bug">
-      <created>1698781682665</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1698781682665</updated>
-    </task>
-    <task id="LOCAL-00032" summary="修复参数为空时触发报错bug">
-      <created>1698781714234</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1698781714234</updated>
-    </task>
-    <task id="LOCAL-00033" summary="仓辉相关代码">
-      <created>1698829837732</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1698829837732</updated>
-    </task>
-    <task id="LOCAL-00034" summary="仓辉相关代码">
-      <created>1698888394906</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1698888394906</updated>
+      <workItem from="1701241138052" duration="8624000" />
+      <workItem from="1701252170215" duration="1780000" />
+      <workItem from="1701310692300" duration="7132000" />
     </task>
     <task id="LOCAL-00035" summary="优化逻辑机制及速度">
       <created>1698920495058</created>
@@ -606,7 +558,56 @@
       <option name="project" value="LOCAL" />
       <updated>1701151182338</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="更新native配置文件">
+      <created>1701249343678</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1701249343679</updated>
+    </task>
+    <task id="LOCAL-00078" summary="v1.2.3-beta.1版本并且更新配置文件方式">
+      <created>1701249394493</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1701249394493</updated>
+    </task>
+    <task id="LOCAL-00079" summary="v1.2.3-beta.1版本并且更新配置文件方式">
+      <created>1701249455318</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1701249455318</updated>
+    </task>
+    <task id="LOCAL-00080" summary="v1.2.3-beta.1版本并且更新配置文件方式">
+      <created>1701250056049</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1701250056049</updated>
+    </task>
+    <task id="LOCAL-00081" summary="修复空指针bug">
+      <created>1701261467609</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1701261467610</updated>
+    </task>
+    <task id="LOCAL-00082" summary="更新配置文件">
+      <created>1701317244895</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1701317244896</updated>
+    </task>
+    <task id="LOCAL-00083" summary="更新v1.2.3-beta.2版本参数说明">
+      <created>1701318102854</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1701318102854</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -637,11 +638,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新仓辉" />
-    <MESSAGE value="修复graalvm" />
-    <MESSAGE value="更改抛错方式" />
-    <MESSAGE value="修复视屏课程学习逻辑，修复视屏未学完bug" />
-    <MESSAGE value="修复学时提交空指针bug" />
     <MESSAGE value="更改提交学时算法" />
     <MESSAGE value="仓辉平台正式上线" />
     <MESSAGE value="修复graalvm配置bug" />
@@ -662,7 +658,12 @@
     <MESSAGE value="更新仓辉普通模式下的自动考试" />
     <MESSAGE value="更新gl配置文件" />
     <MESSAGE value="正式更新仓辉自动考试功能，并且优化仓辉刷课代码和部分bug。" />
-    <option name="LAST_COMMIT_MESSAGE" value="正式更新仓辉自动考试功能，并且优化仓辉刷课代码和部分bug。" />
+    <MESSAGE value="更新native配置文件" />
+    <MESSAGE value="v1.2.3-beta.1版本并且更新配置文件方式" />
+    <MESSAGE value="修复空指针bug" />
+    <MESSAGE value="更新配置文件" />
+    <MESSAGE value="更新v1.2.3-beta.2版本参数说明" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新v1.2.3-beta.2版本参数说明" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -671,11 +672,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/com/cbq/brushlessons/core/action/yinghua/LoginActionTest.java</url>
           <line>26</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
