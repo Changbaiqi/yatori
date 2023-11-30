@@ -4344,6 +4344,36 @@
     ]
   },
   {
+    "name": "com.cbq.brushlessons.core.entity.CoursesCostom",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setAutoExam",
+        "parameterTypes": [
+          "java.lang.Integer"
+        ]
+      },
+      {
+        "name": "setCoursesSettings",
+        "parameterTypes": [
+          "java.util.ArrayList"
+        ]
+      },
+      {
+        "name": "setVideoModel",
+        "parameterTypes": [
+          "java.lang.Integer"
+        ]
+      }
+    ]
+  },
+  {
     "name": "com.cbq.brushlessons.core.entity.CoursesSetting",
     "allDeclaredFields": true,
     "queryAllDeclaredMethods": true,
