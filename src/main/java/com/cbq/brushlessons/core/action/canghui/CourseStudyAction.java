@@ -142,8 +142,11 @@ public class CourseStudyAction implements Runnable {
                 if (studyTime >= videoDuration) {
                     if (submitStudyTimeRequest == null)
                         studyTime -= studyInterval;
-                    else
-                        update();
+                    else {
+//                        update();
+                        Map<Long, RouterDatum> resRouterDatum = getNewRouterDatum();
+                        studyTime = resRouterDatum.get(videoId).getProgress();
+                    }
                 }
             }
             addAcco();
@@ -161,7 +164,8 @@ public class CourseStudyAction implements Runnable {
         for (int i = 0; i < arr.length; ++i) {
             Long videoId = arr[i];
             new Thread(() -> {
-                RouterDatum routerDatum = map.get(videoId);
+                long  resVideoId = videoId;
+                RouterDatum routerDatum = map.get(resVideoId);
                 long studyTime = routerDatum.getProgress() == 0 ? studyInterval : routerDatum.getProgress();//当前学习时间
                 long videoDuration = routerDatum.getVideoDuration();//视屏总时长
                 String title = routerDatum.getName();//视屏名称
@@ -180,7 +184,10 @@ public class CourseStudyAction implements Runnable {
                         }
                     }
 
-                    SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitLearnTime(user, myCourse, videoId, studyTime);
+                    //添加学时
+                    studyTime += studyInterval;
+
+                    SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitLearnTime(user, myCourse, resVideoId, studyTime);
                     try {
                         if (submitStudyTimeRequest != null) {
                             if (submitStudyTimeRequest.getMsg().contains("登录超时")) {
@@ -211,14 +218,16 @@ public class CourseStudyAction implements Runnable {
                         throw new RuntimeException(e);
                     }
 
-
-                    //添加学时
-                    studyTime += studyInterval;
-
                     //更新数据
                     if (studyTime >= videoDuration) {
-                        if (submitStudyTimeRequest == null)
+                        if (submitStudyTimeRequest == null) {
                             studyTime -= studyInterval;
+                        }else{
+                            //这一步进行网页视屏课程时长获取并赋值同步赋值
+                            Map<Long, RouterDatum> newRouterDatum = getNewRouterDatum();
+                            RouterDatum resRouterDatum = newRouterDatum.get(resVideoId);
+                            studyTime = resRouterDatum.getProgress();
+                        }
                     }
                 }
                 addAcco();
@@ -379,6 +388,44 @@ public class CourseStudyAction implements Runnable {
         synchronized (accoVideo) {
             return this.accoVideo;
         }
+    }
+
+    public Map<Long,RouterDatum> getNewRouterDatum(){
+
+        Course course = myCourse.getCourse();//获取课程
+        long id1 = course.getId(); //课程id
+        VideoRouter router = course.getRouter();//视屏列表
+        Map<Long, RouterDatum> newMap = new HashMap<>();
+        //将需要学习的视屏加进去
+        for (RouterDatum datum : router.getData()) {
+            long id = datum.getId();//视屏id
+            long videoDuration = datum.getVideoDuration();//获取视屏总时长
+            newMap.put(id, datum);
+        }
+
+
+        //详细页面获取进度并赋值--------------------------
+        CourseDetailData courseDetail = null;
+        while ((courseDetail = CourseAction.getCourseDetail(user, id1)) == null) ;
+
+        //章节
+        if (courseDetail.getChapters() != null)
+            for (Chapter chapter : courseDetail.getChapters()) {
+                //视屏
+                if (chapter == null)
+                    continue;
+                for (Section section : chapter.getSections()) {
+                    Process process = section.getProcess();
+                    if (process == null)
+                        continue;
+                    long id = process.getId();//视屏id
+                    long progress = process.getProgress();//获取已经学习了的时长
+                    RouterDatum orDefault = newMap.getOrDefault(id, null);
+                    if (orDefault == null) continue;
+                    orDefault.setProgress(progress > orDefault.getProgress() ? progress : orDefault.getProgress());//设置时长
+                }
+            }
+        return newMap;
     }
 
     @Override
