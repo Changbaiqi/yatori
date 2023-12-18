@@ -328,7 +328,6 @@ public class CourseStudyAction implements Runnable {
                                 if (examItem.getIsCorrect() == true) {
                                     flag = false;
                                     list.add(new TopicAnswer(List.of(examItem.getValue()), Long.parseLong(k)));
-                                    break;
                                 }
                             }
                             if (flag) {
