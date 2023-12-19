@@ -31,6 +31,10 @@ public class LoginAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String session = response.header("Set-Cookie");
             if(session==null)
                 session = response.header("Cookie");
@@ -92,6 +96,10 @@ public class LoginAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             String cookies=response.header("Cookie");
             //记录token
@@ -134,6 +142,10 @@ public class LoginAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             ObjectMapper objectMapper = new ObjectMapper();
             Map map = objectMapper.readValue(json, Map.class);

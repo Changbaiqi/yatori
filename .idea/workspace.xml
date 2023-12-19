@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新暴力模式下的视屏时长检测，解决暴力模式下时间刷不满的bug">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复仓辉自动考试多选题只选一个选项的bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/ExamAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/ExamAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/LoginAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/CourseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/yinghua/LoginAction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +90,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/AutoBigStudy&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -265,7 +269,10 @@
       <workItem from="1701420984807" duration="31000" />
       <workItem from="1702289854073" duration="455000" />
       <workItem from="1702533417341" duration="5590000" />
-      <workItem from="1702878592364" duration="199000" />
+      <workItem from="1702878592364" duration="914000" />
+      <workItem from="1702890816742" duration="1552000" />
+      <workItem from="1702965510009" duration="617000" />
+      <workItem from="1702974822888" duration="3414000" />
     </task>
     <task id="LOCAL-00038" summary="修复graalvm">
       <created>1698977062457</created>

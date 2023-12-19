@@ -44,6 +44,10 @@ public class LoginAction {
 
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){
+                response.close();
+                return null;
+            }
             if (response.header("set-cookie") != null) {
                 //System.out.println(response.header("set-cookie").toString());
                 String[] split = response.header("set-cookie").split(";");
@@ -53,6 +57,16 @@ public class LoginAction {
                     }
                 }
             }
+        }catch (SocketTimeoutException e){
+            return null;
+        }catch (JsonParseException jsonParseException){
+            //这种一般是访问过于频繁造成，这边延迟一一下
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return null;
         } catch (IOException e) {
             log.error("");
             e.printStackTrace();
@@ -82,6 +96,14 @@ public class LoginAction {
             File file =FileUtils.saveFile(bytes,user.getAccountType().name()+"_"+user.getAccount()+"_"+(int)Math.random()*99999+".png");
             return file;
         } catch (SocketTimeoutException e){
+            return null;
+        }catch (JsonParseException jsonParseException){
+            //这种一般是访问过于频繁造成，这边延迟一一下
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return null;
         }catch (IOException e) {
             log.error("");
@@ -124,6 +146,10 @@ public class LoginAction {
 
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             LoginResponseRequest loginResponseRequest = ConverterLoginResponse.fromJsonString(json);
 
@@ -139,6 +165,14 @@ public class LoginAction {
 //            return loginResponseRequest.getData().getToken();
             return loginResponseRequest;
         } catch (SocketTimeoutException e){
+            return null;
+        }catch (JsonParseException jsonParseException){
+            //这种一般是访问过于频繁造成，这边延迟一一下
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return null;
         }catch (IOException e) {
             log.error("");
@@ -174,6 +208,10 @@ public class LoginAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             ResponseBody body = response.body();
             String json = body.string();
             body.close();
@@ -182,8 +220,14 @@ public class LoginAction {
 
         } catch (SocketTimeoutException e){
             return null;
-        }catch (JsonParseException e){
-          return null;
+        }catch (JsonParseException jsonParseException){
+            //这种一般是访问过于频繁造成，这边延迟一一下
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return null;
         } catch (IOException e) {
             log.error("");
             e.printStackTrace();

@@ -99,6 +99,10 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String string = response.body().string();
             StartExam startExam = ConverterStartExam.fromJsonString(string);
             return startExam;
@@ -144,6 +148,10 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String string = response.body().string();
             ExamSubmitResponse examSubmitResponse = ConverterExamSubmitResponse.fromJsonString(string);
             return examSubmitResponse;

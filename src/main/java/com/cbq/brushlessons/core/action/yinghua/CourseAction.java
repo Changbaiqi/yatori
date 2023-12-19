@@ -48,6 +48,10 @@ public class CourseAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             CourseRequest courseRequest = ConverterAllCourse.fromJsonString(json);
             return courseRequest;
@@ -83,6 +87,10 @@ public class CourseAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             VideoRequest videoRequest = ConverterVideo.fromJsonString(json);
             return videoRequest;
@@ -118,6 +126,10 @@ public class CourseAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             VideoInformRequest videoInformRequest = ConverterVideoMessage.fromJsonString(json);
             if (videoInformRequest.getResult().getData().getStudyTotal()==null) {
@@ -167,6 +179,10 @@ public class CourseAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             SubmitStudyTimeRequest submitStudyTimeRequest = ConverterSubmitStudyTime.fromJsonString(json);
             return submitStudyTimeRequest;

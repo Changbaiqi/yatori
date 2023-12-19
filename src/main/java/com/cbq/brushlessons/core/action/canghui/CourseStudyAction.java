@@ -104,6 +104,7 @@ public class CourseStudyAction implements Runnable {
                 }
 
                 SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitLearnTime(user, myCourse, videoId, studyTime);
+
                 try {
                     if (submitStudyTimeRequest != null) {
                         if (submitStudyTimeRequest.getMsg().contains("登录超时")) {
@@ -111,8 +112,19 @@ public class CourseStudyAction implements Runnable {
                             studyTime -= studyInterval;
                             continue;
                         }
-                        //成功提交
 
+                        //当提交学时失败时
+                        if(submitStudyTimeRequest.getCode()==0){
+                            log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
+                                    ConverterSubmitStudyTime.toJsonString(submitStudyTimeRequest),
+                                    user.getAccount(),
+                                    user.getAccountType().name(),
+                                    title,
+                                    videoDuration,
+                                    studyTime);
+                            studyTime -= studyInterval;
+                        }
+                        //成功提交
                         log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
                                 ConverterSubmitStudyTime.toJsonString(submitStudyTimeRequest),
                                 user.getAccount(),
@@ -195,8 +207,21 @@ public class CourseStudyAction implements Runnable {
                                 studyTime -= studyInterval;
                                 continue;
                             }
-                            //成功提交
 
+                            //当提交学时失败时
+                            if(submitStudyTimeRequest.getCode()==0){
+                                log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
+                                        ConverterSubmitStudyTime.toJsonString(submitStudyTimeRequest),
+                                        user.getAccount(),
+                                        user.getAccountType().name(),
+                                        title,
+                                        videoDuration,
+                                        studyTime);
+                                studyTime -= studyInterval;
+                            }
+
+
+                            //成功提交
                             log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}\n视屏总长度>>>{}\n当前学时>>>{}",
                                     ConverterSubmitStudyTime.toJsonString(submitStudyTimeRequest),
                                     user.getAccount(),

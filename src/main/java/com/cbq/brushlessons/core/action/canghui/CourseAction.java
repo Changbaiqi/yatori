@@ -61,7 +61,10 @@ public class CourseAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             MyCourseDataRequest dataRequest = ConverterMyCourseResponse.fromJsonString(json);
             //System.out.println(jsonObject.toString());
@@ -77,6 +80,8 @@ public class CourseAction {
 
             return dataRequest.getData();
 
+        } catch (SocketTimeoutException e){
+            return null;
         } catch (Exception e) {
             log.error("");
             e.printStackTrace();
@@ -112,6 +117,10 @@ public class CourseAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             String json = response.body().string();
             CourseDetailRequest courseDetailRequest = ConverterCourseDetail.fromJsonString(json);
             //System.out.println(jsonObject.toString());
@@ -127,6 +136,16 @@ public class CourseAction {
             //装载
             //System.out.println(jsonObject.toString());
             return courseDetailRequest.getData();
+        }catch (JsonParseException jsonParseException){
+            //这种一般是访问过于频繁造成，这边延迟一一下
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return null;
+        } catch (SocketTimeoutException e){
+            return null;
         } catch (Exception e) {
             log.error("");
             e.printStackTrace();
@@ -162,21 +181,30 @@ public class CourseAction {
                     .addHeader("Connection", "keep-alive")
                     .build();
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             //System.out.println(response.body().string());
             String json= response.body().string();
 //            UploadRequest upload= ConverterUpload.fromJsonString(json);
             SubmitStudyTimeRequest submit = ConverterSubmitStudyTime.fromJsonString(json);
-            if (submit.getCode() != 0) {
-//                System.out.printf("!!!!!!%s课程!!!!!!\nid：%s\n状态：提交学时失败。\n失败原因：%s\n", user.getAccount(), detailDatum.getId(), upload.getMsg());
-                log.info("提交学时失败!!!");
-                return null;
-            }
+//            if (submit.getCode() != 0) {
+////                System.out.printf("!!!!!!%s课程!!!!!!\nid：%s\n状态：提交学时失败。\n失败原因：%s\n", user.getAccount(), detailDatum.getId(), upload.getMsg());
+//                log.info("提交学时失败!!!");
+//                return null;
+//            }
             return submit;
 //            System.out.printf("------%s课程------\nid：%s\n名称：%s\n状态：提交学时%s。当前学时：%d\n视屏总时长:%d\n", user.getAccount(), detailDatum.getId(),upload.getMsg(), detailDatum.getProgress(), detailDatum.getTotalProgress());
         } catch (SocketTimeoutException e){
             return null;
-        }catch (JsonParseException e){
-
+        }catch (JsonParseException jsonParseException){
+            //这种一般是访问过于频繁造成，这边延迟一一下
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             return null;
         } catch (IOException e) {
             log.error("");
