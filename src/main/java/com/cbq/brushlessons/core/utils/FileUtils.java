@@ -1,6 +1,10 @@
 package com.cbq.brushlessons.core.utils;
 
+import org.mozilla.universalchardet.UniversalDetector;
+
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 
 /**
  * @description: 文件相关操作
@@ -65,7 +69,7 @@ public class FileUtils {
         String text = "";
         try {
             InputStream inputStream = new FileInputStream(file);
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream,getCharsetName(file));
             //FileReader fileReader = new FileReader(file);
             BufferedReader br = new BufferedReader(inputStreamReader);
             String res = null;
@@ -78,5 +82,29 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
         return text;
+    }
+
+    /**
+     * 获取文件编码字符串
+     *
+     * @param file
+     * @return
+     */
+    public static String getCharsetName(File file) throws IOException {
+        InputStream is = Files.newInputStream(file.toPath());
+        BufferedInputStream reader = new BufferedInputStream(is);
+        byte[] buff = new byte[1024];
+        int len = 0;
+//      检测文件编码
+        UniversalDetector detector = new UniversalDetector(null);
+        while ((len = reader.read(buff)) != -1 && !detector.isDone()) {
+            detector.handleData(buff, 0, len);
+        }
+        detector.dataEnd();
+//      获取编码类型
+        String encoding = detector.getDetectedCharset();
+        detector.reset();
+        reader.close();
+        return encoding;
     }
 }
