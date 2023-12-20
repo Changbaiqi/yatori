@@ -20,5 +20,5 @@ public class RouterDatum {
     private long videoDuration;
 
 
-    private long progress;
+    private long progress=0;
 }
