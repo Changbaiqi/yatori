@@ -12,6 +12,1260 @@
     "name": "[Lsun.security.pkcs.SignerInfo;"
   },
   {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.LoginAblesky",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setII",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setIP",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setIsBinded",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setSS",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSuccess",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setUI",
+        "parameterTypes": [
+          "java.lang.Long"
+        ]
+      },
+      {
+        "name": "setUN",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.ccvideo.CCVideoRequest",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setMessage",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSuccess",
+        "parameterTypes": [
+          "boolean"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.CourseVideoListRequest",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setCourseContentsTotalCount",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setResult",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.Result"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.Result",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.ResultList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setBitRate",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCanEditeTestDuringCourse",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCanModify",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setCanSkipTest",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setCcsiteId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCcvideoId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setContentType",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setConvertStatus",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setConvertType",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setCourseAuthorityFlag",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setCourseId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setDeadLineEnd",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setDeadLineStart",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setDocumentId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setExpired",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setFilename",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setFilepath",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setFilesize",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setFree",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setGuest",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setHasTestAfterCourse",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setHaveOffline",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "java.lang.Long"
+        ]
+      },
+      {
+        "name": "setIsDeadLine",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setIsStart",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setIsTrial",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setLastPlayPage",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setLastPlayTime",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setLength",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setNeedBuy",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setOrgAdmin",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setOrgAdminCandRead",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setOwner",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setPaperId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setPaperName",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setPaperRedirectUrl",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setPhotoPath",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setRank",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setRedirectUrl",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setSign",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setSnapshotInfoId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setStudyLength",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setStudyProgress",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setTestDuringCourseMessage",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setTimesLeft",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setTimesLimit",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setVideoList",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.VideoList"
+        ]
+      },
+      {
+        "name": "setVideoType",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setVolumeId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.VideoList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.VideoListList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setQuality",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setVideoSize",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setVideoUrl",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.requirecourselist.ListElement",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setCanRemove",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setCanView",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setCircleId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCommentCount",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setCourseId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setEndTime",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setHomeworkStatus",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setIntroduce",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setIsEvaluated",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setIsRecommend",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setLiveCourseShowDTO",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setPassScore",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setReAnswer",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setReAnswerReason",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setRemark",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setRequired",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setResourceId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setResourceRandomPaperId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setScore",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setScoreTime",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setScreenName",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setStartTime",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setStudyCenterDTO",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.enaea.entity.requirecourselist.StudyCenterDTO"
+        ]
+      },
+      {
+        "name": "setSubmitTime",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setSupportCount",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSyllabusResourceId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setTeacherName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setThesisStatus",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setTitle",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setTotalScore",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.requirecourselist.RequiredCourseListRequest",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setResult",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.enaea.entity.requirecourselist.Result"
+        ]
+      },
+      {
+        "name": "setTotalCount",
+        "parameterTypes": [
+          "long"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.requirecourselist.Result",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.requirecourselist.StudyCenterDTO",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setAgented",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setAuthorityType",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCanView",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setContentLength",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCourseAttachmentCount",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCourseContentCount",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCourseContentLink",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCourseExternalType",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCourseId",
+        "parameterTypes": [
+          "java.lang.Long"
+        ]
+      },
+      {
+        "name": "setCoursePrice",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setCourseSnapshotInfoId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCourseTitle",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCourseType",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCoursecontentType",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setDateAuthority",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setDateLastStudy",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setHasAuthorization",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setHasFlv",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setIsCompleted",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setIsPaid",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setNew",
+        "parameterTypes": [
+          "boolean"
+        ]
+      },
+      {
+        "name": "setRedCourseTitle",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setSellerName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setStudyProgress",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setTradeId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setWatchCourseContentCount",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.submitlearntime.SubmitLearnTimeRequest",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "getMessage",
+        "parameterTypes": []
+      },
+      {
+        "name": "getProgress",
+        "parameterTypes": []
+      },
+      {
+        "name": "isSuccess",
+        "parameterTypes": []
+      },
+      {
+        "name": "setMessage",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setProgress",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setSuccess",
+        "parameterTypes": [
+          "boolean"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.MyCircleStatisticDTOList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.Result",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.ResultList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setCircleAlias",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setCircleCardNumber",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCircleId",
+        "parameterTypes": [
+          "java.lang.Long"
+        ]
+      },
+      {
+        "name": "setCircleName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setCircleNameShort",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setClusterId",
+        "parameterTypes": [
+          "java.lang.Long"
+        ]
+      },
+      {
+        "name": "setClusterName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setClusterNameShort",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setHasSpecialAssessment",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setIsCircleLeader",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setMyCircleStatisticDTOList",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.MyCircleStatisticDTOList"
+        ]
+      },
+      {
+        "name": "setPlanEnable",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setPlanId",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setPlanState",
+        "parameterTypes": [
+          "java.lang.Long"
+        ]
+      },
+      {
+        "name": "setStartEndTime",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setStudentList",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.StudentList"
+        ]
+      },
+      {
+        "name": "setTeacherList",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.TeacherList"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.StudentList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.TeacherList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setList",
+        "parameterTypes": [
+          "java.util.List"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.TeacherListList",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setAccountPhotoUrl",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setAttentioned",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setComName",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setDesc",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setFriend",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "java.lang.Long"
+        ]
+      },
+      {
+        "name": "setIsClientOnline",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setIsOnline",
+        "parameterTypes": [
+          "java.lang.Boolean"
+        ]
+      },
+      {
+        "name": "setLastLoginTime",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setRegisterTime",
+        "parameterTypes": [
+          "java.lang.Object"
+        ]
+      },
+      {
+        "name": "setScreenName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setShortName",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setTag",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      },
+      {
+        "name": "setUsername",
+        "parameterTypes": [
+          "java.lang.String"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.UnderwayProjectRquest",
+    "allDeclaredFields": true,
+    "queryAllDeclaredMethods": true,
+    "queryAllDeclaredConstructors": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      },
+      {
+        "name": "setId",
+        "parameterTypes": [
+          "long"
+        ]
+      },
+      {
+        "name": "setResult",
+        "parameterTypes": [
+          "com.cbq.brushlessons.core.action.enaea.entity.underwayproject.Result"
+        ]
+      },
+      {
+        "name": "setTotalCount",
+        "parameterTypes": [
+          "long"
+        ]
+      }
+    ]
+  },
+  {
     "name": "[[J"
   },
   {
@@ -4899,6 +6153,24 @@
     ]
   },
   {
+    "name": "com.sun.crypto.provider.HmacCore$HmacSHA256",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "com.sun.crypto.provider.HmacCore$HmacSHA384",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
     "name": "com.sun.crypto.provider.TlsKeyMaterialGenerator",
     "methods": [
       {
@@ -5135,6 +6407,15 @@
   },
   {
     "name": "sun.security.provider.JavaKeyStore$JKS",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  },
+  {
+    "name": "sun.security.provider.MD5",
     "methods": [
       {
         "name": "<init>",

@@ -49,7 +49,7 @@ public class CourseStudyAction implements Runnable {
         RequiredCourseListRequest requiredCourseList = CourseAction.getRequiredCourseList(user, resultList.getCircleId().toString());
         for (ListElement listElement : requiredCourseList.getResult().getList()) {
 //            log.info(listElement.getStudyCenterDTO().getCourseTitle());
-            log.info("{}:正在学习课程>>>{}",user.getAccount(),listElement.getTitle());
+            log.info("{}:正在学习课程>>>{}",user.getAccount(),listElement.getStudyCenterDTO().getCourseTitle());
             //获取对应课程的视屏
             CourseVideoListRequest courseVideList = CourseAction.getCourseVideList(user, resultList.getCircleId().toString(), listElement.getStudyCenterDTO().getCourseId().toString());
             for (com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.ResultList list : courseVideList.getResult().getList()) {
@@ -100,7 +100,7 @@ public class CourseStudyAction implements Runnable {
                 log.info("正在学习视屏：{}", list.getFilename());
                 log.info("{}:{}视屏学习完毕！", user.getAccount(),list.getFilename());
             }
-            log.info("{}:{}课程学习完毕！",user.getAccount(),listElement.getTitle());
+            log.info("{}:{}课程学习完毕！",user.getAccount(),listElement.getStudyCenterDTO().getCourseTitle());
         }
     }
 
@@ -117,7 +117,7 @@ public class CourseStudyAction implements Runnable {
 
 
     public static class Builder{
-        private CourseStudyAction courseStudyAction;
+        private CourseStudyAction courseStudyAction = new CourseStudyAction();
 
         public Builder user(User user){
             courseStudyAction.user = user;
