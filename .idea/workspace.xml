@@ -4,9 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修复部分运行报错问题">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="打个小补丁">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/LoginAblesky.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/MyCircleStatisticDTOList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/ResultList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/StudentList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/TeacherList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/TeacherListList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/UnderwayProjectConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/UnderwayProjectRquest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/AccountCacheEnaea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/canghui/CourseStudyAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/CourseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/LoginAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/utils/ConfigUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/utils/ConfigUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,30 +93,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
-    "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15136719",
-    "project.structure.side.proportion": "0.343318",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;junit.framework.TestCase&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\META-INF\native-image" />
@@ -108,7 +129,13 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="junit.framework.TestCase" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs" />
+      <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources" />
+      <recent name="E:\IntelliJ_WorkSpace\brushlessons\libs" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.cbq.brushlessons.core.action.enaea" />
       <recent name="com.cbq.brushlessons.core.utils" />
       <recent name="com.cbq.brushlessons.core.action.yinghua" />
       <recent name="com.cbq.brushlessons.core.action.canghui" />
@@ -117,7 +144,15 @@
       <recent name="com.cbq.brushlessons.core.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install:install-file -DgroupId=cpdetector -DatrifactId=cpdetector -Dversion=1.0.10 -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\cpdetector_1.0.10.jar" />
+      <command value="mvn install:install-file -DgroupId=cpdetector -DartifactId=cpdetector -Dversion=1.0.10 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\cpdetector_1.0.10.jar" />
+      <command value="mvn install:install-file -DgroupId=chardet -DartifactId=chardet -Dversion=1.0 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\antlr-2.7.4.jar" />
+      <command value="mvn install:install-file -DgroupId=jargs -DartifactId=jargs -Dversion=1.0 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\jargs-1.0.jar" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.LoginActionTest.testToLogin">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.Application" />
       <module name="brushlessons" />
@@ -131,7 +166,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CC.autoExam" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CC.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="brushlessons" />
       <extension name="coverage">
         <pattern>
@@ -141,55 +176,55 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core" />
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.CC" />
-      <option name="METHOD_NAME" value="autoExam" />
+      <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CC.randomTopic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ExcelUtilsTest.excute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="brushlessons" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.*" />
+          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.CC" />
-      <option name="METHOD_NAME" value="randomTopic" />
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.ExcelUtilsTest" />
+      <option name="METHOD_NAME" value="excute" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CC.synTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FileUtilsTest.testGetCharsetName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="brushlessons" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.*" />
+          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.CC" />
-      <option name="METHOD_NAME" value="synTest" />
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.FileUtilsTest" />
+      <option name="METHOD_NAME" value="testGetCharsetName" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CC.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginActionTest.testToLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="brushlessons" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.*" />
+          <option name="PATTERN" value="com.cbq.brushlessons.core.action.enaea.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.CC" />
-      <option name="METHOD_NAME" value="test1" />
+      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.action.enaea" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.action.enaea.LoginActionTest" />
+      <option name="METHOD_NAME" value="testToLogin" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -197,18 +232,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
-      <item itemvalue="JUnit.CC.synTest" />
-      <item itemvalue="JUnit.CC.randomTopic" />
-      <item itemvalue="JUnit.CC.autoExam" />
-      <item itemvalue="JUnit.CC.test1" />
+      <item itemvalue="JUnit.LoginActionTest.testToLogin" />
+      <item itemvalue="JUnit.ExcelUtilsTest.excute" />
+      <item itemvalue="JUnit.CC.test" />
+      <item itemvalue="JUnit.FileUtilsTest.testGetCharsetName" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LoginActionTest.testToLogin" />
+        <item itemvalue="JUnit.ExcelUtilsTest.excute" />
+        <item itemvalue="JUnit.FileUtilsTest.testGetCharsetName" />
         <item itemvalue="Application.Application" />
-        <item itemvalue="JUnit.CC.synTest" />
-        <item itemvalue="JUnit.CC.randomTopic" />
-        <item itemvalue="JUnit.CC.autoExam" />
-        <item itemvalue="JUnit.CC.test1" />
+        <item itemvalue="JUnit.CC.test" />
       </list>
     </recent_temporary>
   </component>
@@ -268,49 +303,13 @@
       <workItem from="1702890816742" duration="1552000" />
       <workItem from="1702965510009" duration="617000" />
       <workItem from="1702974822888" duration="4134000" />
-      <workItem from="1703001461535" duration="683000" />
-    </task>
-    <task id="LOCAL-00039" summary="更新仓辉">
-      <created>1698977072887</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1698977072887</updated>
-    </task>
-    <task id="LOCAL-00040" summary="修复graalvm">
-      <created>1698977319467</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1698977319468</updated>
-    </task>
-    <task id="LOCAL-00041" summary="更改抛错方式">
-      <created>1699074602496</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1699074602496</updated>
-    </task>
-    <task id="LOCAL-00042" summary="更改抛错方式">
-      <created>1699080067423</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1699080067423</updated>
-    </task>
-    <task id="LOCAL-00043" summary="修复视屏课程学习逻辑，修复视屏未学完bug">
-      <created>1699096602677</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1699096602677</updated>
-    </task>
-    <task id="LOCAL-00044" summary="修复学时提交空指针bug">
-      <created>1699250337018</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1699250337018</updated>
+      <workItem from="1703001461535" duration="3509000" />
+      <workItem from="1703043283982" duration="15507000" />
+      <workItem from="1703077551800" duration="2914000" />
+      <workItem from="1703147758012" duration="1467000" />
+      <workItem from="1703470197710" duration="106000" />
+      <workItem from="1703478068657" duration="2327000" />
+      <workItem from="1703494610347" duration="8028000" />
     </task>
     <task id="LOCAL-00045" summary="更改提交学时算法">
       <created>1699355181925</created>
@@ -613,7 +612,49 @@
       <option name="project" value="LOCAL" />
       <updated>1702992778403</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="修复紧急bug，嗯，就是作者老抽写错参数了，可能导致死循环刷。">
+      <created>1703002274921</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1703002274921</updated>
+    </task>
+    <task id="LOCAL-00089" summary="修复紧急bug，嗯，就是作者脑抽写错参数了，可能导致死循环刷。">
+      <created>1703002296495</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1703002296495</updated>
+    </task>
+    <task id="LOCAL-00090" summary="嗯，一个没啥用的类">
+      <created>1703061767858</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1703061767858</updated>
+    </task>
+    <task id="LOCAL-00091" summary="更改配置读取方式，使其能自适应编码">
+      <created>1703061815475</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1703061815475</updated>
+    </task>
+    <task id="LOCAL-00092" summary="添加配置文件错误提示">
+      <created>1703062497851</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1703062497851</updated>
+    </task>
+    <task id="LOCAL-00093" summary="打个小补丁">
+      <created>1703062536842</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1703062536842</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,12 +685,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新v1.1.1版本，并且支持仓辉暴力模式" />
-    <MESSAGE value="修复graalvm配置文件" />
-    <MESSAGE value="更改README" />
-    <MESSAGE value="学习公社逆向登录成功" />
-    <MESSAGE value="修复graalvm配置文件缺漏" />
-    <MESSAGE value="更新graalvm配置文件" />
     <MESSAGE value="修复正常模式刷课乱序bug" />
     <MESSAGE value="修复超时提示bug" />
     <MESSAGE value="新添支持创能平台" />
@@ -669,7 +704,13 @@
     <MESSAGE value="更新README" />
     <MESSAGE value="更新暴力模式下的视屏时长检测，解决暴力模式下时间刷不满的bug" />
     <MESSAGE value="修复部分运行报错问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复部分运行报错问题" />
+    <MESSAGE value="修复紧急bug，嗯，就是作者老抽写错参数了，可能导致死循环刷。" />
+    <MESSAGE value="修复紧急bug，嗯，就是作者脑抽写错参数了，可能导致死循环刷。" />
+    <MESSAGE value="嗯，一个没啥用的类" />
+    <MESSAGE value="更改配置读取方式，使其能自适应编码" />
+    <MESSAGE value="添加配置文件错误提示" />
+    <MESSAGE value="打个小补丁" />
+    <option name="LAST_COMMIT_MESSAGE" value="打个小补丁" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -694,6 +735,9 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.cbq.brushlessons.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/brushlessons$LoginActionTest_testToLogin.ic" NAME="LoginActionTest.testToLogin Coverage Results" MODIFIED="1703499812389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.cbq.brushlessons.core.action.enaea.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/brushlessons$CC_autoExam.ic" NAME="CC.autoExam Coverage Results" MODIFIED="1701142462533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.cbq.brushlessons.core.*</FILTER>

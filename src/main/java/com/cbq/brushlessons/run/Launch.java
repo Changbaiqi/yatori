@@ -51,6 +51,7 @@ public class Launch {
                         `--`  `--`---'                                 ---`-'  \s
                                 Yatori v1.2.3-Beta-4
                          仅用于学习交流，请勿用于违法和商业用途！！！
+                  GitHub开源地址：https://github.com/Changbaiqi/brushlessons
                 """);
     }
 
