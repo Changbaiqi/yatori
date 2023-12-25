@@ -48,7 +48,7 @@ public class ResultList {
     private boolean expired;
     @lombok.Getter(onMethod_ = {@JsonProperty("filename")})
     @lombok.Setter(onMethod_ = {@JsonProperty("filename")})
-    private String filename;
+    private String filename; //视屏名称
     @lombok.Getter(onMethod_ = {@JsonProperty("filepath")})
     @lombok.Setter(onMethod_ = {@JsonProperty("filepath")})
     private Object filepath;
@@ -60,7 +60,7 @@ public class ResultList {
     private boolean hasTestAfterCourse;
     @lombok.Getter(onMethod_ = {@JsonProperty("id")})
     @lombok.Setter(onMethod_ = {@JsonProperty("id")})
-    private long id;
+    private Long id;
     @lombok.Getter(onMethod_ = {@JsonProperty("isCanModify")})
     @lombok.Setter(onMethod_ = {@JsonProperty("isCanModify")})
     private boolean isCanModify;

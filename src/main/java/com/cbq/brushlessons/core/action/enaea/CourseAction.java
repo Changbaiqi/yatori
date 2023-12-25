@@ -1,5 +1,7 @@
 package com.cbq.brushlessons.core.action.enaea;
 
+import com.cbq.brushlessons.core.action.enaea.entity.ccvideo.CCVideoConverter;
+import com.cbq.brushlessons.core.action.enaea.entity.ccvideo.CCVideoRequest;
 import com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.CourseVideListConverter;
 import com.cbq.brushlessons.core.action.enaea.entity.coursevidelist.CourseVideoListRequest;
 import com.cbq.brushlessons.core.action.enaea.entity.requirecourselist.RequiredCourseListConverter;
@@ -14,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.List;
 
 public class CourseAction {
 
@@ -86,10 +89,10 @@ public class CourseAction {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
-        RequestBody body = RequestBody.create(mediaType, "");
+//        RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
                 .url("https://study.enaea.edu.cn/course.do?action=getCourseContentList&courseId="+courseId+"&circleId="+circledId+"&_="+System.currentTimeMillis())
-                .method("GET", body)
+                .method("GET", null)
                 .addHeader("Cookie", "ASUSS="+cache.getASUSS()+";")
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Accept", "*/*")
@@ -107,14 +110,59 @@ public class CourseAction {
     }
 
     /**
+     * 在观看视屏前一定要先调用这个函数，相当于告诉后端，我要看这个视屏了，请对这个视屏开始计时
+     * @param user 用户
+     * @param courseId 课程Id
+     * @param coursecontentId 当前视屏ID
+     * @param circleId 项目ID
+     * @return
+     */
+    public static CCVideoRequest statisticForCCVideo(User user, Long courseId, Long coursecontentId, Long circleId){
+        AccountCacheEnaea cache = (AccountCacheEnaea) user.getCache();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+//        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("https://study.enaea.edu.cn/course.do?action=statisticForCCVideo&courseId="+courseId+"&coursecontentId="+coursecontentId+"&circleId="+circleId+"&_=1703512855563")
+                .method("GET", null)
+                .addHeader("Cookie", "ASUSS="+cache.getASUSS()+";")
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", "study.enaea.edu.cn")
+                .addHeader("Connection", "keep-alive")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String string = response.body().string();
+            CCVideoRequest ccVideoRequest = CCVideoConverter.fromJsonString(string);
+            List<String> headers = response.headers("Set-Cookie");
+            for (String header : headers) {
+                if (header.startsWith("SCFUCKP")) {
+                    String scfuckp = header.split(";")[0];
+                    String key = scfuckp.split("=")[0];
+                    String val = scfuckp.split("=")[1];
+                    ccVideoRequest.setSCFUCKPKey(key);
+                    ccVideoRequest.setSCFUCKPValue(val);
+                }
+            }
+            return ccVideoRequest;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * 提交学时
      * @param user 用户
+     * @param SCFUCKPKey Cookie的key 通过statisticForCCVideo方法获取
+     * @param SCFUCKPValue Cookie的value 通过statisticForCCVideo方法获取
      * @param circleId 项目ID
      * @param id 视屏ID
      * @param time 提交的学时，这里注意，要每隔1分钟提交一次，不能快,这个time直接填当前毫秒时间戳即可
      * @return 返回求结果
      */
-    public static SubmitLearnTimeRequest submitLearnTime(User user,String circleId,String id,Long time){
+    public static SubmitLearnTimeRequest submitLearnTime(User user,String SCFUCKPKey,String SCFUCKPValue,String circleId,String id,Long time){
         AccountCacheEnaea cache = (AccountCacheEnaea)user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
@@ -123,7 +171,7 @@ public class CourseAction {
         Request request = new Request.Builder()
                 .url("https://study.enaea.edu.cn/studyLog.do")
                 .method("POST", body)
-                .addHeader("Cookie", "ASUSS="+cache.getASUSS()+";")
+                .addHeader("Cookie", "ASUSS="+cache.getASUSS()+";"+SCFUCKPKey+"="+SCFUCKPValue)
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Accept", "*/*")
                 .addHeader("Host", "study.enaea.edu.cn")

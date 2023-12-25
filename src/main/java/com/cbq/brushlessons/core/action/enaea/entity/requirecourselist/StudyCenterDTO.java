@@ -33,7 +33,7 @@ public class StudyCenterDTO {
     private Object courseExternalType;
     @lombok.Getter(onMethod_ = {@JsonProperty("courseId")})
     @lombok.Setter(onMethod_ = {@JsonProperty("courseId")})
-    private long courseId;
+    private Long courseId;
     @lombok.Getter(onMethod_ = {@JsonProperty("coursePrice")})
     @lombok.Setter(onMethod_ = {@JsonProperty("coursePrice")})
     private long coursePrice;
