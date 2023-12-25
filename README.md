@@ -60,7 +60,7 @@
 > {
 >     "users": [
 >         {
->             "accountType": "CANGHUI",//指定平台，"YINGHUA"代表英华学堂（创能平台也使用这个），CANGHUI代表仓辉平台
+>             "accountType": "CANGHUI",//指定平台，"YINGHUA"代表英华学堂（创能平台也使用这个），CANGHUI代表仓辉平台，ENAEA代表学习公社
 >             "url": "url",//学习公社平台不用填这个直接把这个url配置删掉即可。其他平台必填，填平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
 >             "account": "账号",//账号
 >             "password": "密码",//密码
