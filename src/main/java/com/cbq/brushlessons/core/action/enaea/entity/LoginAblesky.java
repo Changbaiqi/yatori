@@ -19,7 +19,7 @@ public class LoginAblesky {
     private String curMillis; //时间戳
     @Getter(onMethod_ = {@JsonProperty("sS")})
     @Setter(onMethod_ = {@JsonProperty("sS")})
-    private String sS;
+    private String sS; //101代表账号或者密码错误
     @Getter(onMethod_ = {@JsonProperty("iI")})
     @Setter(onMethod_ = {@JsonProperty("iI")})
     private Boolean iI;
@@ -31,13 +31,25 @@ public class LoginAblesky {
     private Boolean isBinded;
     @Getter(onMethod_ = {@JsonProperty("success")})
     @Setter(onMethod_ = {@JsonProperty("success")})
-    private Boolean success;
+    private Boolean success; //是否登录成功
     @Getter(onMethod_ = {@JsonProperty("iP")})
     @Setter(onMethod_ = {@JsonProperty("iP")})
     private Boolean iP;
     @Getter(onMethod_ = {@JsonProperty("uN")})
     @Setter(onMethod_ = {@JsonProperty("uN")})
     private String uN; //用户名
+
+    @Getter(onMethod_ = {@JsonProperty("alertMessage")})
+    @Setter(onMethod_ = {@JsonProperty("alertMessage")})
+    private String alertMessage;//提示信息
+
+    @Getter(onMethod_ = {@JsonProperty("wrongTimes")})
+    @Setter(onMethod_ = {@JsonProperty("wrongTimes")})
+    private Integer wrongTimes; // 密码错误次数
+
+    @Getter(onMethod_ = {@JsonProperty("tryTimesLeft")})
+    @Setter(onMethod_ = {@JsonProperty("tryTimesLeft")})
+    private Integer tryTimesLeft; //输入密码错误剩余尝试次数
 
     /**
      * 转成对象

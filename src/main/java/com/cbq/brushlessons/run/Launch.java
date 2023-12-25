@@ -4,15 +4,15 @@ import com.cbq.brushlessons.core.action.canghui.entity.loginresponse.LoginRespon
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Course;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourse;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourseData;
+import com.cbq.brushlessons.core.action.enaea.entity.LoginAblesky;
+import com.cbq.brushlessons.core.action.enaea.entity.underwayproject.ResultList;
+import com.cbq.brushlessons.core.action.enaea.entity.underwayproject.UnderwayProjectRquest;
 import com.cbq.brushlessons.core.action.yinghua.CourseAction;
 import com.cbq.brushlessons.core.action.yinghua.CourseStudyAction;
 import com.cbq.brushlessons.core.action.yinghua.LoginAction;
 import com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseInform;
 import com.cbq.brushlessons.core.action.yinghua.entity.allcourse.CourseRequest;
-import com.cbq.brushlessons.core.entity.AccountCacheCangHui;
-import com.cbq.brushlessons.core.entity.AccountCacheYingHua;
-import com.cbq.brushlessons.core.entity.Config;
-import com.cbq.brushlessons.core.entity.User;
+import com.cbq.brushlessons.core.entity.*;
 import com.cbq.brushlessons.core.utils.ConfigUtils;
 import com.cbq.brushlessons.core.utils.FileUtils;
 import com.cbq.brushlessons.core.utils.VerificationCodeUtil;
@@ -71,6 +71,7 @@ public class Launch {
         //先进行登录----------------------------------------------
         for (User user : users) {
             switch (user.getAccountType()) {
+                //英华,创能
                 case YINGHUA -> {
                     AccountCacheYingHua accountCacheYingHua = new AccountCacheYingHua();
                     user.setCache(accountCacheYingHua);
@@ -142,6 +143,7 @@ public class Launch {
                         }
                     }).start();
                 }
+                //仓辉
                 case CANGHUI -> {
                     AccountCacheCangHui accountCacheCangHui = new AccountCacheCangHui();
                     user.setCache(accountCacheCangHui);
@@ -215,6 +217,22 @@ public class Launch {
                         }
                     }).start();
                 }
+                //学习公社
+                case ENAEA -> {
+                    AccountCacheEnaea accountCacheEnaea = new AccountCacheEnaea();
+                    user.setCache(accountCacheEnaea);
+                    //sS:101代表账号或密码错误，
+                    LoginAblesky loginAblesky = null;
+                    while((loginAblesky=com.cbq.brushlessons.core.action.enaea.LoginAction.toLogin(user))==null);
+                    //对结果进行判定
+                    if (loginAblesky.getSS().equals("0")) {
+                        accountCacheEnaea.setStatus(1);
+                        log.info("{}登录成功！", user.getAccount());
+                    } else {
+                        log.info("{}登录失败，服务器信息>>>{}", user.getAccount(), loginAblesky.getAlertMessage());
+                        return;
+                    }
+                }
 
             }
         }
@@ -282,6 +300,22 @@ public class Launch {
                                     .newThread(true)
                                     .build();
                             bulild.toStudy();
+                        }
+                    }).start();
+                }
+
+                case ENAEA -> {
+                    new Thread(()->{
+                        //获取正在进行的项目
+                        UnderwayProjectRquest underwayProject = com.cbq.brushlessons.core.action.enaea.CourseAction.getUnderwayProject(user);
+                        //遍历获取所有正在学的课程项目
+                        for (ResultList resultList : underwayProject.getResult().getList()) {
+                            com.cbq.brushlessons.core.action.enaea.CourseStudyAction build = com.cbq.brushlessons.core.action.enaea.CourseStudyAction.builder()
+                                    .user(user)
+                                    .objectInform(resultList)
+                                    .newThread(true)
+                                    .build();
+                            build.toStudy();
                         }
                     }).start();
                 }
