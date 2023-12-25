@@ -4,26 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="打个小补丁">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/LoginAblesky.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/MyCircleStatisticDTOList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/ResultList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/StudentList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/TeacherList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/TeacherListList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/UnderwayProjectConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/underwayproject/UnderwayProjectRquest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/entity/AccountCacheEnaea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新学习公社部分代码">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/coursevidelist/CourseVideListConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/coursevidelist/CourseVideoListRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/coursevidelist/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/coursevidelist/ResultList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/coursevidelist/VideoList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/coursevidelist/VideoListList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/requirecourselist/ListElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/requirecourselist/RequiredCourseListConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/requirecourselist/RequiredCourseListRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/requirecourselist/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/requirecourselist/StudyCenterDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/submitlearntime/SubmitLearnTimeConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/entity/submitlearntime/SubmitLearnTimeRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/CourseAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/action/enaea/LoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/utils/ConfigUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/core/utils/ConfigUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cbq/brushlessons/run/Launch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,14 +305,7 @@
       <workItem from="1703147758012" duration="1467000" />
       <workItem from="1703470197710" duration="106000" />
       <workItem from="1703478068657" duration="2327000" />
-      <workItem from="1703494610347" duration="8028000" />
-    </task>
-    <task id="LOCAL-00045" summary="更改提交学时算法">
-      <created>1699355181925</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1699355181925</updated>
+      <workItem from="1703494610347" duration="10550000" />
     </task>
     <task id="LOCAL-00046" summary="仓辉平台正式上线">
       <created>1699364350612</created>
@@ -654,7 +643,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703062536842</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="更新学习公社部分代码">
+      <created>1703506659293</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1703506659295</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,7 +681,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="修复正常模式刷课乱序bug" />
     <MESSAGE value="修复超时提示bug" />
     <MESSAGE value="新添支持创能平台" />
     <MESSAGE value="优化部分代码" />
@@ -710,7 +705,8 @@
     <MESSAGE value="更改配置读取方式，使其能自适应编码" />
     <MESSAGE value="添加配置文件错误提示" />
     <MESSAGE value="打个小补丁" />
-    <option name="LAST_COMMIT_MESSAGE" value="打个小补丁" />
+    <MESSAGE value="更新学习公社部分代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新学习公社部分代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
