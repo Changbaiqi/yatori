@@ -42,7 +42,7 @@ public class ExamAction {
         RequestBody body = RequestBody.create(mediaType, "{\r\n    \"pageSize\": 99,\r\n    \"courseId\": \""+courseId+"\",\r\n    \"page\": 1\r\n}");
         AccountCacheCangHui cache = (AccountCacheCangHui) user.getCache();
         Request request = new Request.Builder()
-                .url("https://kkzxsx.lidapoly.edu.cn/api/v1/course/study/my/exam")
+                .url(user.getUrl()+"/api/v1/course/study/my/exam")
                 .method("POST", body)
                 .addHeader("member-token", cache.getToken())
                 .addHeader("Origin", user.getUrl())
@@ -133,7 +133,7 @@ public class ExamAction {
         }
         AccountCacheCangHui cache = (AccountCacheCangHui)user.getCache();
         Request request = new Request.Builder()
-                .url("https://kkzxsx.lidapoly.edu.cn/api/v1/course/study/submit/exam")
+                .url(user.getUrl()+"/api/v1/course/study/submit/exam")
                 .method("POST", body)
                 .addHeader("member-token", cache.getToken())
                 .addHeader("Origin", user.getUrl())
