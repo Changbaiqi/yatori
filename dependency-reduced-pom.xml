@@ -19,7 +19,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.cbq.brushlessons.Application</mainClass>
+                  <mainClass>com.cbq.yatori.console.Application</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -40,7 +40,7 @@
         </executions>
         <configuration>
           <imageName>${project.artifactId}</imageName>
-          <mainClass>com.cbq.brushlessons.Application</mainClass>
+          <mainClass>com.cbq.yatori.console.Application</mainClass>
           <buildArgs>--no-fallback
 
                         --initialize-at-build-time=org.apache.log4j.PatternLayout
@@ -122,7 +122,7 @@
               <arguments>
                 <argument>-classpath</argument>
                 <classpath />
-                <argument>com.cbq.brushlessons.Application</argument>
+                <argument>com.cbq.yatori.console.Application</argument>
               </arguments>
             </configuration>
           </execution>

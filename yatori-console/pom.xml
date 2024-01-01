@@ -4,71 +4,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cbq.brushlessons</groupId>
-    <artifactId>brushlessons</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>yatori-core</module>
-        <module>yatori-console</module>
-    </modules>
 
+    <groupId>com.cbq.yatori</groupId>
+    <artifactId>yatori-console</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
-            <scope>test</scope>
+            <groupId>com.cbq.yatori</groupId>
+            <artifactId>yatori-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>2.0.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.10.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.10.1</version>
-        </dependency>
-        <dependency>
-            <groupId>top.gcszhn</groupId>
-            <artifactId>d4ocr</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>easyexcel</artifactId>
-            <version>3.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.albfernandez</groupId>
-            <artifactId>juniversalchardet</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-
-
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -169,9 +122,9 @@
 
                         -Dio.netty.tryReflectionSetAccessible=true
 
-<!--                        &#45;&#45;add-exports=java.base/java.nio=ALL-UNNAMED-->
+                        <!--                        &#45;&#45;add-exports=java.base/java.nio=ALL-UNNAMED-->
 
-<!--                        &#45;&#45;add-opens java.base/java.nio=ALL-UNNAMED-->
+                        <!--                        &#45;&#45;add-opens java.base/java.nio=ALL-UNNAMED-->
                         <!--                        -language:js-->
                     </buildArgs>
                 </configuration>
