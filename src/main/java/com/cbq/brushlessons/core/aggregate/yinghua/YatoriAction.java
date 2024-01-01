@@ -1,4 +1,4 @@
-package com.cbq.brushlessons.core.aggregate;
+package com.cbq.brushlessons.core.aggregate.yinghua;
 
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.Course;
 import com.cbq.brushlessons.core.action.canghui.entity.mycourselistresponse.MyCourse;
@@ -13,7 +13,7 @@ import com.cbq.brushlessons.core.entity.User;
 
 public class YatoriAction {
 
-    public static void brushLessonsAction(YatoriLogin yatoriLogin){
+    public static void brushLessonsAction(YatoriLoginYingHua yatoriLogin){
         User user = yatoriLogin.getUser();
         switch (user.getAccountType()) {
             case YINGHUA -> {
