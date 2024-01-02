@@ -1,25 +1,27 @@
 package com.cbq.yatori.core.action.canghui.entity.submitstudy;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Request
  */
-@lombok.Data
+@Data
 public class SubmitStudyTimeRequest {
-    @lombok.Getter(onMethod_ = {@JsonProperty("code")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("code")})
+
+
+    @JsonProperty("code")
     private long code;
-    @lombok.Getter(onMethod_ = {@JsonProperty("data")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("data")})
+
+
+    @JsonProperty("data")
     private Object data;
-    @lombok.Getter(onMethod_ = {@JsonProperty("msg")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("msg")})
+    @JsonProperty("msg")
     private String msg;
-    @lombok.Getter(onMethod_ = {@JsonProperty("sub_code")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("sub_code")})
+    @JsonProperty("sub_code")
     private long subCode;
-    @lombok.Getter(onMethod_ = {@JsonProperty("sub_msg")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("sub_msg")})
+    @JsonProperty("sub_msg")
     private Object subMsg;
 }

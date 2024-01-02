@@ -7,16 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @lombok.Data
 public class MyCourseRequest {
-    @lombok.Getter(onMethod_ = {@JsonProperty("page")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("page")})
+    @JsonProperty("page")
     private long page;
-    @lombok.Getter(onMethod_ = {@JsonProperty("pageSize")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("pageSize")})
+    @JsonProperty("pageSize")
     /**
      * 页面长度
      */
     private long pageSize;
-    @lombok.Getter(onMethod_ = {@JsonProperty("status")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("status")})
+    @JsonProperty("status")
     private long status;
 }

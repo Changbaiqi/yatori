@@ -11,10 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TopicAnswer {
-    @lombok.Getter(onMethod_ = {@JsonProperty("answers")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("answers")})
+    @JsonProperty("answers")
     private List<String> answers;
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private long id;
 }

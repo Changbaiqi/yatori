@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 public class QuizCount {
-    @lombok.Getter(onMethod_ = {@JsonProperty("completeCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("completeCount")})
+    @JsonProperty("completeCount")
     private long completeCount;
-    @lombok.Getter(onMethod_ = {@JsonProperty("totalCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("totalCount")})
+    @JsonProperty("totalCount")
     private long totalCount;
 }

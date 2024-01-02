@@ -6,10 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VideoInformCheat {
-    @lombok.Getter(onMethod_ = {@JsonProperty("duration")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("duration")})
+    @JsonProperty("duration")
     private long duration;
-    @lombok.Getter(onMethod_ = {@JsonProperty("state")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("state")})
+    @JsonProperty("state")
     private long state;
 }

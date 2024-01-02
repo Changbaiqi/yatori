@@ -4,7 +4,88 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新项目目录结构，为后续项目架构重构提供更好的划分。" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="准备启动可视化Web项目计划">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-console/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Chapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Chapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/College.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/College.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/CourseDetailData.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/CourseDetailData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/CourseDetailRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/CourseDetailRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Datum.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Datum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/MissionStandard.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/MissionStandard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Process.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Process.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Router.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Section.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmit/TopicAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmit/TopicAnswer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmit/TopicRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmit/TopicRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmitrespose/ExamSubmitResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmitrespose/ExamSubmitResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/loginresponse/LoginResponseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/loginresponse/LoginResponseData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/loginresponse/LoginResponseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/loginresponse/LoginResponseRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistrequest/MyCourseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistrequest/MyCourseRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/HomeworkCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/HomeworkCount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/LastSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/LastSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MissionStandard.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MissionStandard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourseData.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourseData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourseDataRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourseDataRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ProgressDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ProgressDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ProgressDetailDatum.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ProgressDetailDatum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/QuizCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/QuizCount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ResultScore.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ResultScore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/RouterDatum.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/RouterDatum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/SectionCount.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/SectionCount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Semester.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Semester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/VideoRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/VideoRouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/submitstudy/SubmitStudyTimeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/submitstudy/SubmitStudyTimeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/tologin/ToLoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/tologin/ToLoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/upload/UploadRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/upload/UploadRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/LoginAblesky.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/LoginAblesky.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/ccvideo/CCVideoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/ccvideo/CCVideoRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/CourseVideoListRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/CourseVideoListRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/ResultList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/ResultList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/VideoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/VideoList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/VideoListList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/VideoListList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/ListElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/ListElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/RequiredCourseListRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/RequiredCourseListRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/StudyCenterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/StudyCenterDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/submitlearntime/SubmitLearnTimeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/submitlearntime/SubmitLearnTimeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/MyCircleStatisticDTOList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/MyCircleStatisticDTOList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/ResultList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/ResultList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/StudentList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/StudentList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/TeacherList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/TeacherList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/TeacherListList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/TeacherListList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/UnderwayProjectRquest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/UnderwayProjectRquest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/Banner.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/Banner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseAnnouncement.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseAnnouncement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseFinishInform.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseFinishInform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseInform.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseInform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/Enlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/Enlist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/EnlistList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/EnlistList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/PageInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/PageInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/NodeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/NodeList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitData.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitStudyTimeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitStudyTimeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformCheat.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformCheat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformData.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformStudyTotal.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformStudyTotal.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,9 +143,6 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenRunner">
-    <option name="skipTests" value="true" />
-  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -87,18 +165,20 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
     "dart.analysis.tool.window.visible": "false",
     "jdk.selected.JAVA_MODULE": "graalvm-17",
-    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons/yatori-console",
+    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15136719",
     "project.structure.side.proportion": "0.343318",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false",
+    "spring.configuration.checksum": "ae571d4151dab2375600dbda7bf394e7",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -135,12 +215,27 @@
       <command value="mvn install:install-file -DgroupId=cpdetector -DartifactId=cpdetector -Dversion=1.0.10 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\cpdetector_1.0.10.jar" />
       <command value="mvn install:install-file -DgroupId=chardet -DartifactId=chardet -Dversion=1.0 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\antlr-2.7.4.jar" />
       <command value="mvn install:install-file -DgroupId=jargs -DartifactId=jargs -Dversion=1.0 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\jargs-1.0.jar" />
+      <command value="mvn clean javadoc:jar source:jar install gpg:sign" />
+      <command value="mvn install -Dmaven.javadoc.skip=true" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Application">
+  <component name="RunManager" selected="Application.com.cbq.yatori.console.Application">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.Application" />
       <module name="brushlessons" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.yatori.console.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.cbq.yatori.console.Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cbq.yatori.console.Application" />
+      <module name="yatori-console" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.cbq.yatori.console.*" />
@@ -162,22 +257,6 @@
       <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.ExcelUtilsTest" />
       <option name="METHOD_NAME" value="excute" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FileUtilsTest.testGetCharsetName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brushlessons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.FileUtilsTest" />
-      <option name="METHOD_NAME" value="testGetCharsetName" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -216,19 +295,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.com.cbq.yatori.console.Application" />
       <item itemvalue="Application.Application" />
       <item itemvalue="JUnit.YatoriUserTest.testTest1" />
       <item itemvalue="JUnit.LoginActionTest.testToLogin" />
       <item itemvalue="JUnit.ExcelUtilsTest.excute" />
-      <item itemvalue="JUnit.FileUtilsTest.testGetCharsetName" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.cbq.yatori.console.Application" />
         <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.YatoriUserTest.testTest1" />
         <item itemvalue="JUnit.LoginActionTest.testToLogin" />
         <item itemvalue="JUnit.ExcelUtilsTest.excute" />
-        <item itemvalue="JUnit.FileUtilsTest.testGetCharsetName" />
       </list>
     </recent_temporary>
   </component>
@@ -302,21 +381,11 @@
       <workItem from="1704013037686" duration="703000" />
       <workItem from="1704043360955" duration="4915000" />
       <workItem from="1704091069421" duration="7695000" />
-      <workItem from="1704099157355" duration="1535000" />
-    </task>
-    <task id="LOCAL-00057" summary="修复graalvm配置文件">
-      <created>1699417983853</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1699417983853</updated>
-    </task>
-    <task id="LOCAL-00058" summary="更改README">
-      <created>1699425291051</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1699425291051</updated>
+      <workItem from="1704099157355" duration="12546000" />
+      <workItem from="1704178201986" duration="1776000" />
+      <workItem from="1704185066565" duration="1589000" />
+      <workItem from="1704186669244" duration="769000" />
+      <workItem from="1704187749958" duration="6526000" />
     </task>
     <task id="LOCAL-00059" summary="更改README">
       <created>1699426398758</created>
@@ -647,7 +716,21 @@
       <option name="project" value="LOCAL" />
       <updated>1704100687233</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="准备启动可视化Web项目计划">
+      <created>1704100880908</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1704100880908</updated>
+    </task>
+    <task id="LOCAL-00107" summary="准备启动可视化Web项目计划">
+      <created>1704101948506</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1704101948506</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -678,7 +761,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新native配置文件" />
     <MESSAGE value="v1.2.3-beta.1版本并且更新配置文件方式" />
     <MESSAGE value="修复空指针bug" />
     <MESSAGE value="更新配置文件" />
@@ -703,7 +785,8 @@
     <MESSAGE value="更新开源协议" />
     <MESSAGE value="修改过滤文件" />
     <MESSAGE value="更新项目目录结构，为后续项目架构重构提供更好的划分。" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新项目目录结构，为后续项目架构重构提供更好的划分。" />
+    <MESSAGE value="准备启动可视化Web项目计划" />
+    <option name="LAST_COMMIT_MESSAGE" value="准备启动可视化Web项目计划" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SubmitResult {
-    @lombok.Getter(onMethod_ = {@JsonProperty("data")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("data")})
+    @JsonProperty("data")
     private SubmitData data;
 }

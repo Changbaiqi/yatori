@@ -25,20 +25,17 @@ import java.util.Map;
 @JsonDeserialize(using = VideoInformStudyTotal.Deserializer.class)
 //@JsonSerialize(using = VideoInformStudyTotal.Serializer.class)
 public class VideoInformStudyTotal {
-    @lombok.Getter(onMethod_ = {@JsonProperty("duration")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("duration")})
+    @JsonProperty("duration")
     /**
      * 学习时长
      */
     private String duration;
-    @lombok.Getter(onMethod_ = {@JsonProperty("progress")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("progress")})
+    @JsonProperty("progress")
     /**
      * 视屏学习进度百分百比
      */
     private String progress;
-    @lombok.Getter(onMethod_ = {@JsonProperty("state")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("state")})
+    @JsonProperty("state")
     /**
      * 视屏学习状态值
      */

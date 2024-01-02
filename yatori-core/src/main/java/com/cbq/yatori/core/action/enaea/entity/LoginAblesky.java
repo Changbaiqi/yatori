@@ -17,38 +17,33 @@ import java.util.regex.Pattern;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginAblesky {
     private String curMillis; //时间戳
-    @Getter(onMethod_ = {@JsonProperty("sS")})
-    @Setter(onMethod_ = {@JsonProperty("sS")})
+
+    @JsonProperty("sS")
     private String sS; //101代表账号或者密码错误
-    @Getter(onMethod_ = {@JsonProperty("iI")})
-    @Setter(onMethod_ = {@JsonProperty("iI")})
+
+    @JsonProperty("iI")
     private Boolean iI;
-    @Getter(onMethod_ = {@JsonProperty("uI")})
-    @Setter(onMethod_ = {@JsonProperty("uI")})
+
+    @JsonProperty("uI")
     private Long uI;
-    @Getter(onMethod_ = {@JsonProperty("isBinded")})
-    @Setter(onMethod_ = {@JsonProperty("isBinded")})
+    @JsonProperty("isBinded")
     private Boolean isBinded;
-    @Getter(onMethod_ = {@JsonProperty("success")})
-    @Setter(onMethod_ = {@JsonProperty("success")})
+    @JsonProperty("success")
     private Boolean success; //是否登录成功
-    @Getter(onMethod_ = {@JsonProperty("iP")})
-    @Setter(onMethod_ = {@JsonProperty("iP")})
+
+    @JsonProperty("iP")
     private Boolean iP;
-    @Getter(onMethod_ = {@JsonProperty("uN")})
-    @Setter(onMethod_ = {@JsonProperty("uN")})
+
+    @JsonProperty("uN")
     private String uN; //用户名
 
-    @Getter(onMethod_ = {@JsonProperty("alertMessage")})
-    @Setter(onMethod_ = {@JsonProperty("alertMessage")})
+    @JsonProperty("alertMessage")
     private String alertMessage;//提示信息
 
-    @Getter(onMethod_ = {@JsonProperty("wrongTimes")})
-    @Setter(onMethod_ = {@JsonProperty("wrongTimes")})
+    @JsonProperty("wrongTimes")
     private Integer wrongTimes; // 密码错误次数
 
-    @Getter(onMethod_ = {@JsonProperty("tryTimesLeft")})
-    @Setter(onMethod_ = {@JsonProperty("tryTimesLeft")})
+    @JsonProperty("tryTimesLeft")
     private Integer tryTimesLeft; //输入密码错误剩余尝试次数
 
     /**

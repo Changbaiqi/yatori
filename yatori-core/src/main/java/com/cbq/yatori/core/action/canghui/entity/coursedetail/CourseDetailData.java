@@ -6,139 +6,94 @@ import java.util.List;
 
 @lombok.Data
 public class CourseDetailData {
-    @lombok.Getter(onMethod_ = {@JsonProperty("access")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("access")})
+    @JsonProperty("access")
     private long access;
-    @lombok.Getter(onMethod_ = {@JsonProperty("banner")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("banner")})
+    @JsonProperty("banner")
     private String banner;
-    @lombok.Getter(onMethod_ = {@JsonProperty("categories")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("categories")})
+    @JsonProperty("categories")
     private Object categories;
-    @lombok.Getter(onMethod_ = {@JsonProperty("chapters")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("chapters")})
+    @JsonProperty("chapters")
     private List<Chapter> chapters;
-    @lombok.Getter(onMethod_ = {@JsonProperty("classHour")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("classHour")})
+    @JsonProperty("classHour")
     private long classHour;
-    @lombok.Getter(onMethod_ = {@JsonProperty("code")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("code")})
+    @JsonProperty("code")
     private String code;
-    @lombok.Getter(onMethod_ = {@JsonProperty("college")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("college")})
+    @JsonProperty("college")
     private College college;
-    @lombok.Getter(onMethod_ = {@JsonProperty("collegeId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("collegeId")})
+    @JsonProperty("collegeId")
     private long collegeId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("cover")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("cover")})
+    @JsonProperty("cover")
     private String cover;
-    @lombok.Getter(onMethod_ = {@JsonProperty("createdAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("createdAt")})
+    @JsonProperty("createdAt")
     private String createdAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("createUserId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("createUserId")})
+    @JsonProperty("createUserId")
     private long createUserId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("createUserName")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("createUserName")})
+    @JsonProperty("createUserName")
     private String createUserName;
-    @lombok.Getter(onMethod_ = {@JsonProperty("createUserType")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("createUserType")})
+    @JsonProperty("createUserType")
     private long createUserType;
-    @lombok.Getter(onMethod_ = {@JsonProperty("credit")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("credit")})
+    @JsonProperty("credit")
     private String credit;
-    @lombok.Getter(onMethod_ = {@JsonProperty("currentSemesterId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("currentSemesterId")})
+    @JsonProperty("currentSemesterId")
     private long currentSemesterId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("deletedAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("deletedAt")})
+    @JsonProperty("deletedAt")
     private Object deletedAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("details")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("details")})
+    @JsonProperty("details")
     private String details;
-    @lombok.Getter(onMethod_ = {@JsonProperty("duration")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("duration")})
+    @JsonProperty("duration")
     private long duration;
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private long id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isOpen")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isOpen")})
+    @JsonProperty("isOpen")
     private long isOpen;
-    @lombok.Getter(onMethod_ = {@JsonProperty("joinCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("joinCount")})
+    @JsonProperty("joinCount")
     private long joinCount;
-    @lombok.Getter(onMethod_ = {@JsonProperty("keywords")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("keywords")})
+    @JsonProperty("keywords")
     private String keywords;
-    @lombok.Getter(onMethod_ = {@JsonProperty("learnedCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("learnedCount")})
+    @JsonProperty("learnedCount")
     private long learnedCount;
-    @lombok.Getter(onMethod_ = {@JsonProperty("lecturerInfo")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("lecturerInfo")})
+    @JsonProperty("lecturerInfo")
     private String lecturerInfo;
-    @lombok.Getter(onMethod_ = {@JsonProperty("mainTeacher")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("mainTeacher")})
+    @JsonProperty("mainTeacher")
     private String mainTeacher;
-    @lombok.Getter(onMethod_ = {@JsonProperty("missionDesc")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("missionDesc")})
+    @JsonProperty("missionDesc")
     private String missionDesc;
-    @lombok.Getter(onMethod_ = {@JsonProperty("missionStandard")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("missionStandard")})
+    @JsonProperty("missionStandard")
     private MissionStandard missionStandard;
-    @lombok.Getter(onMethod_ = {@JsonProperty("openMode")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("openMode")})
+    @JsonProperty("openMode")
     private long openMode;
-    @lombok.Getter(onMethod_ = {@JsonProperty("price")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("price")})
+    @JsonProperty("price")
     private long price;
-    @lombok.Getter(onMethod_ = {@JsonProperty("quoteCourseId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("quoteCourseId")})
+    @JsonProperty("quoteCourseId")
     private long quoteCourseId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("recommendTag")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("recommendTag")})
+    @JsonProperty("recommendTag")
     private String recommendTag;
-    @lombok.Getter(onMethod_ = {@JsonProperty("router")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("router")})
+    @JsonProperty("router")
     private Router router;
-    @lombok.Getter(onMethod_ = {@JsonProperty("rules")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("rules")})
+    @JsonProperty("rules")
     private String rules;
-    @lombok.Getter(onMethod_ = {@JsonProperty("schoolId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("schoolId")})
+    @JsonProperty("schoolId")
     private long schoolId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("semesterEndTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("semesterEndTime")})
+    @JsonProperty("semesterEndTime")
     private String semesterEndTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("semesters")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("semesters")})
+    @JsonProperty("semesters")
     private Object semesters;
-    @lombok.Getter(onMethod_ = {@JsonProperty("semesterStartTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("semesterStartTime")})
+    @JsonProperty("semesterStartTime")
     private String semesterStartTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("sort")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("sort")})
+    @JsonProperty("sort")
     private long sort;
-    @lombok.Getter(onMethod_ = {@JsonProperty("source")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("source")})
+    @JsonProperty("source")
     private String source;
-    @lombok.Getter(onMethod_ = {@JsonProperty("status")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("status")})
+    @JsonProperty("status")
     private long status;
-    @lombok.Getter(onMethod_ = {@JsonProperty("subjectId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("subjectId")})
+    @JsonProperty("subjectId")
     private long subjectId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("summary")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("summary")})
+    @JsonProperty("summary")
     private String summary;
-    @lombok.Getter(onMethod_ = {@JsonProperty("title")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("title")})
+    @JsonProperty("title")
     private String title;
-    @lombok.Getter(onMethod_ = {@JsonProperty("type")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("type")})
+    @JsonProperty("type")
     private long type;
-    @lombok.Getter(onMethod_ = {@JsonProperty("updatedAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("updatedAt")})
+    @JsonProperty("updatedAt")
     private String updatedAt;
 }

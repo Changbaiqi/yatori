@@ -6,7 +6,6 @@ import java.util.List;
 
 @lombok.Data
 public class VideoList {
-    @lombok.Getter(onMethod_ = {@JsonProperty("list")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("list")})
+    @JsonProperty("list")
     private List<VideoListList> list;
 }

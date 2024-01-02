@@ -1,13 +1,16 @@
 package com.cbq.yatori.core.action.canghui.entity.mycourselistresponse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@lombok.Data
+@Data
 public class SectionCount {
-    @lombok.Getter(onMethod_ = {@JsonProperty("completeCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("completeCount")})
+
+    @JsonProperty("completeCount")
     private long completeCount;
-    @lombok.Getter(onMethod_ = {@JsonProperty("totalCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("totalCount")})
+
+    @JsonProperty("totalCount")
     private long totalCount;
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 @lombok.Data
 public class Router {
-    @lombok.Getter(onMethod_ = {@JsonProperty("data")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("data")})
+    @JsonProperty("data")
     private List<Datum> data;
 }

@@ -4,13 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 public class Banner {
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private String id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("image")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("image")})
+    @JsonProperty("image")
     private String image;
-    @lombok.Getter(onMethod_ = {@JsonProperty("name")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("name")})
+    @JsonProperty("name")
     private String name;
 }

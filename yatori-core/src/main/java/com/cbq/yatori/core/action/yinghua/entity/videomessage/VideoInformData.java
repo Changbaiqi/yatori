@@ -16,32 +16,26 @@ import java.io.IOException;
 @lombok.Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VideoInformData {
-    @lombok.Getter(onMethod_ = {@JsonProperty("cheat")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("cheat")})
+    @JsonProperty("cheat")
     private VideoInformCheat cheat;
-    @lombok.Getter(onMethod_ = {@JsonProperty("study_total")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("study_total")})
+    @JsonProperty("study_total")
     /**
      * 这个是用于统计学习相关的，比如学习时长
      */
     private VideoInformStudyTotal studyTotal;
-    @lombok.Getter(onMethod_ = {@JsonProperty("videoDuration")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("videoDuration")})
+    @JsonProperty("videoDuration")
     /**
      * 视屏总时长
      */
     private long videoDuration;
-    @lombok.Getter(onMethod_ = {@JsonProperty("videoId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("videoId")})
+    @JsonProperty("videoId")
     /**
      * 视屏id链接
      */
     private String videoId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("videoMime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("videoMime")})
+    @JsonProperty("videoMime")
     private String videoMime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("videoToken")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("videoToken")})
+    @JsonProperty("videoToken")
     private String videoToken;
 
 

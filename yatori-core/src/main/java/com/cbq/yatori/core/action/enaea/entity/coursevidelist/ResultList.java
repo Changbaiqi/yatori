@@ -4,151 +4,102 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 public class ResultList {
-    @lombok.Getter(onMethod_ = {@JsonProperty("bitRate")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("bitRate")})
+    @JsonProperty("bitRate")
     private String bitRate;
-    @lombok.Getter(onMethod_ = {@JsonProperty("canEditeTestDuringCourse")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("canEditeTestDuringCourse")})
+    @JsonProperty("canEditeTestDuringCourse")
     private Object canEditeTestDuringCourse;
-    @lombok.Getter(onMethod_ = {@JsonProperty("canSkipTest")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("canSkipTest")})
+    @JsonProperty("canSkipTest")
     private boolean canSkipTest;
-    @lombok.Getter(onMethod_ = {@JsonProperty("ccsiteId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("ccsiteId")})
+    @JsonProperty("ccsiteId")
     private Object ccsiteId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("ccvideoId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("ccvideoId")})
+    @JsonProperty("ccvideoId")
     private Object ccvideoId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("contentType")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("contentType")})
+    @JsonProperty("contentType")
     private Object contentType;
-    @lombok.Getter(onMethod_ = {@JsonProperty("convertStatus")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("convertStatus")})
+    @JsonProperty("convertStatus")
     private String convertStatus;
-    @lombok.Getter(onMethod_ = {@JsonProperty("convertType")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("convertType")})
+    @JsonProperty("convertType")
     private long convertType;
-    @lombok.Getter(onMethod_ = {@JsonProperty("courseAuthorityFlag")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("courseAuthorityFlag")})
+    @JsonProperty("courseAuthorityFlag")
     private long courseAuthorityFlag;
-    @lombok.Getter(onMethod_ = {@JsonProperty("courseId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("courseId")})
+    @JsonProperty("courseId")
     private Object courseId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("deadLineEnd")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("deadLineEnd")})
+    @JsonProperty("deadLineEnd")
     private Object deadLineEnd;
-    @lombok.Getter(onMethod_ = {@JsonProperty("deadLineStart")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("deadLineStart")})
+    @JsonProperty("deadLineStart")
     private Object deadLineStart;
-    @lombok.Getter(onMethod_ = {@JsonProperty("documentId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("documentId")})
+    @JsonProperty("documentId")
     private long documentId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("expired")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("expired")})
+    @JsonProperty("expired")
     private boolean expired;
-    @lombok.Getter(onMethod_ = {@JsonProperty("filename")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("filename")})
+    @JsonProperty("filename")
     private String filename; //视屏名称
-    @lombok.Getter(onMethod_ = {@JsonProperty("filepath")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("filepath")})
+    @JsonProperty("filepath")
     private Object filepath;
-    @lombok.Getter(onMethod_ = {@JsonProperty("filesize")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("filesize")})
+    @JsonProperty("filesize")
     private long filesize;
-    @lombok.Getter(onMethod_ = {@JsonProperty("hasTestAfterCourse")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("hasTestAfterCourse")})
+    @JsonProperty("hasTestAfterCourse")
     private boolean hasTestAfterCourse;
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private Long id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isCanModify")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isCanModify")})
+    @JsonProperty("isCanModify")
     private boolean isCanModify;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isDeadLine")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isDeadLine")})
+    @JsonProperty("isDeadLine")
     private Object isDeadLine;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isFree")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isFree")})
+    @JsonProperty("isFree")
     private boolean isFree;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isGuest")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isGuest")})
+    @JsonProperty("isGuest")
     private boolean isGuest;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isHaveOffline")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isHaveOffline")})
+    @JsonProperty("isHaveOffline")
     private boolean isHaveOffline;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isNeedBuy")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isNeedBuy")})
+    @JsonProperty("isNeedBuy")
     private boolean isNeedBuy;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isOrgAdmin")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isOrgAdmin")})
+    @JsonProperty("isOrgAdmin")
     private boolean isOrgAdmin;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isOrgAdminCandRead")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isOrgAdminCandRead")})
+    @JsonProperty("isOrgAdminCandRead")
     private boolean isOrgAdminCandRead;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isOwner")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isOwner")})
+    @JsonProperty("isOwner")
     private boolean isOwner;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isStart")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isStart")})
+    @JsonProperty("isStart")
     private Object isStart;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isTrial")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isTrial")})
+    @JsonProperty("isTrial")
     private Object isTrial;
-    @lombok.Getter(onMethod_ = {@JsonProperty("lastPlayPage")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("lastPlayPage")})
+    @JsonProperty("lastPlayPage")
     private Object lastPlayPage;
-    @lombok.Getter(onMethod_ = {@JsonProperty("lastPlayTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("lastPlayTime")})
+    @JsonProperty("lastPlayTime")
     private Object lastPlayTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("length")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("length")})
+    @JsonProperty("length")
     private String length;
-    @lombok.Getter(onMethod_ = {@JsonProperty("paperId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("paperId")})
+    @JsonProperty("paperId")
     private Object paperId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("paperName")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("paperName")})
+    @JsonProperty("paperName")
     private Object paperName;
-    @lombok.Getter(onMethod_ = {@JsonProperty("paperRedirectUrl")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("paperRedirectUrl")})
+    @JsonProperty("paperRedirectUrl")
     private Object paperRedirectUrl;
-    @lombok.Getter(onMethod_ = {@JsonProperty("photoPath")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("photoPath")})
+    @JsonProperty("photoPath")
     private String photoPath;
-    @lombok.Getter(onMethod_ = {@JsonProperty("rank")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("rank")})
+    @JsonProperty("rank")
     private long rank;
-    @lombok.Getter(onMethod_ = {@JsonProperty("redirectUrl")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("redirectUrl")})
+    @JsonProperty("redirectUrl")
     private Object redirectUrl;
-    @lombok.Getter(onMethod_ = {@JsonProperty("sign")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("sign")})
+    @JsonProperty("sign")
     private Object sign;
-    @lombok.Getter(onMethod_ = {@JsonProperty("snapshotInfoId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("snapshotInfoId")})
+    @JsonProperty("snapshotInfoId")
     private Object snapshotInfoId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("studyLength")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("studyLength")})
+    @JsonProperty("studyLength")
     private Object studyLength;
-    @lombok.Getter(onMethod_ = {@JsonProperty("studyProgress")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("studyProgress")})
+    @JsonProperty("studyProgress")
     private String studyProgress;
-    @lombok.Getter(onMethod_ = {@JsonProperty("testDuringCourseMessage")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("testDuringCourseMessage")})
+    @JsonProperty("testDuringCourseMessage")
     private Object testDuringCourseMessage;
-    @lombok.Getter(onMethod_ = {@JsonProperty("timesLeft")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("timesLeft")})
+    @JsonProperty("timesLeft")
     private long timesLeft;
-    @lombok.Getter(onMethod_ = {@JsonProperty("timesLimit")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("timesLimit")})
+    @JsonProperty("timesLimit")
     private long timesLimit;
-    @lombok.Getter(onMethod_ = {@JsonProperty("videoList")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("videoList")})
+    @JsonProperty("videoList")
     private VideoList videoList;
-    @lombok.Getter(onMethod_ = {@JsonProperty("videoType")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("videoType")})
+    @JsonProperty("videoType")
     private long videoType;
-    @lombok.Getter(onMethod_ = {@JsonProperty("volumeId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("volumeId")})
+    @JsonProperty("volumeId")
     private Object volumeId;
 }

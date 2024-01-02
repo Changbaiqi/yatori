@@ -9,7 +9,6 @@ public class ProgressDetail {
     /**
      * 这个是用于存相应视屏学时状态的
      */
-    @lombok.Getter(onMethod_ = {@JsonProperty("data")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("data")})
+    @JsonProperty("data")
     private List<ProgressDetailDatum> data;
 }

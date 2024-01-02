@@ -4,67 +4,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 public class LoginResponseData {
-    @lombok.Getter(onMethod_ = {@JsonProperty("account")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("account")})
+    @JsonProperty("account")
     private String account;
-    @lombok.Getter(onMethod_ = {@JsonProperty("age")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("age")})
+    @JsonProperty("age")
     private long age;
-    @lombok.Getter(onMethod_ = {@JsonProperty("avatar")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("avatar")})
+    @JsonProperty("avatar")
     private String avatar;
-    @lombok.Getter(onMethod_ = {@JsonProperty("birthday")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("birthday")})
+    @JsonProperty("birthday")
     private Object birthday;
-    @lombok.Getter(onMethod_ = {@JsonProperty("collegeId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("collegeId")})
+    @JsonProperty("collegeId")
     private long collegeId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("email")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("email")})
+    @JsonProperty("email")
     private String email;
-    @lombok.Getter(onMethod_ = {@JsonProperty("gender")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("gender")})
+    @JsonProperty("gender")
     private long gender;
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private long id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("iDCard")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("iDCard")})
+    @JsonProperty("iDCard")
     private String iDCard;
-    @lombok.Getter(onMethod_ = {@JsonProperty("identity")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("identity")})
+    @JsonProperty("identity")
     private long identity;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isAdmin")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isAdmin")})
+    @JsonProperty("isAdmin")
     private boolean isAdmin;
-    @lombok.Getter(onMethod_ = {@JsonProperty("memberRolesId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("memberRolesId")})
+    @JsonProperty("memberRolesId")
     private Object memberRolesId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("permission")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("permission")})
+    @JsonProperty("permission")
     private Object permission;
-    @lombok.Getter(onMethod_ = {@JsonProperty("phone")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("phone")})
+    @JsonProperty("phone")
     private String phone;
-    @lombok.Getter(onMethod_ = {@JsonProperty("realName")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("realName")})
+    @JsonProperty("realName")
     private String realName;
-    @lombok.Getter(onMethod_ = {@JsonProperty("schoolId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("schoolId")})
+    @JsonProperty("schoolId")
     private long schoolId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("schoolType")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("schoolType")})
+    @JsonProperty("schoolType")
     private long schoolType;
-    @lombok.Getter(onMethod_ = {@JsonProperty("status")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("status")})
+    @JsonProperty("status")
     private long status;
-    @lombok.Getter(onMethod_ = {@JsonProperty("studentNo")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("studentNo")})
+    @JsonProperty("studentNo")
     private String studentNo;
-    @lombok.Getter(onMethod_ = {@JsonProperty("token")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("token")})
+    @JsonProperty("token")
     private String token;
-    @lombok.Getter(onMethod_ = {@JsonProperty("weChat")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("weChat")})
+    @JsonProperty("weChat")
     private String weChat;
 }

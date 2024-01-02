@@ -4,97 +4,66 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 public class ListElement {
-    @lombok.Getter(onMethod_ = {@JsonProperty("canRemove")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("canRemove")})
+    @JsonProperty("canRemove")
     private boolean canRemove;
-    @lombok.Getter(onMethod_ = {@JsonProperty("canView")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("canView")})
+    @JsonProperty("canView")
     private boolean canView;
-    @lombok.Getter(onMethod_ = {@JsonProperty("circleId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("circleId")})
+    @JsonProperty("circleId")
     private Object circleId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("commentCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("commentCount")})
+    @JsonProperty("commentCount")
     private long commentCount;
-    @lombok.Getter(onMethod_ = {@JsonProperty("courseId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("courseId")})
+    @JsonProperty("courseId")
     private Object courseId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("endTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("endTime")})
+    @JsonProperty("endTime")
     private Object endTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("homeworkStatus")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("homeworkStatus")})
+    @JsonProperty("homeworkStatus")
     private Object homeworkStatus;
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private Object id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("introduce")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("introduce")})
+    @JsonProperty("introduce")
     private Object introduce;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isEvaluated")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isEvaluated")})
+    @JsonProperty("isEvaluated")
     private Object isEvaluated;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isReAnswer")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isReAnswer")})
+    @JsonProperty("isReAnswer")
     private boolean isReAnswer;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isRecommend")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isRecommend")})
+    @JsonProperty("isRecommend")
     private Object isRecommend;
-    @lombok.Getter(onMethod_ = {@JsonProperty("isRequired")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("isRequired")})
+    @JsonProperty("isRequired")
     private boolean isRequired;
-    @lombok.Getter(onMethod_ = {@JsonProperty("liveCourseShowDTO")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("liveCourseShowDTO")})
+    @JsonProperty("liveCourseShowDTO")
     private Object liveCourseShowDTO;
-    @lombok.Getter(onMethod_ = {@JsonProperty("passScore")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("passScore")})
+    @JsonProperty("passScore")
     private Object passScore;
-    @lombok.Getter(onMethod_ = {@JsonProperty("reAnswerReason")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("reAnswerReason")})
+    @JsonProperty("reAnswerReason")
     private Object reAnswerReason;
-    @lombok.Getter(onMethod_ = {@JsonProperty("remark")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("remark")})
+    @JsonProperty("remark")
     private String remark;
-    @lombok.Getter(onMethod_ = {@JsonProperty("resourceId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("resourceId")})
+    @JsonProperty("resourceId")
     private Object resourceId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("resourceRandomPaperId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("resourceRandomPaperId")})
+    @JsonProperty("resourceRandomPaperId")
     private Object resourceRandomPaperId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("score")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("score")})
+    @JsonProperty("score")
     private Object score;
-    @lombok.Getter(onMethod_ = {@JsonProperty("scoreTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("scoreTime")})
+    @JsonProperty("scoreTime")
     private Object scoreTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("screenName")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("screenName")})
+    @JsonProperty("screenName")
     private Object screenName;
-    @lombok.Getter(onMethod_ = {@JsonProperty("startTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("startTime")})
+    @JsonProperty("startTime")
     private Object startTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("studyCenterDTO")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("studyCenterDTO")})
+    @JsonProperty("studyCenterDTO")
     private StudyCenterDTO studyCenterDTO;
-    @lombok.Getter(onMethod_ = {@JsonProperty("submitTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("submitTime")})
+    @JsonProperty("submitTime")
     private Object submitTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("supportCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("supportCount")})
+    @JsonProperty("supportCount")
     private long supportCount;
-    @lombok.Getter(onMethod_ = {@JsonProperty("syllabusResourceId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("syllabusResourceId")})
+    @JsonProperty("syllabusResourceId")
     private long syllabusResourceId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("teacherName")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("teacherName")})
+    @JsonProperty("teacherName")
     private String teacherName;
-    @lombok.Getter(onMethod_ = {@JsonProperty("thesisStatus")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("thesisStatus")})
+    @JsonProperty("thesisStatus")
     private Object thesisStatus;
-    @lombok.Getter(onMethod_ = {@JsonProperty("title")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("title")})
+    @JsonProperty("title")
     private Object title;
-    @lombok.Getter(onMethod_ = {@JsonProperty("totalScore")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("totalScore")})
+    @JsonProperty("totalScore")
     private Object totalScore;
 }

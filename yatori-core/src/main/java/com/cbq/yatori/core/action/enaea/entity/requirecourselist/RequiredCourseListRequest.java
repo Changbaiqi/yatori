@@ -7,13 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @lombok.Data
 public class RequiredCourseListRequest {
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private long id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("result")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("result")})
+    @JsonProperty("result")
     private Result result;
-    @lombok.Getter(onMethod_ = {@JsonProperty("totalCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("totalCount")})
+    @JsonProperty("totalCount")
     private long totalCount;
 }

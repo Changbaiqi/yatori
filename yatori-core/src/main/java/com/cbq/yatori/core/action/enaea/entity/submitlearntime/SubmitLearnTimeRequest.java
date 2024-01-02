@@ -9,13 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SubmitLearnTimeRequest {
-    @lombok.Getter(onMethod_ = {@JsonProperty("message")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("message")})
+    @JsonProperty("message")
     private String message;
-    @lombok.Getter(onMethod_ = {@JsonProperty("progress")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("progress")})
+    @JsonProperty("progress")
     private long progress;
-    @lombok.Getter(onMethod_ = {@JsonProperty("success")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("success")})
+    @JsonProperty("success")
     private boolean success; //true代表提交学时成功，false代表提交失败
 }

@@ -6,13 +6,10 @@ import java.util.List;
 
 @lombok.Data
 public class MyCourseData {
-    @lombok.Getter(onMethod_ = {@JsonProperty("lists")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("lists")})
+    @JsonProperty("lists")
     private List<MyCourse> lists;
-    @lombok.Getter(onMethod_ = {@JsonProperty("pageNo")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("pageNo")})
+    @JsonProperty("pageNo")
     private long pageNo;
-    @lombok.Getter(onMethod_ = {@JsonProperty("total")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("total")})
+    @JsonProperty("total")
     private long total;
 }

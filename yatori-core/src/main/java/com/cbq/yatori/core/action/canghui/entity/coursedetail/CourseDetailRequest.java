@@ -7,19 +7,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @lombok.Data
 public class CourseDetailRequest {
-    @lombok.Getter(onMethod_ = {@JsonProperty("code")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("code")})
+    @JsonProperty("code")
     private long code;
-    @lombok.Getter(onMethod_ = {@JsonProperty("data")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("data")})
+    @JsonProperty("data")
     private CourseDetailData data;
-    @lombok.Getter(onMethod_ = {@JsonProperty("msg")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("msg")})
+    @JsonProperty("msg")
     private String msg;
-    @lombok.Getter(onMethod_ = {@JsonProperty("sub_code")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("sub_code")})
+    @JsonProperty("sub_code")
     private long subCode;
-    @lombok.Getter(onMethod_ = {@JsonProperty("sub_msg")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("sub_msg")})
+    @JsonProperty("sub_msg")
     private Object subMsg;
 }

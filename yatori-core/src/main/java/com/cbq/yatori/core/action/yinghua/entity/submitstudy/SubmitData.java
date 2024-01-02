@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SubmitData {
-    @lombok.Getter(onMethod_ = {@JsonProperty("studyId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("studyId")})
+    @JsonProperty("studyId")
     private long studyId;
 }

@@ -4,31 +4,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 public class College {
-    @lombok.Getter(onMethod_ = {@JsonProperty("createdAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("createdAt")})
+    @JsonProperty("createdAt")
     private String createdAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("deletedAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("deletedAt")})
+    @JsonProperty("deletedAt")
     private Object deletedAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private long id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("members")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("members")})
+    @JsonProperty("members")
     private Object members;
-    @lombok.Getter(onMethod_ = {@JsonProperty("name")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("name")})
+    @JsonProperty("name")
     private String name;
-    @lombok.Getter(onMethod_ = {@JsonProperty("schoolId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("schoolId")})
+    @JsonProperty("schoolId")
     private long schoolId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("status")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("status")})
+    @JsonProperty("status")
     private long status;
-    @lombok.Getter(onMethod_ = {@JsonProperty("summary")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("summary")})
+    @JsonProperty("summary")
     private String summary;
-    @lombok.Getter(onMethod_ = {@JsonProperty("updatedAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("updatedAt")})
+    @JsonProperty("updatedAt")
     private String updatedAt;
 }

@@ -6,52 +6,36 @@ import java.util.List;
 
 @lombok.Data
 public class Section {
-    @lombok.Getter(onMethod_ = {@JsonProperty("attachments")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("attachments")})
+    @JsonProperty("attachments")
     private List<String> attachments;
-    @lombok.Getter(onMethod_ = {@JsonProperty("chapter")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("chapter")})
+    @JsonProperty("chapter")
     private Object chapter;
-    @lombok.Getter(onMethod_ = {@JsonProperty("chapterId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("chapterId")})
+    @JsonProperty("chapterId")
     private long chapterId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("createdAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("createdAt")})
+    @JsonProperty("createdAt")
     private String createdAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("deletedAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("deletedAt")})
+    @JsonProperty("deletedAt")
     private Object deletedAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private long id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("key")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("key")})
+    @JsonProperty("key")
     private String key;
-    @lombok.Getter(onMethod_ = {@JsonProperty("link")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("link")})
+    @JsonProperty("link")
     private String link;
-    @lombok.Getter(onMethod_ = {@JsonProperty("name")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("name")})
+    @JsonProperty("name")
     private String name;
-    @lombok.Getter(onMethod_ = {@JsonProperty("process")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("process")})
+    @JsonProperty("process")
     private Process process;
-    @lombok.Getter(onMethod_ = {@JsonProperty("sort")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("sort")})
+    @JsonProperty("sort")
     private long sort;
-    @lombok.Getter(onMethod_ = {@JsonProperty("updatedAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("updatedAt")})
+    @JsonProperty("updatedAt")
     private String updatedAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("video")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("video")})
+    @JsonProperty("video")
     private String video;
-    @lombok.Getter(onMethod_ = {@JsonProperty("videoDuration")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("videoDuration")})
+    @JsonProperty("videoDuration")
     private long videoDuration;
-    @lombok.Getter(onMethod_ = {@JsonProperty("videoName")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("videoName")})
+    @JsonProperty("videoName")
     private String videoName;
-    @lombok.Getter(onMethod_ = {@JsonProperty("viewCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("viewCount")})
+    @JsonProperty("viewCount")
     private long viewCount;
 }

@@ -9,11 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @lombok.Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CCVideoRequest {
-    @lombok.Getter(onMethod_ = {@JsonProperty("message")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("message")})
+    @JsonProperty("message")
     private String message;
-    @lombok.Getter(onMethod_ = {@JsonProperty("success")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("success")})
+    @JsonProperty("success")
     private boolean success;
     private String SCFUCKPKey; //用于提交学时的Cookie的Key值
     private String SCFUCKPValue;//用于提交学时的Cookie的Value值

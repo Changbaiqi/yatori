@@ -4,16 +4,63 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cbq.yatori</groupId>
+    <groupId>io.github.changbaiqi</groupId>
     <artifactId>yatori-core</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-beta.1</version>
+    <packaging>jar</packaging>
+    <name>yatori-core</name>
+    <description>dddd</description>
+    <url>https://github.com/Changbaiqi/yatori</url>
+
+<!--    项目设定-->
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <gpg.passphrase>ChangBaiQi</gpg.passphrase>
+        <gpg.execurable>gpg</gpg.execurable>
+        <gpg.keyname>5EEF93A6802A35021D428FFA3630A31D4836EEE5</gpg.keyname>
+        <gpg.homedir>C:\Users\20840\.gnupg</gpg.homedir>
     </properties>
 
+    <!-- 许可证信息，这里是Apache 2.0的许可证，大家根据实际情况修改 -->
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>https://www.mit-license.org/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+<!--    开发人员信息-->
+    <developers>
+        <developer>
+            <name>长白崎</name>
+            <email>changbaiqi@foxmail.com</email>
+        </developer>
+    </developers>
+    <!--   项目仓库信息         -->
+    <scm>
+        <connection>scm:git:https://github.com/Changbaiqi/yatori.git</connection>
+        <developerConnection>https://github.com/Changbaiqi/yatori</developerConnection>
+        <url>https://github.com/Changbaiqi/yatori.git</url>
+        <tag>v${project.version}</tag>
+    </scm>
+
+    <!-- 中央仓库地址配置，不需要修改 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -64,5 +111,84 @@
             <version>2.4.0</version>
         </dependency>
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>1.18.0.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <sourceDirectory>src/main/java</sourceDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+            <!-- Source -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Javadoc工具 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- GPG -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+<!--                    这里配置gpg的密码，这里直接引用maven的setting.xml里面-->
+                    <passphraseServerId>ossez</passphraseServerId>
+                    <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
+                    </gpgArguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>

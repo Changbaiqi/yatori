@@ -4,70 +4,48 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 public class Semester {
-    @lombok.Getter(onMethod_ = {@JsonProperty("courseId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("courseId")})
+    @JsonProperty("courseId")
     private long courseId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("createdAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("createdAt")})
+    @JsonProperty("createdAt")
     private String createdAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("deletedAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("deletedAt")})
+    @JsonProperty("deletedAt")
     private Object deletedAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("endTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("endTime")})
+    @JsonProperty("endTime")
     private String endTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("EnrollClasses")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("EnrollClasses")})
+    @JsonProperty("EnrollClasses")
     private String enrollClasses;
-    @lombok.Getter(onMethod_ = {@JsonProperty("enrollScope")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("enrollScope")})
+    @JsonProperty("enrollScope")
     private long enrollScope;
-    @lombok.Getter(onMethod_ = {@JsonProperty("exams")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("exams")})
+    @JsonProperty("exams")
     private Object exams;
-    @lombok.Getter(onMethod_ = {@JsonProperty("id")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("id")})
+    @JsonProperty("id")
     private long id;
-    @lombok.Getter(onMethod_ = {@JsonProperty("joinCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("joinCount")})
+    @JsonProperty("joinCount")
     private long joinCount;
-    @lombok.Getter(onMethod_ = {@JsonProperty("joinEndTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("joinEndTime")})
+    @JsonProperty("joinEndTime")
     private long joinEndTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("joinLimit")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("joinLimit")})
+    @JsonProperty("joinLimit")
     private long joinLimit;
-    @lombok.Getter(onMethod_ = {@JsonProperty("joinStartTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("joinStartTime")})
+    @JsonProperty("joinStartTime")
     private long joinStartTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("memberId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("memberId")})
+    @JsonProperty("memberId")
     private long memberId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("rules")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("rules")})
+    @JsonProperty("rules")
     private String rules;
-    @lombok.Getter(onMethod_ = {@JsonProperty("schoolId")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("schoolId")})
+    @JsonProperty("schoolId")
     private long schoolId;
-    @lombok.Getter(onMethod_ = {@JsonProperty("startTime")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("startTime")})
+    @JsonProperty("startTime")
     private String startTime;
-    @lombok.Getter(onMethod_ = {@JsonProperty("status")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("status")})
+    @JsonProperty("status")
     private long status;
-    @lombok.Getter(onMethod_ = {@JsonProperty("students")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("students")})
+    @JsonProperty("students")
     private Object students;
-    @lombok.Getter(onMethod_ = {@JsonProperty("studentsCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("studentsCount")})
+    @JsonProperty("studentsCount")
     private long studentsCount;
-    @lombok.Getter(onMethod_ = {@JsonProperty("title")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("title")})
+    @JsonProperty("title")
     private String title;
-    @lombok.Getter(onMethod_ = {@JsonProperty("updatedAt")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("updatedAt")})
+    @JsonProperty("updatedAt")
     private String updatedAt;
-    @lombok.Getter(onMethod_ = {@JsonProperty("viewCount")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("viewCount")})
+    @JsonProperty("viewCount")
     private long viewCount;
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 @lombok.Data
 public class Result {
-    @lombok.Getter(onMethod_ = {@JsonProperty("list")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("list")})
+    @JsonProperty("list")
     private List<ResultList> list;
 }
