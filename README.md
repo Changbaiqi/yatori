@@ -110,6 +110,44 @@
 > ```
 >
 
+
+
+## 项目说明：
+
+> 以后项目将会分三个版本模块
+>
+> 1、yatori-core
+>
+> 2、yatori-console
+>
+> 3、yatori-web
+
+### yatori-core
+
+> 这个是给开发者用的，也是所有yatori衍生产品的核心，里面提供了刷课的API函数调用接口。
+>
+> 目前最新发布的是1.0.0-beta。2
+>
+> 不过目前项目暂未完善，所以也不需要急着引用开发。
+>
+> yatori-core也已经上线Maven中央仓库，直接Maven引入即可
+>
+> ```xml
+>         <dependency>
+>             <groupId>io.github.changbaiqi</groupId>
+>             <artifactId>yatori-core</artifactId>
+>             <version>1.0.0-beta.2</version>
+>         </dependency>
+> ```
+
+### yatori-console
+
+> 这个是基于yatori-core的衍生产品，也是可以直接使用的控制台版本，目前最为完善的可直接使用版本。在release里面下载即可。
+
+### yatori-web
+
+> 这个是基于yatori-web的衍生产品，也是可以直接使用的可视化Web控制版本，目前暂未开发好。暂时也还用不了。
+
 ## 免责声明：
 
 > 代码已开源，程序只供学习使用，严禁贩卖，若对贵公司造成损失立马删库（保命(doge)）。
