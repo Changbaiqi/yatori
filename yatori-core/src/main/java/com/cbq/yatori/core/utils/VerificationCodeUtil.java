@@ -1,7 +1,7 @@
 package com.cbq.yatori.core.utils;
 
-import top.gcszhn.d4ocr.OCREngine;
-import top.gcszhn.d4ocr.utils.IOUtils;
+import com.cbq.yatori.core.utils.dddd.OCREngine;
+import com.cbq.yatori.core.utils.dddd.utils.IOUtils;
 
 import java.io.File;
 import java.io.IOException;

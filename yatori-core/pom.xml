@@ -6,10 +6,10 @@
 
     <groupId>io.github.changbaiqi</groupId>
     <artifactId>yatori-core</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
     <packaging>jar</packaging>
     <name>yatori-core</name>
-    <description>dddd</description>
+    <description>Hello，这里是Yatori-core，也是Yatori系列核心项目之一</description>
     <url>https://github.com/Changbaiqi/yatori</url>
 
 <!--    项目设定-->
@@ -75,6 +75,12 @@
             <version>2.0.6</version>
         </dependency>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.25</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.26</version>
@@ -94,11 +100,6 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.10.1</version>
         </dependency>
-        <dependency>
-            <groupId>top.gcszhn</groupId>
-            <artifactId>d4ocr</artifactId>
-            <version>1.0</version>
-        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -110,7 +111,39 @@
             <artifactId>juniversalchardet</artifactId>
             <version>2.4.0</version>
         </dependency>
+
+        <!--log4j2-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+        <!--log4j2+slf4j桥接-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.17.2</version>
+        </dependency>
+
+<!--        ai库-->
+        <dependency>
+            <groupId>com.microsoft.onnxruntime</groupId>
+            <artifactId>onnxruntime</artifactId>
+            <version>1.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.76</version>
+        </dependency>
     </dependencies>
+
 
 
     <build>
@@ -172,6 +205,7 @@
                 <configuration>
 <!--                    这里配置gpg的密码，这里直接引用maven的setting.xml里面-->
                     <passphraseServerId>ossez</passphraseServerId>
+
                     <gpgArguments>
                         <arg>--pinentry-mode</arg>
                         <arg>loopback</arg>
@@ -181,6 +215,9 @@
                     <execution>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
+                        <configuration>
+                            <passphraseServerId>ossez</passphraseServerId>
+                        </configuration>
                         <goals>
                             <goal>sign</goal>
                         </goals>
