@@ -11,6 +11,7 @@
     <modules>
         <module>yatori-core</module>
         <module>yatori-console</module>
+        <module>yatori-web</module>
     </modules>
 
     <properties>

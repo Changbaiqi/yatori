@@ -4,31 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更改所有实体类注解格式，以及yatori-core发布至Maven中央仓库">
-      <change afterPath="$PROJECT_DIR$/yatori-core/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils/IOUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils/ImageUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils/LogUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils/ONNXRuntimeUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/resources/d4/common_det.onnx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/resources/d4/common_old.onnx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/resources/d4/common_old1.onnx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/resources/d4/common_old_charset.json" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="整理xml">
+      <change afterPath="$PROJECT_DIR$/yatori-web/src/main/resources/Banner.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yatori-web/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-console/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-console/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriLoginYingHua.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriUserYingHua.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/VerificationCodeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/VerificationCodeUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/src/assets/vue.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/src/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page/vite.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/main/resources/application.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,37 +93,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "true",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "",
-    "dart.analysis.tool.window.visible": "false",
-    "jdk.selected.JAVA_MODULE": "graalvm-17",
-    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15136719",
-    "project.structure.side.proportion": "0.343318",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "show.migrate.to.gradle.popup": "false",
-    "spring.configuration.checksum": "ae571d4151dab2375600dbda7bf394e7",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;graalvm-17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;ae571d4151dab2375600dbda7bf394e7&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.cbq.yatori.core.aggregate.yinghua" />
@@ -170,7 +169,7 @@
       <command value="mvn install -Dmaven.javadoc.skip=true" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.com.cbq.yatori.console.Application">
+  <component name="RunManager" selected="Spring Boot.YatoriWebApplication">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.Application" />
       <module name="brushlessons" />
@@ -193,22 +192,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ExcelUtilsTest.excute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="brushlessons" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.brushlessons.core.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.brushlessons.core.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.brushlessons.core.utils.ExcelUtilsTest" />
-      <option name="METHOD_NAME" value="excute" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -245,20 +228,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="YatoriWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yatori-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cbq.yatori.web.YatoriWebApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.yatori.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.com.cbq.yatori.console.Application" />
       <item itemvalue="Application.Application" />
       <item itemvalue="JUnit.YatoriUserTest.testTest1" />
       <item itemvalue="JUnit.LoginActionTest.testToLogin" />
-      <item itemvalue="JUnit.ExcelUtilsTest.excute" />
+      <item itemvalue="Spring Boot.YatoriWebApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.YatoriWebApplication" />
         <item itemvalue="Application.com.cbq.yatori.console.Application" />
         <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.YatoriUserTest.testTest1" />
         <item itemvalue="JUnit.LoginActionTest.testToLogin" />
-        <item itemvalue="JUnit.ExcelUtilsTest.excute" />
       </list>
     </recent_temporary>
   </component>
@@ -336,35 +332,8 @@
       <workItem from="1704178201986" duration="1776000" />
       <workItem from="1704185066565" duration="1589000" />
       <workItem from="1704186669244" duration="769000" />
-      <workItem from="1704187749958" duration="21079000" />
-    </task>
-    <task id="LOCAL-00060" summary="学习公社逆向登录成功">
-      <created>1699439377309</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1699439377309</updated>
-    </task>
-    <task id="LOCAL-00061" summary="修复graalvm配置文件缺漏">
-      <created>1699448011062</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1699448011063</updated>
-    </task>
-    <task id="LOCAL-00062" summary="更新README">
-      <created>1699448024943</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1699448024943</updated>
-    </task>
-    <task id="LOCAL-00063" summary="更新graalvm配置文件">
-      <created>1699449023679</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1699449023679</updated>
+      <workItem from="1704187749958" duration="25306000" />
+      <workItem from="1704294264276" duration="1216000" />
     </task>
     <task id="LOCAL-00064" summary="修复正常模式刷课乱序bug">
       <created>1699501224314</created>
@@ -681,7 +650,35 @@
       <option name="project" value="LOCAL" />
       <updated>1704195377881</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="新增加英华部分API">
+      <created>1704284680818</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1704284680818</updated>
+    </task>
+    <task id="LOCAL-00110" summary="更新项目结构说明">
+      <created>1704285466729</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1704285466729</updated>
+    </task>
+    <task id="LOCAL-00111" summary="更新缺失文件">
+      <created>1704287211386</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1704287211386</updated>
+    </task>
+    <task id="LOCAL-00112" summary="整理xml">
+      <created>1704288107132</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1704288107132</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,10 +709,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="修复空指针bug" />
-    <MESSAGE value="更新配置文件" />
-    <MESSAGE value="更新v1.2.3-beta.2版本参数说明" />
-    <MESSAGE value="更新英华考试接口" />
     <MESSAGE value="更新README" />
     <MESSAGE value="更新暴力模式下的视屏时长检测，解决暴力模式下时间刷不满的bug" />
     <MESSAGE value="修复部分运行报错问题" />
@@ -737,7 +730,11 @@
     <MESSAGE value="更新项目目录结构，为后续项目架构重构提供更好的划分。" />
     <MESSAGE value="准备启动可视化Web项目计划" />
     <MESSAGE value="更改所有实体类注解格式，以及yatori-core发布至Maven中央仓库" />
-    <option name="LAST_COMMIT_MESSAGE" value="更改所有实体类注解格式，以及yatori-core发布至Maven中央仓库" />
+    <MESSAGE value="新增加英华部分API" />
+    <MESSAGE value="更新项目结构说明" />
+    <MESSAGE value="更新缺失文件" />
+    <MESSAGE value="整理xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="整理xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
