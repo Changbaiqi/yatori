@@ -157,15 +157,16 @@ public class CourseAction {
      * 提交学时
      *
      * @param user    课程的semesterId
+     * @param semesterId 对应MyCourse类里面的semesterId
      * @param sectionId  视屏的sectionId，也就是id
      */
-    public static SubmitStudyTimeRequest submitLearnTime(User user, MyCourse course,Long sectionId,Long studyTime) {
+    public static SubmitStudyTimeRequest submitLearnTime(User user, Long semesterId,Long sectionId,Long studyTime) {
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
-            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"semesterId\": " + course.getSemesterId() + ",\r\n    \"sectionId\": \"" + sectionId + "\",\r\n    \"position\": " + studyTime + "\r\n}");
+            RequestBody body = RequestBody.create(mediaType, "{\r\n    \"semesterId\": " + semesterId + ",\r\n    \"sectionId\": \"" + sectionId + "\",\r\n    \"position\": " + studyTime + "\r\n}");
             //RequestBody body = RequestBody.create(mediaType,"");
             Request request = new Request.Builder()
                     .url(user.getUrl() + "/api/v1/course/study/upload/progress")

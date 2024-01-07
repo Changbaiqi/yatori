@@ -41,7 +41,9 @@ public class YingHuaAllChapterOperation {
          */
         private void buildChapterOperations(){
             for (VideoList videoList : chapterList) {
-                yingHuaChapterOperations.add(YingHuaChapterOperation.builder().build());
+                yingHuaChapterOperations.add(YingHuaChapterOperation.builder()
+                        .chapter(videoList)
+                        .build());
             }
         }
 

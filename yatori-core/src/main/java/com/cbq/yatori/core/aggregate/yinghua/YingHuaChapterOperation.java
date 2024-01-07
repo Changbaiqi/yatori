@@ -55,7 +55,9 @@ public class YingHuaChapterOperation {
             nodeLists = chapter.getNodeList();
 
             yingHuaAllVideosOperation = YingHuaAllVideosOperation.builder()
-                    .videosList(nodeLists).build();
+                    .user(user)
+                    .videosList(nodeLists)
+                    .build();
         }
 
 

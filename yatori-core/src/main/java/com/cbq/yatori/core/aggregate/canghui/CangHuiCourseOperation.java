@@ -56,6 +56,7 @@ public class CangHuiCourseOperation {
             if (courseDetail.getChapters() != null)
                 cangHuiAllChapterOperation = CangHuiAllChapterOperation.builder()
                         .user(user)
+                        .semesterId(courseDetail.getCurrentSemesterId())
                         .chapterList(courseDetail.getChapters()).build();
         }
 

@@ -2,6 +2,7 @@ package com.cbq.yatori.core.aggregate.yinghua;
 
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.NodeList;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoList;
+import com.cbq.yatori.core.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +27,16 @@ public class YingHuaAllVideosOperation {
 
     public static class YingHuaAllVideosOperationBuilder{
 
-
+        private User user;
         private List<NodeList> videosList; //对应章节视屏集合
 
         private ArrayList<YingHuaVideoOperation> yingHuaVideoOperations; //视屏操作列表
 
 
-
+        public YingHuaAllVideosOperationBuilder user(User user){
+            this.user = user;
+            return this;
+        }
         public YingHuaAllVideosOperationBuilder videosList(List<NodeList> nodeLists){
             this.videosList = videosList;
             return this;
@@ -44,7 +48,7 @@ public class YingHuaAllVideosOperation {
         private void buildVideos(){
 
             for (NodeList nodeList : videosList) {
-                yingHuaVideoOperations.add(YingHuaVideoOperation.builder().node(nodeList).build());
+                yingHuaVideoOperations.add(YingHuaVideoOperation.builder().user(user).node(nodeList).build());
             }
         }
 

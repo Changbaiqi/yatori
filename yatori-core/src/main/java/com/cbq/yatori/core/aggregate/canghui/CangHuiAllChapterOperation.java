@@ -9,7 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CangHuiAllChapterOperation {
+    private User user;
     private ArrayList<CangHuiChapterOperation> cangHuiChapterOperations;
+
+
+    public CangHuiAllChapterOperation(User user, ArrayList<CangHuiChapterOperation> cangHuiChapterOperations) {
+        this.user = user;
+        this.cangHuiChapterOperations = cangHuiChapterOperations;
+    }
 
     public static CangHuiAllChapterOperationBuilder builder(){
         return new CangHuiAllChapterOperationBuilder();
@@ -19,11 +26,16 @@ public class CangHuiAllChapterOperation {
     public static class CangHuiAllChapterOperationBuilder{
 
         private User user;
+        private long semesterId;
         private List<Chapter> chapterList;
         private ArrayList<CangHuiChapterOperation> cangHuiChapterOperations;
 
         public CangHuiAllChapterOperationBuilder user(User user){
             this.user = user;
+            return this;
+        }
+        public CangHuiAllChapterOperationBuilder semesterId(long semesterId){
+            this.semesterId = semesterId;
             return this;
         }
         public CangHuiAllChapterOperationBuilder chapterList(List<Chapter> chapterList){
@@ -33,7 +45,14 @@ public class CangHuiAllChapterOperation {
 
 
         private void buildChapterOperation(){
-
+            ArrayList<CangHuiChapterOperation> list  = new ArrayList<>();
+            for (Chapter chapter : chapterList) {
+                list.add(CangHuiChapterOperation.builder()
+                        .user(user)
+                        .semesterId(semesterId)
+                        .chapter(chapter)
+                        .build());
+            }
         }
         public CangHuiAllChapterOperation build(){
 
@@ -41,7 +60,7 @@ public class CangHuiAllChapterOperation {
             buildChapterOperation();
 
 
-            return new CangHuiAllChapterOperation();
+            return new CangHuiAllChapterOperation(user,cangHuiChapterOperations);
         }
     }
 }

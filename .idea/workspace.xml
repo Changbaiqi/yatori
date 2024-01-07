@@ -4,28 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="删除前端页面项目，后续分离">
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllChapterOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllCoursesOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllVideosOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiChapterOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiCourseOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiVideoOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/YatoriCangHuiLogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/YatoriCangHuiUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllCoursesOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllVideosOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaChapterOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaCourseOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaVideoOperation.java" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="完善yaotri-core英华部分基础功能API，有想对英华进行二次开发的可以使用了">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/java/com/cbq/yatori/console/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-console/src/main/java/com/cbq/yatori/console/run/Launch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaOperation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YatoriYingHuaUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllChapterOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllChapterOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllVideosOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllVideosOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiChapterOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiChapterOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiCourseOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiCourseOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiVideoOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiVideoOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllChapterOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllChapterOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllVideosOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllVideosOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaChapterOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaChapterOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaVideoOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaVideoOperation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,14 +326,7 @@
       <workItem from="1704533949157" duration="1600000" />
       <workItem from="1704541515428" duration="1328000" />
       <workItem from="1704559417288" duration="4228000" />
-      <workItem from="1704634241002" duration="6699000" />
-    </task>
-    <task id="LOCAL-00065" summary="修复超时提示bug">
-      <created>1699969895456</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1699969895456</updated>
+      <workItem from="1704634241002" duration="10637000" />
     </task>
     <task id="LOCAL-00066" summary="新添支持创能平台">
       <created>1699973822120</created>
@@ -681,7 +664,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704295528800</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="完善yaotri-core英华部分基础功能API，有想对英华进行二次开发的可以使用了">
+      <created>1704646391804</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1704646391805</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +702,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新暴力模式下的视屏时长检测，解决暴力模式下时间刷不满的bug" />
     <MESSAGE value="修复部分运行报错问题" />
     <MESSAGE value="修复紧急bug，嗯，就是作者老抽写错参数了，可能导致死循环刷。" />
     <MESSAGE value="修复紧急bug，嗯，就是作者脑抽写错参数了，可能导致死循环刷。" />
@@ -737,7 +726,8 @@
     <MESSAGE value="更新缺失文件" />
     <MESSAGE value="整理xml" />
     <MESSAGE value="删除前端页面项目，后续分离" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除前端页面项目，后续分离" />
+    <MESSAGE value="完善yaotri-core英华部分基础功能API，有想对英华进行二次开发的可以使用了" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善yaotri-core英华部分基础功能API，有想对英华进行二次开发的可以使用了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

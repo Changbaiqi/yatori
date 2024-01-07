@@ -37,7 +37,9 @@ public class YingHuaVideoOperation {
     /**
      * 用于初始化
      */
-    public YingHuaVideoOperation() {
+    public YingHuaVideoOperation(User user,NodeList videoInform) {
+        this.user = user;
+        this.videoInform = videoInform;
         if (thread == null)//初始化视屏线程任务
             videoAction();
     }
@@ -154,8 +156,15 @@ public class YingHuaVideoOperation {
     }
 
     public static class YingHuaVideoOperationBuilder {
+
+        private User user;
         private NodeList node; //识破节点原始数据
 
+
+        public YingHuaVideoOperationBuilder user(User user){
+            this.user = user;
+            return this;
+        }
 
         public YingHuaVideoOperationBuilder node(NodeList node) {
             this.node = node;
@@ -164,7 +173,7 @@ public class YingHuaVideoOperation {
 
 
         public YingHuaVideoOperation build() {
-            return new YingHuaVideoOperation();
+            return new YingHuaVideoOperation(user,node);
         }
 
 
