@@ -1,22 +1,7 @@
 package com.cbq.yatori.console.run;
 
 
-//import com.cbq.yatori.core.action.canghui.entity.loginresponse.LoginResponseRequest;
-//import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.Course;
-//import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.MyCourse;
-//import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.MyCourseData;
-//import com.cbq.yatori.core.action.enaea.entity.LoginAblesky;
-//import com.cbq.yatori.core.action.enaea.entity.underwayproject.ResultList;
-//import com.cbq.yatori.core.action.enaea.entity.underwayproject.UnderwayProjectRquest;
-//import com.cbq.yatori.core.action.yinghua.CourseAction;
-//import com.cbq.yatori.core.action.yinghua.CourseStudyAction;
-//import com.cbq.yatori.core.action.yinghua.LoginAction;
-//import com.cbq.yatori.core.action.yinghua.entity.allcourse.CourseInform;
-//import com.cbq.yatori.core.action.yinghua.entity.allcourse.CourseRequest;
-//import com.cbq.yatori.core.entity.*;
-//import com.cbq.yatori.core.utils.ConfigUtils;
-//import com.cbq.yatori.core.utils.FileUtils;
-//import com.cbq.yatori.core.utils.VerificationCodeUtil;
+
 import com.cbq.yatori.core.action.canghui.entity.loginresponse.LoginResponseRequest;
 import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.MyCourse;
 import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.MyCourseData;

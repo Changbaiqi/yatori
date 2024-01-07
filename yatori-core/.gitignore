@@ -2,6 +2,7 @@ target
 config.json
 cache
 *.drawio
+*.bkp
 *.xlsx
 *.xls
 json.txt

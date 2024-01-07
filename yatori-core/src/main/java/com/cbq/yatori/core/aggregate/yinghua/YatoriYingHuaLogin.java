@@ -12,9 +12,12 @@ public class YatoriYingHuaLogin extends YatoriLogin {
         this.user = user;
     }
 
-    @Override
-    public YatoriYingHuaOperation getOperation() {
 
-        return null;
+    /**
+     * 获取课程对象
+     * @return
+     */
+    public YingHuaAllCoursesOperation getAllCoursesOperation(){
+        return YingHuaAllCoursesOperation.builder().user(user).build();
     }
 }
