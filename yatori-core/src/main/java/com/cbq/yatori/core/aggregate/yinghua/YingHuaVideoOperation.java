@@ -56,6 +56,8 @@ public class YingHuaVideoOperation {
         }
     }
 
+
+
     /**
      * 暂停视屏刷课
      */
@@ -70,7 +72,7 @@ public class YingHuaVideoOperation {
     /**
      * 视屏活动
      */
-    public void videoAction() {
+    private void videoAction() {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache(); //账号缓存信息
 
         //获取到视屏观看信息
@@ -148,6 +150,15 @@ public class YingHuaVideoOperation {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    /**
+     * 获取视屏进度
+     * @return
+     */
+    public double getProgress(){
+        return (double) studyTime/videoDuration;
     }
 
 

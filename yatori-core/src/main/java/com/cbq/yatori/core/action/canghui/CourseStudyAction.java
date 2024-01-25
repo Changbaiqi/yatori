@@ -103,7 +103,7 @@ public class CourseStudyAction implements Runnable {
                     }
                 }
 
-                SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitLearnTime(user, myCourse, videoId, studyTime);
+                SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitLearnTime(user, myCourse.getSemesterId(), videoId, studyTime);
 
                 try {
                     if (submitStudyTimeRequest != null) {
@@ -188,7 +188,7 @@ public class CourseStudyAction implements Runnable {
                     //添加学时
                     studyTime += studyInterval;
 
-                    SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitLearnTime(user, myCourse, resVideoId, studyTime);
+                    SubmitStudyTimeRequest submitStudyTimeRequest = CourseAction.submitLearnTime(user, myCourse.getSemesterId(), resVideoId, studyTime);
                     try {
                         if (submitStudyTimeRequest != null) {
                             if (submitStudyTimeRequest.getMsg().contains("登录超时")) {

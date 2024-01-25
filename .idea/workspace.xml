@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="完善yaotri-core英华部分基础功能API，有想对英华进行二次开发的可以使用了">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="完善yaotri-core仓辉视屏刷课部分基础功能API，有想对仓辉进行二次开发的可以使用了">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllChapterOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllChapterOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllVideosOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiAllVideosOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiChapterOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiChapterOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiCourseOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiCourseOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseStudyAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiVideoOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/canghui/CangHuiVideoOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllChapterOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllChapterOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllVideosOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaAllVideosOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaChapterOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaChapterOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaVideoOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaVideoOperation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,11 +63,6 @@
         <option name="userSettingsFile" value="D:\Maven\settings.xml" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
@@ -80,46 +70,50 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
   <component name="ProjectId" id="2X9X57bo05YYW134VQWkgg8sNKm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;graalvm-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;ae571d4151dab2375600dbda7bf394e7&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "",
+    "dart.analysis.tool.window.visible": "false",
+    "jdk.selected.JAVA_MODULE": "graalvm-17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15136719",
+    "project.structure.side.proportion": "0.343318",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "show.migrate.to.gradle.popup": "false",
+    "spring.configuration.checksum": "ae571d4151dab2375600dbda7bf394e7",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.cbq.yatori.core.aggregate.yinghua" />
@@ -244,6 +238,13 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-graalvm-jdk-17.0.9-f644763e9732-ba762f68" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -326,14 +327,10 @@
       <workItem from="1704533949157" duration="1600000" />
       <workItem from="1704541515428" duration="1328000" />
       <workItem from="1704559417288" duration="4228000" />
-      <workItem from="1704634241002" duration="10637000" />
-    </task>
-    <task id="LOCAL-00066" summary="新添支持创能平台">
-      <created>1699973822120</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1699973822120</updated>
+      <workItem from="1704634241002" duration="11657000" />
+      <workItem from="1704784849743" duration="3817000" />
+      <workItem from="1704911884481" duration="45000" />
+      <workItem from="1706201335246" duration="1204000" />
     </task>
     <task id="LOCAL-00067" summary="新添支持创能平台">
       <created>1699973877369</created>
@@ -671,7 +668,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704646391805</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="完善yaotri-core仓辉视屏刷课部分基础功能API，有想对仓辉进行二次开发的可以使用了">
+      <created>1704650243297</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1704650243297</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +706,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="修复部分运行报错问题" />
     <MESSAGE value="修复紧急bug，嗯，就是作者老抽写错参数了，可能导致死循环刷。" />
     <MESSAGE value="修复紧急bug，嗯，就是作者脑抽写错参数了，可能导致死循环刷。" />
     <MESSAGE value="嗯，一个没啥用的类" />
@@ -727,7 +730,8 @@
     <MESSAGE value="整理xml" />
     <MESSAGE value="删除前端页面项目，后续分离" />
     <MESSAGE value="完善yaotri-core英华部分基础功能API，有想对英华进行二次开发的可以使用了" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善yaotri-core英华部分基础功能API，有想对英华进行二次开发的可以使用了" />
+    <MESSAGE value="完善yaotri-core仓辉视屏刷课部分基础功能API，有想对仓辉进行二次开发的可以使用了" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善yaotri-core仓辉视屏刷课部分基础功能API，有想对仓辉进行二次开发的可以使用了" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

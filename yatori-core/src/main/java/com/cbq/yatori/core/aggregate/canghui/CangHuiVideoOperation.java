@@ -50,8 +50,10 @@ public class CangHuiVideoOperation {
         }
     }
 
-
-    public void videoAction() {
+    /**
+     * 视屏刷课Action
+     */
+    private void videoAction() {
         AccountCacheCangHui cache= (AccountCacheCangHui) user.getCache();
         thread = new Thread(()->{
 
@@ -91,6 +93,15 @@ public class CangHuiVideoOperation {
         }
 
     }
+
+    /**
+     * 获取视屏时长
+     * @return
+     */
+    public double getProgress(){
+        return (double) studyTime/videoDuration;
+    }
+
 
 
     public static CangHuiVideoOperationBuilder builder(){

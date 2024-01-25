@@ -3,7 +3,9 @@
 ---
 <div align="center"><img width="100px" src="https://img.shields.io/badge/Java17-passing-r.svg"></img> <img width="125px" src="https://img.shields.io/badge/Maven3.8.1-building-r.svg"></img></div>
 
-<div align="center"><img width="200" src="https://q1.qlogo.cn/g?b=qq&nk=2084069833&s=640"></img></div>
+<div align="center"><img width="200" class="round_icon" style="border-radius: 50%;" src="https://q1.qlogo.cn/g?b=qq&nk=2084069833&s=640"></img></div>
+
+
 
 <div align="center"><h2>Yatori</h2></div>
 
@@ -13,9 +15,9 @@
 >
 > B站：[BiliBili for 长白崎](https://space.bilibili.com/36987520)（不定时更新计算机相关技术教程）
 >
-> 个人博客：[长白崎的个人博客 (changbaiqi.github.io)](https://changbaiqi.github.io/)
+> 个人博客：[长白崎の个人博客 (changbaiqi.top)](https://blogs.changbaiqi.top/)
 >
-> 技术打赏：[技术打赏 | 长白崎的个人博客 (changbaiqi.github.io)](https://changbaiqi.github.io/post/ji-zhu-da-shang/)
+> 技术打赏：[赞助墙 | 长白崎の个人博客 (changbaiqi.top)](https://blogs.changbaiqi.top/sponsorWall/)
 
 ## 功能支持及特性：
 
