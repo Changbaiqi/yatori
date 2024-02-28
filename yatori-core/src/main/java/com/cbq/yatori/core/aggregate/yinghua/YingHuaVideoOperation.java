@@ -28,7 +28,7 @@ public class YingHuaVideoOperation {
 
     private long studyId = 0; //当前学习ID（随时可能变化）
 
-    Thread thread = null; //当前刷视屏的线程
+    private Thread thread = null; //当前刷视屏的线程
 
     private long videoDuration = 0; //当前视屏总时长
 
