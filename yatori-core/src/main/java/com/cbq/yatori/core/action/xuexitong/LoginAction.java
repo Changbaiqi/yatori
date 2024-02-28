@@ -11,6 +11,7 @@ import okhttp3.*;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +24,7 @@ public class LoginAction {
      * @param user
      */
     public static Map<String,Object> toLogin(User user){
-
+        AccountCacheXueXiTong cache = (AccountCacheXueXiTong) user.getCache();
         String acc= EncryptByDESUtils.encryptAES(user.getAccount().getBytes(),"u2oh6Vu^HWe4_AES", "u2oh6Vu^HWe4_AES"); //模仿账号加密
         String pass = EncryptByDESUtils.encryptAES(user.getPassword().getBytes(), "u2oh6Vu^HWe4_AES", "u2oh6Vu^HWe4_AES"); //模仿密码加密
 
@@ -45,7 +46,6 @@ public class LoginAction {
         Request request = new Request.Builder()
                 .url("https://passport2.chaoxing.com/fanyalogin")
                 .method("POST", body)
-//                .addHeader("Cookie", ((AccountCacheXueXiTong)user.getCache()).getSession())
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                 .build();
         try {
@@ -56,6 +56,13 @@ public class LoginAction {
             }
             String json = response.body().string();
             System.out.println(json);
+            Headers headers = response.headers();
+            List<String> cookies = headers.values("Set-Cookie");
+            StringBuilder stringBuilder = new StringBuilder();
+            for (String cookie : cookies) {
+                stringBuilder.append(cookie.split(";")[0]+";");
+            }
+            cache.setSession(stringBuilder.toString()); //设置SESSION
 //            return result;
         }catch (SocketTimeoutException e){
             return null;
