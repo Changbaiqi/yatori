@@ -56,7 +56,7 @@
 >
 > 以及不能用[https://mooc.yinghuaonline.com/](https://mooc.yinghuaonline.com/)，要用自己学校的链接，比如[https://mooc.xxx.cn/](https://mooc.xxx.cn/)，每个学校的链接都不同，这个可以自己去找去问。
 >
-> 配置文件说明：
+> 配置文件说明（注意！！！其实大部分参数可以根据需求进行省略不写，以下只是对于各参数的例子罢了！）：
 >
 > ```json
 > {
