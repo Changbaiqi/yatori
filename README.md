@@ -158,3 +158,10 @@
 
 > 代码已开源，程序只供学习使用，严禁贩卖，若对贵公司造成损失立马删库（保命(doge)）。
 
+
+
+## 鸣谢
+
+> 感谢[**JetBrains**](https://www.jetbrains.com/zh-cn/community/opensource/#support)提供的开源开发许可证，JetBrains 通过为核心项目贡献者免费提供一套一流的开发者工具来支持非商业开源项目。
+>
+> <img src="./README/images/jetbrains-variant-3.png" alt="jetbrains-variant-3" width="200px" />
