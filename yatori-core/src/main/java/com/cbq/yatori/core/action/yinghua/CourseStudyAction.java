@@ -99,7 +99,8 @@ public class CourseStudyAction implements Runnable {
                 //开始看视屏---------------
                 long studyTime = Long.parseLong(studyTotal.getDuration());
 
-
+                //直接先提交一次，这里是为了防止傻逼英华TM自己传的参数都搞错整成了视屏时长为0的问题（傻逼英华，连个参数都传错了）
+                CourseAction.submitStudyTime(user, videoInform, studyTime+studyInterval, studyId);
                 //循环进行学习
                 while ((studyTime += studyInterval) < videoDuration + studyInterval) {
                     //这里根据账号账号登录状态进行策划行为
