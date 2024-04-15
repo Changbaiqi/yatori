@@ -2,8 +2,10 @@ package com.cbq.yatori.core.action.yinghua;
 
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
 import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.utils.CustomTrustManager;
 import okhttp3.*;
 
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 
 /**
@@ -22,6 +24,8 @@ public class ExamAction {
     public static void getExam(User user,String nodeId){
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("multipart/form-data; boundary=--------------------------393670526422134055864302");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -57,6 +61,8 @@ public class ExamAction {
     public static void startExam(User user,String courseId,String nodeId,String examId){
         AccountCacheYingHua cache = (AccountCacheYingHua)user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("multipart/form-data; boundary=--------------------------244120585315146738764763");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -96,6 +102,8 @@ public class ExamAction {
     public static void submitExam(User user,String examId,String answerId, String answer,String finish){
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("multipart/form-data; boundary=--------------------------326388482122783598484776");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)

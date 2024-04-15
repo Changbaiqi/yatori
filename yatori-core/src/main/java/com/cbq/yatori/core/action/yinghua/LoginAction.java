@@ -2,19 +2,17 @@ package com.cbq.yatori.core.action.yinghua;
 
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
 import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.utils.CustomTrustManager;
 import com.cbq.yatori.core.utils.FileUtils;
-import com.cbq.yatori.core.utils.VerificationCodeUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
+import javax.net.ssl.X509TrustManager;
 import java.io.File;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +20,8 @@ import java.util.regex.Pattern;
 public class LoginAction {
     public static String getSESSION(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
@@ -50,6 +50,8 @@ public class LoginAction {
 
     public static File getCode(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
@@ -80,6 +82,8 @@ public class LoginAction {
      */
     public static Map<String,Object> toLogin(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -127,6 +131,8 @@ public class LoginAction {
      */
     public static Map online(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)

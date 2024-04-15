@@ -13,9 +13,11 @@ import com.cbq.yatori.core.action.yinghua.entity.videomessage.ConverterVideoMess
 import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformRequest;
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
 import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.utils.CustomTrustManager;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.time.Duration;
@@ -32,6 +34,8 @@ public class CourseAction {
         if(user.getAccount()==null) user.setCache(new AccountCacheYingHua());
 
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -72,6 +76,8 @@ public class CourseAction {
      */
     public static VideoRequest getCourseVideosList(User user, CourseInform courseInform){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -111,6 +117,8 @@ public class CourseAction {
      */
     public static VideoInformRequest getVideMessage(User user, NodeList videoInform){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -160,6 +168,8 @@ public class CourseAction {
      */
     public static SubmitStudyTimeRequest submitStudyTime(User user, NodeList videoInform, long studyTime, long studyId){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
