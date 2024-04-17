@@ -68,7 +68,7 @@ public class Launch {
     public void toRun() {
         //获取账号列表-----------------------------
         List<User> users = config.getUsers();
-
+        Boolean  IsOpenMail=config.getSetting().getEmailInform().getEmail()!="";
 
         //先进行登录----------------------------------------------
         for (User user : users) {
