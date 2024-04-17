@@ -13,10 +13,14 @@ import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformStudyTo
 import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformRequest;
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
 import com.cbq.yatori.core.entity.CoursesCostom;
+import com.cbq.yatori.core.entity.EmailInform;
 import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.utils.ConfigUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
+import com.cbq.yatori.core.utils.EmailUtil;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +43,7 @@ public class CourseStudyAction implements Runnable {
     private long studyId = 0;
     private Boolean newThread = false;
 
+    private static final Boolean IsOpenmail =ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
     private long studyInterval = 5;
 
     private Long accoVideo = 0L;
@@ -72,6 +77,13 @@ public class CourseStudyAction implements Runnable {
     public void run() {
         log.info("{}:正在学习课程>>>{}", user.getAccount(), courseInform.getName());
         study1();
+        if(IsOpenmail){
+        try {
+            EmailUtil.sendEmail(user.getAccount(),courseInform.getName());
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }}
+
         log.info("{}:{}学习完毕！", user.getAccount(), courseInform.getName());
     }
 

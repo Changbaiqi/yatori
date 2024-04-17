@@ -1,5 +1,6 @@
 package com.cbq.yatori.core.action.enaea;
-
+import com.cbq.yatori.core.utils.ConfigUtils;
+import com.cbq.yatori.core.utils.EmailUtil;
 import com.cbq.yatori.core.action.enaea.entity.ccvideo.CCVideoRequest;
 import com.cbq.yatori.core.action.enaea.entity.coursevidelist.CourseVideoListRequest;
 import com.cbq.yatori.core.action.enaea.entity.requirecourselist.ListElement;
@@ -12,9 +13,12 @@ import com.cbq.yatori.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.mail.MessagingException;
+
 @Slf4j
 public class CourseStudyAction implements Runnable {
     private User user;
+    private static final Boolean IsOpenmail = ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
 
     //正在进行的其中一个项目
     ResultList resultList;
@@ -108,6 +112,12 @@ public class CourseStudyAction implements Runnable {
     public void run() {
         log.info("{}:正在学习项目>>>{}", user.getAccount(),resultList.getClusterName());
         study1();
+        if(IsOpenmail){
+            try {
+                EmailUtil.sendEmail(user.getAccount(), resultList.getClusterName());
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }}
         log.info("{}:{}学习完毕！",  user.getAccount(),resultList.getClusterName());
     }
 
