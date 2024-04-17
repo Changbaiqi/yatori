@@ -1,5 +1,6 @@
 package com.cbq.yatori.core.action.canghui;
-
+import com.cbq.yatori.core.utils.ConfigUtils;
+import com.cbq.yatori.core.utils.EmailUtil;
 import com.cbq.yatori.core.action.canghui.entity.coursedetail.Chapter;
 import com.cbq.yatori.core.action.canghui.entity.coursedetail.CourseDetailData;
 import com.cbq.yatori.core.action.canghui.entity.coursedetail.Process;
@@ -22,12 +23,13 @@ import com.cbq.yatori.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.mail.MessagingException;
 import java.util.*;
 
 @Slf4j
 public class CourseStudyAction implements Runnable {
     private User user;
-
+    private static final Boolean IsOpenmail = ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
     private MyCourse myCourse; //当前课程的对象
 
     //视屏
@@ -432,6 +434,12 @@ public class CourseStudyAction implements Runnable {
     public void run() {
         log.info("{}:正在学习课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
         study1();
+        if(IsOpenmail){
+            try {
+                EmailUtil.sendEmail(user.getAccount(), myCourse.getCourse().getTitle());
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }}
         log.info("{}:{}学习完毕！", user.getAccount(), myCourse.getCourse().getTitle());
     }
 
