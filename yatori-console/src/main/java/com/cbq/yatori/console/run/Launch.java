@@ -298,6 +298,7 @@ public class Launch {
                             }
                             com.cbq.yatori.core.action.canghui.CourseStudyAction bulild = com.cbq.yatori.core.action.canghui.CourseStudyAction.builder()
                                     .user(user)
+                                    .setting(config.getSetting())
                                     .courseInform(list)
                                     .newThread(true)
                                     .build();
@@ -314,6 +315,7 @@ public class Launch {
                         for (ResultList resultList : underwayProject.getResult().getList()) {
                             com.cbq.yatori.core.action.enaea.CourseStudyAction build = com.cbq.yatori.core.action.enaea.CourseStudyAction.builder()
                                     .user(user)
+                                    .setting(config.getSetting())
                                     .objectInform(resultList)
                                     .newThread(true)
                                     .build();
