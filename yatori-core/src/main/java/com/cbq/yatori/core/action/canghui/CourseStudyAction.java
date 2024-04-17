@@ -1,4 +1,6 @@
 package com.cbq.yatori.core.action.canghui;
+import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.Course;
+import com.cbq.yatori.core.entity.*;
 import com.cbq.yatori.core.utils.ConfigUtils;
 import com.cbq.yatori.core.utils.EmailUtil;
 import com.cbq.yatori.core.action.canghui.entity.coursedetail.Chapter;
@@ -16,10 +18,6 @@ import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.*;
 import com.cbq.yatori.core.action.canghui.entity.startexam.StartExam;
 import com.cbq.yatori.core.action.canghui.entity.submitstudy.ConverterSubmitStudyTime;
 import com.cbq.yatori.core.action.canghui.entity.submitstudy.SubmitStudyTimeRequest;
-import com.cbq.yatori.core.entity.AccountCacheCangHui;
-import com.cbq.yatori.core.entity.CoursesCostom;
-import com.cbq.yatori.core.entity.CoursesSetting;
-import com.cbq.yatori.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +27,8 @@ import java.util.*;
 @Slf4j
 public class CourseStudyAction implements Runnable {
     private User user;
-    private static final Boolean IsOpenmail = ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
+    private Setting setting;
+//    private static final Boolean IsOpenmail = ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
     private MyCourse myCourse; //当前课程的对象
 
     //视屏
@@ -434,7 +433,7 @@ public class CourseStudyAction implements Runnable {
     public void run() {
         log.info("{}:正在学习课程>>>{}", user.getAccount(), myCourse.getCourse().getTitle());
         study1();
-        if(IsOpenmail){
+        if(setting.getEmailInform().getSw()==1){
             try {
                 EmailUtil.sendEmail(user.getAccount(), myCourse.getCourse().getTitle());
             } catch (MessagingException e) {
@@ -462,6 +461,11 @@ public class CourseStudyAction implements Runnable {
 
         public Builder newThread(Boolean newThread) {
             courseStudyAction.newThread = newThread;
+            return this;
+        }
+
+        public Builder setting(Setting setting){
+            courseStudyAction.setting = setting;
             return this;
         }
 

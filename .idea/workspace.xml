@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更改git配置文件">
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/EmailUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新ignore策略">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yatori-console/src/main/java/com/cbq/yatori/console/run/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-console/src/main/java/com/cbq/yatori/console/run/Launch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseStudyAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/CourseStudyAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/EmailInform.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/EmailInform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Setting.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Setting.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +82,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Application.executor": "Debug",
+    "Application.Application.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
     "JUnit.CourseActionTest.testMyCourseList.executor": "Run",
     "JUnit.EncryptByDESUtilsTest.testDesEncrypt.executor": "Run",
@@ -106,7 +106,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "graalvm-17",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/IntelliJ_WorkSpace/nnlg",
@@ -250,6 +250,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Application" />
         <item itemvalue="JUnit.CourseActionTest.testMyCourseList" />
         <item itemvalue="JUnit.LoginActionTest.testToLogin" />
         <item itemvalue="JUnit.EncryptByDESUtilsTest.testDesEncrypt" />
@@ -709,7 +710,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704650243297</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,8 +741,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新学习公社部分代码" />
-    <MESSAGE value="成功实现学习公社刷视屏" />
     <MESSAGE value="准备安排学习公社功能" />
     <MESSAGE value="安排学习公社功能" />
     <MESSAGE value="聚合功能模块，准备开放API开发接口" />
@@ -765,7 +764,9 @@
     <MESSAGE value="更改参数说明" />
     <MESSAGE value="README更新" />
     <MESSAGE value="更改git配置文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="更改git配置文件" />
+    <MESSAGE value="更新ignore规则以及删除不必要依赖import" />
+    <MESSAGE value="更新ignore策略" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新ignore策略" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -774,11 +775,6 @@
           <url>file://$PROJECT_DIR$/src/test/java/com/cbq/brushlessons/core/action/yinghua/LoginActionTest.java</url>
           <line>26</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java</url>
-          <line>101</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

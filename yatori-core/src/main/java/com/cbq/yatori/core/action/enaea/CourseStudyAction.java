@@ -1,4 +1,5 @@
 package com.cbq.yatori.core.action.enaea;
+import com.cbq.yatori.core.entity.Setting;
 import com.cbq.yatori.core.utils.ConfigUtils;
 import com.cbq.yatori.core.utils.EmailUtil;
 import com.cbq.yatori.core.action.enaea.entity.ccvideo.CCVideoRequest;
@@ -18,7 +19,8 @@ import javax.mail.MessagingException;
 @Slf4j
 public class CourseStudyAction implements Runnable {
     private User user;
-    private static final Boolean IsOpenmail = ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
+    private Setting setting;
+//    private static final Boolean IsOpenmail = ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
 
     //正在进行的其中一个项目
     ResultList resultList;
@@ -112,7 +114,7 @@ public class CourseStudyAction implements Runnable {
     public void run() {
         log.info("{}:正在学习项目>>>{}", user.getAccount(),resultList.getClusterName());
         study1();
-        if(IsOpenmail){
+        if(setting.getEmailInform().getSw()==1){
             try {
                 EmailUtil.sendEmail(user.getAccount(), resultList.getClusterName());
             } catch (MessagingException e) {
@@ -141,6 +143,11 @@ public class CourseStudyAction implements Runnable {
 
         public Builder newThread(Boolean newThread){
             courseStudyAction.newThread = newThread;
+            return this;
+        }
+
+        public Builder setting(Setting setting){
+            courseStudyAction.setting = setting;
             return this;
         }
         public CourseStudyAction build() {

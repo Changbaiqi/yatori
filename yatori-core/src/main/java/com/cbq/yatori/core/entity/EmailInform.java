@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmailInform {
-    Integer sw;
+    Integer sw=0; //默认关闭
     String smtpHost;
     String smtpPort;
     String email;

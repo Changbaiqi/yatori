@@ -12,6 +12,7 @@ import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformStudyTo
 import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformRequest;
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
 import com.cbq.yatori.core.entity.CoursesCostom;
+import com.cbq.yatori.core.entity.Setting;
 import com.cbq.yatori.core.entity.User;
 import com.cbq.yatori.core.utils.ConfigUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -41,7 +42,9 @@ public class CourseStudyAction implements Runnable {
     private long studyId = 0;
     private Boolean newThread = false;
 
-    private static final Boolean IsOpenmail =ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
+    private Setting setting;
+
+//    private static final Boolean IsOpenmail =ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
     private long studyInterval = 5;
 
     private Long accoVideo = 0L;
@@ -75,7 +78,7 @@ public class CourseStudyAction implements Runnable {
     public void run() {
         log.info("{}:正在学习课程>>>{}", user.getAccount(), courseInform.getName());
         study1();
-        if(IsOpenmail){
+        if(setting.getEmailInform().getSw()==1){
         try {
             EmailUtil.sendEmail(user.getAccount(),courseInform.getName());
         } catch (MessagingException e) {
@@ -189,6 +192,8 @@ public class CourseStudyAction implements Runnable {
     }
 
 
+
+
     private void update() {
         //初始化视屏列表
         while ((courseVideosList = CourseAction.getCourseVideosList(user, courseInform)) == null) ;
@@ -227,6 +232,10 @@ public class CourseStudyAction implements Runnable {
             return this;
         }
 
+        public Builder setting(Setting setting){
+            courseStudyAction.setting = setting;
+            return this;
+        }
         public CourseStudyAction build() {
             //初始化视屏列表
             courseStudyAction.courseVideosList = null;

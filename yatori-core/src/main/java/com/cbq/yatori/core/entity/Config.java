@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Config {
-    Setting setting;
+    Setting setting=new Setting();
     List<User> users;
 }

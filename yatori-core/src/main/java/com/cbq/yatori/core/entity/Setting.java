@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Setting {
-    EmailInform emailInform;
+    EmailInform emailInform=new EmailInform();
 }
