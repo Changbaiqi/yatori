@@ -1,16 +1,10 @@
 package com.cbq.yatori.core.utils;
 
-import com.cbq.yatori.core.entity.Config;
-import com.cbq.yatori.core.entity.Setting;
-import com.cbq.yatori.core.entity.User;
-import com.cbq.yatori.core.utils.ConfigUtils;
-import okhttp3.internal.http2.Settings;
+
 import com.cbq.yatori.core.entity.EmailInform;
 import javax.mail.*;
 import javax.mail.internet.*;
-import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 
 public class EmailUtil {
     private static final EmailInform EmailInform =ConfigUtils.loadingConfig().getSetting().getEmailInform();
