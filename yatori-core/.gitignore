@@ -8,4 +8,4 @@ cache
 json.txt
 src/main/resources/config.json
 src/test/
-.idea
+.idea/
