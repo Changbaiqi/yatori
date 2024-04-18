@@ -226,7 +226,7 @@ public class ExamAction {
      * @param examTopic 题目
      * @return 返回答案字符串
      */
-    public static String aiAnswerFormChatGLM(ExamTopic examTopic) {
+    public static String aiAnswerFormChatGLM(String API_KEY,String API_SECRET,ExamTopic examTopic) {
         StringBuilder problem = new StringBuilder();
         problem.append("题目类型：" + examTopic.getType() + "\n");
 
@@ -236,7 +236,7 @@ public class ExamAction {
         }
         problem.append("这题的答案是什么？（注意你只需要回答选项字母，不能回答任何选项字母无关的任何内容，包括解释以及标点符也不需要。）");
         System.out.println(problem.toString());
-        String chatMessage = ChatGLMUtil.getChatMessage("127f0be64e2fded1ab612bbc77bd5843", "8sVhYzMZL0uInc2K", problem.toString());
+        String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, API_SECRET, problem.toString());
         return chatMessage;
     }
 

@@ -1,19 +1,27 @@
 package com.cbq.yatori.core.action.yinghua;
 
 
+import com.cbq.yatori.core.action.canghui.entity.exam.ExamCourse;
+import com.cbq.yatori.core.action.canghui.entity.exam.ExamItem;
+import com.cbq.yatori.core.action.canghui.entity.exam.ExamJson;
+import com.cbq.yatori.core.action.canghui.entity.exam.ExamTopic;
+import com.cbq.yatori.core.action.canghui.entity.examsubmit.TopicAnswer;
+import com.cbq.yatori.core.action.canghui.entity.examsubmit.TopicRequest;
+import com.cbq.yatori.core.action.canghui.entity.examsubmitrespose.ExamSubmitResponse;
+import com.cbq.yatori.core.action.canghui.entity.startexam.StartExam;
 import com.cbq.yatori.core.action.yinghua.entity.allcourse.CourseInform;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.NodeList;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoList;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoRequest;
+import com.cbq.yatori.core.action.yinghua.entity.examinform.ExamInformRequest;
+import com.cbq.yatori.core.action.yinghua.entity.examstart.StartExamRequest;
+import com.cbq.yatori.core.action.yinghua.entity.examtopic.ExamTopics;
 import com.cbq.yatori.core.action.yinghua.entity.submitstudy.ConverterSubmitStudyTime;
 import com.cbq.yatori.core.action.yinghua.entity.submitstudy.SubmitResult;
 import com.cbq.yatori.core.action.yinghua.entity.submitstudy.SubmitStudyTimeRequest;
 import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformStudyTotal;
 import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformRequest;
-import com.cbq.yatori.core.entity.AccountCacheYingHua;
-import com.cbq.yatori.core.entity.CoursesCostom;
-import com.cbq.yatori.core.entity.Setting;
-import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.entity.*;
 import com.cbq.yatori.core.utils.ConfigUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +29,9 @@ import com.cbq.yatori.core.utils.EmailUtil;
 
 import javax.mail.MessagingException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author 长白崎
@@ -32,7 +42,9 @@ import java.util.List;
 @Slf4j
 public class CourseStudyAction implements Runnable {
 
+
     private User user;
+    private Setting setting;
     private CourseInform courseInform; //当前课程的对象
 
     private VideoRequest courseVideosList; //视屏列表
@@ -72,6 +84,7 @@ public class CourseStudyAction implements Runnable {
 //                study2();
             }
         }
+
     }
 
     @Override
@@ -103,6 +116,11 @@ public class CourseStudyAction implements Runnable {
                 VideoInformRequest videMessage = null;
                 while ((videMessage = CourseAction.getVideMessage(user, videoInform)) == null) ;
 
+                //如果videoId为空那么就是考试的，直接自动考试即可
+                if(videMessage.getResult().getData().getVideoId().equals("") && user.getCoursesCostom().getAutoExam()==1){
+                    autoExamAction(courseInform,videoInform,String.valueOf(videoInform.getId()));
+                    continue;
+                }
                 //视屏总时长
                 long videoDuration = videMessage.getResult().getData().getVideoDuration();
                 //当前学习进度
@@ -208,6 +226,25 @@ public class CourseStudyAction implements Runnable {
         }
     }
 
+    /**
+     * 自动考试
+     */
+    public void autoExamAction(CourseInform courseInform, NodeList videoInform,String nodeId) {
+        log.info("{}:正在考试课程>>>{}", user.getAccount(), courseInform.getName());
+        ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getExam(user, nodeId);
+        String examId= String.valueOf(exam.getExamInformResult().getList().get(0).getId());
+        String courseId =String.valueOf(exam.getExamInformResult().getList().get(0).getCourseId());
+        StartExamRequest startExamRequest = com.cbq.yatori.core.action.yinghua.ExamAction.startExam(user, courseId, nodeId, examId);//开始考试
+        ExamTopics examTopics = com.cbq.yatori.core.action.yinghua.ExamAction.getExamTopic(user, nodeId, examId);//获取题目
+        examTopics.getExamTopics().forEach((key,value)->{
+            String answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(),setting.getAiSetting().getAPI_SECRET(), value);
+            answer=answer.replace("\n","");
+            answer = answer.replace(" ","");
+            System.out.println(answer);
+            ExamAction.submitExam(user, examId, value.getAnswerId(), answer, "0");
+        });
+        log.info("{}:课程:{}考试成功！对应考试试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName());
+    }
 
     public static Builder builder() {
         return new Builder();

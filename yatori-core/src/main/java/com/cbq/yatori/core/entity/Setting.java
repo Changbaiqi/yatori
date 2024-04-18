@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Setting {
     EmailInform emailInform=new EmailInform();
+    AiSetting aiSetting=new AiSetting();
 }
