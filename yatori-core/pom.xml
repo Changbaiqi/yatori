@@ -147,6 +147,12 @@
             <artifactId>mail</artifactId>
             <version>1.4</version>
         </dependency>
+        <dependency>
+            <groupId>cn.bigmodel.openapi</groupId>
+            <artifactId>oapi-java-sdk</artifactId>
+            <version>release-V4-2.0.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 
