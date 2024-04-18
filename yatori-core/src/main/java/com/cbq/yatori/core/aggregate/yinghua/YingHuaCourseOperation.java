@@ -4,10 +4,8 @@ import com.cbq.yatori.core.action.yinghua.CourseAction;
 import com.cbq.yatori.core.action.yinghua.entity.allcourse.CourseInform;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoList;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoRequest;
-import com.cbq.yatori.core.aggregate.YatoriOperation;
 import com.cbq.yatori.core.entity.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,7 +24,7 @@ public class YingHuaCourseOperation  {
     }
 
     public YingHuaAllChapterOperation getAllChapterOperation(){
-        return null;
+        return YingHuaAllChapterOperation.builder().build();
     }
 
 
