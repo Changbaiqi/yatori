@@ -25,8 +25,8 @@ import java.util.Set;
 public class User {
     private AccountType accountType; //对应账号平台类型
     private String url; //课程平台url
-    private String account; //密码
-    private String password; //账号
+    private String account; //账号
+    private String password; //密码
     private AccountCache cache; //账号缓存信息
     private CoursesCostom coursesCostom=new CoursesCostom(); //客制化课程
 }
