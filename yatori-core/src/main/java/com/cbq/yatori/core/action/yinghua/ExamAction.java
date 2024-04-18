@@ -205,7 +205,7 @@ public class ExamAction {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(JSON, "{}");
         Request request = new Request.Builder()
-                .url("https://mooc.lidapoly.edu.cn/api/exam.json?nodeId=" + nodeId + "&examId=" + examId + "&token=" + cache.getToken())
+                .url(user.getUrl() + "/api/exam.json?nodeId=" + nodeId + "&examId=" + examId + "&token=" + cache.getToken())
                 .method("POST", body)
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Accept", "*/*")
@@ -234,8 +234,8 @@ public class ExamAction {
         for (TopicSelect select : examTopic.getSelects()) {
             problem.append(select.getValue() + "-----" + select.getTxt() + "\n");
         }
-        problem.append("这题的答案是什么？（注意你只需要回答选项字母，不能回答任何选项字母无关的任何内容，包括解释以及标点符也不需要。）");
-        System.out.println(problem.toString());
+        problem.append("这题的答案是什么？（注意你只需要回答选项字母，不能回答任何选项字母无关的任何内容，包括解释以及标点符也不需要。就算你不知道选什么也随机选输出A或B。）");
+//        System.out.println(problem.toString());
         String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, API_SECRET, problem.toString());
         return chatMessage;
     }

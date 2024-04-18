@@ -4,8 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修改注释">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="添加AI配置">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ListElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ListElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartEaxmData.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartEaxmData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AiSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AiSetting.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit3 Test Class" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -73,52 +83,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Application.executor&quot;: &quot;Debug&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;JUnit.CourseActionTest.testMyCourseList.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EncryptByDESUtilsTest.testDesEncrypt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoginActionTest.testToLogin.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.YingHuaTest.CCC.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.yatori-console [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.yatori-console [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.yatori-core [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.yatori-core [package].executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;graalvm-17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/nnlg&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;ae571d4151dab2375600dbda7bf394e7&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Debug",
+    "Downloaded.Files.Path.Enabled": "true",
+    "JUnit.ChatGLMUtilTest.testGetChatMessage.executor": "Run",
+    "JUnit.CourseActionTest.testMyCourseList.executor": "Run",
+    "JUnit.EncryptByDESUtilsTest.testDesEncrypt.executor": "Run",
+    "JUnit.LoginActionTest.testToLogin.executor": "Run",
+    "JUnit.YingHuaTest.CCC.executor": "Run",
+    "JUnit.YingHuaTest.pattenExam.executor": "Run",
+    "JUnit.YingHuaTest.testExam.executor": "Debug",
+    "Maven.yatori-console [install].executor": "Run",
+    "Maven.yatori-console [package].executor": "Run",
+    "Maven.yatori-core [install].executor": "Run",
+    "Maven.yatori-core [package].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "graalvm-17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/IntelliJ_WorkSpace/nnlg",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15136719",
+    "project.structure.side.proportion": "0.343318",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
+    "show.migrate.to.gradle.popup": "false",
+    "spring.configuration.checksum": "ae571d4151dab2375600dbda7bf394e7",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.cbq.yatori.core.aggregate.yinghua" />
@@ -142,13 +155,14 @@
       <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.cbq.yatori.core.action.xuexitong" />
       <recent name="com.cbq.yatori.core.utils" />
+      <recent name="com.cbq.yatori.core.action.xuexitong" />
       <recent name="com.cbq.yatori.core.aggregate" />
       <recent name="com.cbq.brushlessons.core.aggregate" />
       <recent name="com.cbq.brushlessons.core.action.enaea" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.cbq.yatori.core.utils" />
       <recent name="com.cbq.brushlessons.core.utils" />
     </key>
   </component>
@@ -176,6 +190,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ChatGLMUtilTest.testGetChatMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="yatori-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cbq.yatori.core.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cbq.yatori.core.utils" />
+      <option name="MAIN_CLASS_NAME" value="com.cbq.yatori.core.utils.ChatGLMUtilTest" />
+      <option name="METHOD_NAME" value="testGetChatMessage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CourseActionTest.testMyCourseList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="yatori-core" />
       <extension name="coverage">
@@ -192,43 +222,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EncryptByDESUtilsTest.testDesEncrypt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="yatori-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.yatori.core.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.yatori.core.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.yatori.core.utils.EncryptByDESUtilsTest" />
-      <option name="METHOD_NAME" value="testDesEncrypt" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginActionTest.testToLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="yatori-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.yatori.core.action.xuexitong.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.yatori.core.action.xuexitong" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.yatori.core.action.xuexitong.LoginActionTest" />
-      <option name="METHOD_NAME" value="testToLogin" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="YingHuaTest.CCC" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="YingHuaTest.pattenExam" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="yatori-core" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="YingHuaTest" />
-      <option name="METHOD_NAME" value="CCC" />
+      <option name="METHOD_NAME" value="pattenExam" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YingHuaTest.testExam" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="yatori-core" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="YingHuaTest" />
+      <option name="METHOD_NAME" value="testExam" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -236,18 +244,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Application" />
+      <item itemvalue="JUnit.ChatGLMUtilTest.testGetChatMessage" />
+      <item itemvalue="JUnit.YingHuaTest.pattenExam" />
+      <item itemvalue="JUnit.YingHuaTest.testExam" />
       <item itemvalue="JUnit.CourseActionTest.testMyCourseList" />
-      <item itemvalue="JUnit.EncryptByDESUtilsTest.testDesEncrypt" />
-      <item itemvalue="JUnit.LoginActionTest.testToLogin" />
-      <item itemvalue="JUnit.YingHuaTest.CCC" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.YingHuaTest.testExam" />
+        <item itemvalue="JUnit.YingHuaTest.pattenExam" />
+        <item itemvalue="JUnit.ChatGLMUtilTest.testGetChatMessage" />
         <item itemvalue="JUnit.CourseActionTest.testMyCourseList" />
-        <item itemvalue="JUnit.LoginActionTest.testToLogin" />
-        <item itemvalue="JUnit.EncryptByDESUtilsTest.testDesEncrypt" />
-        <item itemvalue="JUnit.YingHuaTest.CCC" />
       </list>
     </recent_temporary>
   </component>
@@ -361,6 +369,7 @@
       <workItem from="1713364023815" duration="319000" />
       <workItem from="1713375150057" duration="2209000" />
       <workItem from="1713422430588" duration="139000" />
+      <workItem from="1713432446033" duration="25630000" />
     </task>
     <task id="LOCAL-00067" summary="新添支持创能平台">
       <created>1699973877369</created>
@@ -705,7 +714,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704650243297</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,13 +745,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="聚合功能模块，准备开放API开发接口" />
-    <MESSAGE value="修复仓辉考试其他学校考不了的重大bug！！！" />
-    <MESSAGE value="更新v2.0.0-Beta.2版本" />
-    <MESSAGE value="更新开源协议" />
-    <MESSAGE value="修改过滤文件" />
-    <MESSAGE value="更新项目目录结构，为后续项目架构重构提供更好的划分。" />
-    <MESSAGE value="准备启动可视化Web项目计划" />
     <MESSAGE value="更改所有实体类注解格式，以及yatori-core发布至Maven中央仓库" />
     <MESSAGE value="新增加英华部分API" />
     <MESSAGE value="更新项目结构说明" />
@@ -761,7 +763,14 @@
     <MESSAGE value="更新ignore策略" />
     <MESSAGE value="修改邮箱通知功能逻辑" />
     <MESSAGE value="修改注释" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改注释" />
+    <MESSAGE value="添加英华考试相关的json实体类" />
+    <MESSAGE value="随便修改一下" />
+    <MESSAGE value="题目转义实体类" />
+    <MESSAGE value="更新ChatGLM工具类" />
+    <MESSAGE value="完善英华自动考试基本功能" />
+    <MESSAGE value="添加ChatGLM接口" />
+    <MESSAGE value="添加AI配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加AI配置" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -771,21 +780,12 @@
           <line>26</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="examList.examCourses" />
+        <watch expression="answer" />
       </configuration>
       <configuration name="Application">
         <watch expression="videoInform" />

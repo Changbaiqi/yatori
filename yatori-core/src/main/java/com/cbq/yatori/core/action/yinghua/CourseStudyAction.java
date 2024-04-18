@@ -54,7 +54,6 @@ public class CourseStudyAction implements Runnable {
     private long studyId = 0;
     private Boolean newThread = false;
 
-    private Setting setting;
 
 //    private static final Boolean IsOpenmail =ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
     private long studyInterval = 5;
@@ -118,8 +117,12 @@ public class CourseStudyAction implements Runnable {
 
                 //如果videoId为空那么就是考试的，直接自动考试即可
                 if(videMessage.getResult().getData().getVideoId().equals("") && user.getCoursesCostom().getAutoExam()==1){
-                    autoExamAction(courseInform,videoInform,String.valueOf(videoInform.getId()));
-                    continue;
+                    ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getExam(user, String.valueOf(videoInform.getId()));
+                    //过滤误判的考试或者视屏
+                    if(exam.getExamInformResult().getList().size()!=0) {
+                        autoExamAction(courseInform, videoInform, String.valueOf(videoInform.getId()));
+                        continue;
+                    }
                 }
                 //视屏总时长
                 long videoDuration = videMessage.getResult().getData().getVideoDuration();
@@ -236,13 +239,14 @@ public class CourseStudyAction implements Runnable {
         String courseId =String.valueOf(exam.getExamInformResult().getList().get(0).getCourseId());
         StartExamRequest startExamRequest = com.cbq.yatori.core.action.yinghua.ExamAction.startExam(user, courseId, nodeId, examId);//开始考试
         ExamTopics examTopics = com.cbq.yatori.core.action.yinghua.ExamAction.getExamTopic(user, nodeId, examId);//获取题目
-        examTopics.getExamTopics().forEach((key,value)->{
-            String answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(),setting.getAiSetting().getAPI_SECRET(), value);
+
+        List<String> list = examTopics.getExamTopics().keySet().stream().toList();
+        for(int i= 0;i<list.size();++i){
+            String answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(),setting.getAiSetting().getAPI_SECRET(), examTopics.getExamTopics().get(list.get(i)));
             answer=answer.replace("\n","");
             answer = answer.replace(" ","");
-            System.out.println(answer);
-            ExamAction.submitExam(user, examId, value.getAnswerId(), answer, "0");
-        });
+            ExamAction.submitExam(user, examId, examTopics.getExamTopics().get(list.get(i)).getAnswerId(), answer, (i+1)<list.size()?"0":"1");
+        }
         log.info("{}:课程:{}考试成功！对应考试试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName());
     }
 

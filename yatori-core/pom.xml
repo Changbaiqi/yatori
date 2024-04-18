@@ -209,32 +209,32 @@
                 </executions>
             </plugin>
             <!-- GPG -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-<!--                    这里配置gpg的密码，这里直接引用maven的setting.xml里面-->
-                    <passphraseServerId>ossez</passphraseServerId>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                <version>3.0.1</version>-->
+<!--                <configuration>-->
+<!--&lt;!&ndash;                    这里配置gpg的密码，这里直接引用maven的setting.xml里面&ndash;&gt;-->
+<!--                    <passphraseServerId>ossez</passphraseServerId>-->
 
-                    <gpgArguments>
-                        <arg>--pinentry-mode</arg>
-                        <arg>loopback</arg>
-                    </gpgArguments>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <configuration>
-                            <passphraseServerId>ossez</passphraseServerId>
-                        </configuration>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--                    <gpgArguments>-->
+<!--                        <arg>&#45;&#45;pinentry-mode</arg>-->
+<!--                        <arg>loopback</arg>-->
+<!--                    </gpgArguments>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>sign-artifacts</id>-->
+<!--                        <phase>verify</phase>-->
+<!--                        <configuration>-->
+<!--                            <passphraseServerId>ossez</passphraseServerId>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>sign</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

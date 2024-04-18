@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @lombok.Data
 public class StartExamResult {
-    @lombok.Getter(onMethod_ = {@JsonProperty("data")})
-    @lombok.Setter(onMethod_ = {@JsonProperty("data")})
+    @JsonProperty("data")
     private StartEaxmData startEaxmData;
 }
