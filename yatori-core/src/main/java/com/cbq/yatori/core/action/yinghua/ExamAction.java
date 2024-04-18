@@ -1,5 +1,8 @@
 package com.cbq.yatori.core.action.yinghua;
 
+import com.cbq.yatori.core.action.yinghua.entity.examinform.ConverterExamInform;
+import com.cbq.yatori.core.action.yinghua.entity.examinform.ExamInformRequest;
+import com.cbq.yatori.core.action.yinghua.entity.examinform.ExamInformResult;
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
 import com.cbq.yatori.core.entity.User;
 import com.cbq.yatori.core.utils.CustomTrustManager;
@@ -18,10 +21,13 @@ public class ExamAction {
 
     /**
      * 获取考试相关的一些信息
-     * @param user
-     * @param nodeId
+     * {"_code":0,"status":true,"msg":"获取数据成功","result":{"list":[{"id":1006680,"title":"0-3岁婴幼儿家庭教育与指导","topicNumber":33,"score":100,"addTime":"2024-04-09 12:10:58","nodeId":1430751,"courseId":1010822,"limitedTime":120,"remarks":"","startTime":"2024-04-09 12:10:10","endTime":"2024-04-30 23:55:55","createUserId":"1249678","classList":"[]","isPrivate":"0","teacherType":"1","allow":"1","frequency":"1","hasCollect":"0","schoolId":"9","parsing":"0","addDate":"2024-04-09","random":"0","randData":null,"randNumber":"0","type":3,"flag":0,"start":1,"finish":0,"url":"https:\/\/mooc.lidapoly.edu.cn\/api\/exam?nodeId=1430751&examId=1006680&token=sid.8bXX72LTPHQNhcki2CJf9cZ3oINhqt"}]}}
+     * 这里会获取到考试内容相关的信息
+     * 其中list中的id其实就是examId,nodeId就是nodeId
+     * @param user 用户类
+     * @param nodeId 对应考试的节点id
      */
-    public static void getExam(User user,String nodeId){
+    public static ExamInformRequest getExam(User user, String nodeId){
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
@@ -46,6 +52,8 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            ExamInformRequest examInformRequest = ConverterExamInform.fromJsonString(response.body().string());
+            return examInformRequest;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
