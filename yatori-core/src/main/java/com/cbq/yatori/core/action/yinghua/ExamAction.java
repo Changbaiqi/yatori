@@ -3,6 +3,8 @@ package com.cbq.yatori.core.action.yinghua;
 import com.cbq.yatori.core.action.yinghua.entity.examinform.ConverterExamInform;
 import com.cbq.yatori.core.action.yinghua.entity.examinform.ExamInformRequest;
 import com.cbq.yatori.core.action.yinghua.entity.examinform.ExamInformResult;
+import com.cbq.yatori.core.action.yinghua.entity.examstart.ConverterStartExam;
+import com.cbq.yatori.core.action.yinghua.entity.examstart.StartExamRequest;
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
 import com.cbq.yatori.core.entity.User;
 import com.cbq.yatori.core.utils.CustomTrustManager;
@@ -10,6 +12,8 @@ import okhttp3.*;
 
 import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @description: TODO 考试相关
@@ -18,6 +22,45 @@ import java.io.IOException;
  * @version 1.0
  */
 public class ExamAction {
+
+    private static void turnExamTopic(String examHtml){
+        Pattern pattern = Pattern.compile("<form method=\"post\" action=\"/api/exam/submit\">([\\w\\W]*?)</form>");
+        Matcher matcher = pattern.matcher(examHtml);
+        while(matcher.find()) {
+            String topicHtml = matcher.group(1);
+            Pattern topicNumPattern = Pattern.compile("<span class=\"num\">[\\D]*?([\\d]+)");
+            Matcher topicNumMatcher = topicNumPattern.matcher(topicHtml);
+            if (topicNumMatcher.find()) {
+                String num = topicNumMatcher.group(1); //题目号码
+                System.out.println("题目号码：" + num);
+            }
+            Pattern topicTag = Pattern.compile("<span class=\"tag\">([\\s\\S]*?)</span>");
+            Matcher topicTagMatcher = topicTag.matcher(topicHtml);
+            if (topicTagMatcher.find()) {
+                String tag = topicTagMatcher.group(1); //题目类型
+                System.out.println("题目类型：" + tag);
+            }
+            Pattern topicSource = Pattern.compile("<span[ \\f\\n\\r\\t\\v]*class=\"txt\">[(]*[<span>]*([\\d]*)[</span>]*分[)]*</span>");
+            Matcher topicSourceMatcher = topicSource.matcher(topicHtml);
+            if (topicSourceMatcher.find()) {
+                String source = topicSourceMatcher.group(1); //题目分数
+                System.out.println("题目分数：" + source);
+            }
+            Pattern topicContent = Pattern.compile("<div[ \\f\\n\\r\\t\\v]*class=\"content\"[ \\f\\n\\r\\t\\v]*style=\"[^\"]*\">([\\s\\S]*?)</div>");
+            Matcher topicContentMatcher = topicContent.matcher(topicHtml);
+            if (topicContentMatcher.find()) {
+                String content = topicContentMatcher.group(1); //题目内容
+                System.out.println("题目内容：" + content);
+            }
+            Pattern topicSelectPattern = Pattern.compile("<li>[^<]*<label>[^<]*<input type=\"([^\"]*)\"[^v]*value=\"([^\"]*)\"[ \\f\\n\\r\\t\\v]*[checked=\"checked\"]*[ \\f\\n\\r\\t\\v]*class=\"[^\"]*\"[ \\f\\n\\r\\t\\v]*name=\"[^\"]*\">[ \\f\\n\\r\\t\\v]*<span class=\"num\">([^<]*)</span>[ \\f\\n\\r\\t\\v]*<span[ \\f\\n\\r\\t\\v]*class=\"txt\">([^<]*)</span>[ \\f\\n\\r\\t\\v]*</label>[ \\f\\n\\r\\t\\v]*</li>");
+            Matcher topicSelectMatcher = topicSelectPattern.matcher(topicHtml);
+            while (topicSelectMatcher.find()) {
+                String selectValue = topicSelectMatcher.group(2); //选项值
+                String selectText = topicSelectMatcher.group(4); //选项文本
+                System.out.println(selectValue + "-----" + selectText);
+            }
+        }
+    }
 
     /**
      * 获取考试相关的一些信息
@@ -66,7 +109,7 @@ public class ExamAction {
      * @param nodeId 对应章节结点Id
      * @param examId 考试Id
      */
-    public static void startExam(User user,String courseId,String nodeId,String examId){
+    public static StartExamRequest startExam(User user,String courseId,String nodeId,String examId){
         AccountCacheYingHua cache = (AccountCacheYingHua)user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
@@ -93,6 +136,8 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            StartExamRequest startExamRequest = ConverterStartExam.fromJsonString(response.body().string());
+            return startExamRequest;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
