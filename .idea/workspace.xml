@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="添加AI配置">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新英华学堂AI自动考试答题（目前只支持选择题）">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ListElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ListElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartEaxmData.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartEaxmData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AiSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AiSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -369,7 +360,7 @@
       <workItem from="1713364023815" duration="319000" />
       <workItem from="1713375150057" duration="2209000" />
       <workItem from="1713422430588" duration="139000" />
-      <workItem from="1713432446033" duration="25630000" />
+      <workItem from="1713432446033" duration="25896000" />
     </task>
     <task id="LOCAL-00067" summary="新添支持创能平台">
       <created>1699973877369</created>
@@ -714,7 +705,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704650243297</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -745,7 +736,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更改所有实体类注解格式，以及yatori-core发布至Maven中央仓库" />
     <MESSAGE value="新增加英华部分API" />
     <MESSAGE value="更新项目结构说明" />
     <MESSAGE value="更新缺失文件" />
@@ -770,7 +760,8 @@
     <MESSAGE value="完善英华自动考试基本功能" />
     <MESSAGE value="添加ChatGLM接口" />
     <MESSAGE value="添加AI配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加AI配置" />
+    <MESSAGE value="更新英华学堂AI自动考试答题（目前只支持选择题）" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新英华学堂AI自动考试答题（目前只支持选择题）" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
