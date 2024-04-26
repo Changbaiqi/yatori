@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zhipu.oapi.ClientV4;
 import com.zhipu.oapi.Constants;
 import com.zhipu.oapi.service.v4.model.*;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.List;
  * @date 2024/2/5 20:45
  * @version 1.0
  */
+@Slf4j
 public class ChatGLMUtil {
     private static final String API_KEY = "";
 
@@ -58,6 +60,13 @@ public class ChatGLMUtil {
 
         return response.toString();
     }
+
+    /**
+     * 新智普清言ChatGLM4访问接口
+     * @param apiKey apikey
+     * @param chatGLMChat
+     * @return
+     */
     public static String getChatMessage(String apiKey,ChatGLMChat chatGLMChat){
         OkHttpClient client = new OkHttpClient();
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -78,13 +87,18 @@ public class ChatGLMUtil {
                 .addHeader("Content-Type", "application/json")
                 .post(body)
                 .build();
-
+        String result="";
         try (Response response = client.newCall(request).execute()) {
-            String result = response.body().string();
+            result = response.body().string();
             HashMap<String,Object> hashMap = objectMapper.readValue(result, HashMap.class);
 
             return ((HashMap<String,Object>)(((ArrayList<HashMap<String, Object>>)hashMap.get("choices")).get(0).get("message"))).get("content").toString();
-        } catch (IOException e) {
+        } catch (NullPointerException e){
+            log.error(result);
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            log.error(result);
             e.printStackTrace();
         }
         return "";
