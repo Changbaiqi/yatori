@@ -17,6 +17,4 @@ public class AiSetting {
     private AiType aiType;
     @JsonProperty("API_KEY")
     private String API_KEY;
-    @JsonProperty("API_SECRET")
-    private String API_SECRET;
 }
