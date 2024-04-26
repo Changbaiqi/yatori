@@ -1,10 +1,15 @@
 package com.cbq.yatori.core.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zhipu.oapi.ClientV4;
 import com.zhipu.oapi.Constants;
 import com.zhipu.oapi.service.v4.model.*;
+import okhttp3.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -53,7 +58,37 @@ public class ChatGLMUtil {
 
         return response.toString();
     }
+    public static String getChatMessage(String apiKey,ChatGLMChat chatGLMChat){
+        OkHttpClient client = new OkHttpClient();
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        String url = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
+        ObjectMapper objectMapper = new ObjectMapper();
+        String messages ="[]";
+        try {
+            messages = objectMapper.writeValueAsString(chatGLMChat.messages);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        String json = "{\"model\": \"glm-4\",\"messages\": "+messages+"}";
 
+        RequestBody body = RequestBody.create(JSON, json);
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Authorization", "Bearer " + apiKey)
+                .addHeader("Content-Type", "application/json")
+                .post(body)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            String result = response.body().string();
+            HashMap<String,Object> hashMap = objectMapper.readValue(result, HashMap.class);
+
+            return ((HashMap<String,Object>)(((ArrayList<HashMap<String, Object>>)hashMap.get("choices")).get(0).get("message"))).get("content").toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
     /**
      * ChatGLM直接聊天获取信息
      * @param message
