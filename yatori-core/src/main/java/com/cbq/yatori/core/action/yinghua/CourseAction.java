@@ -140,6 +140,7 @@ public class CourseAction {
             }
             String json = response.body().string();
             VideoInformRequest videoInformRequest = ConverterVideoMessage.fromJsonString(json);
+
             if (videoInformRequest.getResult().getData().getStudyTotal()==null) {
                 VideoInformStudyTotal videoInformStudyTotal = new VideoInformStudyTotal();
                 videoInformStudyTotal.setDuration("0");

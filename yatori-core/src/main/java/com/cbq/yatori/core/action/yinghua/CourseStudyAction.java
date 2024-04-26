@@ -242,7 +242,7 @@ public class CourseStudyAction implements Runnable {
 
         List<String> list = examTopics.getExamTopics().keySet().stream().toList();
         for(int i= 0;i<list.size();++i){
-            String answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(),setting.getAiSetting().getAPI_SECRET(), examTopics.getExamTopics().get(list.get(i)));
+            String answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)));
             answer=answer.replace("\n","");
             answer = answer.replace(" ","");
             ExamAction.submitExam(user, examId, examTopics.getExamTopics().get(list.get(i)).getAnswerId(), answer, (i+1)<list.size()?"0":"1");

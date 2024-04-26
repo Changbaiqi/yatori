@@ -10,6 +10,8 @@ import com.cbq.yatori.core.action.yinghua.entity.examtopic.ExamTopics;
 import com.cbq.yatori.core.action.yinghua.entity.examtopic.TopicSelect;
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
 import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.utils.ChatGLMChat;
+import com.cbq.yatori.core.utils.ChatGLMMessage;
 import com.cbq.yatori.core.utils.ChatGLMUtil;
 import com.cbq.yatori.core.utils.CustomTrustManager;
 import okhttp3.*;
@@ -226,7 +228,7 @@ public class ExamAction {
      * @param examTopic 题目
      * @return 返回答案字符串
      */
-    public static String aiAnswerFormChatGLM(String API_KEY,String API_SECRET,ExamTopic examTopic) {
+    public static String aiAnswerFormChatGLM(String API_KEY,ExamTopic examTopic) {
         StringBuilder problem = new StringBuilder();
         problem.append("题目类型：" + examTopic.getType() + "\n");
 
@@ -236,7 +238,11 @@ public class ExamAction {
         }
         problem.append("这题的答案是什么？（注意你只需要回答选项字母，不能回答任何选项字母无关的任何内容，包括解释以及标点符也不需要。就算你不知道选什么也随机选输出A或B。）");
 //        System.out.println(problem.toString());
-        String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, API_SECRET, problem.toString());
+//        String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, API_SECRET, problem.toString());
+        ChatGLMChat chatGLMChat = new ChatGLMChat().builder()
+                .addMessage(ChatGLMMessage.builder().role("user").content(problem.toString()).build())
+                .build();
+        String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
         return chatMessage;
     }
 
