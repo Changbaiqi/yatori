@@ -202,6 +202,8 @@ public class ExamAction {
     public static ExamTopics getExamTopic(User user, String nodeId, String examId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
