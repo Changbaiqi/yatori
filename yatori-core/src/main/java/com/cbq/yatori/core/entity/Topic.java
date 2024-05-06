@@ -11,10 +11,14 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Topic {
+    @ExcelProperty("md5")
+    private String md5;
+
+    @ExcelProperty("type")
+    private String type; // 单选：ONECHOICE、多选：MULTIPLECHOICE、填空：COMPLETION、简答：SHORTANSWER
     @ExcelProperty("title")
     private String title;
-    @ExcelProperty("type")
-    private String type;
     @ExcelProperty("answer")
     private String answer;
+
 }

@@ -140,13 +140,15 @@ public class CourseAction {
             }
             String json = response.body().string();
             VideoInformRequest videoInformRequest = ConverterVideoMessage.fromJsonString(json);
-
-            if (videoInformRequest.getResult().getData().getStudyTotal()==null) {
-                VideoInformStudyTotal videoInformStudyTotal = new VideoInformStudyTotal();
-                videoInformStudyTotal.setDuration("0");
-                videoInformStudyTotal.setState("0");
-                videoInformStudyTotal.setDuration("0");
-                videoInformRequest.getResult().getData().setStudyTotal(videoInformStudyTotal);
+            if(videoInformRequest.getResult()!=null) {
+                if(videoInformRequest.getResult().getData()!=null)
+                if (videoInformRequest.getResult().getData().getStudyTotal() == null) {
+                    VideoInformStudyTotal videoInformStudyTotal = new VideoInformStudyTotal();
+                    videoInformStudyTotal.setDuration("0");
+                    videoInformStudyTotal.setState("0");
+                    videoInformStudyTotal.setDuration("0");
+                    videoInformRequest.getResult().getData().setStudyTotal(videoInformStudyTotal);
+                }
             }
             return videoInformRequest;
         } catch (SocketTimeoutException e){

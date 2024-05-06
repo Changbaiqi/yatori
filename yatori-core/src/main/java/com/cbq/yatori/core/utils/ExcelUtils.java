@@ -42,4 +42,18 @@ public class ExcelUtils {
         }).doReadAll();
         return list;
     }
+
+    /**
+     * 用于向Excel中写入数据
+     * @param filePath 文件路径
+     * @param fileName 文件名称
+     * @param topicList 题库对象列表
+     */
+    public static void writeExcel(String filePath,String fileName,List<Topic> topicList){
+        // 向Excel中写入数据 也可以通过 head(Class<?>) 指定数据模板
+        EasyExcel.write(filePath+"\\"+fileName, Topic.class)
+                .useDefaultStyle(false)
+                .sheet("用户信息")
+                .doWrite(topicList);
+    }
 }

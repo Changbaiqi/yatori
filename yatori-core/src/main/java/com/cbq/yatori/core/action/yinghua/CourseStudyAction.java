@@ -4,7 +4,6 @@ package com.cbq.yatori.core.action.yinghua;
 import com.cbq.yatori.core.action.canghui.entity.exam.ExamCourse;
 import com.cbq.yatori.core.action.canghui.entity.exam.ExamItem;
 import com.cbq.yatori.core.action.canghui.entity.exam.ExamJson;
-import com.cbq.yatori.core.action.canghui.entity.exam.ExamTopic;
 import com.cbq.yatori.core.action.canghui.entity.examsubmit.TopicAnswer;
 import com.cbq.yatori.core.action.canghui.entity.examsubmit.TopicRequest;
 import com.cbq.yatori.core.action.canghui.entity.examsubmitrespose.ExamSubmitResponse;
@@ -15,10 +14,12 @@ import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoList;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoRequest;
 import com.cbq.yatori.core.action.yinghua.entity.examinform.ExamInformRequest;
 import com.cbq.yatori.core.action.yinghua.entity.examstart.StartExamRequest;
+import com.cbq.yatori.core.action.yinghua.entity.examtopic.ExamTopic;
 import com.cbq.yatori.core.action.yinghua.entity.examtopic.ExamTopics;
 import com.cbq.yatori.core.action.yinghua.entity.submitstudy.ConverterSubmitStudyTime;
 import com.cbq.yatori.core.action.yinghua.entity.submitstudy.SubmitResult;
 import com.cbq.yatori.core.action.yinghua.entity.submitstudy.SubmitStudyTimeRequest;
+import com.cbq.yatori.core.action.yinghua.entity.videomessage.ConverterVideoMessage;
 import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformStudyTotal;
 import com.cbq.yatori.core.action.yinghua.entity.videomessage.VideoInformRequest;
 import com.cbq.yatori.core.entity.*;
@@ -28,10 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.cbq.yatori.core.utils.EmailUtil;
 
 import javax.mail.MessagingException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author 长白崎
@@ -45,6 +43,9 @@ public class CourseStudyAction implements Runnable {
 
     private User user;
     private Setting setting;
+    private List<Topic> topics=new ArrayList<>(); //题库
+    private HashMap<String, Integer> topicMd5 = new HashMap<>(); //题库md5映射
+
     private CourseInform courseInform; //当前课程的对象
 
     private VideoRequest courseVideosList; //视屏列表
@@ -114,6 +115,19 @@ public class CourseStudyAction implements Runnable {
                 //获取到视屏观看信息
                 VideoInformRequest videMessage = null;
                 while ((videMessage = CourseAction.getVideMessage(user, videoInform)) == null) ;
+
+                if(videMessage.getCode()==9 && videMessage.getMsg().contains("课程已经结束")){
+                    try {
+                        log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}",
+                                ConverterVideoMessage.toJsonString(videMessage),
+                                user.getAccount(),
+                                user.getAccountType().name(),
+                                videoInform.getName());
+                    } catch (JsonProcessingException e) {
+                        throw new RuntimeException(e);
+                    }
+                    continue;
+                }
 
                 //如果videoId为空那么就是考试的，直接自动考试即可
                 if(videMessage.getResult().getData().getVideoId().equals("") && user.getCoursesCostom().getAutoExam()==1){
@@ -242,12 +256,41 @@ public class CourseStudyAction implements Runnable {
 
         List<String> list = examTopics.getExamTopics().keySet().stream().toList();
         for(int i= 0;i<list.size();++i){
-            String answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)));
-            answer=answer.replace("\n","");
-            answer = answer.replace(" ","");
+            ExamTopic examTopic = examTopics.getExamTopics().get(list.get(i));
+
+            String answer ="";
+            //如果存有相关的题那么直接获取答案回答
+            if(topicMd5.containsKey(turnMd5(examTopic))){
+                answer = topics.get(topicMd5.get(turnMd5(examTopic))).getAnswer();
+            }else {
+                //没缓存那么就直接AI
+                answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)));
+                answer = answer.replace("\n", "");
+                answer = answer.replace(" ", "");
+                String topicAllContent= examTopic.getContent();
+                topics.add(new Topic(turnMd5(examTopic),turnTopicType(examTopic.getType()),examTopic.getContent(),answer));
+            }
             ExamAction.submitExam(user, examId, examTopics.getExamTopics().get(list.get(i)).getAnswerId(), answer, (i+1)<list.size()?"0":"1");
         }
         log.info("{}:课程:{}考试成功！对应考试试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName());
+    }
+
+
+    private String turnMd5(ExamTopic examTopic){
+
+        return "";
+    }
+    private String turnTopicType(String type){
+        if(type.contains("单选")){
+            return "ONECHOICE";
+        }else if(type.contains("多选")){
+            return "MULTIPLECHOICE";
+        }else if(type.contains("填空")){
+            return "COMPLETION";
+        } else if(type.contains("简答")){
+            return "SHORTANSWER";
+        }
+        return "";
     }
 
     public static Builder builder() {
