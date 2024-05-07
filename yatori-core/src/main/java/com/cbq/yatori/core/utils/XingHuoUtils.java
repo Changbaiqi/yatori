@@ -16,9 +16,9 @@ import java.util.*;
 
 public class XingHuoUtils extends WebSocketListener {
     public static final String hostUrl = "https://spark-api.xf-yun.com/v3.5/chat";
-    public static final String appid = "55883694";
-    public static final String apiSecret = "ZDM0NzBiMmRmMzk5OWRjODgxM2NhZjFi";
-    public static final String apiKey = "6effbf63072ee02cf6b0a6acbb9173c5";
+    public static final String appid = "";
+    public static final String apiSecret = "";
+    public static final String apiKey = "";
 
     public static List<RoleContent> historyList=new ArrayList<>(); // 对话历史存储集合
 
