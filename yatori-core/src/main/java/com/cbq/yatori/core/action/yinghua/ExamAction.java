@@ -14,6 +14,7 @@ import com.cbq.yatori.core.utils.ChatGLMChat;
 import com.cbq.yatori.core.utils.ChatGLMMessage;
 import com.cbq.yatori.core.utils.ChatGLMUtil;
 import com.cbq.yatori.core.utils.CustomTrustManager;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import javax.net.ssl.X509TrustManager;
@@ -28,6 +29,7 @@ import java.util.regex.Pattern;
  * @description: TODO 考试相关
  * @date 2023/12/1 12:11
  */
+@Slf4j
 public class ExamAction {
 
     /**
@@ -49,7 +51,7 @@ public class ExamAction {
 //            System.out.println("answerId："+answerId+"  题目序号："+index);
         }
 
-        pattern = Pattern.compile("<form method=\"post\" action=\"/api/exam/submit\">([\\w\\W]*?)</form>");
+        pattern = Pattern.compile("<form method=\"post\" action=\"/api/[^/]*/submit\">([\\w\\W]*?)</form>");
         matcher = pattern.matcher(examHtml);
         while (matcher.find()) {
             String topicHtml = matcher.group(1);
@@ -291,6 +293,173 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+    /**
+     * 获取考试相关的一些信息
+     * {"_code":0,"status":true,"msg":"获取数据成功","result":{"list":[{"id":1006680,"title":"0-3岁婴幼儿家庭教育与指导","topicNumber":33,"score":100,"addTime":"2024-04-09 12:10:58","nodeId":1430751,"courseId":1010822,"limitedTime":120,"remarks":"","startTime":"2024-04-09 12:10:10","endTime":"2024-04-30 23:55:55","createUserId":"1249678","classList":"[]","isPrivate":"0","teacherType":"1","allow":"1","frequency":"1","hasCollect":"0","schoolId":"9","parsing":"0","addDate":"2024-04-09","random":"0","randData":null,"randNumber":"0","type":3,"flag":0,"start":1,"finish":0,"url":"https:\/\/mooc.lidapoly.edu.cn\/api\/exam?nodeId=1430751&examId=1006680&token=sid.8bXX72LTPHQNhcki2CJf9cZ3oINhqt"}]}}
+     * 这里会获取到考试内容相关的信息
+     * 其中list中的id其实就是examId,nodeId就是nodeId
+     *
+     * @param user
+     * @param nodeId
+     * @return
+     */
+    public static ExamInformRequest getWork(User user, String nodeId) {
+        AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
+                .build();
+        MediaType mediaType = MediaType.parse("multipart/form-data; boundary=--------------------------393670526422134055864302");
+        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("platform", "Android")
+                .addFormDataPart("version", "1.4.8")
+                .addFormDataPart("nodeId", nodeId)
+                .addFormDataPart("token", cache.getToken())
+                .addFormDataPart("terminal", "Android")
+                .build();
+        Request request = new Request.Builder()
+                .url(user.getUrl() + "/api/node/work.json")
+                .method("POST", body)
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
+                .addHeader("Connection", "keep-alive")
+                .addHeader("Content-Type", "multipart/form-data; boundary=--------------------------393670526422134055864302")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            ExamInformRequest examInformRequest = ConverterExamInform.fromJsonString(response.body().string());
+            return examInformRequest;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * 开始写作业接口
+     *
+     * @param user     用户
+     * @param courseId 课程ID
+     * @param nodeId   对应章节结点Id
+     * @param workId   作业Id
+     */
+    public static StartExamRequest startWork(User user, String courseId, String nodeId, String workId) {
+        AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url(user.getUrl()+"/api/work/start?nodeId="+nodeId+"&workId="+workId+"&courseId="+courseId+"&token="+cache.getToken())
+                .method("GET",null)
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
+                .addHeader("Connection", "keep-alive")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            StartExamRequest startExamRequest = ConverterStartExam.fromJsonString(response.body().string());
+            return startExamRequest;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+    /**
+     * 获取所有作业题目
+     *
+     * @param user   用户信息
+     * @param nodeId 节点Id
+     * @param workId 考试Id
+     * @return
+     */
+    public static ExamTopics getWorkTopic(User user, String nodeId, String workId) {
+        AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody body = RequestBody.create(JSON, "{}");
+        Request request = new Request.Builder()
+                .url(user.getUrl() + "/api/work?nodeId=" + nodeId + "&workId=" + workId + "&token=" + cache.getToken())
+                .method("POST", body)
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
+                .addHeader("Connection", "keep-alive")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            ExamTopics examTopics = turnExamTopic(response.body().string());
+            return examTopics;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    /**
+     * 提交作业答题的接口
+     *
+     * @param user     用户
+     * @param workId   答题的作业试卷Id
+     * @param answerId 答题的题目Id
+     * @param answer   所提交的答案或选项，比如A，B等
+     * @param finish   是否是最后提交并且结束考试，0代表不是，1代表是
+     */
+    public static void submitWork(User user, String workId, String answerId, String answer, String finish) {
+        AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
+                .build();
+        MediaType mediaType = MediaType.parse("multipart/form-data; boundary=--------------------------326388482122783598484776");
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(MultipartBody.FORM)
+                .addFormDataPart("platform", "Android")
+                .addFormDataPart("version", "1.4.8")
+                .addFormDataPart("workId", workId)
+                .addFormDataPart("terminal", "Android")
+                .addFormDataPart("answerId", answerId)
+                .addFormDataPart("finish", finish)
+                .addFormDataPart("token", cache.getToken());
+        if (answer.length() == 1) {
+            builder.addFormDataPart("answer", answer.charAt(0) + "");
+        } else {
+            for (int i = 0; i < answer.length(); ++i) {
+                builder.addFormDataPart("answer[]", answer.charAt(i) + "");
+            }
+        }
+        Request request = new Request.Builder()
+                .url(user.getUrl() + "/api/work/submit.json")
+                .method("POST", builder.build())
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
+                .addHeader("Connection", "keep-alive")
+                .addHeader("Content-Type", "multipart/form-data; boundary=--------------------------326388482122783598484776")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+//            log.info(response.body().string());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

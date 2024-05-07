@@ -137,6 +137,11 @@ public class CourseStudyAction implements Runnable {
                         autoExamAction(courseInform, videoInform, String.valueOf(videoInform.getId()));
                         continue;
                     }
+                    exam = com.cbq.yatori.core.action.yinghua.ExamAction.getWork(user, String.valueOf(videoInform.getId()));
+                    if(exam.getExamInformResult().getList().size()!=0) {
+                        autoWorkAction(courseInform, videoInform, String.valueOf(videoInform.getId()));
+                        continue;
+                    }
                 }
                 //视屏总时长
                 long videoDuration = videMessage.getResult().getData().getVideoDuration();
@@ -275,6 +280,38 @@ public class CourseStudyAction implements Runnable {
         log.info("{}:课程:{}考试成功！对应考试试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName());
     }
 
+
+    /**
+     * 自动写作业习题
+     */
+    public void autoWorkAction(CourseInform courseInform, NodeList videoInform,String nodeId) {
+        log.info("{}:正在写课程习题>>>{}", user.getAccount(), courseInform.getName());
+        ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getWork(user, nodeId);
+        String workId= String.valueOf(exam.getExamInformResult().getList().get(0).getId());
+        String courseId =String.valueOf(exam.getExamInformResult().getList().get(0).getCourseId());
+        StartExamRequest startExamRequest = com.cbq.yatori.core.action.yinghua.ExamAction.startWork(user, courseId, nodeId, workId);//开始考试
+        ExamTopics examTopics = com.cbq.yatori.core.action.yinghua.ExamAction.getWorkTopic(user, nodeId, workId);//获取题目
+
+        List<String> list = examTopics.getExamTopics().keySet().stream().toList();
+        for(int i= 0;i<list.size();++i){
+            ExamTopic examTopic = examTopics.getExamTopics().get(list.get(i));
+
+            String answer ="";
+            //如果存有相关的题那么直接获取答案回答
+            if(topicMd5.containsKey(turnMd5(examTopic))){
+                answer = topics.get(topicMd5.get(turnMd5(examTopic))).getAnswer();
+            }else {
+                //没缓存那么就直接AI
+                answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)));
+                answer = answer.replace("\n", "");
+                answer = answer.replace(" ", "");
+                String topicAllContent= examTopic.getContent();
+                topics.add(new Topic(turnMd5(examTopic),turnTopicType(examTopic.getType()),examTopic.getContent(),answer));
+            }
+            ExamAction.submitWork(user, workId, examTopics.getExamTopics().get(list.get(i)).getAnswerId(), answer, (i+1)<list.size()?"0":"1");
+        }
+        log.info("{}:课程:{}课后作业考试成功！对应作业试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName());
+    }
 
     private String turnMd5(ExamTopic examTopic){
 

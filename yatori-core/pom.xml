@@ -6,7 +6,7 @@
 
     <groupId>io.github.changbaiqi</groupId>
     <artifactId>yatori-core</artifactId>
-    <version>1.0.0-beta.3</version>
+    <version>1.0.0-beta.4</version>
     <packaging>jar</packaging>
     <name>yatori-core</name>
     <description>Hello，这里是Yatori-core，也是Yatori系列核心项目之一</description>
