@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新README配置说明">
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/XingHuoUtils.java" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="更新支撑英华穿插课后练习自动答题。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Topic.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Topic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/ExcelUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/ExcelUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-console/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -393,7 +388,10 @@
       <workItem from="1714452891324" duration="639000" />
       <workItem from="1714562274346" duration="1650000" />
       <workItem from="1714622858877" duration="54000" />
-      <workItem from="1714980981693" duration="7000" />
+      <workItem from="1714980981693" duration="2648000" />
+      <workItem from="1715069732100" duration="1311000" />
+      <workItem from="1715071122072" duration="614000" />
+      <workItem from="1715071879184" duration="5673000" />
     </task>
     <task id="LOCAL-00067" summary="新添支持创能平台">
       <created>1699973877369</created>
@@ -738,7 +736,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704650243297</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,9 +767,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="完善yaotri-core仓辉视屏刷课部分基础功能API，有想对仓辉进行二次开发的可以使用了" />
-    <MESSAGE value="更新部分代码提高程序稳定性，以及修改调整README文档" />
-    <MESSAGE value="成功逆向学习通登录" />
     <MESSAGE value="获取学习通需学习课程列表" />
     <MESSAGE value="更改参数说明" />
     <MESSAGE value="README更新" />
@@ -794,7 +789,10 @@
     <MESSAGE value="更新报错提示显示" />
     <MESSAGE value="更新版本" />
     <MESSAGE value="更新README配置说明" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新README配置说明" />
+    <MESSAGE value="修复考试状态判定错误bug" />
+    <MESSAGE value="修复ssl证书问题" />
+    <MESSAGE value="更新支撑英华穿插课后练习自动答题。" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新支撑英华穿插课后练习自动答题。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
