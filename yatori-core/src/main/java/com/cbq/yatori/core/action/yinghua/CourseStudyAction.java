@@ -13,7 +13,9 @@ import com.cbq.yatori.core.action.yinghua.entity.allvideo.NodeList;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoList;
 import com.cbq.yatori.core.action.yinghua.entity.allvideo.VideoRequest;
 import com.cbq.yatori.core.action.yinghua.entity.examinform.ExamInformRequest;
+import com.cbq.yatori.core.action.yinghua.entity.examstart.ConverterStartExam;
 import com.cbq.yatori.core.action.yinghua.entity.examstart.StartExamRequest;
+import com.cbq.yatori.core.action.yinghua.entity.examstart.StartExamResult;
 import com.cbq.yatori.core.action.yinghua.entity.examtopic.ExamTopic;
 import com.cbq.yatori.core.action.yinghua.entity.examtopic.ExamTopics;
 import com.cbq.yatori.core.action.yinghua.entity.submitstudy.ConverterSubmitStudyTime;
@@ -66,7 +68,14 @@ public class CourseStudyAction implements Runnable {
         //视屏刷课模式
         switch (coursesCostom.getVideoModel()) {
             case 0 -> {
-                accoVideo = (long) videoInforms.size();
+//                accoVideo = (long) videoInforms.size();
+                if (newThread) {
+                    new Thread(this).start();
+                } else {
+                    log.info("{}:正在学习课程>>>{}", user.getAccount(), courseInform.getName());
+                    study1();
+                    log.info("{}:{}学习完毕！", user.getAccount(), courseInform.getName());
+                }
             }
             //普通模式
             case 1 -> {
@@ -129,6 +138,9 @@ public class CourseStudyAction implements Runnable {
                     continue;
                 }
 
+
+
+
                 //如果videoId为空那么就是考试的，直接自动考试即可
                 if(videMessage.getResult().getData().getVideoId().equals("") && user.getCoursesCostom().getAutoExam()==1){
                     ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getExam(user, String.valueOf(videoInform.getId()));
@@ -143,6 +155,8 @@ public class CourseStudyAction implements Runnable {
                         continue;
                     }
                 }
+                if(user.getCoursesCostom().getVideoModel()==0) continue; //如果模式不播放视频那么直接跳过
+
                 //视屏总时长
                 long videoDuration = videMessage.getResult().getData().getVideoDuration();
                 //当前学习进度
@@ -290,6 +304,14 @@ public class CourseStudyAction implements Runnable {
         String workId= String.valueOf(exam.getExamInformResult().getList().get(0).getId());
         String courseId =String.valueOf(exam.getExamInformResult().getList().get(0).getCourseId());
         StartExamRequest startExamRequest = com.cbq.yatori.core.action.yinghua.ExamAction.startWork(user, courseId, nodeId, workId);//开始考试
+        if(startExamRequest.getCode()==9){
+            try {
+                log.info("{}:课程:{}课后作业考试失败！对应作业试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName(), ConverterStartExam.toJsonString(startExamRequest));
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+            return;
+        }
         ExamTopics examTopics = com.cbq.yatori.core.action.yinghua.ExamAction.getWorkTopic(user, nodeId, workId);//获取题目
 
         List<String> list = examTopics.getExamTopics().keySet().stream().toList();
