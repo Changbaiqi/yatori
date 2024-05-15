@@ -361,7 +361,7 @@ public class ExamAction {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url(user.getUrl()+"/api/work/start?nodeId="+nodeId+"&workId="+workId+"&courseId="+courseId+"&token="+cache.getToken())
+                .url(user.getUrl()+"/api/work/start.json?nodeId="+nodeId+"&workId="+workId+"&courseId="+courseId+"&token="+cache.getToken())
                 .method("GET",null)
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Accept", "*/*")
