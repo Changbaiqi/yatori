@@ -24,8 +24,8 @@ public class YatoriYingHuaUser extends YatoriUser {
      */
     @Override
     public YatoriYingHuaLogin toLogin() {
-        AccountCacheYingHua accountCacheYingHua = new AccountCacheYingHua();
-        user.setCache(accountCacheYingHua);
+        AccountCacheYingHua accountCacheYingHua = new AccountCacheYingHua(); //英华缓存信息
+        user.setCache(accountCacheYingHua); //设置缓存
         //refresh_code:1代表密码错误，
         Map<String, Object> result = null;
         do {
