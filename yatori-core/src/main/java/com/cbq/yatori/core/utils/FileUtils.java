@@ -3,7 +3,6 @@ package com.cbq.yatori.core.utils;
 import org.mozilla.universalchardet.UniversalDetector;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 
 /**
@@ -69,6 +68,7 @@ public class FileUtils {
         String text = "";
         try {
             InputStream inputStream = new FileInputStream(file);
+
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream,getCharsetName(file));
             //FileReader fileReader = new FileReader(file);
             BufferedReader br = new BufferedReader(inputStreamReader);
