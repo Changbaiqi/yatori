@@ -17,6 +17,8 @@ import okhttp3.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CourseAction {
 
@@ -48,18 +50,53 @@ public class CourseAction {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * 用于获取必修课程的syllabusId
+     * @param user 用户对象
+     * @param circleId 对应circledId
+     * @return
+     */
+    public static String getRequiredCoursesSyllabusId(User user,String circleId){
+        AccountCacheEnaea cache =(AccountCacheEnaea) user.getCache();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        Request request = new Request.Builder()
+                .url("https://study.enaea.edu.cn/circleIndexRedirect.do?action=toCircleIndex&circleId="+circleId+"&ct="+System.currentTimeMillis())
+                .method("GET", null)
+                .addHeader("Cookie", "ASUSS="+cache.getASUSS()+";")
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", "study.enaea.edu.cn")
+                .addHeader("Connection", "keep-alive")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String string = response.body().string();
+            Pattern pattern = Pattern.compile("<a title=\"必修课程\" href=\"circleIndexRedirect.do\\?action=toNewMyClass&type=course&circleId="+circleId+"&syllabusId=([^&]*?)&isRequired=true&studentProgress=[\\d]+\">必修课程</a>");
+            Matcher matcher = pattern.matcher(string);
+            if(matcher.find()){
+                return matcher.group(1);
+            }
+            return null;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     /**
      * 获取对应必修项目的必修课程
      * @param user 用户
      * @param circleId 项目ID
      */
     public static RequiredCourseListRequest getRequiredCourseList(User user,String circleId){
+        String syllabusId = getRequiredCoursesSyllabusId(user, circleId); //获取syllabusId
         AccountCacheEnaea cache =(AccountCacheEnaea) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         Request request = new Request.Builder()
-                .url("https://study.enaea.edu.cn/circleIndex.do?action=getMyClass&start=0&limit=200&isCompleted=&circleId="+circleId+"&syllabusId=1328803&categoryRemark=all&_="+System.currentTimeMillis())
+                .url("https://study.enaea.edu.cn/circleIndex.do?action=getMyClass&start=0&limit=200&isCompleted=&circleId="+circleId+"&syllabusId="+syllabusId+"&categoryRemark=all&_="+System.currentTimeMillis())
                 .method("GET", null)
                 .addHeader("Cookie", "ASUSS="+cache.getASUSS()+";")
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
