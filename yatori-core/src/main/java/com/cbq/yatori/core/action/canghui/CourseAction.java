@@ -12,6 +12,7 @@ import com.cbq.yatori.core.action.canghui.entity.upload.ConverterUpload;
 import com.cbq.yatori.core.action.canghui.entity.upload.UploadRequest;
 import com.cbq.yatori.core.entity.AccountCacheCangHui;
 import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.utils.CustomTrustManager;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,8 @@ public class CourseAction {
      */
     public static MyCourseData myCourseList(User user) {
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
 
@@ -98,6 +101,8 @@ public class CourseAction {
      */
     public static CourseDetailData getCourseDetail(User user, Long courseId) {
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\r\n    \"id\": \"" + courseId + "\"\r\n}");
@@ -164,6 +169,8 @@ public class CourseAction {
         try {
             OkHttpClient client = new OkHttpClient().newBuilder()
                     .connectTimeout(10, TimeUnit.SECONDS)
+                    .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                    .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                     .build();
             MediaType mediaType = MediaType.parse("application/json");
             RequestBody body = RequestBody.create(mediaType, "{\r\n    \"semesterId\": " + semesterId + ",\r\n    \"sectionId\": \"" + sectionId + "\",\r\n    \"position\": " + studyTime + "\r\n}");

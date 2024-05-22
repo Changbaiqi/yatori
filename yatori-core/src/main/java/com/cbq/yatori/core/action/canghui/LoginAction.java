@@ -6,6 +6,7 @@ import com.cbq.yatori.core.action.canghui.entity.tologin.ConverterToLogin;
 import com.cbq.yatori.core.action.canghui.entity.tologin.ToLoginRequest;
 import com.cbq.yatori.core.entity.AccountCacheCangHui;
 import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.utils.CustomTrustManager;
 import com.cbq.yatori.core.utils.FileUtils;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -34,6 +35,8 @@ public class LoginAction {
     public static String getSESSION(User user) {
 
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
 
@@ -80,6 +83,8 @@ public class LoginAction {
      */
     public static File getCode(User user) {
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         //RequestBody body = RequestBody.create(mediaType, "");
@@ -121,6 +126,8 @@ public class LoginAction {
     public static LoginResponseRequest toLogin(User user) {
 
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
 
@@ -189,6 +196,8 @@ public class LoginAction {
      */
     public static Map online(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         AccountCacheCangHui cache = (AccountCacheCangHui)user.getCache();

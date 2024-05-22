@@ -11,6 +11,7 @@ import com.cbq.yatori.core.action.canghui.entity.startexam.ConverterStartExam;
 import com.cbq.yatori.core.action.canghui.entity.startexam.StartExam;
 import com.cbq.yatori.core.entity.AccountCacheCangHui;
 import com.cbq.yatori.core.entity.User;
+import com.cbq.yatori.core.utils.CustomTrustManager;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,8 @@ public class ExamAction {
      */
     public static ExamJson getExamList(User user,String courseId){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\r\n    \"pageSize\": 99,\r\n    \"courseId\": \""+courseId+"\",\r\n    \"page\": 1\r\n}");
@@ -79,6 +82,8 @@ public class ExamAction {
      */
     public static StartExam startExam(User user,String examId){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\"examId\":\""+examId+"\"}");
@@ -123,6 +128,8 @@ public class ExamAction {
      */
     public static ExamSubmitResponse submitExam(User user, TopicRequest topicRequest){
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = null;
