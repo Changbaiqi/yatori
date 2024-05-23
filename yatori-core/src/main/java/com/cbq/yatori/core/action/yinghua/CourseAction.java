@@ -62,7 +62,6 @@ public class CourseAction {
         } catch (SocketTimeoutException e){
             return null;
         } catch (IOException e) {
-            log.error("");
             e.printStackTrace();
         }
         return null;
@@ -154,7 +153,6 @@ public class CourseAction {
         } catch (SocketTimeoutException e){
             return null;
         } catch (Exception e) {
-            log.error("");
             e.printStackTrace();
         }
         return null;
@@ -202,7 +200,6 @@ public class CourseAction {
         }catch (SocketTimeoutException e){
             return null;
         } catch (IOException e) {
-            log.error("");
             e.printStackTrace();
         }
         return null;
