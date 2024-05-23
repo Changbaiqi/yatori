@@ -59,7 +59,7 @@ public class CourseAction {
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "*/*")
-                .addHeader("Host", "kkzxsx.bwgl.cn")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
                 .addHeader("Connection", "keep-alive")
                 .build();
         try {
@@ -116,7 +116,7 @@ public class CourseAction {
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "*/*")
-                .addHeader("Host", "kkzxsx.bwgl.cn")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
                 .addHeader("Connection", "keep-alive")
                 .addHeader("Cookie", ((AccountCacheCangHui)user.getCache()).getSession())
                 .build();
