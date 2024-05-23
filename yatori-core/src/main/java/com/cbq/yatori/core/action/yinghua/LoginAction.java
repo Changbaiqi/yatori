@@ -38,6 +38,7 @@ public class LoginAction {
             String session = response.header("Set-Cookie");
             if(session==null)
                 session = response.header("Cookie");
+            response.close();
             return session;
         }catch (SocketTimeoutException e){
             return null;
@@ -63,8 +64,13 @@ public class LoginAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            if(!response.isSuccessful()){//当响应失败时
+                response.close();
+                return null;
+            }
             byte[] bytes = response.body().bytes();
             File file = FileUtils.saveFile(bytes, user.getAccountType().name()+"_"+user.getAccount()+"_"+(int)Math.random()*99999+".png");
+            response.close();
             return file;
         }catch (SocketTimeoutException e){
             return null;
@@ -114,6 +120,7 @@ public class LoginAction {
             }
 //            System.out.println(response.body().string());
             Map<String,Object> result = new ObjectMapper().readValue(json,Map.class);
+            response.close();
             return result;
         }catch (SocketTimeoutException e){
             return null;
@@ -155,6 +162,7 @@ public class LoginAction {
             String json = response.body().string();
             ObjectMapper objectMapper = new ObjectMapper();
             Map map = objectMapper.readValue(json, Map.class);
+            response.close();
             return map;
         }catch (SocketTimeoutException e){
             return null;
