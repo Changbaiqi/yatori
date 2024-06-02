@@ -45,7 +45,7 @@ public class CourseStudyAction implements Runnable {
 
     private User user;
     private Setting setting;
-    private List<Topic> topics=new ArrayList<>(); //题库
+    private List<Topic> topics = new ArrayList<>(); //题库
     private HashMap<String, Integer> topicMd5 = new HashMap<>(); //题库md5映射
 
     private CourseInform courseInform; //当前课程的对象
@@ -53,15 +53,15 @@ public class CourseStudyAction implements Runnable {
     private VideoRequest courseVideosList; //视屏列表
     //需要看的视屏集合
     private List<NodeList> videoInforms = new ArrayList<>();
-    //学习Id
-    private long studyId = 0;
+
     private Boolean newThread = false;
 
 
-//    private static final Boolean IsOpenmail =ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
+    //    private static final Boolean IsOpenmail =ConfigUtils.loadingConfig().getSetting().getEmailInform().getEmail()!="";
     private long studyInterval = 5;
 
     private Long accoVideo = 0L;
+
     public void toStudy() {
         CoursesCostom coursesCostom = user.getCoursesCostom();
 
@@ -100,21 +100,27 @@ public class CourseStudyAction implements Runnable {
     public void run() {
         log.info("{}:正在学习课程>>>{}", user.getAccount(), courseInform.getName());
         study1();
-        if(setting.getEmailInform().getSw()==1){
-        try {
-            EmailUtil.sendEmail(user.getAccount(),courseInform.getName());
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }}
+        if (setting.getEmailInform().getSw() == 1) {
+            try {
+                EmailUtil.sendEmail(user.getAccount(), courseInform.getName());
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         log.info("{}:{}学习完毕！", user.getAccount(), courseInform.getName());
     }
 
     private void study1() {
+        //学习Id
+        long studyId = 0;
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         for (int i = 0; i < videoInforms.size(); i++) {
             NodeList videoInform = videoInforms.get(i);
             //当视屏没有被锁时
+            if (videoInform.getNodeLock() == 2) {
+                log.info("服务器端信息：>>>{}课程视屏未解锁，解锁时间为：{}", videoInform.getName(), videoInform.getUnlockTime());
+            }
             if (videoInform.getNodeLock() == 0) {
                 //如果此视屏看完了则直接跳过
                 if (videoInform.getVideoState() == 2) {
@@ -125,7 +131,7 @@ public class CourseStudyAction implements Runnable {
                 VideoInformRequest videMessage = null;
                 while ((videMessage = CourseAction.getVideMessage(user, videoInform)) == null) ;
 
-                if(videMessage.getCode()==9 && videMessage.getMsg().contains("课程已经结束")){
+                if (videMessage.getCode() == 9 && videMessage.getMsg().contains("课程已经结束")) {
                     try {
                         log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}",
                                 ConverterVideoMessage.toJsonString(videMessage),
@@ -139,23 +145,21 @@ public class CourseStudyAction implements Runnable {
                 }
 
 
-
-
                 //如果videoId为空那么就是考试的，直接自动考试即可
-                if(videMessage.getResult().getData().getVideoId().equals("") && user.getCoursesCostom().getAutoExam()==1){
+                if (videMessage.getResult().getData().getVideoId().equals("") && user.getCoursesCostom().getAutoExam() == 1) {
                     ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getExam(user, String.valueOf(videoInform.getId()));
                     //过滤误判的考试或者视屏
-                    if(exam.getExamInformResult().getList().size()!=0) {
+                    if (exam.getExamInformResult().getList().size() != 0) {
                         autoExamAction(courseInform, videoInform, String.valueOf(videoInform.getId()));
                         continue;
                     }
                     exam = com.cbq.yatori.core.action.yinghua.ExamAction.getWork(user, String.valueOf(videoInform.getId()));
-                    if(exam.getExamInformResult().getList().size()!=0) {
+                    if (exam.getExamInformResult().getList().size() != 0) {
                         autoWorkAction(courseInform, videoInform, String.valueOf(videoInform.getId()));
                         continue;
                     }
                 }
-                if(user.getCoursesCostom().getVideoModel()==0) continue; //如果模式不播放视频那么直接跳过
+                if (user.getCoursesCostom().getVideoModel() == 0) continue; //如果模式不播放视频那么直接跳过
 
                 //视屏总时长
                 long videoDuration = videMessage.getResult().getData().getVideoDuration();
@@ -167,7 +171,7 @@ public class CourseStudyAction implements Runnable {
                 long studyTime = Long.parseLong(studyTotal.getDuration());
 
                 //直接先提交一次，这里是为了防止傻逼英华TM自己传的参数都搞错整成了视屏时长为0的问题（傻逼英华，连个参数都传错了）
-                CourseAction.submitStudyTime(user, videoInform, studyTime+studyInterval, studyId);
+                CourseAction.submitStudyTime(user, videoInform, studyTime + studyInterval, studyId);
                 //循环进行学习
                 while ((studyTime += studyInterval) < videoDuration + studyInterval) {
                     //这里根据账号账号登录状态进行策划行为
@@ -195,8 +199,8 @@ public class CourseStudyAction implements Runnable {
                             //成功提交
                             SubmitResult result = submitStudyTimeRequest.getResult();
                             //根据反馈内容修改studyId
-                            if(result!=null)
-                                if(result.getData()!=null)
+                            if (result != null)
+                                if (result.getData() != null)
                                     studyId = result.getData() != null ? result.getData().getStudyId() : studyId;
 
 
@@ -222,8 +226,8 @@ public class CourseStudyAction implements Runnable {
                     }
                     //更新视屏信息列表
                     if (studyTime >= videoDuration) {
-                        if(submitStudyTimeRequest==null)
-                            studyTime-=studyInterval;
+                        if (submitStudyTimeRequest == null)
+                            studyTime -= studyInterval;
                         else
                             update();
                     }
@@ -239,7 +243,13 @@ public class CourseStudyAction implements Runnable {
         for (int i = 0; i < videoInforms.size(); i++) {
             NodeList videoInform = videoInforms.get(i);
             //当视屏没有被锁时
-            new Thread(()->{
+            new Thread(() -> {
+                //学习Id
+                long studyId = 0;
+                //当视屏没有被锁时
+                if (videoInform.getNodeLock() == 2) {
+                    log.info("服务器端信息：>>>{}课程视屏未解锁，解锁时间为：{}", videoInform.getName(), videoInform.getUnlockTime());
+                }
                 if (videoInform.getNodeLock() == 0) {
                     //如果此视屏看完了则直接跳过
                     if (videoInform.getVideoState() == 2) {
@@ -250,7 +260,7 @@ public class CourseStudyAction implements Runnable {
                     VideoInformRequest videMessage = null;
                     while ((videMessage = CourseAction.getVideMessage(user, videoInform)) == null) ;
 
-                    if(videMessage.getCode()==9 && videMessage.getMsg().contains("课程已经结束")){
+                    if (videMessage.getCode() == 9 && videMessage.getMsg().contains("课程已经结束")) {
                         try {
                             log.info("\n服务器端信息：>>>{}\n学习账号>>>{}\n学习平台>>>{}\n视屏名称>>>{}",
                                     ConverterVideoMessage.toJsonString(videMessage),
@@ -264,23 +274,21 @@ public class CourseStudyAction implements Runnable {
                     }
 
 
-
-
                     //如果videoId为空那么就是考试的，直接自动考试即可
-                    if(videMessage.getResult().getData().getVideoId().equals("") && user.getCoursesCostom().getAutoExam()==1){
+                    if (videMessage.getResult().getData().getVideoId().equals("") && user.getCoursesCostom().getAutoExam() == 1) {
                         ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getExam(user, String.valueOf(videoInform.getId()));
                         //过滤误判的考试或者视屏
-                        if(exam.getExamInformResult().getList().size()!=0) {
+                        if (exam.getExamInformResult().getList().size() != 0) {
                             autoExamAction(courseInform, videoInform, String.valueOf(videoInform.getId()));
                             return;
                         }
                         exam = com.cbq.yatori.core.action.yinghua.ExamAction.getWork(user, String.valueOf(videoInform.getId()));
-                        if(exam.getExamInformResult().getList().size()!=0) {
+                        if (exam.getExamInformResult().getList().size() != 0) {
                             autoWorkAction(courseInform, videoInform, String.valueOf(videoInform.getId()));
                             return;
                         }
                     }
-                    if(user.getCoursesCostom().getVideoModel()==0) return; //如果模式不播放视频那么直接跳过
+                    if (user.getCoursesCostom().getVideoModel() == 0) return; //如果模式不播放视频那么直接跳过
 
                     //视屏总时长
                     long videoDuration = videMessage.getResult().getData().getVideoDuration();
@@ -292,7 +300,7 @@ public class CourseStudyAction implements Runnable {
                     long studyTime = Long.parseLong(studyTotal.getDuration());
 
                     //直接先提交一次，这里是为了防止傻逼英华TM自己传的参数都搞错整成了视屏时长为0的问题（傻逼英华，连个参数都传错了）
-                    CourseAction.submitStudyTime(user, videoInform, studyTime+studyInterval, studyId);
+                    CourseAction.submitStudyTime(user, videoInform, studyTime + studyInterval, studyId);
                     //循环进行学习
                     while ((studyTime += studyInterval) < videoDuration + studyInterval) {
                         //这里根据账号账号登录状态进行策划行为
@@ -320,8 +328,8 @@ public class CourseStudyAction implements Runnable {
                                 //成功提交
                                 SubmitResult result = submitStudyTimeRequest.getResult();
                                 //根据反馈内容修改studyId
-                                if(result!=null)
-                                    if(result.getData()!=null)
+                                if (result != null)
+                                    if (result.getData() != null)
                                         studyId = result.getData() != null ? result.getData().getStudyId() : studyId;
 
 
@@ -347,8 +355,8 @@ public class CourseStudyAction implements Runnable {
                         }
                         //更新视屏信息列表
                         if (studyTime >= videoDuration) {
-                            if(submitStudyTimeRequest==null)
-                                studyTime-=studyInterval;
+                            if (submitStudyTimeRequest == null)
+                                studyTime -= studyInterval;
                             else
                                 update();
                         }
@@ -372,8 +380,6 @@ public class CourseStudyAction implements Runnable {
     }
 
 
-
-
     private void update() {
         //初始化视屏列表
         while ((courseVideosList = CourseAction.getCourseVideosList(user, courseInform)) == null) ;
@@ -391,31 +397,31 @@ public class CourseStudyAction implements Runnable {
     /**
      * 自动考试
      */
-    public void autoExamAction(CourseInform courseInform, NodeList videoInform,String nodeId) {
+    public void autoExamAction(CourseInform courseInform, NodeList videoInform, String nodeId) {
         log.info("{}:正在考试课程>>>{}", user.getAccount(), courseInform.getName());
         ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getExam(user, nodeId);
-        String examId= String.valueOf(exam.getExamInformResult().getList().get(0).getId());
-        String courseId =String.valueOf(exam.getExamInformResult().getList().get(0).getCourseId());
+        String examId = String.valueOf(exam.getExamInformResult().getList().get(0).getId());
+        String courseId = String.valueOf(exam.getExamInformResult().getList().get(0).getCourseId());
         StartExamRequest startExamRequest = com.cbq.yatori.core.action.yinghua.ExamAction.startExam(user, courseId, nodeId, examId);//开始考试
         ExamTopics examTopics = com.cbq.yatori.core.action.yinghua.ExamAction.getExamTopic(user, nodeId, examId);//获取题目
 
         List<String> list = examTopics.getExamTopics().keySet().stream().toList();
-        for(int i= 0;i<list.size();++i){
+        for (int i = 0; i < list.size(); ++i) {
             ExamTopic examTopic = examTopics.getExamTopics().get(list.get(i));
 
-            String answer ="";
+            String answer = "";
             //如果存有相关的题那么直接获取答案回答
-            if(topicMd5.containsKey(turnMd5(examTopic))){
+            if (topicMd5.containsKey(turnMd5(examTopic))) {
                 answer = topics.get(topicMd5.get(turnMd5(examTopic))).getAnswer();
-            }else {
+            } else {
                 //没缓存那么就直接AI
                 answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)));
                 answer = answer.replace("\n", "");
                 answer = answer.replace(" ", "");
-                String topicAllContent= examTopic.getContent();
-                topics.add(new Topic(turnMd5(examTopic),turnTopicType(examTopic.getType()),examTopic.getContent(),answer));
+                String topicAllContent = examTopic.getContent();
+                topics.add(new Topic(turnMd5(examTopic), turnTopicType(examTopic.getType()), examTopic.getContent(), answer));
             }
-            ExamAction.submitExam(user, examId, examTopics.getExamTopics().get(list.get(i)).getAnswerId(), answer, (i+1)<list.size()?"0":"1");
+            ExamAction.submitExam(user, examId, examTopics.getExamTopics().get(list.get(i)).getAnswerId(), answer, (i + 1) < list.size() ? "0" : "1");
         }
         log.info("{}:课程:{}考试成功！对应考试试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName());
     }
@@ -424,13 +430,13 @@ public class CourseStudyAction implements Runnable {
     /**
      * 自动写作业习题
      */
-    public void autoWorkAction(CourseInform courseInform, NodeList videoInform,String nodeId) {
+    public void autoWorkAction(CourseInform courseInform, NodeList videoInform, String nodeId) {
         log.info("{}:正在写课程习题>>>{}", user.getAccount(), courseInform.getName());
         ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getWork(user, nodeId);
-        String workId= String.valueOf(exam.getExamInformResult().getList().get(0).getId());
-        String courseId =String.valueOf(exam.getExamInformResult().getList().get(0).getCourseId());
+        String workId = String.valueOf(exam.getExamInformResult().getList().get(0).getId());
+        String courseId = String.valueOf(exam.getExamInformResult().getList().get(0).getCourseId());
         StartExamRequest startExamRequest = com.cbq.yatori.core.action.yinghua.ExamAction.startWork(user, courseId, nodeId, workId);//开始考试
-        if(startExamRequest.getCode()==9){
+        if (startExamRequest.getCode() == 9) {
             try {
                 log.info("{}:课程:{}课后作业考试失败！对应作业试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName(), ConverterStartExam.toJsonString(startExamRequest));
             } catch (JsonProcessingException e) {
@@ -441,38 +447,39 @@ public class CourseStudyAction implements Runnable {
         ExamTopics examTopics = com.cbq.yatori.core.action.yinghua.ExamAction.getWorkTopic(user, nodeId, workId);//获取题目
 
         List<String> list = examTopics.getExamTopics().keySet().stream().toList();
-        for(int i= 0;i<list.size();++i){
+        for (int i = 0; i < list.size(); ++i) {
             ExamTopic examTopic = examTopics.getExamTopics().get(list.get(i));
 
-            String answer ="";
+            String answer = "";
             //如果存有相关的题那么直接获取答案回答
-            if(topicMd5.containsKey(turnMd5(examTopic))){
+            if (topicMd5.containsKey(turnMd5(examTopic))) {
                 answer = topics.get(topicMd5.get(turnMd5(examTopic))).getAnswer();
-            }else {
+            } else {
                 //没缓存那么就直接AI
                 answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)));
                 answer = answer.replace("\n", "");
                 answer = answer.replace(" ", "");
-                String topicAllContent= examTopic.getContent();
-                topics.add(new Topic(turnMd5(examTopic),turnTopicType(examTopic.getType()),examTopic.getContent(),answer));
+                String topicAllContent = examTopic.getContent();
+                topics.add(new Topic(turnMd5(examTopic), turnTopicType(examTopic.getType()), examTopic.getContent(), answer));
             }
-            ExamAction.submitWork(user, workId, examTopics.getExamTopics().get(list.get(i)).getAnswerId(), answer, (i+1)<list.size()?"0":"1");
+            ExamAction.submitWork(user, workId, examTopics.getExamTopics().get(list.get(i)).getAnswerId(), answer, (i + 1) < list.size() ? "0" : "1");
         }
         log.info("{}:课程:{}课后作业考试成功！对应作业试卷{}，服务器信息：{}", user.getAccount(), courseInform.getName(), videoInform.getName());
     }
 
-    private String turnMd5(ExamTopic examTopic){
+    private String turnMd5(ExamTopic examTopic) {
 
         return "";
     }
-    private String turnTopicType(String type){
-        if(type.contains("单选")){
+
+    private String turnTopicType(String type) {
+        if (type.contains("单选")) {
             return "ONECHOICE";
-        }else if(type.contains("多选")){
+        } else if (type.contains("多选")) {
             return "MULTIPLECHOICE";
-        }else if(type.contains("填空")){
+        } else if (type.contains("填空")) {
             return "COMPLETION";
-        } else if(type.contains("简答")){
+        } else if (type.contains("简答")) {
             return "SHORTANSWER";
         }
         return "";
@@ -501,14 +508,16 @@ public class CourseStudyAction implements Runnable {
             return this;
         }
 
-        public Builder setting(Setting setting){
+        public Builder setting(Setting setting) {
             courseStudyAction.setting = setting;
             return this;
         }
+
         public CourseStudyAction build() {
             //初始化视屏列表
             courseStudyAction.courseVideosList = null;
-            while ((courseStudyAction.courseVideosList = CourseAction.getCourseVideosList(courseStudyAction.user, courseStudyAction.courseInform)) == null) ;
+            while ((courseStudyAction.courseVideosList = CourseAction.getCourseVideosList(courseStudyAction.user, courseStudyAction.courseInform)) == null)
+                ;
 
             //章节
             List<VideoList> zList = courseStudyAction.courseVideosList.getResult().getList();
