@@ -50,7 +50,7 @@ public class Launch {
                       :  \\  \\;  :   .'   \\ |  ,   /  `----'   ---'    ;  :    ;\s
                        \\  ' ;|  ,     .-./  ---`-'                    |  ,   / \s
                         `--`  `--`---'                                 ---`-'  \s
-                                Yatori v2.0.1-Beta.5
+                                Yatori v2.0.1-Beta.6
                          仅用于学习交流，请勿用于违法和商业用途！！！
                   GitHub开源地址：https://github.com/Changbaiqi/yatori
                   个人博客：https://blogs.changbaiqi.top
