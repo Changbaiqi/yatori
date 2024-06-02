@@ -67,7 +67,7 @@ public class ChatGLMUtil {
      * @param chatGLMChat
      * @return
      */
-    public static String getChatMessage(String apiKey,ChatGLMChat chatGLMChat){
+    public static synchronized String getChatMessage(String apiKey,ChatGLMChat chatGLMChat){
         OkHttpClient client = new OkHttpClient();
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         String url = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
