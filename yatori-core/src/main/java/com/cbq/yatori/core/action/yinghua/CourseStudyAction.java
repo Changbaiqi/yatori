@@ -398,6 +398,19 @@ public class CourseStudyAction implements Runnable {
      * 自动考试
      */
     public void autoExamAction(CourseInform courseInform, NodeList videoInform, String nodeId) {
+
+        //先检测AI是否可用
+        boolean aiState = ExamAction.checkChatGLM(setting.getAiSetting().getAPI_KEY());
+        if(!aiState){
+            if(setting.getAiSetting().getAPI_KEY()==null){
+                log.info("APIK_KEY参数为空，请检查API_KEY配置是否正常填写！！！");
+                return;
+            }
+            log.info("AI无法正常使用，请检查API_KEY是否过期等情况！！！");
+            return;
+        }
+
+
         log.info("{}:正在考试课程>>>{}", user.getAccount(), courseInform.getName());
         ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getExam(user, nodeId);
         String examId = String.valueOf(exam.getExamInformResult().getList().get(0).getId());
@@ -431,6 +444,18 @@ public class CourseStudyAction implements Runnable {
      * 自动写作业习题
      */
     public void autoWorkAction(CourseInform courseInform, NodeList videoInform, String nodeId) {
+
+        //先检测AI是否可用
+        boolean aiState = ExamAction.checkChatGLM(setting.getAiSetting().getAPI_KEY());
+        if(!aiState){
+            if(setting.getAiSetting().getAPI_KEY()==null){
+                log.info("APIK_KEY参数为空，请检查API_KEY配置是否正常填写！！！");
+                return;
+            }
+            log.info("AI无法正常使用，请检查API_KEY是否过期等情况！！！");
+            return;
+        }
+
         log.info("{}:正在写课程习题>>>{}", user.getAccount(), courseInform.getName());
         ExamInformRequest exam = com.cbq.yatori.core.action.yinghua.ExamAction.getWork(user, nodeId);
         String workId = String.valueOf(exam.getExamInformResult().getList().get(0).getId());

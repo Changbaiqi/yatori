@@ -29,6 +29,9 @@ public class ChatGLMUtil {
     // 请自定义自己的业务id
     private static final String requestIdTemplate = "mycompany-%d";
 
+
+
+
     /**
      * ChatGLM直接聊天获取信息
      * @param message
