@@ -91,7 +91,7 @@
 >                "url": "url",//学习公社不用配，其他平台必须配平台主页的根url，不同学校url不同，比如https://mooc.xxx.cn/，注意千万别带uri指别写成https://mooc.xxx.cn/xxx/xxx这样。
 >                "account": "账号",//账号
 >                "password": "密码",//密码
->                "coursesCostom": {
+>                "coursesCustom": {
 >                    "videoModel": 1,//模式设定，0代表不刷视屏，1为普通模式，2为暴力模式，默认为1，暴力模式目前只支持仓辉
 >                    "autoExam": 1,//是否自动考试，0代表不考，1代表考，默认为0，注意，目前自动考试只支持仓辉和英华！！！
 >                    "excludeCourses": ["课程1", "课程2"],//这个参数代表需要排除不刷的课程，复制课程的名称填入即可（一字不差）
@@ -127,7 +127,7 @@
 >          "url": "李四的url",
 >          "account": "李四的账号",
 >          "password": "李四的密码",
->          "coursesCostom": {
+>          "coursesCustom": {
 >              "videoModel": 2,
 >              "autoExam": 1
 >          }
