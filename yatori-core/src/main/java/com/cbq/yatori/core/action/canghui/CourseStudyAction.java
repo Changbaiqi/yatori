@@ -1,7 +1,6 @@
 package com.cbq.yatori.core.action.canghui;
 import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.Course;
 import com.cbq.yatori.core.entity.*;
-import com.cbq.yatori.core.utils.ConfigUtils;
 import com.cbq.yatori.core.utils.EmailUtil;
 import com.cbq.yatori.core.action.canghui.entity.coursedetail.Chapter;
 import com.cbq.yatori.core.action.canghui.entity.coursedetail.CourseDetailData;
@@ -43,10 +42,10 @@ public class CourseStudyAction implements Runnable {
     private Long accoVideo = 0L;//统计观看视屏数
 
     public void toStudy() {
-        CoursesCostom coursesCostom = user.getCoursesCostom();
+        CoursesCustom coursesCustom = user.getCoursesCustom();
 
         //视屏刷课模式
-        switch (coursesCostom.getVideoModel()) {
+        switch (coursesCustom.getVideoModel()) {
             case 0 -> {
                 accoVideo = (long) map.keySet().size();
             }
@@ -68,7 +67,7 @@ public class CourseStudyAction implements Runnable {
         }
 
         //自动考试模式
-        switch (coursesCostom.getAutoExam()) {
+        switch (coursesCustom.getAutoExam()) {
             case 1 -> {
                 autoExamAction();
             }
@@ -263,9 +262,9 @@ public class CourseStudyAction implements Runnable {
                     for (ExamCourse examCours : examList.getExamCourses()) {
 
                         boolean interceptFlag = false; //是否拦截，true为拦截，反之不拦截
-                        if (user.getCoursesCostom() != null) {//是否配置了课程定制
-                            if (user.getCoursesCostom().getCoursesSettings() != null) { //是否配置了指定课程配置文件
-                                ArrayList<CoursesSetting> coursesSettings = user.getCoursesCostom().getCoursesSettings();
+                        if (user.getCoursesCustom() != null) {//是否配置了课程定制
+                            if (user.getCoursesCustom().getCoursesSettings() != null) { //是否配置了指定课程配置文件
+                                ArrayList<CoursesSetting> coursesSettings = user.getCoursesCustom().getCoursesSettings();
                                 for (CoursesSetting coursesSetting : coursesSettings) {
                                     if (!coursesSetting.getName().equals(myCourse.getCourse().getTitle())) //是否有匹配的定制配置
                                         continue;

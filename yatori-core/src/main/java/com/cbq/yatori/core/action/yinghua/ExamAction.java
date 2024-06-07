@@ -14,12 +14,14 @@ import com.cbq.yatori.core.utils.ChatGLMChat;
 import com.cbq.yatori.core.utils.ChatGLMMessage;
 import com.cbq.yatori.core.utils.ChatGLMUtil;
 import com.cbq.yatori.core.utils.CustomTrustManager;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
 import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,36 +76,79 @@ public class ExamAction {
                 tag = topicTagMatcher.group(1); //题目类型
 //                System.out.println("题目类型：" + tag);
             }
+
             Pattern topicSource = Pattern.compile("<span[ \\f\\n\\r\\t\\v]*class=\"txt\">[(]*[<span>]*([\\d]*)[</span>]*分[)]*</span>");
             Matcher topicSourceMatcher = topicSource.matcher(topicHtml);
             if (topicSourceMatcher.find()) {
                 source = topicSourceMatcher.group(1); //题目分数
 //                System.out.println("题目分数：" + source);
             }
-            Pattern topicContent = Pattern.compile("<div[ \\f\\n\\r\\t\\v]*class=\"content\"[ \\f\\n\\r\\t\\v]*style=\"[^\"]*\">([\\s\\S]*?)</div>");
-            Matcher topicContentMatcher = topicContent.matcher(topicHtml);
-            if (topicContentMatcher.find()) {
-                content = topicContentMatcher.group(1); //题目内容
-//                System.out.println("题目内容：" + content);
-            }
-            Pattern topicSelectPattern = Pattern.compile("<li>[^<]*<label>[^<]*<input type=\"([^\"]*)\"[^v]*value=\"([^\"]*)\"[ \\f\\n\\r\\t\\v]*[checked=\"checked\"]*[ \\f\\n\\r\\t\\v]*class=\"[^\"]*\"[ \\f\\n\\r\\t\\v]*name=\"[^\"]*\">[ \\f\\n\\r\\t\\v]*<span class=\"num\">([^<]*)</span>[ \\f\\n\\r\\t\\v]*<span[ \\f\\n\\r\\t\\v]*class=\"txt\">([^<]*)</span>[ \\f\\n\\r\\t\\v]*</label>[ \\f\\n\\r\\t\\v]*</li>");
-            Matcher topicSelectMatcher = topicSelectPattern.matcher(topicHtml);
-            while (topicSelectMatcher.find()) {
 
-                String selectType = topicSelectMatcher.group(1); //题目类型
-                String selectValue = topicSelectMatcher.group(2); //选项值
-                String selectNum = topicSelectMatcher.group(3);
-                String selectText = topicSelectMatcher.group(4); //选项文本
+            if (tag.equals("单选") || tag.equals("多选") || tag.equals("判断")) {
+                Pattern topicContent = Pattern.compile("<div[ \\f\\n\\r\\t\\v]*class=\"content\"[ \\f\\n\\r\\t\\v]*style=\"[^\"]*\">([\\s\\S]*?)</div>");
+                Matcher topicContentMatcher = topicContent.matcher(topicHtml);
+                if (topicContentMatcher.find()) {
+                    content = topicContentMatcher.group(1); //题目内容
+//                System.out.println("题目内容：" + content);
+                }
+
+                Pattern topicSelectPattern = Pattern.compile("<li>[^<]*<label>[^<]*<input type=\"([^\"]*)\"[^v]*value=\"([^\"]*)\"[ \\f\\n\\r\\t\\v]*[checked=\"checked\"]*[ \\f\\n\\r\\t\\v]*class=\"[^\"]*\"[ \\f\\n\\r\\t\\v]*name=\"[^\"]*\">[ \\f\\n\\r\\t\\v]*<span class=\"num\">([^<]*)</span>[ \\f\\n\\r\\t\\v]*<span[ \\f\\n\\r\\t\\v]*class=\"txt\">([^<]*)</span>[ \\f\\n\\r\\t\\v]*</label>[ \\f\\n\\r\\t\\v]*</li>");
+                Matcher topicSelectMatcher = topicSelectPattern.matcher(topicHtml);
+                while (topicSelectMatcher.find()) {
+
+                    String selectType = topicSelectMatcher.group(1); //题目类型
+                    String selectValue = topicSelectMatcher.group(2); //选项值
+                    String selectNum = topicSelectMatcher.group(3);
+                    String selectText = topicSelectMatcher.group(4); //选项文本
 //                System.out.println(selectValue + "-----" + selectText);
-                selects.add(new TopicSelect(selectValue, selectNum, selectText));
+                    selects.add(new TopicSelect(selectValue, selectNum, selectText));
+                }
+
+                //过滤掉所有违法字符串
+                content = content.replace("<p>", "").replace("</p>", "\n").replace("&nbsp;", "");
             }
+            //填空题采用策略
+            if (tag.equals("填空")) {
+                //匹配题目内容
+                Pattern topicContent = Pattern.compile("<div[ \\f\\n\\r\\t\\v]*class=\"content\"[ \\f\\n\\r\\t\\v]*style=\"[^\"]*\">([\\s\\S]*?)</div>");
+                Matcher topicContentMatcher = topicContent.matcher(topicHtml);
+                if (topicContentMatcher.find()) {
+                    content = topicContentMatcher.group(1); //题目内容
+//                System.out.println("题目内容：" + content);
+                }
+                //这里是先正则添加填空项
+                Pattern topicSelectPattern = Pattern.compile("<input ((?<!answer).)+answer_(\\d)+((?<!>).)+>");
+                Matcher topicSelectMatcher = topicSelectPattern.matcher(topicHtml);
+                while (topicSelectMatcher.find()) {
+                    String answerId = topicSelectMatcher.group(2);
+                    selects.add(new TopicSelect(answerId, answerId, ""));
+
+                }
+                //替换代码填空项
+                Pattern topicClearCodeSelectPattern = Pattern.compile("<code>((?<!answer).)+answer_(\\d)+((?<!</code>).)+</code>");
+                Matcher topicClearCodeSelectMatcher = topicClearCodeSelectPattern.matcher(content);
+                while (topicClearCodeSelectMatcher.find()) {
+                    String answerId = topicClearCodeSelectMatcher.group(2);
+                    content = content.replace(topicClearCodeSelectMatcher.group(), "（answer_" + answerId + "）");
+                }
+                //替换普通填空项
+                Pattern topicClearSelectPattern = Pattern.compile("<input ((?<!answer).)+answer_(\\d)+((?<!>).)+>");
+                Matcher topicClearSelectMatcher = topicClearSelectPattern.matcher(content);
+                while (topicClearSelectMatcher.find()) {
+                    String answerId = topicClearSelectMatcher.group(2);
+                    content = content.replace(topicClearSelectMatcher.group(), "（answer_" + answerId + "）");
+                }
+                //过滤掉所有违法字符串
+                content = content.replace("<p>", "").replace("</p>", "\n").replace("&nbsp;", "");
+            }
+
             ExamTopic examTopic = new ExamTopic();
-            examTopic.setAnswerId(topicMap.get(num));
-            examTopic.setIndex(num);
-            examTopic.setSource(source);
-            examTopic.setContent(content);
-            examTopic.setType(tag);
-            examTopic.setSelects(selects);
+            examTopic.setAnswerId(topicMap.get(num)); //设置回复Id
+            examTopic.setIndex(num); //设置题目号码
+            examTopic.setSource(source); //设置题目分数
+            examTopic.setContent(content); //设置题目内容
+            examTopic.setType(tag); //设置题目类型
+            examTopic.setSelects(selects); //设置题目选项
             exchangeTopics.getExamTopics().put(topicMap.get(num), examTopic);
         }
 
@@ -122,6 +167,8 @@ public class ExamAction {
     public static ExamInformRequest getExam(User user, String nodeId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -162,6 +209,8 @@ public class ExamAction {
     public static StartExamRequest startExam(User user, String courseId, String nodeId, String examId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -204,6 +253,8 @@ public class ExamAction {
     public static ExamTopics getExamTopic(User user, String nodeId, String examId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -232,22 +283,69 @@ public class ExamAction {
      * @param examTopic 题目
      * @return 返回答案字符串
      */
-    public static String aiAnswerFormChatGLM(String API_KEY,ExamTopic examTopic) {
+    public static String aiAnswerFormChatGLM(String API_KEY, ExamTopic examTopic,String courseTitle) {
         StringBuilder problem = new StringBuilder();
-        problem.append("题目类型：" + examTopic.getType() + "\n");
 
-        problem.append("题目内容：" + examTopic.getContent() + "\n");
-        for (TopicSelect select : examTopic.getSelects()) {
-            problem.append(select.getValue() + "-----" + select.getTxt() + "\n");
+        problem.append("题目类型：\n" + examTopic.getType() + "\n");
+        problem.append("题目相关课程信息：\n");
+        problem.append(courseTitle+"\n");
+        problem.append("题目内容：\n" + examTopic.getContent() + "\n");
+
+
+        if (examTopic.getType().equals("单选") || examTopic.getType().equals("多选") || examTopic.getType().equals("判断")) {
+            for (TopicSelect select : examTopic.getSelects()) {
+                problem.append(select.getValue() + "-----" + select.getTxt() + "\n");
+            }
+
+            problem.append("提问：\n");
+            problem.append("这题的答案是什么？");
+            problem.append("回答要求限制：\n");
+            problem.append("注意你只需要回答选项字母，不能回答任何选项字母无关的任何内容，包括解释以及标点符也不需要。就算你不知道选什么也随机选输出A或B。");
         }
-        problem.append("这题的答案是什么？（注意你只需要回答选项字母，不能回答任何选项字母无关的任何内容，包括解释以及标点符也不需要。就算你不知道选什么也随机选输出A或B。）");
+        if(examTopic.getType().equals("填空")){
+            problem.append("提问：\n");
+            problem.append("这题的答案是什么？");
+            problem.append("回答要求限制：\n");
+            problem.append("其中，“（answer_数字）”相关字样的地方是你需要填写答案的地方，现在你只需要回复我对应每个填空项的答案即可，并且采用json格式的回复方式，比如{\"answer_1\":\"答案\",\"answer_2\":\"答案\"}，其中“answer_数字”字样与对应填空项中的答案对应，其他不符合json格式的内容无需回复。你只需回复答案对应json，无需回答任何解释！！！");
+        }
 //        System.out.println(problem.toString());
 //        String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, API_SECRET, problem.toString());
         ChatGLMChat chatGLMChat = new ChatGLMChat().builder()
                 .addMessage(ChatGLMMessage.builder().role("user").content(problem.toString()).build())
                 .build();
         String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
+
+        try{
+            if(examTopic.getType().equals("填空")){
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                HashMap<String,String> json = objectMapper.readValue(chatMessage, HashMap.class);
+                examTopic.getSelects().forEach((select)->{
+                    String answer = json.get("answer_" + select.getNum());
+                    select.setTxt(answer);
+                });
+            }
+        }catch (Exception e){
+
+        }
         return chatMessage;
+    }
+
+
+    /**
+     * 用于检测AI是否可用
+     *
+     * @param API_KEY
+     * @return
+     */
+    public static boolean checkChatGLM(String API_KEY) {
+        ChatGLMChat chatGLMChat = new ChatGLMChat().builder()
+                .addMessage(ChatGLMMessage.builder().role("user").content("Hello World!").build())
+                .build();
+
+        String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
+        if (chatMessage.equals("")) return false;
+        return true;
     }
 
     /**
@@ -262,6 +360,8 @@ public class ExamAction {
     public static void submitExam(User user, String examId, String answerId, String answer, String finish) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -293,12 +393,49 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+            response.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-
+    public static void submitExam(User user, String examId, String answerId, List<TopicSelect> topicSelects, String finish) {
+        AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
+                .build();
+        MediaType mediaType = MediaType.parse("multipart/form-data; boundary=--------------------------326388482122783598484776");
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(MultipartBody.FORM)
+                .addFormDataPart("platform", "Android")
+                .addFormDataPart("version", "1.4.8")
+                .addFormDataPart("examId", examId)
+                .addFormDataPart("terminal", "Android")
+                .addFormDataPart("answerId", answerId)
+                .addFormDataPart("finish", finish)
+                .addFormDataPart("token", cache.getToken());
+        topicSelects.forEach((select) -> {
+            builder.addFormDataPart("answer_" + select.getNum(), select.getTxt());
+        });
+        Request request = new Request.Builder()
+                .url(user.getUrl() + "/api/exam/submit.json")
+                .method("POST", builder.build())
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
+                .addHeader("Connection", "keep-alive")
+                .addHeader("Content-Type", "multipart/form-data; boundary=--------------------------326388482122783598484776")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            response.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     /**
@@ -314,6 +451,8 @@ public class ExamAction {
     public static ExamInformRequest getWork(User user, String nodeId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -337,6 +476,7 @@ public class ExamAction {
         try {
             Response response = client.newCall(request).execute();
             ExamInformRequest examInformRequest = ConverterExamInform.fromJsonString(response.body().string());
+            response.close();
             return examInformRequest;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -355,14 +495,16 @@ public class ExamAction {
     public static StartExamRequest startWork(User user, String courseId, String nodeId, String workId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url(user.getUrl()+"/api/work/start.json?nodeId="+nodeId+"&workId="+workId+"&courseId="+courseId+"&token="+cache.getToken())
-                .method("GET",null)
+                .url(user.getUrl() + "/api/work/start.json?nodeId=" + nodeId + "&workId=" + workId + "&courseId=" + courseId + "&token=" + cache.getToken())
+                .method("GET", null)
                 .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
                 .addHeader("Accept", "*/*")
                 .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
@@ -371,13 +513,12 @@ public class ExamAction {
         try {
             Response response = client.newCall(request).execute();
             StartExamRequest startExamRequest = ConverterStartExam.fromJsonString(response.body().string());
+            response.close();
             return startExamRequest;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
-
 
 
     /**
@@ -391,6 +532,8 @@ public class ExamAction {
     public static ExamTopics getWorkTopic(User user, String nodeId, String workId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -407,13 +550,14 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
+
             ExamTopics examTopics = turnExamTopic(response.body().string());
+            response.close();
             return examTopics;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
 
 
     /**
@@ -428,6 +572,8 @@ public class ExamAction {
     public static void submitWork(User user, String workId, String answerId, String answer, String finish) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -448,6 +594,55 @@ public class ExamAction {
                 builder.addFormDataPart("answer[]", answer.charAt(i) + "");
             }
         }
+        Request request = new Request.Builder()
+                .url(user.getUrl() + "/api/work/submit.json")
+                .method("POST", builder.build())
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
+                .addHeader("Connection", "keep-alive")
+                .addHeader("Content-Type", "multipart/form-data; boundary=--------------------------326388482122783598484776")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            response.close();
+//            log.info(response.body().string());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * 提交作业答题的接口
+     *
+     * @param user     用户
+     * @param workId   答题的作业试卷Id
+     * @param answerId 答题的题目Id
+     * @param finish   是否是最后提交并且结束考试，0代表不是，1代表是
+     */
+    public static void submitWork(User user, String workId, String answerId, List<TopicSelect> topicSelects, String finish) {
+        AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
+                .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
+                .build();
+        MediaType mediaType = MediaType.parse("multipart/form-data; boundary=--------------------------326388482122783598484776");
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.setType(MultipartBody.FORM)
+                .addFormDataPart("platform", "Android")
+                .addFormDataPart("version", "1.4.8")
+                .addFormDataPart("workId", workId)
+                .addFormDataPart("terminal", "Android")
+                .addFormDataPart("answerId", answerId)
+                .addFormDataPart("finish", finish)
+                .addFormDataPart("token", cache.getToken());
+        topicSelects.forEach((select) -> {
+            builder.addFormDataPart("answer_" + select.getNum(), select.getTxt());
+        });
+
         Request request = new Request.Builder()
                 .url(user.getUrl() + "/api/work/submit.json")
                 .method("POST", builder.build())

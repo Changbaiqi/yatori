@@ -19,7 +19,7 @@ public class NodeList {
     private String name;
     @JsonProperty("nodeLock")
     /**
-     * 是否解锁，0代表解锁，1代表未解锁
+     * 是否解锁，0代表解锁，1代表未解锁,2代表未到解锁时间
      */
     private long nodeLock;
     @JsonProperty("tabExam")

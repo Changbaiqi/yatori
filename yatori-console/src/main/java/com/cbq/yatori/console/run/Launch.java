@@ -50,7 +50,7 @@ public class Launch {
                       :  \\  \\;  :   .'   \\ |  ,   /  `----'   ---'    ;  :    ;\s
                        \\  ' ;|  ,     .-./  ---`-'                    |  ,   / \s
                         `--`  `--`---'                                 ---`-'  \s
-                                Yatori v2.0.1-Beta.6
+                                Yatori v2.0.1-Beta.7
                          仅用于学习交流，请勿用于违法和商业用途！！！
                   GitHub开源地址：https://github.com/Changbaiqi/yatori
                   个人博客：https://blogs.changbaiqi.top
@@ -249,16 +249,16 @@ public class Launch {
 
                         for (CourseInform courseInform : allCourseList.getResult().getList()) {
                             //课程排除配置
-                            if(user.getCoursesCostom()!=null) {
-                                if (user.getCoursesCostom().getExcludeCourses() != null) {
-                                    if (user.getCoursesCostom().getExcludeCourses().size() != 0)
-                                        if (user.getCoursesCostom().getExcludeCourses().contains(courseInform.getName()))
+                            if(user.getCoursesCustom()!=null) {
+                                if (user.getCoursesCustom().getExcludeCourses() != null) {
+                                    if (user.getCoursesCustom().getExcludeCourses().size() != 0)
+                                        if (user.getCoursesCustom().getExcludeCourses().contains(courseInform.getName()))
                                             continue;
                                 }
                                 //如果有指定课程包含设定，那么就执行
-                                if (user.getCoursesCostom().getIncludeCourses() != null) {
-                                    if (user.getCoursesCostom().getIncludeCourses().size() != 0)
-                                        if (!user.getCoursesCostom().getIncludeCourses().contains(courseInform.getName()))
+                                if (user.getCoursesCustom().getIncludeCourses() != null) {
+                                    if (user.getCoursesCustom().getIncludeCourses().size() != 0)
+                                        if (!user.getCoursesCustom().getIncludeCourses().contains(courseInform.getName()))
                                             continue;
                                 }
                             }
@@ -283,16 +283,16 @@ public class Launch {
                         for (MyCourse list : myCourseData.getLists()) {
                             com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.Course courseInform = list.getCourse();
                             //课程排除配置
-                            if(user.getCoursesCostom()!=null) {
-                                if (user.getCoursesCostom().getExcludeCourses() != null) {
-                                    if (user.getCoursesCostom().getExcludeCourses().size() != 0)
-                                        if (user.getCoursesCostom().getExcludeCourses().contains(courseInform.getTitle()))
+                            if(user.getCoursesCustom()!=null) {
+                                if (user.getCoursesCustom().getExcludeCourses() != null) {
+                                    if (user.getCoursesCustom().getExcludeCourses().size() != 0)
+                                        if (user.getCoursesCustom().getExcludeCourses().contains(courseInform.getTitle()))
                                             continue;
                                 }
                                 //如果有指定课程包含设定，那么就执行
-                                if (user.getCoursesCostom().getIncludeCourses() != null) {
-                                    if (user.getCoursesCostom().getIncludeCourses().size() != 0)
-                                        if (!user.getCoursesCostom().getIncludeCourses().contains(courseInform.getTitle()))
+                                if (user.getCoursesCustom().getIncludeCourses() != null) {
+                                    if (user.getCoursesCustom().getIncludeCourses().size() != 0)
+                                        if (!user.getCoursesCustom().getIncludeCourses().contains(courseInform.getTitle()))
                                             continue;
                                 }
                             }

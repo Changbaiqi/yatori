@@ -23,7 +23,7 @@ public class ListElement {
     @JsonProperty("flag")
     private Long flag;
     @JsonProperty("frequency")
-    private String frequency;
+    private String frequency; //一共有多少次答题机会
     @JsonProperty("hasCollect")
     private String hasCollect;
     @JsonProperty("id")

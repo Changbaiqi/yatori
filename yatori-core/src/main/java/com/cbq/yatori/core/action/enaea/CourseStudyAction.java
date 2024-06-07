@@ -1,6 +1,6 @@
 package com.cbq.yatori.core.action.enaea;
+import com.cbq.yatori.core.entity.CoursesCustom;
 import com.cbq.yatori.core.entity.Setting;
-import com.cbq.yatori.core.utils.ConfigUtils;
 import com.cbq.yatori.core.utils.EmailUtil;
 import com.cbq.yatori.core.action.enaea.entity.ccvideo.CCVideoRequest;
 import com.cbq.yatori.core.action.enaea.entity.coursevidelist.CourseVideoListRequest;
@@ -9,7 +9,6 @@ import com.cbq.yatori.core.action.enaea.entity.requirecourselist.RequiredCourseL
 import com.cbq.yatori.core.action.enaea.entity.submitlearntime.SubmitLearnTimeConverter;
 import com.cbq.yatori.core.action.enaea.entity.submitlearntime.SubmitLearnTimeRequest;
 import com.cbq.yatori.core.action.enaea.entity.underwayproject.ResultList;
-import com.cbq.yatori.core.entity.CoursesCostom;
 import com.cbq.yatori.core.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +27,10 @@ public class CourseStudyAction implements Runnable {
 
 
     public void toStudy(){
-        CoursesCostom coursesCostom = user.getCoursesCostom();
+        CoursesCustom coursesCustom = user.getCoursesCustom();
 
         //视屏刷课模式
-        switch (coursesCostom.getVideoModel()){
+        switch (coursesCustom.getVideoModel()){
             case 0->{
 
             }

@@ -6,11 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
  * @description: 用户类，每个操作单位将会以用户为基准进行操作
  * @author 长白崎
@@ -28,5 +23,5 @@ public class User {
     private String account; //账号
     private String password; //密码
     private AccountCache cache; //账号缓存信息
-    private CoursesCostom coursesCostom=new CoursesCostom(); //客制化课程
+    private CoursesCustom coursesCustom =new CoursesCustom(); //客制化课程
 }
