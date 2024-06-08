@@ -55,9 +55,10 @@ public class CourseAction {
      * 用于获取必修课程的syllabusId
      * @param user 用户对象
      * @param circleId 对应circledId
+     * @param title 对应列表项目名称
      * @return
      */
-    public static String getRequiredCoursesSyllabusId(User user,String circleId){
+    public static String getRequiredCoursesSyllabusId(User user,String circleId,String title){
         AccountCacheEnaea cache =(AccountCacheEnaea) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
@@ -74,7 +75,7 @@ public class CourseAction {
         try {
             Response response = client.newCall(request).execute();
             String string = response.body().string();
-            Pattern pattern = Pattern.compile("<a title=\"必修课程\" href=\"circleIndexRedirect.do\\?action=toNewMyClass&type=course&circleId="+circleId+"&syllabusId=([^&]*?)&isRequired=true&studentProgress=[\\d]+\">必修课程</a>");
+            Pattern pattern = Pattern.compile("<a title=\""+title+"\" href=\"circleIndexRedirect.do\\?action=toNewMyClass&type=course&circleId="+circleId+"&syllabusId=([^&]*?)&isRequired=true&studentProgress=[\\d]+\">"+title+"</a>");
             Matcher matcher = pattern.matcher(string);
             if(matcher.find()){
                 return matcher.group(1);
@@ -89,8 +90,8 @@ public class CourseAction {
      * @param user 用户
      * @param circleId 项目ID
      */
-    public static RequiredCourseListRequest getRequiredCourseList(User user,String circleId){
-        String syllabusId = getRequiredCoursesSyllabusId(user, circleId); //获取syllabusId
+    public static RequiredCourseListRequest getRequiredCourseList(User user,String circleId,String title){
+        String syllabusId = getRequiredCoursesSyllabusId(user, circleId,title); //获取syllabusId
         AccountCacheEnaea cache =(AccountCacheEnaea) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
