@@ -1,15 +1,14 @@
+
+
+
+
+![yatori](https://socialify.git.ci/Changbaiqi/yatori/image?description=1&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FChangbaiqi%2Fyatori%2Fmain%2FREADME%2Fimages%2F1710254379397-modified.png&name=1&pattern=Diagonal%20Stripes&pulls=1&stargazers=1&theme=Light)
+
+
 <div align="center"><h1>Yatori课程助手</h1></div>
 
----
+
 <div align="center"><img width="100px" src="https://img.shields.io/badge/Java17-passing-r.svg"></img> <img width="125px" src="https://img.shields.io/badge/Maven3.8.1-building-r.svg"></img></div>
-
-<div align="center"><img width="200" class="round_icon" style="border-radius: 50%;" src="https://q1.qlogo.cn/g?b=qq&nk=2084069833&s=640"></img></div>
-
-
-
-<div align="center"><h2>Yatori</h2></div>
-
-
 
 ## 📢作者有话说
 
