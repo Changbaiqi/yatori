@@ -52,8 +52,13 @@ public class ExamAction {
             Response response = client.newCall(request).execute();
             String string = response.body().string();
             return ConverterExam.fromJsonString(string);
-        } catch (Exception e) {
+        } catch(SocketTimeoutException socketTimeoutException){
+            return null;
+        }catch (JsonParseException e){
+            return null;
+        } catch (IOException e) {
             log.error("");
+            e.printStackTrace();
         }
         return null;
     }
@@ -83,8 +88,11 @@ public class ExamAction {
             }
             String string = response.body().string();
             return ConverterStartExam.fromJsonString(string);
-        } catch (Exception e) {
-            log.error("出现问题 = {}", e.getMessage());
+        } catch(SocketTimeoutException socketTimeoutException){
+            return null;
+        } catch (IOException e) {
+            log.error("");
+            e.printStackTrace();
         }
         return null;
     }
@@ -115,14 +123,17 @@ public class ExamAction {
             }
             String string = response.body().string();
             return ConverterExamSubmitResponse.fromJsonString(string);
-        } catch (Exception e) {
-            log.error("提交考试出现问题 = {}", e.getMessage());
+        } catch(SocketTimeoutException socketTimeoutException){
+            return null;
+        } catch (IOException e) {
+            log.error("");
+            e.printStackTrace();
         }
         return null;
     }
 
     /**
-     * 获取相应
+     * 构建请求信息
      * @param user 用户
      * @param body 请求体
      * @param cache token
