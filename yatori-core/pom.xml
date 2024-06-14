@@ -12,8 +12,7 @@
     <description>Hello，这里是Yatori-core，也是Yatori系列核心项目之一</description>
     <url>https://github.com/Changbaiqi/yatori</url>
 
-<!--    项目设定-->
-
+    <!--  项目设定  -->
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -34,7 +33,7 @@
         </license>
     </licenses>
 
-<!--    开发人员信息-->
+    <!--    开发人员信息-->
     <developers>
         <developer>
             <name>长白崎</name>
@@ -136,7 +135,7 @@
             <version>2.17.2</version>
         </dependency>
 
-<!--        ai库-->
+        <!--        ai库-->
         <dependency>
             <groupId>com.microsoft.onnxruntime</groupId>
             <artifactId>onnxruntime</artifactId>
@@ -170,8 +169,6 @@
             <version>2.8.5</version>
         </dependency>
     </dependencies>
-
-
 
     <build>
         <plugins>
@@ -225,34 +222,32 @@
                 </executions>
             </plugin>
             <!-- GPG -->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-gpg-plugin</artifactId>-->
-<!--                <version>3.0.1</version>-->
-<!--                <configuration>-->
-<!--&lt;!&ndash;                    这里配置gpg的密码，这里直接引用maven的setting.xml里面&ndash;&gt;-->
-<!--                    <passphraseServerId>ossez</passphraseServerId>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-gpg-plugin</artifactId>-->
+            <!--                <version>3.0.1</version>-->
+            <!--                <configuration>-->
+            <!--&lt;!&ndash;                    这里配置gpg的密码，这里直接引用maven的setting.xml里面&ndash;&gt;-->
+            <!--                    <passphraseServerId>ossez</passphraseServerId>-->
 
-<!--                    <gpgArguments>-->
-<!--                        <arg>&#45;&#45;pinentry-mode</arg>-->
-<!--                        <arg>loopback</arg>-->
-<!--                    </gpgArguments>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>sign-artifacts</id>-->
-<!--                        <phase>verify</phase>-->
-<!--                        <configuration>-->
-<!--                            <passphraseServerId>ossez</passphraseServerId>-->
-<!--                        </configuration>-->
-<!--                        <goals>-->
-<!--                            <goal>sign</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <!--                    <gpgArguments>-->
+            <!--                        <arg>&#45;&#45;pinentry-mode</arg>-->
+            <!--                        <arg>loopback</arg>-->
+            <!--                    </gpgArguments>-->
+            <!--                </configuration>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>sign-artifacts</id>-->
+            <!--                        <phase>verify</phase>-->
+            <!--                        <configuration>-->
+            <!--                            <passphraseServerId>ossez</passphraseServerId>-->
+            <!--                        </configuration>-->
+            <!--                        <goals>-->
+            <!--                            <goal>sign</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
-
-
 </project>

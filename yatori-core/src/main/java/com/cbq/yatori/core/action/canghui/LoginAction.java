@@ -60,8 +60,6 @@ public class LoginAction {
                     }
                 }
             }
-        }catch (SocketTimeoutException e){
-            return null;
         }catch (JsonParseException jsonParseException){
             //这种一般是访问过于频繁造成，这边延迟一一下
             try {
@@ -70,9 +68,9 @@ public class LoginAction {
                 throw new RuntimeException(e);
             }
             return null;
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("");
-            e.printStackTrace();
+            return null;
         }
         return null;
     }
@@ -100,9 +98,7 @@ public class LoginAction {
             byte[] bytes = response.body().bytes();
             File file =FileUtils.saveFile(bytes,user.getAccountType().name()+"_"+user.getAccount()+"_"+(int)Math.random()*99999+".png");
             return file;
-        } catch (SocketTimeoutException e){
-            return null;
-        }catch (JsonParseException jsonParseException){
+        } catch (JsonParseException jsonParseException){
             //这种一般是访问过于频繁造成，这边延迟一一下
             try {
                 Thread.sleep(500);
@@ -110,9 +106,8 @@ public class LoginAction {
                 throw new RuntimeException(e);
             }
             return null;
-        }catch (IOException e) {
+        }catch (Exception e) {
             log.error("");
-            e.printStackTrace();
         }
         //CodeUtil.getData(bytes);
         return null;

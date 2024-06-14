@@ -1,7 +1,6 @@
 package com.cbq.yatori.console.run;
 
 
-
 import com.cbq.yatori.core.action.canghui.entity.loginresponse.LoginResponseRequest;
 import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.MyCourse;
 import com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.MyCourseData;
@@ -149,7 +148,7 @@ public class Launch {
                     AccountCacheCangHui accountCacheCangHui = new AccountCacheCangHui();
                     user.setCache(accountCacheCangHui);
                     //refresh_code:1代表密码错误，
-                    LoginResponseRequest result=null;
+                    LoginResponseRequest result = null;
                     do {
                         //获取SESSION
                         String session = null;
@@ -162,9 +161,9 @@ public class Launch {
                         FileUtils.deleteFile(code);//删除验证码文件
                         //进行登录操作
                         while ((result = com.cbq.yatori.core.action.canghui.LoginAction.toLogin(user)) == null) ;
-                    } while (result.getCode()==-1002);
+                    } while (result.getCode() == -1002);
                     //对结果进行判定
-                    if (result.getCode()==0) {
+                    if (result.getCode() == 0) {
                         accountCacheCangHui.setToken(result.getData().getToken());
                         accountCacheCangHui.setStatus(1);
                         log.info("{}登录成功！", user.getAccount());
@@ -193,17 +192,18 @@ public class Launch {
                                 accountCacheCangHui.setStatus(2);//设定登录状态为超时
                                 log.info("{}登录超时，正在重新登录...", user.getAccount());
                                 //进行登录
-                                LoginResponseRequest map=null;
+                                LoginResponseRequest map = null;
                                 do {
                                     //获取验证码
                                     File code = com.cbq.yatori.core.action.canghui.LoginAction.getCode(user);
                                     ((AccountCacheYingHua) user.getCache()).setCode(VerificationCodeUtil.aiDiscern(code));
                                     FileUtils.deleteFile(code);//删除验证码文件
                                     //进行登录操作
-                                    while ((map=com.cbq.yatori.core.action.canghui.LoginAction.toLogin(user))==null);
-                                } while (map.getCode()==-1002);
+                                    while ((map = com.cbq.yatori.core.action.canghui.LoginAction.toLogin(user)) == null)
+                                        ;
+                                } while (map.getCode() == -1002);
                                 //对结果进行判定
-                                if (map.getCode()==0) {
+                                if (map.getCode() == 0) {
                                     accountCacheCangHui.setStatus(1);
                                     log.info("{}登录成功！", user.getAccount());
                                 } else {
@@ -224,7 +224,7 @@ public class Launch {
                     user.setCache(accountCacheEnaea);
                     //sS:101代表账号或密码错误，
                     LoginAblesky loginAblesky = null;
-                    while((loginAblesky=com.cbq.yatori.core.action.enaea.LoginAction.toLogin(user))==null);
+                    while ((loginAblesky = com.cbq.yatori.core.action.enaea.LoginAction.toLogin(user)) == null) ;
                     //对结果进行判定
                     if (loginAblesky.getSS().equals("0")) {
                         accountCacheEnaea.setStatus(1);
@@ -242,14 +242,14 @@ public class Launch {
         for (User user : users) {
             switch (user.getAccountType()) {
                 case YINGHUA -> {
-                    new Thread(()->{
+                    new Thread(() -> {
                         //获取全部课程
                         CourseRequest allCourseList = null;
-                        while((allCourseList= CourseAction.getAllCourseRequest(user))==null);
+                        while ((allCourseList = CourseAction.getAllCourseRequest(user)) == null) ;
 
                         for (CourseInform courseInform : allCourseList.getResult().getList()) {
                             //课程排除配置
-                            if(user.getCoursesCustom()!=null) {
+                            if (user.getCoursesCustom() != null) {
                                 if (user.getCoursesCustom().getExcludeCourses() != null) {
                                     if (user.getCoursesCustom().getExcludeCourses().size() != 0)
                                         if (user.getCoursesCustom().getExcludeCourses().contains(courseInform.getName()))
@@ -273,7 +273,7 @@ public class Launch {
                     }).start();
                 }
                 case CANGHUI -> {
-                    new Thread(()->{
+                    new Thread(() -> {
                         //获取全部课程
 //                        CourseRequest allCourseList = null;
                         MyCourseData myCourseData = null;
@@ -283,7 +283,7 @@ public class Launch {
                         for (MyCourse list : myCourseData.getLists()) {
                             com.cbq.yatori.core.action.canghui.entity.mycourselistresponse.Course courseInform = list.getCourse();
                             //课程排除配置
-                            if(user.getCoursesCustom()!=null) {
+                            if (user.getCoursesCustom() != null) {
                                 if (user.getCoursesCustom().getExcludeCourses() != null) {
                                     if (user.getCoursesCustom().getExcludeCourses().size() != 0)
                                         if (user.getCoursesCustom().getExcludeCourses().contains(courseInform.getTitle()))
@@ -308,7 +308,7 @@ public class Launch {
                 }
 
                 case ENAEA -> {
-                    new Thread(()->{
+                    new Thread(() -> {
                         //获取正在进行的项目
                         UnderwayProjectRquest underwayProject = com.cbq.yatori.core.action.enaea.CourseAction.getUnderwayProject(user);
                         //遍历获取所有正在学的课程项目
@@ -335,6 +335,5 @@ public class Launch {
             }
         }, 60 * 1000, 1000);
     }
-
-
+    
 }
