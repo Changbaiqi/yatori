@@ -60,6 +60,8 @@ public class LoginAction {
                     }
                 }
             }
+        }catch (SocketTimeoutException e){
+            return null;
         }catch (JsonParseException jsonParseException){
             //这种一般是访问过于频繁造成，这边延迟一一下
             try {
@@ -68,9 +70,9 @@ public class LoginAction {
                 throw new RuntimeException(e);
             }
             return null;
-        } catch (Exception e) {
+        } catch (IOException e) {
             log.error("");
-            return null;
+            e.printStackTrace();
         }
         return null;
     }
