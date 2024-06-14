@@ -14,6 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Config {
-    Setting setting=new Setting();
+    Setting setting = new Setting();
     List<User> users;
 }
