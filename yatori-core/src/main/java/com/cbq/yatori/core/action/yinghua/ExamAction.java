@@ -45,7 +45,7 @@ public class ExamAction {
         exchangeTopics.setExamTopics(new LinkedHashMap<String, ExamTopic>());
         Pattern pattern = Pattern.compile("<li>[ \\f\\n\\r\\t\\v]*<a data-id=\"([^\"]*)\"[ \\f\\n\\r\\t\\v]*href=\"[^\"]*\"[ \\f\\n\\r\\t\\v]*class=\"[^\"]*\"[ \\f\\n\\r\\t\\v]*id=\"[^\"]*\"[ \\f\\n\\r\\t\\v]*data-index=\"[^\"]*\"[ \\f\\n\\r\\t\\v]*onclick=\"[^\"]*\">([^<]*)</a>[ \\f\\n\\r\\t\\v]*</li>");
         Matcher matcher = pattern.matcher(examHtml);
-        HashMap<String, String> topicMap = new HashMap<String, String>();
+        HashMap<String, String> topicMap = new HashMap<>();
         while (matcher.find()) {
             String answerId = matcher.group(1);
             String index = matcher.group(2);
@@ -60,35 +60,35 @@ public class ExamAction {
             Pattern topicNumPattern = Pattern.compile("<span class=\"num\">[\\D]*?([\\d]+)");
             Matcher topicNumMatcher = topicNumPattern.matcher(topicHtml);
 
-            String num = null; //题目号码
-            String tag = null; //题目类型
+            String num = null; // 题目号码
+            String tag = null; // 题目类型
             String source = null;
             String content = null;
-            List<TopicSelect> selects = new ArrayList<TopicSelect>();
+            List<TopicSelect> selects = new ArrayList<>();
 
             if (topicNumMatcher.find()) {
-                num = topicNumMatcher.group(1); //题目号码
+                num = topicNumMatcher.group(1); // 题目号码
 //                System.out.println("题目号码：" + num);
             }
             Pattern topicTag = Pattern.compile("<span class=\"tag\">([\\s\\S]*?)</span>");
             Matcher topicTagMatcher = topicTag.matcher(topicHtml);
             if (topicTagMatcher.find()) {
-                tag = topicTagMatcher.group(1); //题目类型
+                tag = topicTagMatcher.group(1); // 题目类型
 //                System.out.println("题目类型：" + tag);
             }
 
             Pattern topicSource = Pattern.compile("<span[ \\f\\n\\r\\t\\v]*class=\"txt\">[(]*[<span>]*([\\d]*)[</span>]*分[)]*</span>");
             Matcher topicSourceMatcher = topicSource.matcher(topicHtml);
             if (topicSourceMatcher.find()) {
-                source = topicSourceMatcher.group(1); //题目分数
+                source = topicSourceMatcher.group(1); // 题目分数
 //                System.out.println("题目分数：" + source);
             }
 
-            if (tag.equals("单选") || tag.equals("多选") || tag.equals("判断")) {
+            if (tag != null && (tag.equals("单选") || tag.equals("多选") || tag.equals("判断"))) {
                 Pattern topicContent = Pattern.compile("<div[ \\f\\n\\r\\t\\v]*class=\"content\"[ \\f\\n\\r\\t\\v]*style=\"[^\"]*\">([\\s\\S]*?)</div>");
                 Matcher topicContentMatcher = topicContent.matcher(topicHtml);
                 if (topicContentMatcher.find()) {
-                    content = topicContentMatcher.group(1); //题目内容
+                    content = topicContentMatcher.group(1); // 题目内容
 //                System.out.println("题目内容：" + content);
                 }
 
@@ -96,27 +96,27 @@ public class ExamAction {
                 Matcher topicSelectMatcher = topicSelectPattern.matcher(topicHtml);
                 while (topicSelectMatcher.find()) {
 
-                    String selectType = topicSelectMatcher.group(1); //题目类型
-                    String selectValue = topicSelectMatcher.group(2); //选项值
+                    String selectType = topicSelectMatcher.group(1); // 题目类型
+                    String selectValue = topicSelectMatcher.group(2); // 选项值
                     String selectNum = topicSelectMatcher.group(3);
-                    String selectText = topicSelectMatcher.group(4); //选项文本
+                    String selectText = topicSelectMatcher.group(4); // 选项文本
 //                System.out.println(selectValue + "-----" + selectText);
                     selects.add(new TopicSelect(selectValue, selectNum, selectText));
                 }
 
-                //过滤掉所有违法字符串
+                // 过滤掉所有违法字符串
                 content = content.replace("<p>", "").replace("</p>", "\n").replace("&nbsp;", "");
             }
-            //填空题采用策略
+            // 填空题采用策略
             if (tag.equals("填空")) {
-                //匹配题目内容
+                // 匹配题目内容
                 Pattern topicContent = Pattern.compile("<div[ \\f\\n\\r\\t\\v]*class=\"content\"[ \\f\\n\\r\\t\\v]*style=\"[^\"]*\">([\\s\\S]*?)</div>");
                 Matcher topicContentMatcher = topicContent.matcher(topicHtml);
                 if (topicContentMatcher.find()) {
-                    content = topicContentMatcher.group(1); //题目内容
+                    content = topicContentMatcher.group(1); // 题目内容
 //                System.out.println("题目内容：" + content);
                 }
-                //这里是先正则添加填空项
+                // 这里是先正则添加填空项
                 Pattern topicSelectPattern = Pattern.compile("<input ((?<!answer).)+answer_(\\d)+((?<!>).)+>");
                 Matcher topicSelectMatcher = topicSelectPattern.matcher(topicHtml);
                 while (topicSelectMatcher.find()) {
@@ -124,31 +124,43 @@ public class ExamAction {
                     selects.add(new TopicSelect(answerId, answerId, ""));
 
                 }
-                //替换代码填空项
+                // 替换代码填空项
                 Pattern topicClearCodeSelectPattern = Pattern.compile("<code>((?<!answer).)+answer_(\\d)+((?<!</code>).)+</code>");
-                Matcher topicClearCodeSelectMatcher = topicClearCodeSelectPattern.matcher(content);
-                while (topicClearCodeSelectMatcher.find()) {
-                    String answerId = topicClearCodeSelectMatcher.group(2);
-                    content = content.replace(topicClearCodeSelectMatcher.group(), "（answer_" + answerId + "）");
+                Matcher topicClearCodeSelectMatcher = null;
+                if (content != null) {
+                    topicClearCodeSelectMatcher = topicClearCodeSelectPattern.matcher(content);
                 }
-                //替换普通填空项
+                if (topicClearCodeSelectMatcher != null) {
+                    while (topicClearCodeSelectMatcher.find()) {
+                        String answerId = topicClearCodeSelectMatcher.group(2);
+                        content = content.replace(topicClearCodeSelectMatcher.group(), "（answer_" + answerId + "）");
+                    }
+                }
+                // 替换普通填空项
                 Pattern topicClearSelectPattern = Pattern.compile("<input ((?<!answer).)+answer_(\\d)+((?<!>).)+>");
-                Matcher topicClearSelectMatcher = topicClearSelectPattern.matcher(content);
-                while (topicClearSelectMatcher.find()) {
-                    String answerId = topicClearSelectMatcher.group(2);
-                    content = content.replace(topicClearSelectMatcher.group(), "（answer_" + answerId + "）");
+                Matcher topicClearSelectMatcher = null;
+                if (content != null) {
+                    topicClearSelectMatcher = topicClearSelectPattern.matcher(content);
                 }
-                //过滤掉所有违法字符串
-                content = content.replace("<p>", "").replace("</p>", "\n").replace("&nbsp;", "");
+                if (topicClearSelectMatcher != null) {
+                    while (topicClearSelectMatcher.find()) {
+                        String answerId = topicClearSelectMatcher.group(2);
+                        content = content.replace(topicClearSelectMatcher.group(), "（answer_" + answerId + "）");
+                    }
+                }
+                // 过滤掉所有违法字符串
+                if (content != null) {
+                    content = content.replace("<p>", "").replace("</p>", "\n").replace("&nbsp;", "");
+                }
             }
 
             ExamTopic examTopic = new ExamTopic();
-            examTopic.setAnswerId(topicMap.get(num)); //设置回复Id
-            examTopic.setIndex(num); //设置题目号码
-            examTopic.setSource(source); //设置题目分数
-            examTopic.setContent(content); //设置题目内容
-            examTopic.setType(tag); //设置题目类型
-            examTopic.setSelects(selects); //设置题目选项
+            examTopic.setAnswerId(topicMap.get(num)); // 设置回复Id
+            examTopic.setIndex(num); // 设置题目号码
+            examTopic.setSource(source); // 设置题目分数
+            examTopic.setContent(content); // 设置题目内容
+            examTopic.setType(tag); // 设置题目类型
+            examTopic.setSelects(selects); // 设置题目选项
             exchangeTopics.getExamTopics().put(topicMap.get(num), examTopic);
         }
 
@@ -167,8 +179,8 @@ public class ExamAction {
     public static ExamInformRequest getExam(User user, String nodeId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -191,11 +203,13 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            ExamInformRequest examInformRequest = ConverterExamInform.fromJsonString(response.body().string());
-            return examInformRequest;
+            if (response.body() != null) {
+                return ConverterExamInform.fromJsonString(response.body().string());
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     /**
@@ -209,8 +223,8 @@ public class ExamAction {
     public static StartExamRequest startExam(User user, String courseId, String nodeId, String examId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -235,11 +249,13 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            StartExamRequest startExamRequest = ConverterStartExam.fromJsonString(response.body().string());
-            return startExamRequest;
+            if (response.body() != null) {
+                return ConverterStartExam.fromJsonString(response.body().string());
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
     /**
@@ -253,8 +269,8 @@ public class ExamAction {
     public static ExamTopics getExamTopic(User user, String nodeId, String examId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -271,7 +287,10 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            ExamTopics examTopics = turnExamTopic(response.body().string());
+            ExamTopics examTopics = null;
+            if (response.body() != null) {
+                examTopics = turnExamTopic(response.body().string());
+            }
             return examTopics;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -283,18 +302,18 @@ public class ExamAction {
      * @param examTopic 题目
      * @return 返回答案字符串
      */
-    public static String aiAnswerFormChatGLM(String API_KEY, ExamTopic examTopic,String courseTitle) {
+    public static String aiAnswerFormChatGLM(String API_KEY, ExamTopic examTopic, String courseTitle) {
         StringBuilder problem = new StringBuilder();
 
-        problem.append("题目类型：\n" + examTopic.getType() + "\n");
+        problem.append("题目类型：\n").append(examTopic.getType()).append("\n");
         problem.append("题目相关课程信息：\n");
-        problem.append(courseTitle+"\n");
-        problem.append("题目内容：\n" + examTopic.getContent() + "\n");
+        problem.append(courseTitle).append("\n");
+        problem.append("题目内容：\n").append(examTopic.getContent()).append("\n");
 
 
         if (examTopic.getType().equals("单选") || examTopic.getType().equals("多选") || examTopic.getType().equals("判断")) {
             for (TopicSelect select : examTopic.getSelects()) {
-                problem.append(select.getValue() + "-----" + select.getTxt() + "\n");
+                problem.append(select.getValue()).append("-----").append(select.getTxt()).append("\n");
             }
 
             problem.append("提问：\n");
@@ -302,7 +321,7 @@ public class ExamAction {
             problem.append("回答要求限制：\n");
             problem.append("注意你只需要回答选项字母，不能回答任何选项字母无关的任何内容，包括解释以及标点符也不需要。就算你不知道选什么也随机选输出A或B。");
         }
-        if(examTopic.getType().equals("填空")){
+        if (examTopic.getType().equals("填空")) {
             problem.append("提问：\n");
             problem.append("这题的答案是什么？");
             problem.append("回答要求限制：\n");
@@ -315,17 +334,17 @@ public class ExamAction {
                 .build();
         String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
 
-        try{
-            if(examTopic.getType().equals("填空")){
+        try {
+            if (examTopic.getType().equals("填空")) {
 
                 ObjectMapper objectMapper = new ObjectMapper();
-                HashMap<String,String> json = objectMapper.readValue(chatMessage, HashMap.class);
-                examTopic.getSelects().forEach((select)->{
+                HashMap<String, String> json = objectMapper.readValue(chatMessage, HashMap.class);
+                examTopic.getSelects().forEach((select) -> {
                     String answer = json.get("answer_" + select.getNum());
                     select.setTxt(answer);
                 });
             }
-        }catch (Exception e){
+        } catch (Exception ignored) {
 
         }
         return chatMessage;
@@ -344,7 +363,7 @@ public class ExamAction {
                 .build();
 
         String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
-        if (chatMessage.equals("")) return false;
+        if (chatMessage.isEmpty()) return false;
         return true;
     }
 
@@ -360,8 +379,8 @@ public class ExamAction {
     public static void submitExam(User user, String examId, String answerId, String answer, String finish) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -402,8 +421,8 @@ public class ExamAction {
     public static void submitExam(User user, String examId, String answerId, List<TopicSelect> topicSelects, String finish) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -451,8 +470,8 @@ public class ExamAction {
     public static ExamInformRequest getWork(User user, String nodeId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -475,7 +494,10 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            ExamInformRequest examInformRequest = ConverterExamInform.fromJsonString(response.body().string());
+            ExamInformRequest examInformRequest = null;
+            if (response.body() != null) {
+                examInformRequest = ConverterExamInform.fromJsonString(response.body().string());
+            }
             response.close();
             return examInformRequest;
         } catch (IOException e) {
@@ -495,8 +517,8 @@ public class ExamAction {
     public static StartExamRequest startWork(User user, String courseId, String nodeId, String workId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -512,7 +534,10 @@ public class ExamAction {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            StartExamRequest startExamRequest = ConverterStartExam.fromJsonString(response.body().string());
+            StartExamRequest startExamRequest = null;
+            if (response.body() != null) {
+                startExamRequest = ConverterStartExam.fromJsonString(response.body().string());
+            }
             response.close();
             return startExamRequest;
         } catch (IOException e) {
@@ -532,8 +557,8 @@ public class ExamAction {
     public static ExamTopics getWorkTopic(User user, String nodeId, String workId) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -551,7 +576,10 @@ public class ExamAction {
         try {
             Response response = client.newCall(request).execute();
 
-            ExamTopics examTopics = turnExamTopic(response.body().string());
+            ExamTopics examTopics = null;
+            if (response.body() != null) {
+                examTopics = turnExamTopic(response.body().string());
+            }
             response.close();
             return examTopics;
         } catch (IOException e) {
@@ -572,8 +600,8 @@ public class ExamAction {
     public static void submitWork(User user, String workId, String answerId, String answer, String finish) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();
@@ -624,8 +652,8 @@ public class ExamAction {
     public static void submitWork(User user, String workId, String answerId, List<TopicSelect> topicSelects, String finish) {
         AccountCacheYingHua cache = (AccountCacheYingHua) user.getCache();
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
-                .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
+                .connectTimeout(30, TimeUnit.SECONDS)// 设置连接超时时间
+                .readTimeout(30, TimeUnit.SECONDS)// 设置读取超时时间
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
                 .build();

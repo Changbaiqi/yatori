@@ -154,38 +154,7 @@ public class ExamAction {
                 .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
                 .addHeader("Connection", "keep-alive")
                 .build();
-      
-        } catch(SocketTimeoutException socketTimeoutException){
-            return null;
-        } catch (IOException e) {
-            log.error("");
-            e.printStackTrace();
-        }
-        return null;
+
     }
 
-    /**
-     * 构建请求信息
-     * @param user 用户
-     * @param body 请求体
-     * @param cache token
-     * @param urlSuffix 请求地址后缀
-     * @return Request
-     */
-    private static Request getRequest(User user, RequestBody body, AccountCacheCangHui cache, String urlSuffix) {
-        return new Request.Builder()
-                .url(user.getUrl() + urlSuffix)
-                .method("POST", body)
-                .addHeader("member-token", cache.getToken())
-                .addHeader("Origin", user.getUrl())
-                .addHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\",\"Chromium\";v=\"114\",\"Microsoft Edge\";v=\"114\"")
-                .addHeader("sec-ch-ua-platform", "Windows")
-                .addHeader("Cookie", "SESSION=" + cache.getSession())
-                .addHeader("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "*/*")
-                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
-                .addHeader("Connection", "keep-alive")
-                .build();
-    }
 }
