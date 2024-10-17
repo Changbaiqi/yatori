@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -52,7 +53,7 @@ public class XingHuoUtils extends WebSocketListener {
                 // 构建鉴权url
                 String authUrl = getAuthUrl(hostUrl, apiKey, apiSecret);
                 OkHttpClient client = new OkHttpClient.Builder().build();
-                String url = authUrl.toString().replace("http://", "ws://").replace("https://", "wss://");
+                String url = authUrl.replace("http://", "ws://").replace("https://", "wss://");
                 Request request = new Request.Builder().url(url).build();
                 for (int i = 0; i < 1; i++) {
                     totalAnswer="";
@@ -84,7 +85,7 @@ public class XingHuoUtils extends WebSocketListener {
 
     // 线程来发送音频与参数
     class MyThread extends Thread {
-        private WebSocket webSocket;
+        private  WebSocket webSocket;
 
         public MyThread(WebSocket webSocket) {
             this.webSocket = webSocket;
@@ -110,7 +111,7 @@ public class XingHuoUtils extends WebSocketListener {
                 JSONArray text=new JSONArray();
 
                 // 历史问题获取
-                if(historyList.size()>0){
+                if(!historyList.isEmpty()){
                     for(RoleContent tempRoleContent:historyList){
                         text.add(JSON.toJSON(tempRoleContent));
                     }
@@ -134,13 +135,10 @@ public class XingHuoUtils extends WebSocketListener {
                 // System.err.println(requestJson); // 可以打印看每次的传参明细
                 webSocket.send(requestJson.toString());
                 // 等待服务端返回完毕后关闭
-                while (true) {
+                do {
                     // System.err.println(wsCloseFlag + "---");
                     Thread.sleep(200);
-                    if (wsCloseFlag) {
-                        break;
-                    }
-                }
+                } while (!wsCloseFlag);
                 webSocket.close(1000, "");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -149,7 +147,7 @@ public class XingHuoUtils extends WebSocketListener {
     }
 
     @Override
-    public void onOpen(WebSocket webSocket, Response response) {
+    public void onOpen(@NotNull WebSocket webSocket, @NotNull Response response) {
         super.onOpen(webSocket, response);
         System.out.print("大模型：");
         MyThread myThread = new MyThread(webSocket);
@@ -157,7 +155,7 @@ public class XingHuoUtils extends WebSocketListener {
     }
 
     @Override
-    public void onMessage(WebSocket webSocket, String text) {
+    public void onMessage(@NotNull WebSocket webSocket, @NotNull String text) {
         // System.out.println(userId + "用来区分那个用户的结果" + text);
         JsonParse myJsonParse = gson.fromJson(text, JsonParse.class);
         if (myJsonParse.header.code != 0) {
@@ -192,13 +190,15 @@ public class XingHuoUtils extends WebSocketListener {
     }
 
     @Override
-    public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+    public void onFailure(@NotNull WebSocket webSocket, @NotNull Throwable t, Response response) {
         super.onFailure(webSocket, t, response);
         try {
             if (null != response) {
                 int code = response.code();
                 System.out.println("onFailure code:" + code);
-                System.out.println("onFailure body:" + response.body().string());
+                if (response.body() != null) {
+                    System.out.println("onFailure body:" + response.body().string());
+                }
                 if (101 != code) {
                     System.out.println("connection failed");
                     System.exit(0);

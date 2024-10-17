@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -50,18 +51,8 @@ public class CourseAction {
             log.error("");
             e.printStackTrace();
         }
-        Request request = new Request.Builder()
-                .url(user.getUrl() + "/api/v1/course/study/my")
-                .method("POST", body)
-                .addHeader("Member-Token", ((AccountCacheCangHui)user.getCache()).getToken())
-                .addHeader("Origin", ((AccountCacheCangHui)user.getCache()).getToken())
-                .addHeader("Cookie", "SESSION=" + ((AccountCacheCangHui)user.getCache()).getSession() + ";")
-                .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "*/*")
-                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
-                .addHeader("Connection", "keep-alive")
-                .build();
+        String url = "/api/v1/course/study/my";
+        Request request = getRequest(user, body, url);
         try {
             Response response = client.newCall(request).execute();
             if(!response.isSuccessful()){//当响应失败时
@@ -106,20 +97,8 @@ public class CourseAction {
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\r\n    \"id\": \"" + courseId + "\"\r\n}");
-        Request request = new Request.Builder()
-                .url(user.getUrl()+ "/api/v1/home/course_detail")
-                .method("POST", body)
-                .addHeader("member-token", ((AccountCacheCangHui)user.getCache()).getToken())
-                .addHeader("origin", user.getUrl())
-                .addHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Microsoft Edge\";v=\"114\"")
-                .addHeader("sec-ch-ua-platform", "\"Windows\"")
-                .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "*/*")
-                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
-                .addHeader("Connection", "keep-alive")
-                .addHeader("Cookie", ((AccountCacheCangHui)user.getCache()).getSession())
-                .build();
+        String url = "/api/v1/home/course_detail";
+        Request request = getRequest(user, body, url);
         try {
             Response response = client.newCall(request).execute();
             if(!response.isSuccessful()){//当响应失败时
@@ -156,6 +135,24 @@ public class CourseAction {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private static Request getRequest(User user, RequestBody body, String url) {
+        Request request = new Request.Builder()
+                .url(user.getUrl()+ url)
+                .method("POST", body)
+                .addHeader("member-token", ((AccountCacheCangHui) user.getCache()).getToken())
+                .addHeader("origin", user.getUrl())
+                .addHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Microsoft Edge\";v=\"114\"")
+                .addHeader("sec-ch-ua-platform", "\"Windows\"")
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
+                .addHeader("Connection", "keep-alive")
+                .addHeader("Cookie", ((AccountCacheCangHui) user.getCache()).getSession())
+                .build();
+        return request;
     }
 
     /**

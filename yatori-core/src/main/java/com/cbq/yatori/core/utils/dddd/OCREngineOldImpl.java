@@ -76,11 +76,11 @@ class OCREngineOldImpl implements OCREngine {
                 data[i] /= 255;
                 data[i] = (float) ((data[i] - 0.5) / 0.5);
             }
-
+            Map<String, Object> input1 = Map.of("input1", onnx.createTensor(data, shape));
             // 输出字符索引
             OnnxTensor indexTensor = (OnnxTensor) onnx.run(
                     modelFile.getAbsolutePath(),
-                    Map.of("input1",  onnx.createTensor(data, shape))).get(0);
+                    input1).get(0);
             LogUtils.printMessage("score type: " + indexTensor.getInfo().type.name(), LogUtils.Level.DEBUG);
             LogUtils.printMessage("score shape: " + Arrays.toString(indexTensor.getInfo().getShape()), LogUtils.Level.DEBUG);
             long[][] index = (long[][])indexTensor.getValue();

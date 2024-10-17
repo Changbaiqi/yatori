@@ -52,13 +52,13 @@ public class ExamAction {
             Response response = client.newCall(request).execute();
             String string = response.body().string();
             return ConverterExam.fromJsonString(string);
+
         } catch(SocketTimeoutException socketTimeoutException){
             return null;
         }catch (JsonParseException e){
             return null;
         } catch (IOException e) {
             log.error("");
-            e.printStackTrace();
         }
         return null;
     }
@@ -88,6 +88,7 @@ public class ExamAction {
             }
             String string = response.body().string();
             return ConverterStartExam.fromJsonString(string);
+
         } catch(SocketTimeoutException socketTimeoutException){
             return null;
         } catch (IOException e) {
@@ -123,17 +124,15 @@ public class ExamAction {
             }
             String string = response.body().string();
             return ConverterExamSubmitResponse.fromJsonString(string);
-        } catch(SocketTimeoutException socketTimeoutException){
-            return null;
-        } catch (IOException e) {
-            log.error("");
-            e.printStackTrace();
+
+        } catch (Exception e) {
+            log.error("提交考试出现问题 = {}", e.getMessage());
         }
         return null;
     }
 
     /**
-     * 构建请求信息
+     * 获取相应
      * @param user 用户
      * @param body 请求体
      * @param cache token
@@ -155,5 +154,7 @@ public class ExamAction {
                 .addHeader("Host", user.getUrl().replace("https://", "").replace("http://", "").replace("/", ""))
                 .addHeader("Connection", "keep-alive")
                 .build();
+
     }
+
 }
