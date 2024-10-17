@@ -18,7 +18,7 @@
         <dependency>
             <groupId>io.github.changbaiqi</groupId>
             <artifactId>yatori-core</artifactId>
-            <version>1.0.0-beta.4</version>
+            <version>1.0.0-beta.5</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

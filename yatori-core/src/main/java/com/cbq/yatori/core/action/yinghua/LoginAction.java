@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 
-import javax.net.ssl.X509TrustManager;
 import java.io.File;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -68,8 +67,11 @@ public class LoginAction {
                 response.close();
                 return null;
             }
-            byte[] bytes = response.body().bytes();
-            File file = FileUtils.saveFile(bytes, user.getAccountType().name()+"_"+user.getAccount()+"_"+(int)Math.random()*99999+".png");
+            byte[] bytes = new byte[0];
+            if (response.body() != null) {
+                bytes = response.body().bytes();
+            }
+            File file = FileUtils.saveFile(bytes, user.getAccountType().name()+"_"+user.getAccount()+"_"+ 0 +".png");
             response.close();
             return file;
         }catch (SocketTimeoutException e){
@@ -110,7 +112,10 @@ public class LoginAction {
                 response.close();
                 return null;
             }
-            String json = response.body().string();
+            String json = null;
+            if (response.body() != null) {
+                json = response.body().string();
+            }
             String cookies=response.header("Cookie");
             //记录token
             Pattern pattern = Pattern.compile("token=([^;]+);");
@@ -119,7 +124,7 @@ public class LoginAction {
                 ((AccountCacheYingHua)user.getCache()).setToken(matcher.group(1));
             }
 //            System.out.println(response.body().string());
-            Map<String,Object> result = new ObjectMapper().readValue(json,Map.class);
+            Map<String,Object> result =new ObjectMapper().readValue(json,Map.class);
             response.close();
             return result;
         }catch (SocketTimeoutException e){
@@ -136,7 +141,7 @@ public class LoginAction {
      * @param user
      * @return 如果返回true则表示正常登录状态，false表示登录失败
      */
-    public static Map online(User user){
+    public static Map<String,Object> online(User user){
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .sslSocketFactory(CustomTrustManager.getSSLContext().getSocketFactory(), new CustomTrustManager())
                 .hostnameVerifier((hostname, session) -> true) // Bypass hostname verification
@@ -159,9 +164,12 @@ public class LoginAction {
                 response.close();
                 return null;
             }
-            String json = response.body().string();
+            String json = null;
+            if (response.body() != null) {
+                json = response.body().string();
+            }
             ObjectMapper objectMapper = new ObjectMapper();
-            Map map = objectMapper.readValue(json, Map.class);
+            Map<String,Object> map = objectMapper.readValue(json, Map.class);
             response.close();
             return map;
         }catch (SocketTimeoutException e){
