@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="Update README.md">
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="修改部分代码pr问题">
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/CourseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/CourseAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/CourseStudyAction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +77,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.Application.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
     &quot;Application.XingHuoUtils.executor&quot;: &quot;Run&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
     &quot;JUnit.CCTest.aiAnswer.executor&quot;: &quot;Debug&quot;,
@@ -120,18 +119,18 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;graalvm-17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/QuickBot&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;ae571d4151dab2375600dbda7bf394e7&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -261,8 +260,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.387" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.387" />
       </set>
     </attachedChunks>
   </component>
@@ -418,7 +417,24 @@
       <workItem from="1717825214465" duration="2375000" />
       <workItem from="1717834370989" duration="30000" />
       <workItem from="1717837931982" duration="2590000" />
-      <workItem from="1717861006189" duration="2152000" />
+      <workItem from="1717861006189" duration="3625000" />
+      <workItem from="1718020371172" duration="1738000" />
+      <workItem from="1718093642707" duration="414000" />
+      <workItem from="1718110264769" duration="916000" />
+      <workItem from="1718268297522" duration="35000" />
+      <workItem from="1718353827417" duration="508000" />
+      <workItem from="1718354351779" duration="154000" />
+      <workItem from="1718356116994" duration="1977000" />
+      <workItem from="1718361008169" duration="1957000" />
+      <workItem from="1718460857102" duration="2054000" />
+      <workItem from="1718532259617" duration="33000" />
+      <workItem from="1718697416220" duration="724000" />
+      <workItem from="1718781823214" duration="623000" />
+      <workItem from="1719302697133" duration="10047000" />
+      <workItem from="1719646871027" duration="31000" />
+      <workItem from="1719946665206" duration="1347000" />
+      <workItem from="1723990873386" duration="1709000" />
+      <workItem from="1724227720617" duration="14000" />
     </task>
     <task id="LOCAL-00067" summary="新添支持创能平台">
       <created>1699973877369</created>
@@ -763,7 +779,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704650243297</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -794,8 +810,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="更新支撑英华穿插课后练习自动答题。" />
-    <MESSAGE value="更新v2.0.1-beta.3" />
     <MESSAGE value="修复bug" />
     <MESSAGE value="重新设计对外开放接口" />
     <MESSAGE value="修改文件读取工具类" />
@@ -819,7 +833,9 @@
     <MESSAGE value="更新支持英华填空题自动答题，并且修复部分试卷条考核无法正常进行问题。" />
     <MESSAGE value="Add Image." />
     <MESSAGE value="Update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
+    <MESSAGE value="更新支持学习公社不同课程选定刷。" />
+    <MESSAGE value="修改部分代码pr问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改部分代码pr问题" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
