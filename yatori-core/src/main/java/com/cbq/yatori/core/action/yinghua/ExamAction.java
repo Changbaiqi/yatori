@@ -331,10 +331,16 @@ public class ExamAction {
                 .addMessage(ChatGLMMessage.builder().role("user").content(problem.toString()).build())
                 .build();
         String chatMessage=null;
-        if(aiType==AiType.CHATGLM){
-            chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
-        }else if(aiType==AiType.XINGHUO){
-            chatMessage = XHAIUtil.getChatMessage(API_KEY, chatGLMChat);
+        switch (aiType){
+            case CHATGLM -> {
+                chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
+            }
+            case XINGHUO -> {
+                chatMessage = XHAIUtil.getChatMessage(API_KEY, chatGLMChat);
+            }
+            case TONGYI -> {
+                chatMessage = TongYiUtil.getChatMessage(API_KEY, chatGLMChat);
+            }
         }
 
 
@@ -366,10 +372,16 @@ public class ExamAction {
                 .addMessage(ChatGLMMessage.builder().role("user").content("Hello World!").build())
                 .build();
         String chatMessage = null;
-        if(aiType==AiType.CHATGLM){
-            chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
-        }else if(aiType==AiType.XINGHUO){
-            chatMessage = XHAIUtil.getChatMessage(API_KEY, chatGLMChat);
+        switch (aiType){
+            case CHATGLM -> {
+                chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
+            }
+            case XINGHUO -> {
+                chatMessage = XHAIUtil.getChatMessage(API_KEY, chatGLMChat);
+            }
+            case TONGYI -> {
+                chatMessage = TongYiUtil.getChatMessage(API_KEY, chatGLMChat);
+            }
         }
         if (chatMessage.isEmpty()) return false;
         return true;

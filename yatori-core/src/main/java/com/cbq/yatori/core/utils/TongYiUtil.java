@@ -12,25 +12,20 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author ChangBaiQi
- * @description TODO 用于对接星火的工具类
- * @date 2024/11/1 21:48
+ * @description TODO 通义千问的调用工具类
+ * @date 2024/11/1 22:33
  * @version 1.0
  */
 @Slf4j
-public class XHAIUtil {
-    /**
-     * 星火访问接口
-     * @param apiKey apikey 对应星火官网的APIKEY
-     * @param chatGLMChat 对应加入的聊天记录
-     * @return
-     */
+public class TongYiUtil {
+
     public static synchronized String getChatMessage(String apiKey,ChatGLMChat chatGLMChat){
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)//设置连接超时时间
                 .readTimeout(30, TimeUnit.SECONDS)//设置读取超时时间
                 .build();
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-        String url = "https://spark-api-open.xf-yun.com/v1/chat/completions";
+        String url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions";
         ObjectMapper objectMapper = new ObjectMapper();
         String messages ="[]";
         try {
@@ -38,7 +33,7 @@ public class XHAIUtil {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        String json = "{\"model\": \"generalv3.5\",\"messages\": "+messages+"}";
+        String json = "{\"model\": \"qwen-plus\",\"messages\": "+messages+"}";
 
         RequestBody body = RequestBody.create(JSON, json);
         Request request = new Request.Builder()
