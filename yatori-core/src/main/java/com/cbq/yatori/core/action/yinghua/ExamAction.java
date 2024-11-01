@@ -9,11 +9,9 @@ import com.cbq.yatori.core.action.yinghua.entity.examtopic.ExamTopic;
 import com.cbq.yatori.core.action.yinghua.entity.examtopic.ExamTopics;
 import com.cbq.yatori.core.action.yinghua.entity.examtopic.TopicSelect;
 import com.cbq.yatori.core.entity.AccountCacheYingHua;
+import com.cbq.yatori.core.entity.AiType;
 import com.cbq.yatori.core.entity.User;
-import com.cbq.yatori.core.utils.ChatGLMChat;
-import com.cbq.yatori.core.utils.ChatGLMMessage;
-import com.cbq.yatori.core.utils.ChatGLMUtil;
-import com.cbq.yatori.core.utils.CustomTrustManager;
+import com.cbq.yatori.core.utils.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -302,7 +300,7 @@ public class ExamAction {
      * @param examTopic 题目
      * @return 返回答案字符串
      */
-    public static String aiAnswerFormChatGLM(String API_KEY, ExamTopic examTopic, String courseTitle) {
+    public static String aiAnswerFormChatGLM(AiType aiType, String API_KEY, ExamTopic examTopic, String courseTitle) {
         StringBuilder problem = new StringBuilder();
 
         problem.append("题目类型：\n").append(examTopic.getType()).append("\n");
@@ -332,7 +330,13 @@ public class ExamAction {
         ChatGLMChat chatGLMChat = new ChatGLMChat().builder()
                 .addMessage(ChatGLMMessage.builder().role("user").content(problem.toString()).build())
                 .build();
-        String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
+        String chatMessage=null;
+        if(aiType==AiType.CHATGLM){
+            chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
+        }else if(aiType==AiType.XINGHUO){
+            chatMessage = XHAIUtil.getChatMessage(API_KEY, chatGLMChat);
+        }
+
 
         try {
             if (examTopic.getType().equals("填空")) {
@@ -357,12 +361,16 @@ public class ExamAction {
      * @param API_KEY
      * @return
      */
-    public static boolean checkChatGLM(String API_KEY) {
+    public static boolean checkChatGLM(AiType aiType,String API_KEY) {
         ChatGLMChat chatGLMChat = new ChatGLMChat().builder()
                 .addMessage(ChatGLMMessage.builder().role("user").content("Hello World!").build())
                 .build();
-
-        String chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
+        String chatMessage = null;
+        if(aiType==AiType.CHATGLM){
+            chatMessage = ChatGLMUtil.getChatMessage(API_KEY, chatGLMChat);
+        }else if(aiType==AiType.XINGHUO){
+            chatMessage = XHAIUtil.getChatMessage(API_KEY, chatGLMChat);
+        }
         if (chatMessage.isEmpty()) return false;
         return true;
     }

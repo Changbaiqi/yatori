@@ -315,7 +315,7 @@ public class CourseStudyAction implements Runnable {
     public void autoExamAction(CourseInform courseInform, NodeList videoInform, String nodeId, String examId) {
 
         // 先检测AI是否可用
-        boolean aiState = ExamAction.checkChatGLM(setting.getAiSetting().getAPI_KEY());
+        boolean aiState = ExamAction.checkChatGLM(setting.getAiSetting().getAiType(),setting.getAiSetting().getAPI_KEY());
         if (!aiState) {
             if (setting.getAiSetting().getAPI_KEY() == null) {
                 log.info("APIK_KEY参数为空，请检查API_KEY配置是否正常填写！！！");
@@ -343,7 +343,7 @@ public class CourseStudyAction implements Runnable {
                 answer = topics.get(topicMd5.get(turnMd5())).getAnswer();
             } else {
                 // 没缓存那么就直接AI
-                answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)), courseInform.getName());
+                answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAiType(),setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)), courseInform.getName());
                 answer = answer.replace("\n", "");
                 answer = answer.replace(" ", "");
                 String topicAllContent = examTopic.getContent();
@@ -375,7 +375,7 @@ public class CourseStudyAction implements Runnable {
     public void autoWorkAction(CourseInform courseInform, NodeList videoInform, String nodeId, String workId) {
 
         // 先检测AI是否可用
-        boolean aiState = ExamAction.checkChatGLM(setting.getAiSetting().getAPI_KEY());
+        boolean aiState = ExamAction.checkChatGLM(setting.getAiSetting().getAiType(),setting.getAiSetting().getAPI_KEY());
         if (!aiState) {
             if (setting.getAiSetting().getAPI_KEY() == null) {
                 log.info("API_KEY参数为空，请检查API_KEY配置是否正常填写！！！");
@@ -415,7 +415,7 @@ public class CourseStudyAction implements Runnable {
                 answer = topics.get(topicMd5.get(turnMd5())).getAnswer();
             } else {
                 // 没缓存那么就直接AI
-                answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)), courseInform.getName());
+                answer = com.cbq.yatori.core.action.yinghua.ExamAction.aiAnswerFormChatGLM(setting.getAiSetting().getAiType(),setting.getAiSetting().getAPI_KEY(), examTopics.getExamTopics().get(list.get(i)), courseInform.getName());
                 answer = answer.replace("\n", "");
                 answer = answer.replace(" ", "");
                 topics.add(new Topic(turnMd5(), turnTopicType(examTopic.getType()), examTopic.getContent(), answer));
