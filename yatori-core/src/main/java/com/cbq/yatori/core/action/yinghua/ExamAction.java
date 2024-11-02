@@ -300,7 +300,7 @@ public class ExamAction {
      * @param examTopic 题目
      * @return 返回答案字符串
      */
-    public static String aiAnswerFormChatGLM(AiType aiType, String API_KEY, ExamTopic examTopic, String courseTitle) {
+    public static synchronized String aiAnswerFormChatGLM(AiType aiType, String API_KEY, ExamTopic examTopic, String courseTitle) {
         StringBuilder problem = new StringBuilder();
 
         problem.append("题目类型：\n").append(examTopic.getType()).append("\n");

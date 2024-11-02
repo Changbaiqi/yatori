@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="update: add contributors show.">
-      <change afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/XHAIUtil.java" afterDir="false" />
+    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="update: add TONGYI AI Answer.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AiType.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AiType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,67 +75,67 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
-    &quot;Application.XingHuoUtils.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;JUnit.CCTest.aiAnswer.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.CCTest.alo.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CCTest.ccTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CCTest.show.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CTest.test.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ChatGLMUtilTest.cctte.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ChatGLMUtilTest.newChatMessge.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ChatGLMUtilTest.testGetChatMessage.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CourseActionTest.testMyCourseList.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.EncryptByDESUtilsTest.testDesEncrypt.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExcelUtilsTest.testGetTopics.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExcelUtilsTest.testWriteExcel.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoginActionTest.testToLogin.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.YingHuaTest.CCC.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.YingHuaTest.newYH.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.YingHuaTest.pattenExam.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.YingHuaTest.testExam.executor&quot;: &quot;Debug&quot;,
-    &quot;Maven.yatori-console [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.yatori-console [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.yatori-core [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.yatori-core [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.yatori-core [package].executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit3&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3&quot;: &quot;&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;graalvm-17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/IntelliJ_WorkSpace/brushlessons&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15136719&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.343318&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;ae571d4151dab2375600dbda7bf394e7&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Debug",
+    "Application.XingHuoUtils.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "JUnit.CCTest.aiAnswer.executor": "Debug",
+    "JUnit.CCTest.alo.executor": "Run",
+    "JUnit.CCTest.ccTest.executor": "Run",
+    "JUnit.CCTest.show.executor": "Run",
+    "JUnit.CTest.test.executor": "Debug",
+    "JUnit.ChatGLMUtilTest.cctte.executor": "Debug",
+    "JUnit.ChatGLMUtilTest.newChatMessge.executor": "Run",
+    "JUnit.ChatGLMUtilTest.testGetChatMessage.executor": "Run",
+    "JUnit.CourseActionTest.testMyCourseList.executor": "Debug",
+    "JUnit.EncryptByDESUtilsTest.testDesEncrypt.executor": "Run",
+    "JUnit.ExcelUtilsTest.testGetTopics.executor": "Run",
+    "JUnit.ExcelUtilsTest.testWriteExcel.executor": "Run",
+    "JUnit.LoginActionTest.testToLogin.executor": "Run",
+    "JUnit.YingHuaTest.CCC.executor": "Run",
+    "JUnit.YingHuaTest.newYH.executor": "Run",
+    "JUnit.YingHuaTest.pattenExam.executor": "Run",
+    "JUnit.YingHuaTest.testExam.executor": "Debug",
+    "Maven.yatori-console [install].executor": "Run",
+    "Maven.yatori-console [package].executor": "Run",
+    "Maven.yatori-core [clean].executor": "Run",
+    "Maven.yatori-core [install].executor": "Run",
+    "Maven.yatori-core [package].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "graalvm-17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15136719",
+    "project.structure.side.proportion": "0.343318",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "show.migrate.to.gradle.popup": "false",
+    "spring.configuration.checksum": "ae571d4151dab2375600dbda7bf394e7",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.cbq.yatori.core.aggregate.yinghua" />
@@ -441,7 +438,9 @@
       <workItem from="1729506930329" duration="5000" />
       <workItem from="1730348043247" duration="1256000" />
       <workItem from="1730427668964" duration="83000" />
-      <workItem from="1730438426868" duration="1157000" />
+      <workItem from="1730438426868" duration="2312000" />
+      <workItem from="1730467721245" duration="3047000" />
+      <workItem from="1730527319128" duration="1042000" />
     </task>
     <task id="LOCAL-00067" summary="新添支持创能平台">
       <created>1699973877369</created>
@@ -786,7 +785,7 @@
       <option name="project" value="LOCAL" />
       <updated>1704650243297</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -817,8 +816,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="修改文件读取工具类" />
-    <MESSAGE value="修改考试Action部分内容" />
     <MESSAGE value="修改考试英华用户类" />
     <MESSAGE value="调整课程学习Action逻辑" />
     <MESSAGE value="调整部分依赖库" />
@@ -842,7 +839,9 @@
     <MESSAGE value="修改部分代码pr问题" />
     <MESSAGE value="fix: problem caused by pr" />
     <MESSAGE value="update: add contributors show." />
-    <option name="LAST_COMMIT_MESSAGE" value="update: add contributors show." />
+    <MESSAGE value="update: add XINGHUO AI Answer." />
+    <MESSAGE value="update: add TONGYI AI Answer." />
+    <option name="LAST_COMMIT_MESSAGE" value="update: add TONGYI AI Answer." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
