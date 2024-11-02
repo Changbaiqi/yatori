@@ -24,6 +24,7 @@ import com.cbq.yatori.core.utils.EmailUtil;
 
 import javax.mail.MessagingException;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author 长白崎
@@ -42,7 +43,7 @@ public class CourseStudyAction implements Runnable {
 
     private VideoRequest courseVideosList; // 视屏列表
     // 需要看的视屏集合
-    private final List<NodeList> videoInforms = new ArrayList<>();
+    private final CopyOnWriteArrayList<NodeList> videoInforms = new CopyOnWriteArrayList<>();
 
     private Boolean newThread = false;
 
