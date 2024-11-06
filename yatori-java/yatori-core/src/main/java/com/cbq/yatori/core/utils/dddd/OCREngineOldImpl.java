@@ -76,6 +76,7 @@ class OCREngineOldImpl implements OCREngine {
                 data[i] /= 255;
                 data[i] = (float) ((data[i] - 0.5) / 0.5);
             }
+//            System.out.println(Arrays.toString(data));
             // 输出字符索引
             OnnxTensor indexTensor = (OnnxTensor) onnx.run(
                     modelFile.getAbsolutePath(),
@@ -83,7 +84,7 @@ class OCREngineOldImpl implements OCREngine {
             LogUtils.printMessage("score type: " + indexTensor.getInfo().type.name(), LogUtils.Level.DEBUG);
             LogUtils.printMessage("score shape: " + Arrays.toString(indexTensor.getInfo().getShape()), LogUtils.Level.DEBUG);
             long[][] index = (long[][])indexTensor.getValue();
-
+//            System.out.println(Arrays.toString(index));
             StringBuilder words = new StringBuilder();
             for (long i: index[0]) {
                 words.append((String) charsetArray.get((int) i));

@@ -1,55 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="update: add TONGYI AI Answer.">
+    <list default="true" id="d16318fe-babe-4d53-8500-741640d03fb5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/dependency-reduced-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/java/com/cbq/yatori/console/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/java/com/cbq/yatori/console/run/Launch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/resources/META-INF/native-image/jni-config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/resources/META-INF/native-image/predefined-classes-config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/resources/META-INF/native-image/proxy-config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/resources/META-INF/native-image/resource-config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/resources/META-INF/native-image/serialization-config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/resources/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-console/src/main/resources/logging.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/bilibili/HardcorememberAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/bilibili/LoginAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/CourseStudyAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/ExamAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/LoginAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/MyCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Chapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/College.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/ConverterCourseDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/CourseDetailData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/CourseDetailRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Datum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/MissionStandard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Process.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Router.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/coursedetail/Section.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/exam/ConverterExam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/exam/ExamCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/exam/ExamItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/exam/ExamJson.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/exam/ExamTopic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmit/ConverterExamSubmit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmit/TopicAnswer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmit/TopicRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmitrespose/ConverterExamSubmitResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/examsubmitrespose/ExamSubmitResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/loginresponse/ConverterLoginResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/loginresponse/LoginResponseData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/loginresponse/LoginResponseRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistrequest/ConverterMyCourseRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistrequest/MyCourseRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ConverterMyCourseResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Course.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/HomeworkCount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/LastSection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Member.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MissionStandard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourseData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/MyCourseDataRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ProgressDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ProgressDetailDatum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/QuizCount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/ResultScore.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/RouterDatum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/SectionCount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/Semester.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/mycourselistresponse/VideoRouter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/startexam/ConverterStartExam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/startexam/StartExam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/submitstudy/ConverterSubmitStudyTime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/submitstudy/SubmitStudyTimeRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/tologin/ConverterToLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/tologin/ToLoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/upload/ConverterUpload.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/canghui/entity/upload/UploadRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/CourseAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/CourseStudyAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/LoginAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/LoginAblesky.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/ccvideo/CCVideoConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/ccvideo/CCVideoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/CourseVideListConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/CourseVideoListRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/ResultList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/VideoList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/coursevidelist/VideoListList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/ListElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/RequiredCourseListConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/RequiredCourseListRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/requirecourselist/StudyCenterDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/submitlearntime/SubmitLearnTimeConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/submitlearntime/SubmitLearnTimeRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/MyCircleStatisticDTOList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/ResultList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/StudentList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/TeacherList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/TeacherListList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/UnderwayProjectConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/enaea/entity/underwayproject/UnderwayProjectRquest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/xuexitong/CourseAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/xuexitong/LoginAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/CourseStudyAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/ExamAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/LoginAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/Banner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/ConverterAllCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseAnnouncement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseFinishInform.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseInform.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseProgress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/CourseResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/Enlist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/EnlistList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allcourse/PageInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/ConverterVideo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/NodeList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/allvideo/VideoResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ConverterExamInform.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ExamInformResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examinform/ListElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/ConverterStartExam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartEaxmData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examstart/StartExamResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examtopic/ExamTopic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examtopic/ExamTopics.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/examtopic/TopicSelect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/ConverterSubmitStudyTime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/submitstudy/SubmitStudyTimeRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/ConverterVideoMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformCheat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/action/yinghua/entity/videomessage/VideoInformStudyTotal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/AbstractAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/AccountType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/YatoriUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/YingHuaUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/course/YingHuaCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/course/YingHuaCourseAbstractChain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/course/YingHuaOkCourseOperation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/entity/LoginStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/entity/YingHuaCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/entity/YingHuaExam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/entity/YingHuaVideo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/login/TYingHuaLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/login/YingHuaAbstractLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/login/YingHuaCodeOperation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/login/YingHuaLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/login/YingHuaOnlineOoperation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/operation/YingHuaCourseOperation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/aggregate/yinghua/operation/YingHuaCourseOperationAbstract.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AccountCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AccountCacheCangHui.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AccountCacheEnaea.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AccountCacheXueXiTong.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AccountCacheYingHua.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AccountType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AiSetting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/AiType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Config.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Course.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/CoursesCustom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/CoursesSetting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/EmailInform.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Setting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/Topic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/CharEmoJIUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/ChatGLMChat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/ChatGLMMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/ChatGLMUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/ConfigUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/CustomTrustManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/EmailUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/EncryptByDESUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/ExcelUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/FileUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/MD5Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/TongYiUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/VerificationCodeUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/XHAIUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/XingHuoUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/OCREngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/OCREngineOldImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils/IOUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils/ImageUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils/LogUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/java/com/cbq/yatori/core/utils/dddd/utils/ONNXRuntimeUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/resources/d4/common_det.onnx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/resources/d4/common_old.onnx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/resources/d4/common_old1.onnx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-core/src/main/resources/d4/common_old_charset.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-go/yatori-core/start.bat" beforeDir="false" afterPath="$PROJECT_DIR$/yatori-go/yatori-core/start.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web-page.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/main/java/com/cbq/yatori/web/YatoriWebApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/main/java/com/cbq/yatori/web/demos/web/BasicController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/main/java/com/cbq/yatori/web/demos/web/PathVariableController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/main/java/com/cbq/yatori/web/demos/web/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/main/resources/Banner.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/main/resources/static/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yatori-web/src/test/java/com/cbq/yatori/web/YatoriWebApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/设计图.drawio" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeStyleSettingsInfer">
-    <option name="done" value="true" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JUnit3 Test Class" />
-        <option value="Interface" />
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--follow-tags" />
-        <option name="title" value="Current Branch" />
-      </GitPushTagMode>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Changbaiqi"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Changbaiqi/brushlessons.git&quot;,
-    &quot;accountId&quot;: &quot;93f2befb-d5f4-46fd-818c-607551092d2d&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Changbaiqi/brushlessons.git",
+    "accountId": "93f2befb-d5f4-46fd-818c-607551092d2d"
   }
-}</component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -58,205 +261,25 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="MavenRunner">
-    <option name="skipTests" value="true" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectCodeStyleSettingsMigration">
-    <option name="version" value="2" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2X9X57bo05YYW134VQWkgg8sNKm" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2oTaw4TmCXu87GRNAPzp3nblcWG" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Application.executor": "Debug",
-    "Application.XingHuoUtils.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "true",
-    "JUnit.CCTest.aiAnswer.executor": "Debug",
-    "JUnit.CCTest.alo.executor": "Run",
-    "JUnit.CCTest.ccTest.executor": "Run",
-    "JUnit.CCTest.show.executor": "Run",
-    "JUnit.CTest.test.executor": "Debug",
-    "JUnit.ChatGLMUtilTest.cctte.executor": "Debug",
-    "JUnit.ChatGLMUtilTest.newChatMessge.executor": "Run",
-    "JUnit.ChatGLMUtilTest.testGetChatMessage.executor": "Run",
-    "JUnit.CourseActionTest.testMyCourseList.executor": "Debug",
-    "JUnit.EncryptByDESUtilsTest.testDesEncrypt.executor": "Run",
-    "JUnit.ExcelUtilsTest.testGetTopics.executor": "Run",
-    "JUnit.ExcelUtilsTest.testWriteExcel.executor": "Run",
-    "JUnit.LoginActionTest.testToLogin.executor": "Run",
-    "JUnit.YingHuaTest.CCC.executor": "Run",
-    "JUnit.YingHuaTest.newYH.executor": "Run",
-    "JUnit.YingHuaTest.pattenExam.executor": "Run",
-    "JUnit.YingHuaTest.testExam.executor": "Debug",
-    "Maven.yatori-console [install].executor": "Run",
-    "Maven.yatori-console [package].executor": "Run",
-    "Maven.yatori-core [clean].executor": "Run",
-    "Maven.yatori-core [install].executor": "Run",
-    "Maven.yatori-core [package].executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "",
-    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "graalvm-17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/IntelliJ_WorkSpace/brushlessons",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
+    "last_opened_file_path": "E:/yatori",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15136719",
-    "project.structure.side.proportion": "0.343318",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "show.migrate.to.gradle.popup": "false",
-    "spring.configuration.checksum": "ae571d4151dab2375600dbda7bf394e7",
+    "settings.editor.selected.configurable": "com.alibabacloud.intellij.config.RegionConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.cbq.yatori.core.aggregate.yinghua" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\IntelliJ_WorkSpace\brushlessons\README\images" />
-      <recent name="E:\IntelliJ_WorkSpace\brushlessons\yatori-console\src\main\java\com\cbq\yatori\console\display" />
-      <recent name="E:\IntelliJ_WorkSpace\brushlessons" />
-      <recent name="E:\IntelliJ_WorkSpace\brushlessons\yatori-core\src\main\java\com\cbq\yatori\core\utils" />
-      <recent name="E:\IntelliJ_WorkSpace\brushlessons\yatori-core\src\main\java\com\cbq\yatori\core\utils\dddd\utils" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-      <recent name="junit.framework.TestCase" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Unzip\1147\yatori" />
-      <recent name="F:\Unzip\1147\yatori\yatori-core\src\main\java\com\cbq\yatori\core\utils" />
-      <recent name="F:\Unzip\1147\yatori\yatori-core\src\main\java\com\cbq\yatori\core\entity" />
-      <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs" />
-      <recent name="E:\IntelliJ_WorkSpace\brushlessons\src\main\resources" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.cbq.yatori.core.utils" />
-      <recent name="com.cbq.yatori.core.action.xuexitong" />
-      <recent name="com.cbq.yatori.core.aggregate" />
-      <recent name="com.cbq.brushlessons.core.aggregate" />
-      <recent name="com.cbq.brushlessons.core.action.enaea" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.cbq.yatori.core.utils" />
-      <recent name="com.cbq.brushlessons.core.utils" />
-    </key>
-  </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="mvn install:install-file -DgroupId=cpdetector -DatrifactId=cpdetector -Dversion=1.0.10 -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\cpdetector_1.0.10.jar" />
-      <command value="mvn install:install-file -DgroupId=cpdetector -DartifactId=cpdetector -Dversion=1.0.10 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\cpdetector_1.0.10.jar" />
-      <command value="mvn install:install-file -DgroupId=chardet -DartifactId=chardet -Dversion=1.0 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\antlr-2.7.4.jar" />
-      <command value="mvn install:install-file -DgroupId=jargs -DartifactId=jargs -Dversion=1.0 -Dpackaging=jar -Dfile=E:\IntelliJ_WorkSpace\brushlessons\src\main\resources\libs\jargs-1.0.jar" />
-      <command value="mvn clean javadoc:jar source:jar install gpg:sign" />
-      <command value="mvn install -Dmaven.javadoc.skip=true" />
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.Application">
-    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.cbq.yatori.console.Application" />
-      <module name="yatori-console" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.yatori.console.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CCTest.aiAnswer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="yatori-core" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CCTest" />
-      <option name="METHOD_NAME" value="aiAnswer" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CCTest.show" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="yatori-core" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CCTest" />
-      <option name="METHOD_NAME" value="show" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="yatori-console" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CTest" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CourseActionTest.testMyCourseList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="yatori-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cbq.yatori.core.action.xuexitong.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cbq.yatori.core.action.xuexitong" />
-      <option name="MAIN_CLASS_NAME" value="com.cbq.yatori.core.action.xuexitong.CourseActionTest" />
-      <option name="METHOD_NAME" value="testMyCourseList" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Application" />
-      <item itemvalue="JUnit.CCTest.aiAnswer" />
-      <item itemvalue="JUnit.CCTest.show" />
-      <item itemvalue="JUnit.CTest.test" />
-      <item itemvalue="JUnit.CourseActionTest.testMyCourseList" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Application" />
-        <item itemvalue="JUnit.CCTest.aiAnswer" />
-        <item itemvalue="JUnit.CCTest.show" />
-        <item itemvalue="JUnit.CTest.test" />
-        <item itemvalue="JUnit.CourseActionTest.testMyCourseList" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -268,619 +291,16 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="17e983e6-86fe-49f4-9f92-1f87e108fe5c" name="Changes" comment="" />
-      <created>1698042083121</created>
+      <changelist id="d16318fe-babe-4d53-8500-741640d03fb5" name="Changes" comment="" />
+      <created>1730896257559</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1698042083121</updated>
-      <workItem from="1698042084419" duration="7607000" />
-      <workItem from="1698130544496" duration="3237000" />
-      <workItem from="1698230197447" duration="1868000" />
-      <workItem from="1698329931291" duration="29803000" />
-      <workItem from="1698583004590" duration="26889000" />
-      <workItem from="1698625603971" duration="15374000" />
-      <workItem from="1698645980224" duration="36201000" />
-      <workItem from="1698743548198" duration="12614000" />
-      <workItem from="1698774853870" duration="2847000" />
-      <workItem from="1698778036950" duration="22444000" />
-      <workItem from="1698976991193" duration="752000" />
-      <workItem from="1699009285058" duration="9373000" />
-      <workItem from="1699099438826" duration="285000" />
-      <workItem from="1699108826722" duration="693000" />
-      <workItem from="1699249983349" duration="791000" />
-      <workItem from="1699257467671" duration="1043000" />
-      <workItem from="1699348492630" duration="15483000" />
-      <workItem from="1699367620338" duration="4427000" />
-      <workItem from="1699373521427" duration="13720000" />
-      <workItem from="1699432835768" duration="24000" />
-      <workItem from="1699435725909" duration="4497000" />
-      <workItem from="1699447469959" duration="2155000" />
-      <workItem from="1699500958508" duration="5186000" />
-      <workItem from="1699604514746" duration="2949000" />
-      <workItem from="1699716057133" duration="1809000" />
-      <workItem from="1699862051971" duration="3526000" />
-      <workItem from="1699969337026" duration="6387000" />
-      <workItem from="1700449334424" duration="1540000" />
-      <workItem from="1700470388599" duration="1224000" />
-      <workItem from="1700636361194" duration="9564000" />
-      <workItem from="1700723839770" duration="1418000" />
-      <workItem from="1700791851024" duration="1487000" />
-      <workItem from="1701086544376" duration="4279000" />
-      <workItem from="1701096883111" duration="17326000" />
-      <workItem from="1701141988973" duration="13530000" />
-      <workItem from="1701167311053" duration="947000" />
-      <workItem from="1701241138052" duration="8624000" />
-      <workItem from="1701252170215" duration="1780000" />
-      <workItem from="1701310692300" duration="8075000" />
-      <workItem from="1701336098401" duration="1215000" />
-      <workItem from="1701403709098" duration="1742000" />
-      <workItem from="1701420984807" duration="31000" />
-      <workItem from="1702289854073" duration="455000" />
-      <workItem from="1702533417341" duration="5590000" />
-      <workItem from="1702878592364" duration="914000" />
-      <workItem from="1702890816742" duration="1552000" />
-      <workItem from="1702965510009" duration="617000" />
-      <workItem from="1702974822888" duration="4134000" />
-      <workItem from="1703001461535" duration="3509000" />
-      <workItem from="1703043283982" duration="15507000" />
-      <workItem from="1703077551800" duration="2914000" />
-      <workItem from="1703147758012" duration="1467000" />
-      <workItem from="1703470197710" duration="106000" />
-      <workItem from="1703478068657" duration="2327000" />
-      <workItem from="1703494610347" duration="23131000" />
-      <workItem from="1703755063159" duration="1005000" />
-      <workItem from="1703917748645" duration="1056000" />
-      <workItem from="1704012757639" duration="37000" />
-      <workItem from="1704012806911" duration="88000" />
-      <workItem from="1704013037686" duration="703000" />
-      <workItem from="1704043360955" duration="4915000" />
-      <workItem from="1704091069421" duration="7695000" />
-      <workItem from="1704099157355" duration="12546000" />
-      <workItem from="1704178201986" duration="1776000" />
-      <workItem from="1704185066565" duration="1589000" />
-      <workItem from="1704186669244" duration="769000" />
-      <workItem from="1704187749958" duration="25306000" />
-      <workItem from="1704294264276" duration="3521000" />
-      <workItem from="1704363485874" duration="6893000" />
-      <workItem from="1704391124195" duration="7831000" />
-      <workItem from="1704426172286" duration="5907000" />
-      <workItem from="1704533949157" duration="1600000" />
-      <workItem from="1704541515428" duration="1328000" />
-      <workItem from="1704559417288" duration="4228000" />
-      <workItem from="1704634241002" duration="11657000" />
-      <workItem from="1704784849743" duration="3817000" />
-      <workItem from="1704911884481" duration="45000" />
-      <workItem from="1706201335246" duration="2262000" />
-      <workItem from="1706260287344" duration="327000" />
-      <workItem from="1706261240374" duration="1518000" />
-      <workItem from="1706350594902" duration="82000" />
-      <workItem from="1706527587288" duration="4000" />
-      <workItem from="1706535233273" duration="350000" />
-      <workItem from="1709134942791" duration="6242000" />
-      <workItem from="1709873337512" duration="298000" />
-      <workItem from="1709897778918" duration="424000" />
-      <workItem from="1710423089138" duration="28000" />
-      <workItem from="1712841857795" duration="1183000" />
-      <workItem from="1713167013105" duration="7137000" />
-      <workItem from="1713362068178" duration="407000" />
-      <workItem from="1713362489027" duration="123000" />
-      <workItem from="1713362626063" duration="744000" />
-      <workItem from="1713364023815" duration="319000" />
-      <workItem from="1713375150057" duration="2209000" />
-      <workItem from="1713422430588" duration="139000" />
-      <workItem from="1713432446033" duration="26855000" />
-      <workItem from="1713508117849" duration="24000" />
-      <workItem from="1713705148608" duration="792000" />
-      <workItem from="1713758540838" duration="1734000" />
-      <workItem from="1713761279716" duration="196000" />
-      <workItem from="1714019534743" duration="779000" />
-      <workItem from="1714105848079" duration="2791000" />
-      <workItem from="1714134136559" duration="879000" />
-      <workItem from="1714137600836" duration="1142000" />
-      <workItem from="1714307685053" duration="5411000" />
-      <workItem from="1714449739707" duration="824000" />
-      <workItem from="1714452891324" duration="639000" />
-      <workItem from="1714562274346" duration="1650000" />
-      <workItem from="1714622858877" duration="54000" />
-      <workItem from="1714980981693" duration="2648000" />
-      <workItem from="1715069732100" duration="1311000" />
-      <workItem from="1715071122072" duration="614000" />
-      <workItem from="1715071879184" duration="6459000" />
-      <workItem from="1715082042529" duration="182000" />
-      <workItem from="1715155554711" duration="1441000" />
-      <workItem from="1715242422529" duration="5354000" />
-      <workItem from="1715519570536" duration="46000" />
-      <workItem from="1715678979486" duration="2760000" />
-      <workItem from="1715752541323" duration="10395000" />
-      <workItem from="1715952823360" duration="157000" />
-      <workItem from="1716014925527" duration="5591000" />
-      <workItem from="1716027066585" duration="4841000" />
-      <workItem from="1716051424711" duration="7262000" />
-      <workItem from="1716270286930" duration="6259000" />
-      <workItem from="1716346223493" duration="7558000" />
-      <workItem from="1716446125497" duration="7710000" />
-      <workItem from="1716480387747" duration="11080000" />
-      <workItem from="1716620580070" duration="3767000" />
-      <workItem from="1716785963833" duration="5157000" />
-      <workItem from="1716983742923" duration="207000" />
-      <workItem from="1716987063293" duration="650000" />
-      <workItem from="1716993179474" duration="664000" />
-      <workItem from="1717229566354" duration="922000" />
-      <workItem from="1717309326675" duration="13600000" />
-      <workItem from="1717392002624" duration="546000" />
-      <workItem from="1717392560617" duration="3223000" />
-      <workItem from="1717517827177" duration="3005000" />
-      <workItem from="1717570174144" duration="7210000" />
-      <workItem from="1717652745347" duration="2920000" />
-      <workItem from="1717752194217" duration="13273000" />
-      <workItem from="1717825068645" duration="131000" />
-      <workItem from="1717825214465" duration="2375000" />
-      <workItem from="1717834370989" duration="30000" />
-      <workItem from="1717837931982" duration="2590000" />
-      <workItem from="1717861006189" duration="3625000" />
-      <workItem from="1718020371172" duration="1738000" />
-      <workItem from="1718093642707" duration="414000" />
-      <workItem from="1718110264769" duration="916000" />
-      <workItem from="1718268297522" duration="35000" />
-      <workItem from="1718353827417" duration="508000" />
-      <workItem from="1718354351779" duration="154000" />
-      <workItem from="1718356116994" duration="1977000" />
-      <workItem from="1718361008169" duration="1957000" />
-      <workItem from="1718460857102" duration="2054000" />
-      <workItem from="1718532259617" duration="33000" />
-      <workItem from="1718697416220" duration="724000" />
-      <workItem from="1718781823214" duration="623000" />
-      <workItem from="1719302697133" duration="10047000" />
-      <workItem from="1719646871027" duration="31000" />
-      <workItem from="1719946665206" duration="1347000" />
-      <workItem from="1723990873386" duration="1709000" />
-      <workItem from="1724227720617" duration="14000" />
-      <workItem from="1729506930329" duration="5000" />
-      <workItem from="1730348043247" duration="1256000" />
-      <workItem from="1730427668964" duration="83000" />
-      <workItem from="1730438426868" duration="2312000" />
-      <workItem from="1730467721245" duration="3047000" />
-      <workItem from="1730527319128" duration="1042000" />
+      <updated>1730896257559</updated>
+      <workItem from="1730896259023" duration="45000" />
     </task>
-    <task id="LOCAL-00067" summary="新添支持创能平台">
-      <created>1699973877369</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1699973877369</updated>
-    </task>
-    <task id="LOCAL-00068" summary="更新README">
-      <created>1699979518884</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1699979518884</updated>
-    </task>
-    <task id="LOCAL-00069" summary="优化部分代码">
-      <created>1700723978530</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1700723978531</updated>
-    </task>
-    <task id="LOCAL-00070" summary="添加Excel表格读取范式，准备实现写题功能">
-      <created>1701090079132</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1701090079132</updated>
-    </task>
-    <task id="LOCAL-00071" summary="更新README">
-      <created>1701090269305</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1701090269305</updated>
-    </task>
-    <task id="LOCAL-00072" summary="爬取考试答案">
-      <created>1701105418078</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1701105418079</updated>
-    </task>
-    <task id="LOCAL-00073" summary="添加考试逻辑">
-      <created>1701140631125</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1701140631125</updated>
-    </task>
-    <task id="LOCAL-00074" summary="更新仓辉普通模式下的自动考试">
-      <created>1701145625043</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1701145625044</updated>
-    </task>
-    <task id="LOCAL-00075" summary="更新gl配置文件">
-      <created>1701150618619</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1701150618619</updated>
-    </task>
-    <task id="LOCAL-00076" summary="正式更新仓辉自动考试功能，并且优化仓辉刷课代码和部分bug。">
-      <created>1701151182338</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1701151182338</updated>
-    </task>
-    <task id="LOCAL-00077" summary="更新native配置文件">
-      <created>1701249343678</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1701249343679</updated>
-    </task>
-    <task id="LOCAL-00078" summary="v1.2.3-beta.1版本并且更新配置文件方式">
-      <created>1701249394493</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1701249394493</updated>
-    </task>
-    <task id="LOCAL-00079" summary="v1.2.3-beta.1版本并且更新配置文件方式">
-      <created>1701249455318</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1701249455318</updated>
-    </task>
-    <task id="LOCAL-00080" summary="v1.2.3-beta.1版本并且更新配置文件方式">
-      <created>1701250056049</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1701250056049</updated>
-    </task>
-    <task id="LOCAL-00081" summary="修复空指针bug">
-      <created>1701261467609</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1701261467610</updated>
-    </task>
-    <task id="LOCAL-00082" summary="更新配置文件">
-      <created>1701317244895</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1701317244896</updated>
-    </task>
-    <task id="LOCAL-00083" summary="更新v1.2.3-beta.2版本参数说明">
-      <created>1701318102854</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1701318102854</updated>
-    </task>
-    <task id="LOCAL-00084" summary="更新英华考试接口">
-      <created>1701405024800</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1701405024800</updated>
-    </task>
-    <task id="LOCAL-00085" summary="更新README">
-      <created>1701405421230</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1701405421231</updated>
-    </task>
-    <task id="LOCAL-00086" summary="更新暴力模式下的视屏时长检测，解决暴力模式下时间刷不满的bug">
-      <created>1702539611841</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1702539611841</updated>
-    </task>
-    <task id="LOCAL-00087" summary="修复部分运行报错问题">
-      <created>1702992778402</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1702992778403</updated>
-    </task>
-    <task id="LOCAL-00088" summary="修复紧急bug，嗯，就是作者老抽写错参数了，可能导致死循环刷。">
-      <created>1703002274921</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1703002274921</updated>
-    </task>
-    <task id="LOCAL-00089" summary="修复紧急bug，嗯，就是作者脑抽写错参数了，可能导致死循环刷。">
-      <created>1703002296495</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1703002296495</updated>
-    </task>
-    <task id="LOCAL-00090" summary="嗯，一个没啥用的类">
-      <created>1703061767858</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1703061767858</updated>
-    </task>
-    <task id="LOCAL-00091" summary="更改配置读取方式，使其能自适应编码">
-      <created>1703061815475</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1703061815475</updated>
-    </task>
-    <task id="LOCAL-00092" summary="添加配置文件错误提示">
-      <created>1703062497851</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1703062497851</updated>
-    </task>
-    <task id="LOCAL-00093" summary="打个小补丁">
-      <created>1703062536842</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1703062536842</updated>
-    </task>
-    <task id="LOCAL-00094" summary="更新学习公社部分代码">
-      <created>1703506659293</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1703506659295</updated>
-    </task>
-    <task id="LOCAL-00095" summary="更新学习公社部分代码">
-      <created>1703512663359</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1703512663359</updated>
-    </task>
-    <task id="LOCAL-00096" summary="成功实现学习公社刷视屏">
-      <created>1703521426731</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1703521426731</updated>
-    </task>
-    <task id="LOCAL-00097" summary="准备安排学习公社功能">
-      <created>1703524972307</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1703524972307</updated>
-    </task>
-    <task id="LOCAL-00098" summary="安排学习公社功能">
-      <created>1703527440997</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1703527440997</updated>
-    </task>
-    <task id="LOCAL-00099" summary="聚合功能模块，准备开放API开发接口">
-      <created>1704048635891</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1704048635892</updated>
-    </task>
-    <task id="LOCAL-00100" summary="修复仓辉考试其他学校考不了的重大bug！！！">
-      <created>1704093202651</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1704093202651</updated>
-    </task>
-    <task id="LOCAL-00101" summary="更新v2.0.0-Beta.2版本">
-      <created>1704093477910</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1704093477910</updated>
-    </task>
-    <task id="LOCAL-00102" summary="更新开源协议">
-      <created>1704095204055</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1704095204055</updated>
-    </task>
-    <task id="LOCAL-00103" summary="修改过滤文件">
-      <created>1704095230240</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1704095230240</updated>
-    </task>
-    <task id="LOCAL-00104" summary="更新项目目录结构，为后续项目架构重构提供更好的划分。">
-      <created>1704100654874</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1704100654874</updated>
-    </task>
-    <task id="LOCAL-00105" summary="更新项目目录结构，为后续项目架构重构提供更好的划分。">
-      <created>1704100687233</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1704100687233</updated>
-    </task>
-    <task id="LOCAL-00106" summary="准备启动可视化Web项目计划">
-      <created>1704100880908</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1704100880908</updated>
-    </task>
-    <task id="LOCAL-00107" summary="准备启动可视化Web项目计划">
-      <created>1704101948506</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1704101948506</updated>
-    </task>
-    <task id="LOCAL-00108" summary="更改所有实体类注解格式，以及yatori-core发布至Maven中央仓库">
-      <created>1704195377879</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1704195377881</updated>
-    </task>
-    <task id="LOCAL-00109" summary="新增加英华部分API">
-      <created>1704284680818</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1704284680818</updated>
-    </task>
-    <task id="LOCAL-00110" summary="更新项目结构说明">
-      <created>1704285466729</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1704285466729</updated>
-    </task>
-    <task id="LOCAL-00111" summary="更新缺失文件">
-      <created>1704287211386</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1704287211386</updated>
-    </task>
-    <task id="LOCAL-00112" summary="整理xml">
-      <created>1704288107132</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1704288107132</updated>
-    </task>
-    <task id="LOCAL-00113" summary="删除前端页面项目，后续分离">
-      <created>1704295528800</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1704295528800</updated>
-    </task>
-    <task id="LOCAL-00114" summary="完善yaotri-core英华部分基础功能API，有想对英华进行二次开发的可以使用了">
-      <created>1704646391804</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1704646391805</updated>
-    </task>
-    <task id="LOCAL-00115" summary="完善yaotri-core仓辉视屏刷课部分基础功能API，有想对仓辉进行二次开发的可以使用了">
-      <created>1704650243297</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1704650243297</updated>
-    </task>
-    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="修改考试英华用户类" />
-    <MESSAGE value="调整课程学习Action逻辑" />
-    <MESSAGE value="调整部分依赖库" />
-    <MESSAGE value="重构部分代码" />
-    <MESSAGE value="修复学习公社无法正常读取必修课视屏列表的bug" />
-    <MESSAGE value="修复仓辉平台SSL证书问题导致的无法正常使用bug" />
-    <MESSAGE value="Modify the ApiAction logic." />
-    <MESSAGE value="Modified version identification." />
-    <MESSAGE value="Fixed a possible memory leak." />
-    <MESSAGE value="Add aggregate interface." />
-    <MESSAGE value="Support YINGHUA's violent model." />
-    <MESSAGE value="Modify the README document." />
-    <MESSAGE value="Adding a static method lock prevents the ChatGLM interface from being called too often" />
-    <MESSAGE value="Fixed the bug that YINGHUA platform could not time properly without pre-restricted violence mode." />
-    <MESSAGE value="Updated version v2.0.1-beta.6" />
-    <MESSAGE value="Check whether the AI is available before updating the question." />
-    <MESSAGE value="更新支持英华填空题自动答题，并且修复部分试卷条考核无法正常进行问题。" />
-    <MESSAGE value="Add Image." />
-    <MESSAGE value="Update README.md" />
-    <MESSAGE value="更新支持学习公社不同课程选定刷。" />
-    <MESSAGE value="修改部分代码pr问题" />
-    <MESSAGE value="fix: problem caused by pr" />
-    <MESSAGE value="update: add contributors show." />
-    <MESSAGE value="update: add XINGHUO AI Answer." />
-    <MESSAGE value="update: add TONGYI AI Answer." />
-    <option name="LAST_COMMIT_MESSAGE" value="update: add TONGYI AI Answer." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/cbq/brushlessons/core/action/yinghua/LoginActionTest.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
-      </pinned-members>
-    </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="JUnit">
-        <watch expression="examList.examCourses" />
-        <watch expression="answer" />
-      </configuration>
-      <configuration name="Application">
-        <watch expression="videoInform" />
-      </configuration>
-    </watches-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/brushlessons$CC_autoExam.ic" NAME="CC.autoExam Coverage Results" MODIFIED="1701142462533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.cbq.brushlessons.core.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/brushlessons$Application.ic" NAME="Application Coverage Results" MODIFIED="1698660187236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.cbq.brushlessons.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/brushlessons$LoginActionTest_testToLogin.ic" NAME="LoginActionTest.testToLogin Coverage Results" MODIFIED="1703499812389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.cbq.brushlessons.core.action.enaea.*</FILTER>
-    </SUITE>
   </component>
 </project>
