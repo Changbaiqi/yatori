@@ -1,0 +1,11 @@
+target
+config.json
+cache
+*.drawio
+*.bkp
+*.xlsx
+*.xls
+json.txt
+src/main/resources/config.json
+src/test/
+.idea/

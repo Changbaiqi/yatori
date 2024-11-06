@@ -1,0 +1,10 @@
+target
+config.json
+cache
+*.drawio
+*.xlsx
+*.xls
+json.txt
+src/main/resources/config.json
+src/test/
+.idea/
