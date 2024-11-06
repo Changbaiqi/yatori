@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d16318fe-babe-4d53-8500-741640d03fb5" name="Changes" comment="update: move direction" />
+    <list default="true" id="d16318fe-babe-4d53-8500-741640d03fb5" name="Changes" comment="update: first commit yatori-go">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +23,7 @@
 }]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/Changbaiqi/brushlessons.git",
+    "url": "https://github.com/Changbaiqi/yatori.git",
     "accountId": "93f2befb-d5f4-46fd-818c-607551092d2d"
   }
 }]]></component>
@@ -72,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730896257559</updated>
-      <workItem from="1730896259023" duration="357000" />
+      <workItem from="1730896259023" duration="797000" />
     </task>
     <task id="LOCAL-00001" summary="update: add gitignore">
       <option name="closed" value="true" />
@@ -98,7 +100,55 @@
       <option name="project" value="LOCAL" />
       <updated>1730896465206</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update: add .gitignore">
+      <option name="closed" value="true" />
+      <created>1730896822128</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730896822128</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update: first commit yatori-go">
+      <option name="closed" value="true" />
+      <created>1730896850623</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730896850623</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update: first commit yatori-go">
+      <option name="closed" value="true" />
+      <created>1730896855644</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730896855644</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update: first commit yatori-go">
+      <option name="closed" value="true" />
+      <created>1730896887102</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730896887102</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update: first commit yatori-go">
+      <option name="closed" value="true" />
+      <created>1730896888216</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730896888216</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update: first commit yatori-go">
+      <option name="closed" value="true" />
+      <created>1730896890722</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730896890722</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,6 +157,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update: add gitignore" />
     <MESSAGE value="update: move direction" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: move direction" />
+    <MESSAGE value="update: add .gitignore" />
+    <MESSAGE value="update: first commit yatori-go" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: first commit yatori-go" />
   </component>
 </project>

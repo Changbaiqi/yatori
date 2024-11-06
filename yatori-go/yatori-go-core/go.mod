@@ -1,4 +1,4 @@
-module yatori-go
+module yatori-go-core
 
 go 1.22
 

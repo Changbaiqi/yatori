@@ -2,9 +2,9 @@ package main
 
 import (
 	"strconv"
-	"yatori-go/aggregation/yinghua"
-	yinghua2 "yatori-go/api/yinghua"
-	"yatori-go/utils"
+	"yatori-go-core/aggregation/yinghua"
+	yinghua2 "yatori-go-core/api/yinghua"
+	"yatori-go-core/utils"
 )
 
 func main() {

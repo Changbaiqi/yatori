@@ -11,8 +11,8 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"yatori-go/api/entity"
-	"yatori-go/utils"
+	"yatori-go-core/api/entity"
+	"yatori-go-core/utils"
 )
 
 type YingHuaLogin interface {

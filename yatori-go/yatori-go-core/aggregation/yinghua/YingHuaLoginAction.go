@@ -4,8 +4,8 @@ import (
 	"errors"
 	"github.com/thedevsaddam/gojsonq"
 	"strings"
-	"yatori-go/api/yinghua"
-	"yatori-go/utils"
+	"yatori-go-core/api/yinghua"
+	"yatori-go-core/utils"
 )
 
 // 登录API聚合整理

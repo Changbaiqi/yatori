@@ -6,8 +6,8 @@ import (
 	"github.com/thedevsaddam/gojsonq"
 	"strconv"
 	"time"
-	"yatori-go/api/yinghua"
-	"yatori-go/utils"
+	"yatori-go-core/api/yinghua"
+	"yatori-go-core/utils"
 )
 
 // 课程必要数据得截取
