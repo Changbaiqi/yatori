@@ -27,7 +27,7 @@ func LoginAction(cache *yinghua.UserCache) error {
 		} else {
 			cache.SetToken(strings.Split(strings.Split(gojsonq.New().JSONString(jsonStr).Find("redirect").(string), "token=")[1], "&")[0]) //设置Token
 			cache.SetSign(strings.Split(gojsonq.New().JSONString(jsonStr).Find("redirect").(string), "&sign=")[1])                         //设置签名
-			utils.LogPrintln(utils.INFO, "[ "+cache.Account+" ]"+"登录成功")
+			utils.LogPrintln(utils.INFO, "["+cache.Account+"]"+" 登录成功")
 			break
 		}
 	}

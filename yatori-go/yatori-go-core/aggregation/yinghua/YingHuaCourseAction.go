@@ -86,7 +86,11 @@ func VideosListAction(userCache yinghua.UserCache, course YingHuaCourse) ([]Ying
 				if nodes, ok := nodeList.([]interface{}); ok {
 					for _, node := range nodes {
 						if obj1, ok := node.(map[string]interface{}); ok {
-							videoDuration, _ := strconv.ParseFloat(obj1["videoDuration"].(string), 32)
+							videoDuration := 0
+							if obj1["videoDuration"] != nil {
+								res, _ := strconv.Atoi(obj1["videoDuration"].(string))
+								videoDuration = res
+							}
 							unlockTime, _ := time.Parse("2006-01-02", obj1["unlockTime"].(string)) //时间转换
 							videoList = append(videoList, YingHuaVideo{
 								Id: strconv.Itoa(int(obj1["id"].(float64))),

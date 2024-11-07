@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-// 检测文件夹是否存在不存在
+// 检测文件夹或文件是否存在
 func PathExists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {

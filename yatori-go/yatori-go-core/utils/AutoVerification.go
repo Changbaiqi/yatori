@@ -6,44 +6,12 @@ import (
 	ort "github.com/yalue/onnxruntime_go"
 	"image"
 	"log"
-	"os"
 	"strconv"
 )
 import "fmt"
 
 // 验证码识别
-//
-//go:embed third_party/onnxruntime.dll
-var onnxruntimeDLL []byte
-
-//go:embed third_party/common_old1.onnx
-var common_old1 []byte
-
-func writeDLLToDisk() {
-	PathExistForCreate("./assets")
-	dllPath := "./assets/onnxruntime.dll"
-	onnx := "./assets/common_old1.onnx"
-	f1 := os.WriteFile(dllPath, onnxruntimeDLL, 0644)
-	if f1 != nil {
-		log.Fatal(f1)
-	}
-	f2 := os.WriteFile(onnx, common_old1, 0644)
-	if f2 != nil {
-		log.Fatal(f2)
-	}
-}
-
 func AutoVerification(img image.Image) string {
-	writeDLLToDisk() // 确保文件都加载了
-
-	ort.SetSharedLibraryPath("./assets/onnxruntime.dll")
-
-	err := ort.InitializeEnvironment()
-	if err != nil {
-		panic(err)
-	}
-	defer ort.DestroyEnvironment()
-
 	img1 := ResizeImage(img, uint(64*img.Bounds().Dx()/img.Bounds().Dy()), 64)
 	imgGray := ConvertToGray(img1)
 
