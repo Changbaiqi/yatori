@@ -113,7 +113,7 @@ func VideosListAction(userCache yinghua.UserCache, course YingHuaCourse) ([]Ying
 	//接口二而爬取视屏信息
 	signalSet := make(map[string]bool)
 	for i := 1; i < 999; i++ {
-		listJson1 := yinghua.VideWatchRecode(userCache, course.Id, i)
+		listJson1 := yinghua.VideWatchRecodeApi(userCache, course.Id, i)
 		utils.LogPrintln(utils.DEBUG, `[ `, userCache.Account, ` ]`, `CourseListAction---`, listJson1)
 		//如果获取失败
 		if gojsonq.New().JSONString(listJson).Find("msg") != "获取数据成功" {

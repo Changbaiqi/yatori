@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 	"yatori-go-core/api/entity"
 	"yatori-go-core/utils"
 )
@@ -407,7 +408,7 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 }
 
 // 获取指定课程视屏观看记录
-func VideWatchRecode(userCache UserCache, courseId string, page int) string {
+func VideWatchRecodeApi(userCache UserCache, courseId string, page int) string {
 
 	url := userCache.PreUrl + "/api/record/video.json"
 	method := "POST"
@@ -448,4 +449,162 @@ func VideWatchRecode(userCache UserCache, courseId string, page int) string {
 		return ""
 	}
 	return string(body)
+}
+
+// 开始考试接口
+func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, error) {
+
+	// Creating a custom HTTP client with timeout and SSL context
+	client := &http.Client{
+		Timeout: 30 * time.Second,
+	}
+
+	// Set up the multipart form data
+	body := &bytes.Buffer{}
+	writer := multipart.NewWriter(body)
+
+	// Add form data to the multipart request
+	writer.WriteField("platform", "Android")
+	writer.WriteField("version", "1.4.8")
+	writer.WriteField("nodeId", nodeId)
+	writer.WriteField("token", userCache.token)
+	writer.WriteField("terminal", "Android")
+	writer.WriteField("examId", examId)
+	writer.WriteField("courseId", courseId)
+
+	// Close the writer to finalize the multipart data
+	writer.Close()
+
+	// Create the request
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/exam/start.json", userCache.PreUrl), body)
+	if err != nil {
+		return "", err
+	}
+
+	// Set the headers
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("Cookie", userCache.cookie)
+	req.Header.Add("Accept", "*/*")
+	req.Header.Add("Host", userCache.PreUrl)
+	req.Header.Add("Connection", "keep-alive")
+	req.Header.Add("Content-Type", writer.FormDataContentType())
+
+	// Perform the request
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	fmt.Println(string(bodyBytes))
+	return string(bodyBytes), nil
+}
+
+// 获取所有考试题目，但是HTML，建议配合TurnExamTopic函数使用将题目html转成结构体
+func GetExamTopicApi(userCache UserCache, nodeId, examId string) (string, error) {
+
+	// Creating a custom HTTP client with timeout and SSL context (skip SSL setup for simplicity)
+	client := &http.Client{
+		Timeout: 30 * time.Second,
+	}
+
+	// Creating the request body (empty JSON object)
+	body := []byte("{}")
+
+	// Create the request
+	url := fmt.Sprintf("%s/api/exam.json?nodeId=%s&examId=%s&token=%s", userCache.PreUrl, nodeId, examId, userCache.token)
+	req, err := http.NewRequest("POST", url, bytes.NewReader(body))
+	if err != nil {
+		return "", err
+	}
+
+	// Set the headers
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("Accept", "*/*")
+	req.Header.Add("Host", userCache.PreUrl)
+	req.Header.Add("Connection", "keep-alive")
+	req.Header.Add("Content-Type", "application/json; charset=utf-8")
+
+	// Perform the request
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	return string(bodyBytes), nil
+}
+
+// 提交答案接口
+func submitExam(userCache UserCache, examId, answerId, answer, finish string) error {
+
+	// Creating the HTTP client with a timeout (30 seconds)
+	client := &http.Client{
+		Timeout: 30 * time.Second,
+	}
+
+	// Create a buffer to hold the multipart form data
+	body := &bytes.Buffer{}
+	writer := multipart.NewWriter(body)
+
+	// Add form fields to the multipart data
+	writer.WriteField("platform", "Android")
+	writer.WriteField("version", "1.4.8")
+	writer.WriteField("examId", examId)
+	writer.WriteField("terminal", "Android")
+	writer.WriteField("answerId", answerId)
+	writer.WriteField("finish", finish)
+	writer.WriteField("token", userCache.token)
+
+	// Add the answer fields
+	if len(answer) == 1 {
+		writer.WriteField("answer", string(answer[0]))
+	} else {
+		for i := 0; i < len(answer); i++ {
+			writer.WriteField("answer[]", string(answer[i]))
+		}
+	}
+
+	// Close the writer to finalize the multipart form data
+	writer.Close()
+
+	// Create the request with the necessary headers
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/exam/submit.json", userCache.PreUrl), body)
+	if err != nil {
+		return err
+	}
+
+	// Set the headers
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("Accept", "*/*")
+	req.Header.Add("Host", userCache.PreUrl)
+	req.Header.Add("Connection", "keep-alive")
+	req.Header.Add("Content-Type", writer.FormDataContentType())
+
+	// Perform the request
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body (we're not using the body here, just ensuring the request goes through)
+	_, err = ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	// You can handle the response here if necessary
+
+	return nil
 }
