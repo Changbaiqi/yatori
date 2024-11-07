@@ -132,6 +132,7 @@ func VideosListAction(userCache yinghua.UserCache, course YingHuaCourse) ([]Ying
 					if isOk {
 						videoList[index].CourseId = strconv.Itoa(int(obj["courseId"].(float64)))
 						videoList[index].Progress = float32(obj["progress"].(float64))
+						videoList[index].ViewedDuration = int(obj["viewedDuration"].(float64))
 						videoList[index].State = int(obj["state"].(float64))
 					}
 				}
