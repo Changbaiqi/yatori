@@ -61,7 +61,7 @@ func userBlock(user config.Users) {
 func keepAliveLogin(userCache yinghuaApi.UserCache) {
 	for {
 		api := yinghuaApi.KeepAliveApi(userCache)
-		utils.LogPrintln(utils.INFO, " ", "登录保活状态：", api)
+		utils.LogPrintln(utils.INFO, " [", userCache.Account, "] ", " ", "登录保活状态：", api)
 		time2.Sleep(time2.Second * 60)
 	}
 }
@@ -72,11 +72,12 @@ func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse
 
 	// 提交学时
 	for _, video := range videoList {
-		utils.LogPrintln(utils.INFO, " ", video.Name)
+		utils.LogPrintln(utils.INFO, " [", userCache.Account, "] ", " ", "正在学习视屏：", " 【", video.Name, "】 ")
 		time := video.ViewedDuration //设置当前观看时间为最后看视屏的时间
 		studyId := "0"
 		for {
 			if video.Progress == 100 {
+				utils.LogPrintln(utils.INFO, " [", userCache.Account, "] ", " 【", video.Name, "】 ", " ", "学习完毕")
 				break //如果看完了，也就是进度为100那么直接跳过
 			}
 			sub := yinghuaApi.SubmitStudyTimeApi(userCache, video.Id, studyId, time) //提交学时
@@ -86,7 +87,8 @@ func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse
 			}
 
 			studyId = strconv.Itoa(int(gojsonq.New().JSONString(sub).Find("result.data.studyId").(float64)))
-			utils.LogPrintln(utils.INFO, " ", video.Name, " ", "提交状态：", gojsonq.New().JSONString(sub).Find("msg").(string), " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(video.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(video.VideoDuration)*100), "%")
+			utils.LogPrintln(utils.DEBUG, "---", sub)
+			utils.LogPrintln(utils.INFO, " [", userCache.Account, "] ", " 【", video.Name, "】 >>> ", "提交状态：", gojsonq.New().JSONString(sub).Find("msg").(string), " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(video.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(video.VideoDuration)*100), "%")
 			time += 5
 			time2.Sleep(5 * time2.Second)
 			if time > video.VideoDuration {

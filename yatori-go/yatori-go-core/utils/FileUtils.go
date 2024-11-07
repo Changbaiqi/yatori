@@ -19,6 +19,7 @@ func PathExists(path string) (bool, error) {
 	return false, err
 }
 
+// 检测目录是否存在，不存在就创建
 func PathExistForCreate(path string) {
 	exists, _ := PathExists(path)
 	if !exists {

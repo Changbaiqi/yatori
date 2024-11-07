@@ -127,8 +127,8 @@ func (cache UserCache) VerificationCodeApi() (string, string) {
 	defer res.Body.Close()
 
 	codeFileName := "code" + strconv.Itoa(rand.Intn(99999)) + ".png" //生成验证码文件名称
-	utils.PathExistForCreate("./code/")                              //检测是否存在路径，如果不存在则创建
-	filepath := fmt.Sprintf("./code/%s", codeFileName)
+	utils.PathExistForCreate("./assets/code/")                       //检测是否存在路径，如果不存在则创建
+	filepath := fmt.Sprintf("./assets/code/%s", codeFileName)
 	file, err := os.Create(filepath)
 	if err != nil {
 		log.Println(err)
