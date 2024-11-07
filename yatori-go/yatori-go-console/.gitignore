@@ -1,3 +1,4 @@
 # exclude exe
 *.exe
 config.json
+assets/*
