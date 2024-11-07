@@ -276,16 +276,16 @@ func CourseDetailApi(userEntity entity.UserEntity, courseId string) string {
 }
 
 // 对应课程的视屏列表
-func CourseVideListApi(userEntity entity.UserEntity, courseId string /*课程ID*/) string {
+func CourseVideListApi(userCache UserCache, courseId string /*课程ID*/) string {
 
-	url := userEntity.PreUrl + "/api/course/chapter.json"
+	url := userCache.PreUrl + "/api/course/chapter.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
-	_ = writer.WriteField("token", userEntity.Token)
+	_ = writer.WriteField("token", userCache.token)
 	_ = writer.WriteField("courseId", courseId)
 	err := writer.Close()
 	if err != nil {
@@ -319,19 +319,18 @@ func CourseVideListApi(userEntity entity.UserEntity, courseId string /*课程ID*
 }
 
 // 提交学时
-func SubmitStudyTimeApi(userEntity entity.UserEntity, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime string /*提交的学时*/) string {
+func SubmitStudyTimeApi(userCache UserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/) string {
 
-	url := userEntity.PreUrl + "/api/node/study.json"
+	url := userCache.PreUrl + "/api/node/study.json"
 	method := "POST"
-
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
 	_ = writer.WriteField("nodeId", nodeId)
-	_ = writer.WriteField("token", userEntity.Token)
+	_ = writer.WriteField("token", userCache.token)
 	_ = writer.WriteField("terminal", "Android")
-	_ = writer.WriteField("studyTime", studyTime)
+	_ = writer.WriteField("studyTime", strconv.Itoa(studyTime))
 	_ = writer.WriteField("studyId", studyId)
 	err := writer.Close()
 	if err != nil {
@@ -408,18 +407,18 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 }
 
 // 获取指定课程视屏观看记录
-func VideRecode(userEntity entity.UserEntity, courseId string) string {
+func VideWatchRecode(userCache UserCache, courseId string, page int) string {
 
-	url := userEntity.PreUrl + "/api/record/video.json"
+	url := userCache.PreUrl + "/api/record/video.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
-	_ = writer.WriteField("token", userEntity.Token)
+	_ = writer.WriteField("token", userCache.token)
 	_ = writer.WriteField("courseId", courseId)
-	_ = writer.WriteField("page", "1")
+	_ = writer.WriteField("page", strconv.Itoa(page))
 	err := writer.Close()
 	if err != nil {
 		fmt.Println(err)
