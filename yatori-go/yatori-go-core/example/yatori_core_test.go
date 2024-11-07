@@ -10,7 +10,7 @@ import (
 	time2 "time"
 	yinghua "yatori-go-core/aggregation/yinghua"
 	yinghuaApi "yatori-go-core/api/yinghua"
-	"yatori-go-core/utils"
+	log2 "yatori-go-core/utils/log"
 )
 
 // 账号登录测试
@@ -33,14 +33,14 @@ func TestPullCourseList(t *testing.T) {
 	}
 	list, _ := yinghua.CourseListAction(cache)
 	for _, item := range list {
-		utils.LogPrintln(utils.INFO, "课程：", item.Id, " ", item.Name, " ", strconv.FormatFloat(item.Progress, 'b', 5, 32), " ", item.StartDate.String(), " ", strconv.Itoa(item.VideoCount), " ", strconv.Itoa(item.VideoLearned))
+		log2.LogPrintln(log2.INFO, "课程：", item.Id, " ", item.Name, " ", strconv.FormatFloat(item.Progress, 'b', 5, 32), " ", item.StartDate.String(), " ", strconv.Itoa(item.VideoCount), " ", strconv.Itoa(item.VideoLearned))
 
 	}
 }
 
 // 测试拉取对应课程的视屏列表
 func TestPullCourseVideoList(t *testing.T) {
-	utils.NOWLOGLEVEL = utils.INFO //设置日志登记为DEBUG
+	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
 	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
 	error := yinghua.LoginAction(&cache)
@@ -49,10 +49,10 @@ func TestPullCourseVideoList(t *testing.T) {
 	}
 	list, _ := yinghua.CourseListAction(cache)
 	for _, courseItem := range list {
-		utils.LogPrintln(utils.INFO, " ", courseItem.Id, " ", courseItem.Name, " ", strconv.FormatFloat(courseItem.Progress, 'b', 5, 32), " ", courseItem.StartDate.String(), " ", strconv.Itoa(courseItem.VideoCount), " ", strconv.Itoa(courseItem.VideoLearned))
+		log2.LogPrintln(log2.INFO, " ", courseItem.Id, " ", courseItem.Name, " ", strconv.FormatFloat(courseItem.Progress, 'b', 5, 32), " ", courseItem.StartDate.String(), " ", strconv.Itoa(courseItem.VideoCount), " ", strconv.Itoa(courseItem.VideoLearned))
 		videoList, _ := yinghua.VideosListAction(cache, courseItem) //拉取视屏列表动作
 		for _, videoItem := range videoList {
-			utils.LogPrintln(utils.INFO, " ", "视屏：", videoItem.CourseId, " ", videoItem.Id, " ", videoItem.Name, " ", strconv.Itoa(int(videoItem.VideoDuration)))
+			log2.LogPrintln(log2.INFO, " ", "视屏：", videoItem.CourseId, " ", videoItem.Id, " ", videoItem.Name, " ", strconv.Itoa(int(videoItem.VideoDuration)))
 		}
 	}
 
@@ -62,7 +62,7 @@ func TestPullCourseVideoList(t *testing.T) {
 func keepAliveLogin(userCache yinghuaApi.UserCache) {
 	for {
 		api := yinghuaApi.KeepAliveApi(userCache)
-		utils.LogPrintln(utils.INFO, " ", "登录保活状态：", api)
+		log2.LogPrintln(log2.INFO, " ", "登录保活状态：", api)
 		time2.Sleep(time2.Second * 60)
 	}
 }
@@ -75,7 +75,7 @@ func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse
 
 	// 提交学时
 	for _, video := range videoList {
-		utils.LogPrintln(utils.INFO, " ", video.Name)
+		log2.LogPrintln(log2.INFO, " ", video.Name)
 		time := video.ViewedDuration //设置当前观看时间为最后看视屏的时间
 		studyId := "0"
 		for {
@@ -89,7 +89,7 @@ func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse
 			}
 
 			studyId = strconv.Itoa(int(gojsonq.New().JSONString(sub).Find("result.data.studyId").(float64)))
-			utils.LogPrintln(utils.INFO, " ", video.Name, " ", "提交状态：", gojsonq.New().JSONString(sub).Find("msg").(string), " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(video.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(video.VideoDuration)*100), "%")
+			log2.LogPrintln(log2.INFO, " ", video.Name, " ", "提交状态：", gojsonq.New().JSONString(sub).Find("msg").(string), " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(video.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(video.VideoDuration)*100), "%")
 			time += 5
 			time2.Sleep(5 * time2.Second)
 			if time > video.VideoDuration {
@@ -102,7 +102,7 @@ func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse
 
 // 测试获取指定视屏并且刷课
 func TestBrushOneLesson(t *testing.T) {
-	utils.NOWLOGLEVEL = utils.INFO //设置日志登记为DEBUG
+	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
 	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
 	error := yinghua.LoginAction(&cache) // 登录
@@ -113,7 +113,7 @@ func TestBrushOneLesson(t *testing.T) {
 	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
 	for _, item := range list {
 		wg.Add(1)
-		utils.LogPrintln(utils.INFO, " ", item.Id, " ", item.Name, " ", strconv.FormatFloat(item.Progress, 'b', 5, 32), " ", item.StartDate.String(), " ", strconv.Itoa(item.VideoCount), " ", strconv.Itoa(item.VideoLearned))
+		log2.LogPrintln(log2.INFO, " ", item.Id, " ", item.Name, " ", strconv.FormatFloat(item.Progress, 'b', 5, 32), " ", item.StartDate.String(), " ", strconv.Itoa(item.VideoCount), " ", strconv.Itoa(item.VideoLearned))
 		go videoListStudy(cache, item) //多携程刷课
 	}
 	wg.Wait()

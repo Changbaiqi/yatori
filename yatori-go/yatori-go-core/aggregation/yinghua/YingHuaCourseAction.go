@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 	"yatori-go-core/api/yinghua"
-	"yatori-go-core/utils"
+	"yatori-go-core/utils/log"
 )
 
 // 课程必要数据得截取
@@ -39,7 +39,7 @@ type YingHuaVideo struct {
 func CourseListAction(cache yinghua.UserCache) ([]YingHuaCourse, error) {
 	var courseList []YingHuaCourse
 	listJson := yinghua.CourseListApi(cache)
-	utils.LogPrintln(utils.DEBUG, `[ `, cache.Account, ` ]`, `CourseListAction---`, listJson)
+	log.Print(log.DEBUG, `[`, cache.Account, `] `, `CourseListAction---`, listJson)
 
 	//如果获取失败
 	if gojsonq.New().JSONString(listJson).Find("msg") != "获取数据成功" {
@@ -70,7 +70,7 @@ func VideosListAction(userCache yinghua.UserCache, course YingHuaCourse) ([]Ying
 	videoSet := make(map[string]int)
 	//接口一爬取视屏信息
 	listJson := yinghua.CourseVideListApi(userCache, course.Id)
-	utils.LogPrintln(utils.DEBUG, `[ `, userCache.Account, ` ]`, `CourseListAction---`, listJson)
+	log.Print(log.DEBUG, `[`, userCache.Account, `] `, `CourseListAction---`, listJson)
 
 	//如果获取失败
 	if gojsonq.New().JSONString(listJson).Find("msg") != "获取数据成功" {
@@ -114,7 +114,7 @@ func VideosListAction(userCache yinghua.UserCache, course YingHuaCourse) ([]Ying
 	signalSet := make(map[string]bool)
 	for i := 1; i < 999; i++ {
 		listJson1 := yinghua.VideWatchRecodeApi(userCache, course.Id, i)
-		utils.LogPrintln(utils.DEBUG, `[ `, userCache.Account, ` ]`, `CourseListAction---`, listJson1)
+		log.Print(log.DEBUG, `[`, userCache.Account, `] `, `CourseListAction---`, listJson1)
 		//如果获取失败
 		if gojsonq.New().JSONString(listJson).Find("msg") != "获取数据成功" {
 			return []YingHuaVideo{}, errors.New("获取数据失败")
@@ -142,7 +142,7 @@ func VideosListAction(userCache yinghua.UserCache, course YingHuaCourse) ([]Ying
 				}
 			}
 		} else {
-			fmt.Println("无法将数据转换为预期的类型")
+			log.Print(log.INFO, "无法将数据转换为预期的类型")
 		}
 	}
 

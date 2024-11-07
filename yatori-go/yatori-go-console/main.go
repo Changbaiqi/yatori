@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/thedevsaddam/gojsonq"
 	"log"
+	"log/slog"
 	"os"
 	"strconv"
 	"sync"
@@ -13,17 +14,17 @@ import (
 	utils2 "yatori-go-console/utils"
 	"yatori-go-core/aggregation/yinghua"
 	yinghuaApi "yatori-go-core/api/yinghua"
-	"yatori-go-core/utils"
+	lg "yatori-go-core/utils/log"
 )
 
 var videosLock sync.WaitGroup
 var usersLock sync.WaitGroup
 
 func main() {
+	utils2.YatoriConsoleInit()
 	fmt.Println(config.YaotirLogo()) //打印LOGO
-	utils.YatoriCoreInit()           //初始化YatoriCore
-
-	utils.NOWLOGLEVEL = utils.INFO //设置日志登记为INFO
+	lg.LogInit(true, "./assets/log") //初始化日志配置
+	lg.NOWLOGLEVEL = lg.INFO         //设置日志登记为INFO
 	content, err := os.ReadFile("./config.json")
 	if err != nil {
 		log.Fatal(err)
@@ -48,6 +49,11 @@ func userBlock(user config.Users) {
 	cache := yinghuaApi.UserCache{PreUrl: user.URL, Account: user.Account, Password: user.Password}
 	error := yinghua.LoginAction(&cache) // 登录
 	if error != nil {
+		if error.Error() == "学生信息不存在" {
+			lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.White, "] ", lg.Red, "账号信息不存在")
+		} else if error.Error() == "账号密码不正确" {
+			lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.White, "] ", lg.Red, "账号密码不正确")
+		}
 		log.Fatal(error) //登录失败则直接退出
 	}
 	go keepAliveLogin(cache)                   //携程保活
@@ -56,6 +62,12 @@ func userBlock(user config.Users) {
 		videosLock.Add(1)
 		go videoListStudy(cache, item) //多携程刷课
 	}
+	lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.White, "] ", lg.Purple, "所有待学习课程学习完毕")
+	go func() {
+		videosLock.Add(1)
+		utils2.PlayNoticeSound()
+		videosLock.Done()
+	}()
 	videosLock.Wait()
 }
 
@@ -63,8 +75,8 @@ func userBlock(user config.Users) {
 func keepAliveLogin(userCache yinghuaApi.UserCache) {
 	for {
 		api := yinghuaApi.KeepAliveApi(userCache)
-		utils.LogPrintln(utils.INFO, " [", utils2.Green(userCache.Account), "] ", " ", "登录保活状态：", api)
-		time2.Sleep(time2.Second * 60)
+		lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.White, "] ", lg.DarkGray, "登录心跳保活状态：", api)
+		time2.Sleep(time2.Minute * 5) //每隔五分钟一次心跳保活
 	}
 }
 
@@ -74,32 +86,30 @@ func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse
 
 	// 提交学时
 	for _, video := range videoList {
-		utils.LogPrintln(utils.INFO, " [", utils2.Green(userCache.Account), "] ", " ", utils2.Yellow("正在学习视屏："), " 【", video.Name, "】 ")
+		lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.White, "] ", lg.Yellow, "正在学习视屏：", lg.White, " 【"+video.Name+"】 ")
 		time := video.ViewedDuration //设置当前观看时间为最后看视屏的时间
 		studyId := "0"
 		for {
 			if video.Progress == 100 {
-				utils.LogPrintln(utils.INFO, " [", utils2.Green(userCache.Account), "] ", " 【", video.Name, "】 ", " ", utils2.Blue("学习完毕"))
+				lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.White, "] ", " 【", video.Name, "】 ", " ", lg.Blue, "学习完毕")
 				break //如果看完了，也就是进度为100那么直接跳过
 			}
 			if video.VideoDuration == 0 {
 				break //跳过非视屏的节点
 			}
 			sub := yinghuaApi.SubmitStudyTimeApi(userCache, video.Id, studyId, time) //提交学时
-			utils.LogPrintln(utils.DEBUG, "---", video.Id, sub)
+			slog.Debug("---", video.Id, sub)
 			if gojsonq.New().JSONString(sub).Find("msg") != "提交学时成功!" {
 				time2.Sleep(5 * time2.Second)
 				continue
 			}
 			//打印日志部分
 			studyId = strconv.Itoa(int(gojsonq.New().JSONString(sub).Find("result.data.studyId").(float64)))
-			var subMsg string
 			if gojsonq.New().JSONString(sub).Find("msg").(string) == "提交学时成功!" {
-				subMsg = utils2.Green(gojsonq.New().JSONString(sub).Find("msg").(string))
+				lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.White, "] ", " 【", video.Name, "】 >>> ", "提交状态：", lg.Green, gojsonq.New().JSONString(sub).Find("msg").(string), lg.White, " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(video.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(video.VideoDuration)*100), "%")
 			} else {
-				subMsg = utils2.Red(gojsonq.New().JSONString(sub).Find("msg").(string))
+				lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.White, "] ", " 【", video.Name, "】 >>> ", "提交状态：", lg.Red, gojsonq.New().JSONString(sub).Find("msg").(string), lg.White, " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(video.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(video.VideoDuration)*100), "%")
 			}
-			utils.LogPrintln(utils.INFO, " [", utils2.Green(userCache.Account), "] ", " 【", video.Name, "】 >>> ", "提交状态：", subMsg, " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(video.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(video.VideoDuration)*100), "%")
 			time += 5
 			time2.Sleep(5 * time2.Second)
 			if time > video.VideoDuration {

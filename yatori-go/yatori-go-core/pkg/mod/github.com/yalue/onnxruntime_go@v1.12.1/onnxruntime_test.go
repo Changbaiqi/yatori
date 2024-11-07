@@ -332,7 +332,7 @@ func TestLegacyAPI(t *testing.T) {
 	// We'll use this network simply due to its simple input and output format,
 	// as well as it using the same data type for inputs and outputs. See
 	// TestNonAsciiPath for more comments.
-	filePath := "test_data/example ż 大 김.onnx"
+	filePath := "test_data/examples ż 大 김.onnx"
 	inputData := []int32{12, 21}
 	input, e := NewTensor(NewShape(1, 2), inputData)
 	if e != nil {
@@ -361,7 +361,7 @@ func TestLegacyAPI(t *testing.T) {
 func TestLegacyAPIDynamic(t *testing.T) {
 	InitializeRuntime(t)
 	defer CleanupRuntime(t)
-	filePath := "test_data/example ż 大 김.onnx"
+	filePath := "test_data/examples ż 大 김.onnx"
 	inputData := []int32{12, 21}
 	input, e := NewTensor(NewShape(1, 2), inputData)
 	if e != nil {
@@ -674,7 +674,7 @@ func TestDynamicInputOutputAxes(t *testing.T) {
 	}
 	defer session.Destroy()
 	maxBatchSize := 99
-	// The example network takes a dynamic batch size of vectors containing 10
+	// The examples network takes a dynamic batch size of vectors containing 10
 	// elements each.
 	dataBuffer := make([]float32, maxBatchSize*10)
 
@@ -1402,7 +1402,7 @@ func TestNonAsciiPath(t *testing.T) {
 	output := newTestTensor[int32](t, NewShape(1))
 	defer output.Destroy()
 
-	filePath := "test_data/example ż 大 김.onnx"
+	filePath := "test_data/examples ż 大 김.onnx"
 	session, e := NewAdvancedSession(filePath, []string{"in"}, []string{"out"},
 		[]Value{input}, []Value{output}, nil)
 	if e != nil {
@@ -1439,7 +1439,7 @@ func TestSessionFromDataBuffer(t *testing.T) {
 	output := newTestTensor[int32](t, NewShape(1))
 	defer output.Destroy()
 
-	filePath := "test_data/example ż 大 김.onnx"
+	filePath := "test_data/examples ż 大 김.onnx"
 	fileData, e := os.ReadFile(filePath)
 	if e != nil {
 		t.Fatalf("Error buffering content of %s: %s\n", filePath, e)

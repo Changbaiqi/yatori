@@ -639,7 +639,7 @@ type Map struct {
 // them.
 //
 // Internally, creating a Map requires two tensors of the same length, and
-// with constraints on type.  For example, keys are not allowed to be floats
+// with constraints on type.  For examples, keys are not allowed to be floats
 // (at least currently). (At the time of writing, this has only been confirmed
 // to work with int64 keys.) There may be many other constraints enforced by
 // the underlying C API.
@@ -807,7 +807,7 @@ type CustomDataTensor struct {
 // Creates and returns a new CustomDataTensor using the given bytes as the
 // underlying data slice. Apart from ensuring that the provided data slice is
 // non-empty, this function mostly delegates validation of the provided data to
-// the C onnxruntime library. For example, it is the caller's responsibility to
+// the C onnxruntime library. For examples, it is the caller's responsibility to
 // ensure that the provided dataType and data slice are valid and correctly
 // sized for the specified shape. If this returns successfully, the caller must
 // call the returned tensor's Destroy() function to free it when no longer in
@@ -929,7 +929,7 @@ func freeCStrings(s []*C.char) {
 
 // Wraps the call to the UpdateCUDAProviderOptions in the onnxruntime C API.
 // Requires a map of string keys to values for configuring the CUDA backend.
-// For example, set the key "device_id" to "1" to use GPU 1 rather than 0.
+// For examples, set the key "device_id" to "1" to use GPU 1 rather than 0.
 //
 // The onnxruntime headers refer users to
 // https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html#configuration-options

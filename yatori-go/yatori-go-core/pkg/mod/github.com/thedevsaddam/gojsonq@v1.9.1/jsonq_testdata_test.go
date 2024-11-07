@@ -17,8 +17,8 @@ var (
    "description":"List of computer products",
    "vendor":{
       "name":"Star Trek",
-      "email":"info@example.com",
-      "website":"www.example.com",
+      "email":"info@examples.com",
+      "website":"www.examples.com",
       "items":[
          {
             "id":1,
