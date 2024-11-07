@@ -145,16 +145,16 @@ func (cache UserCache) VerificationCodeApi() (string, string) {
 }
 
 // 登录心跳保活
-func KeepAliveApi(userEntity entity.UserEntity) string {
+func KeepAliveApi(userCache UserCache) string {
 
-	url := userEntity.PreUrl + "/api/online.json"
+	url := userCache.PreUrl + "/api/online.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
-	_ = writer.WriteField("token", userEntity.Token)
+	_ = writer.WriteField("token", userCache.token)
 	//_ = writer.WriteField("schoolId", "7")
 	err := writer.Close()
 	if err != nil {
