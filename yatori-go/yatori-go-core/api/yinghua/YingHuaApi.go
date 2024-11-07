@@ -295,7 +295,7 @@ func CourseVideListApi(userCache UserCache, courseId string /*课程ID*/) string
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
-
+	req.Header.Set("Cookie", userCache.cookie)
 	if err != nil {
 		fmt.Println(err)
 		return ""
@@ -427,7 +427,7 @@ func VideWatchRecode(userCache UserCache, courseId string, page int) string {
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
-
+	req.Header.Set("Cookie", userCache.cookie)
 	if err != nil {
 		fmt.Println(err)
 		return ""
