@@ -140,15 +140,21 @@
 
 ## 🗣项目说明：
 
-> 以后项目将会分三个版本模块
+> 以后项目将会分这几个版本模块
 >
-> 1、yatori-core
+> 1、yatori-java-core
 >
-> 2、yatori-console
+> 2、yatori-java-console
 >
-> 3、yatori-web
+> 3、yatori-java-web
+>
+> 4、yatori-go-core
+>
+> 5、yatori-go-console
+>
+> 6、yaotri-go-web
 
-### yatori-core
+### yatori-java-core
 
 > 这个是给开发者用的，也是所有yatori衍生产品的核心，里面提供了刷课的API函数调用接口。
 >
@@ -166,13 +172,13 @@
 >         </dependency>
 > ```
 
-### yatori-console
+### yatori-java-console or yatori-go-console
 
 > 这个是基于yatori-core的衍生产品，也是可以直接使用的控制台版本，目前最为完善的可直接使用版本。在release里面下载即可。
 
-### yatori-web
+### yatori-java-web or yatori-go-web
 
-> 这个是基于yatori-web的衍生产品，也是可以直接使用的可视化Web控制版本，目前暂未开发好。暂时也还用不了。
+> 这个是基于yatori-core的衍生产品，也是可以直接使用的可视化Web控制版本，目前暂未开发好。暂时也还用不了。
 
 ## 免责声明：
 
