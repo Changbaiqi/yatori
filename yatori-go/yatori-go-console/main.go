@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/thedevsaddam/gojsonq"
 	"log"
+	"regexp"
 	"strconv"
 	"sync"
 	time2 "time"
@@ -23,31 +24,38 @@ func main() {
 	configJson := config.ReadConfig("./config.json")                            //读取配置文件
 	lg.LogInit(true, *configJson.Setting.BasicSetting.ColorLog, "./assets/log") //初始化日志配置
 	lg.NOWLOGLEVEL = lg.INFO                                                    //设置日志登记为INFO
+	userCacheBlock := userLoginBlock(configJson.Users)                          //统一登录
 
-	for _, user := range configJson.Users {
-		if user.AccountType == "YINGHUA" {
-			usersLock.Add(1)
-			go userBlock(configJson.Setting, user)
-		}
+	//开始刷课
+	for _, user := range userCacheBlock {
+		usersLock.Add(1)
+		go userBlock(configJson.Setting, user)
+
 	}
 	usersLock.Wait()
 	lg.Print(lg.INFO, lg.Red, "Yatori --- ", "所有任务执行完毕")
 }
 
-// 以用户作为刷课单位的基本块
-func userBlock(setting config.Setting, user config.Users) {
-	//测试账号
-	cache := yinghuaApi.UserCache{PreUrl: user.URL, Account: user.Account, Password: user.Password}
-	error := yinghua.LoginAction(&cache) // 登录
-	if error != nil {
-		if error.Error() == "学生信息不存在" {
-			lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.White, "] ", lg.Red, "账号信息不存在")
-		} else if error.Error() == "账号密码不正确" {
-			lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.White, "] ", lg.Red, "账号密码不正确")
+// 用户登录模块
+func userLoginBlock(users []config.Users) []yinghuaApi.UserCache {
+	var userCaches []yinghuaApi.UserCache
+	for _, user := range users {
+		if user.AccountType == "YINGHUA" {
+			cache := yinghuaApi.UserCache{PreUrl: user.URL, Account: user.Account, Password: user.Password}
+			error := yinghua.LoginAction(&cache) // 登录
+			if error != nil {
+				lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.White, "] ", lg.Red, error.Error())
+				log.Fatal(error) //登录失败则直接退出
+			}
+			go keepAliveLogin(cache) //携程保活
+			userCaches = append(userCaches, cache)
 		}
-		log.Fatal(error) //登录失败则直接退出
 	}
-	go keepAliveLogin(cache)                   //携程保活
+	return userCaches
+}
+
+// 以用户作为刷课单位的基本块
+func userBlock(setting config.Setting, cache yinghuaApi.UserCache) {
 	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
 	for _, item := range list {                //遍历所有待刷视屏
 		videosLock.Add(1)
@@ -92,8 +100,15 @@ func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse
 			}
 			sub := yinghuaApi.SubmitStudyTimeApi(userCache, video.Id, studyId, time) //提交学时
 			lg.Print(lg.DEBUG, "---", video.Id, sub)
+			//如果提交学时不成功
 			if gojsonq.New().JSONString(sub).Find("msg") != "提交学时成功!" {
-				lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", video.Name, "】 >>> ", "提交状态：", lg.Red, gojsonq.New().JSONString(sub).Find("msg"))
+				lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", video.Name, "】 >>> ", "提交状态：", lg.Red, sub)
+				//{"_code":9,"status":false,"msg":"该课程解锁时间【2024-11-14 12:00:00】未到!","result":{}}，如果未到解锁时间则跳过
+				reg := regexp.MustCompile(`该课程解锁时间【[^【]*】未到!`)
+				if reg.MatchString(gojsonq.New().JSONString(sub).Find("msg").(string)) {
+					lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", video.Name, "】 >>> ", lg.Red, "该课程未到解锁时间已自动跳过")
+					return
+				}
 				time2.Sleep(10 * time2.Second)
 				continue
 			}

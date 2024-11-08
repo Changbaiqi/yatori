@@ -24,16 +24,25 @@ func LoginAction(cache *yinghua.UserCache) error {
 		log.Print(log.DEBUG, "["+cache.Account+"] "+"LoginAction---"+jsonStr)
 		if gojsonq.New().JSONString(jsonStr).Find("msg") == "验证码有误！" {
 			continue
-		} else if gojsonq.New().JSONString(jsonStr).Find("msg") == "学生信息不存在" {
-			return errors.New("学生信息不存在")
-		} else if gojsonq.New().JSONString(jsonStr).Find("msg") == "账号密码不正确" {
-			return errors.New("账号密码不正确")
-		} else {
-			cache.SetToken(strings.Split(strings.Split(gojsonq.New().JSONString(jsonStr).Find("redirect").(string), "token=")[1], "&")[0]) //设置Token
-			cache.SetSign(strings.Split(gojsonq.New().JSONString(jsonStr).Find("redirect").(string), "&sign=")[1])                         //设置签名
-			log.Print(log.INFO, "["+cache.Account+"] "+" 登录成功")
-			break
+		} else if gojsonq.New().JSONString(jsonStr).Find("redirect") == nil {
+			return errors.New(gojsonq.New().JSONString(jsonStr).Find("msg").(string))
 		}
+		cache.SetToken(strings.Split(strings.Split(gojsonq.New().JSONString(jsonStr).Find("redirect").(string), "token=")[1], "&")[0]) //设置Token
+		cache.SetSign(strings.Split(gojsonq.New().JSONString(jsonStr).Find("redirect").(string), "&sign=")[1])                         //设置签名
+		log.Print(log.INFO, "["+cache.Account+"] "+" 登录成功")
+		break
+		//if gojsonq.New().JSONString(jsonStr).Find("msg") == "验证码有误！" {
+		//	continue
+		//} else if gojsonq.New().JSONString(jsonStr).Find("msg") == "学生信息不存在" {
+		//	return errors.New("学生信息不存在")
+		//} else if gojsonq.New().JSONString(jsonStr).Find("msg") == "账号密码不正确" {
+		//	return errors.New("账号密码不正确")
+		//} else if gojsonq.New().JSONString(jsonStr).Find("msg") == "尝试密码错误超过5次，账号已被锁定." {
+		//	return errors.New("尝试密码错误超过5次，账号已被锁定.")
+		//} else {
+		//
+		//}
+
 	}
 	return nil
 }
