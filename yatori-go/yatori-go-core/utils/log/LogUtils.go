@@ -33,12 +33,14 @@ func (level LOGLEVEL) Index() int {
 	return int(level)
 }
 
-var logFile *os.File     //输出日志路径
-var outFlag bool = false //是否输出日志到本地
+var logFile *os.File         //输出日志路径
+var outFlag bool = false     //是否输出日志到本地
+var consoleColorFlag int = 1 //彩色控制台日志
 
 // 日志初始化
-func LogInit(isOutFile bool /*是否输出到文件*/, outPath string /*日志输出路径*/) {
+func LogInit(isOutFile bool /*是否输出到文件*/, isColorConsole int /*是否彩色控制台颜色0代表默认色，1代表彩色*/, outPath string /*日志输出路径*/) {
 	outFlag = isOutFile
+	consoleColorFlag = isColorConsole
 	if outFlag {
 		utils.PathExistForCreate(outPath) //检测是否存在日志文件夹
 		timeStr := time.Now().Format("2006-01-02-15-04-05")
@@ -61,7 +63,11 @@ func Print(LOGLEVEL LOGLEVEL, logText ...interface{}) {
 		colorFlag := White
 		for _, v := range logText {
 			if value, ok := v.(string); ok {
-				consoleStr += ColorTxt(colorFlag, value)
+				if consoleColorFlag == 1 {
+					consoleStr += ColorTxt(colorFlag, value)
+				} else {
+					consoleStr += value
+				}
 				fileStr += value
 			} else if value, ok := v.(int); ok {
 				colorFlag = value

@@ -10,6 +10,7 @@ import (
 //go:embed finishNotice.mp3
 var noticeSound []byte
 
+// 初始化YatoriConsole
 func YatoriConsoleInit() {
 	utils.YatoriCoreInit() //初始化Core核心
 

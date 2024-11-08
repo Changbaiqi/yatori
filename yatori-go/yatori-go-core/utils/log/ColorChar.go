@@ -3,7 +3,8 @@ package log
 import "fmt"
 
 const (
-	Black = iota
+	Default = iota
+	Black
 	DarkGray
 	Red
 	Green
@@ -12,9 +13,11 @@ const (
 	Purple
 	Cyan
 	White
+	BoldPurple
+	BoldRed
 )
 
-var colorCode = []string{"0;30m", "1;30m", "0;31m", "0;32m", "0;33m", "0;34m", "0;35m", "0;36m", "0;37m"}
+var colorCode = []string{"0m", "0;30m", "1;30m", "0;31m", "0;32m", "0;33m", "0;34m", "0;35m", "0;36m", "0;37m", "1;35m", "1;31m"}
 
 // 预设颜色代码
 func ColorTxt(color int, str string) string {

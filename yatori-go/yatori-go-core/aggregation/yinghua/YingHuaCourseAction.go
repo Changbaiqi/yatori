@@ -31,8 +31,13 @@ type YingHuaVideo struct {
 	UnlockTime    time.Time //视屏解锁时间
 	Progress      float32   //观看进度
 	//Duration       int       //视屏时长
-	ViewedDuration int //观看时长
-	State          int //视屏状态
+	ViewedDuration int  //观看时长
+	State          int  //视屏状态
+	TabVideo       bool //是否有视屏
+	TabFile        bool //是否有文件
+	TabVote        bool //是否有投票
+	TabWork        bool //是否有作业
+	TabExam        bool //是否有考试
 }
 
 // 课程列表
@@ -99,6 +104,10 @@ func VideosListAction(userCache yinghua.UserCache, course YingHuaCourse) ([]Ying
 								VideoDuration: int(videoDuration),
 								NodeLock:      int(obj1["nodeLock"].(float64)),
 								UnlockTime:    unlockTime,
+								TabVideo:      obj1["tabVideo"].(bool),
+								TabFile:       obj1["tabFile"].(bool),
+								TabExam:       obj1["tabExam"].(bool),
+								TabWork:       obj1["tabWork"].(bool),
 							})
 							videoSet[strconv.Itoa(int(obj1["id"].(float64)))] = len(videoList) - 1
 						}
