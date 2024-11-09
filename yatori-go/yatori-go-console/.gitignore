@@ -1,4 +1,4 @@
 # exclude exe
 *.exe
-config.json
+config/config.*
 assets/*
