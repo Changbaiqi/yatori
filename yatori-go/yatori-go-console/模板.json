@@ -17,20 +17,7 @@
       "accountType": "CANGHUI",
       "url": "url",
       "account": "账号",
-      "password": "密码",
-      "coursesCustom": {
-        "videoModel": 1,
-        "autoExam": 1,
-        "excludeCourses": ["课程1", "课程2"],
-        "includeCourses": ["课程3", "课程4"],
-        "coursesSettings": [
-          {
-            "name": "大学生劳动教育",
-            "includeExams": ["试卷名称1","试卷名称2"],
-            "excludeExams": ["试卷名称3","试卷名称4"]
-          }
-        ]
-      }
+      "password": "密码"
     }
   ]
 }
