@@ -1,0 +1,8 @@
+# exclude exe
+*.exe
+config/config.*
+assets/*
+*/config.yaml
+*/config.json
+*/*/config.yaml
+*/*/config.json
