@@ -2,8 +2,10 @@ package config
 
 import (
 	"encoding/json"
+	"github.com/spf13/viper"
 	"log"
 	"os"
+	log2 "yatori-go-core/utils/log"
 )
 
 type JSONDataForConfig struct {
@@ -18,8 +20,11 @@ type EmailInform struct {
 	Password string `json:"password"`
 }
 type BasicSetting struct {
-	CompletionTone *int `json:"completionTone,omitempty"`
-	ColorLog       *int `json:"colorLog,omitempty"`
+	CompletionTone int    `default:"1" json:"completionTone,omitempty"` //是否开启刷完提示音，0为关闭，1为开启，默认为1
+	ColorLog       int    `json:"colorLog,omitempty"`                   //是否为彩色日志，0为关闭彩色日志，1为开启，默认为1
+	LogOutFileSw   int    `json:"logOutFileSw,omitempty"`               //是否输出日志文件0代表不输出，1代表输出，默认为1
+	LogLevel       string `json:"logLevel,omitempty"`                   //日志等级，默认INFO，DEBUG为找BUG调式用的，日志内容较详细，默认为INFO
+	LogModel       int    `json:"logModel"`                             //日志模式，0代表以视屏提交学时基准打印日志，1代表以一个课程为基准打印信息，默认为0
 }
 type AiSetting struct {
 	AiType string `json:"aiType"`
@@ -50,33 +55,8 @@ type Users struct {
 	CoursesCustom CoursesCustom `json:"coursesCustom"`
 }
 
-func (s *JSONDataForConfig) UnmarshalJSON(data []byte) error {
-	type Alias JSONDataForConfig
-	alias := &struct {
-		*Alias
-	}{Alias: (*Alias)(s)}
-
-	if err := json.Unmarshal(data, alias); err != nil {
-		return err
-	}
-
-	// 设置完成通知音默认开启
-	if s.Setting.BasicSetting.CompletionTone == nil {
-		num := 1
-		s.Setting.BasicSetting.CompletionTone = &num
-	}
-
-	// 设置默认彩色日志
-	if s.Setting.BasicSetting.ColorLog == nil {
-		num := 1
-		s.Setting.BasicSetting.ColorLog = &num
-	}
-
-	return nil
-}
-
-// 入读日志
-func ReadConfig(filePath string) JSONDataForConfig {
+// 读取json配置文件
+func ReadJsonConfig(filePath string) JSONDataForConfig {
 	var configJson JSONDataForConfig
 	content, err := os.ReadFile(filePath)
 	if err != nil {
@@ -84,6 +64,28 @@ func ReadConfig(filePath string) JSONDataForConfig {
 	}
 	err = json.Unmarshal(content, &configJson)
 	if err != nil {
+		log.Fatal(err)
+	}
+	return configJson
+}
+
+// 自动识别读取配置文件
+func ReadConfig(filePath string) JSONDataForConfig {
+	var configJson JSONDataForConfig
+	viper.SetConfigName("config")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath("./")
+	err := viper.ReadInConfig()
+	if err != nil {
+		log2.Print(log2.INFO, log2.BoldRed, "找不到配置文件")
+		log.Fatal("")
+	}
+	err = viper.Unmarshal(&configJson)
+	//viper.SetTypeByDefaultValue(true)
+	viper.SetDefault("setting.basicSetting.logModel", 5)
+
+	if err != nil {
+		log2.Print(log2.INFO, log2.BoldRed, "配置文件读取失败，请检查配置文件填写是否正确")
 		log.Fatal(err)
 	}
 	return configJson
