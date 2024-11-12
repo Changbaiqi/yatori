@@ -131,6 +131,7 @@ func TestBrushOneLesson(t *testing.T) {
 	wg.Wait()
 }
 
+// 测试获取单个课程的详细信息
 func TestCourseDetail(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
@@ -148,4 +149,35 @@ func TestCourseDetail(t *testing.T) {
 		log.Fatal(error)
 	}
 
+}
+
+// 测试获取考试的信息
+func TestExamDetail(t *testing.T) {
+	utils.YatoriCoreInit()
+	//测试账号
+	testData := readAccount()
+	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+
+	error := yinghua.LoginAction(&cache) // 登录
+	if error != nil {
+		log.Fatal(error) //登录失败则直接退出
+	}
+	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
+	//list[0]
+	action, error := yinghua.VideosListAction(cache, list[0])
+	if error != nil {
+		log.Fatal(error)
+	}
+	for _, node := range action {
+		if node.Name != "考试" {
+			continue
+		}
+		fmt.Println(node)
+		//api := yinghuaApi.ExamDetailApi(cache, node.Id)
+		detailAction, _ := yinghua.ExamDetailAction(cache, node.Id)
+		//{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
+		exam, _ := yinghuaApi.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId)
+		fmt.Println(detailAction)
+		fmt.Println(exam)
+	}
 }

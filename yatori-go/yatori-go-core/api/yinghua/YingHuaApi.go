@@ -452,7 +452,53 @@ func VideWatchRecodeApi(userCache UserCache, courseId string, page int) string {
 	return string(body)
 }
 
+// 获取考试信息
+func ExamDetailApi(userCache UserCache, nodeId string) string {
+
+	url := userCache.PreUrl + "/api/node/exam.json?nodeId=" + nodeId
+	method := "POST"
+
+	payload := &bytes.Buffer{}
+	writer := multipart.NewWriter(payload)
+	_ = writer.WriteField("platform", "Android")
+	_ = writer.WriteField("version", "1.4.8")
+	_ = writer.WriteField("nodeId", nodeId)
+	_ = writer.WriteField("token", userCache.token)
+	_ = writer.WriteField("terminal", "Android")
+	err := writer.Close()
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+	req.Header.Add("Cookie", userCache.cookie)
+
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	return string(body)
+}
+
 // 开始考试接口
+// {"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
 func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, error) {
 
 	// Creating a custom HTTP client with timeout and SSL context
