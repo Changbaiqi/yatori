@@ -233,9 +233,9 @@ func CourseListApi(cache UserCache) string {
 }
 
 // 获取课程详细信息API
-func CourseDetailApi(userEntity entity.UserEntity, courseId string) string {
+func CourseDetailApi(userCache UserCache, courseId string) string {
 
-	url := userEntity.PreUrl + "/api/course/detail.json"
+	url := userCache.PreUrl + "/api/course/detail.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
@@ -243,7 +243,7 @@ func CourseDetailApi(userEntity entity.UserEntity, courseId string) string {
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
 	_ = writer.WriteField("courseId", courseId)
-	_ = writer.WriteField("token", userEntity.Token)
+	_ = writer.WriteField("token", userCache.token)
 	err := writer.Close()
 	if err != nil {
 		fmt.Println(err)
@@ -252,6 +252,7 @@ func CourseDetailApi(userEntity entity.UserEntity, courseId string) string {
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
+	req.Header.Add("Cookie", userCache.cookie)
 
 	if err != nil {
 		fmt.Println(err)
