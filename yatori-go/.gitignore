@@ -7,4 +7,3 @@ assets/*
 */*/config.yaml
 */*/config.json
 ./assets
-./examples/accounts.yaml
