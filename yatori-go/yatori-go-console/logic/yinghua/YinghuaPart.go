@@ -59,7 +59,10 @@ func UserLoginOperation(users []config.Users) []yinghuaApi.UserCache {
 	return userCaches
 }
 
+// 加锁，防止同时过多调用音频通知导致BUG,speak自带的没用，所以别改
 // 以用户作为刷课单位的基本块
+var soundMut sync.Mutex
+
 func userBlock(setting config.Setting, cache yinghuaApi.UserCache) {
 	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
 	for _, item := range list {                //遍历所有待刷视屏
@@ -69,7 +72,9 @@ func userBlock(setting config.Setting, cache yinghuaApi.UserCache) {
 	videosLock.Wait()
 	lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.Default, "] ", lg.Purple, "所有待学习课程学习完毕")
 	if setting.BasicSetting.CompletionTone == 1 { //如果声音提示开启，那么播放
+		soundMut.Lock()
 		utils2.PlayNoticeSound() //播放提示音
+		soundMut.Unlock()
 	}
 	usersLock.Done()
 }
@@ -112,7 +117,7 @@ func videoListStudy(setting config.Setting, userCache yinghuaApi.UserCache, cour
 				reg := regexp.MustCompile(`该课程解锁时间【[^【]*】未到!`)
 				if reg.MatchString(gojsonq.New().JSONString(sub).Find("msg").(string)) {
 					modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", video.Name, "】 >>> ", lg.Red, "该课程未到解锁时间已自动跳过")
-					return
+					break
 				}
 				time2.Sleep(10 * time2.Second)
 				continue

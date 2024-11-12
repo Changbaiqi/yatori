@@ -12,7 +12,6 @@ require (
 )
 
 require (
-	github.com/creasty/defaults v1.8.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/hajimehoshi/go-mp3 v0.3.4 // indirect
 	github.com/hajimehoshi/oto v0.7.1 // indirect

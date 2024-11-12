@@ -1,7 +1,7 @@
 setting:
   basicSetting:
     completionTone: 1 #是否开启完成提示音，0为关闭，1为开启
-    colorLog: 1 #是否开启彩色日志，0为关闭，1为开启
+    colorLog: 1 #是否开启彩色日志，0为关闭，1为开启，如果控制台乱码可以尝试改为0关闭
     logOutFileSw: 1 #是否开启日志文件输出，0为关闭，1为开启
     logLevel: "INFO" #日志类型，一般INFO即可
     logModel: 0 #日志输出模式，0为以视屏提交学时为单位进行日志输出，1为以课程信息为单位进行输出
@@ -10,7 +10,7 @@ setting:
     API_KEY: ""
 users:
   - accountType: "YINGHUA" #平台类型
-    url: "url" #对应平台的url链接，注意是url！！！，比如说https://www.baidu.com.cn/，而不是!!!https://www.baidu.com.cn/loign/abc
+    url: "url" #对应平台的url链接
     account: "账号" #账号
     password: "密码" #密码
     coursesCustom:

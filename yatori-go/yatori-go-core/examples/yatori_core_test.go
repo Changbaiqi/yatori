@@ -1,4 +1,4 @@
-package example
+package examples
 
 import (
 	"fmt"
@@ -16,8 +16,11 @@ import (
 
 // 账号登录测试
 func TestLogin(t *testing.T) {
+	utils.YatoriCoreInit()
 	//测试账号
-	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
+	testData := readAccount()
+	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+
 	error := yinghua.LoginAction(&cache)
 	if error != nil {
 
@@ -26,8 +29,11 @@ func TestLogin(t *testing.T) {
 
 // 测试获取课程列表
 func TestPullCourseList(t *testing.T) {
+	utils.YatoriCoreInit()
 	//测试账号
-	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
+	testData := readAccount()
+	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+
 	error := yinghua.LoginAction(&cache)
 	if error != nil {
 
@@ -43,7 +49,9 @@ func TestPullCourseList(t *testing.T) {
 func TestPullCourseVideoList(t *testing.T) {
 	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
-	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
+	testData := readAccount()
+	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+
 	error := yinghua.LoginAction(&cache)
 	if error != nil {
 
@@ -106,7 +114,9 @@ func TestBrushOneLesson(t *testing.T) {
 	utils.YatoriCoreInit()
 	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
-	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
+	testData := readAccount()
+	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+
 	error := yinghua.LoginAction(&cache) // 登录
 	if error != nil {
 		log.Fatal(error) //登录失败则直接退出
@@ -123,7 +133,9 @@ func TestBrushOneLesson(t *testing.T) {
 
 func TestCourseDetail(t *testing.T) {
 	utils.YatoriCoreInit()
-	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
+	//测试账号
+	testData := readAccount()
+	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
 
 	error := yinghua.LoginAction(&cache) // 登录
 	if error != nil {

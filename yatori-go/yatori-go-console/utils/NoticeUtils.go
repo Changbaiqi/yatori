@@ -23,6 +23,7 @@ func PlayNoticeSound() {
 	speaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))
 	lg.Print(lg.DEBUG, "music length :", streamer.Len())
 	done := make(chan bool)
+	//别动下面这行代码，别问为什么莫名其妙加延时，问就是加了才能正常运行，不加就容易出现玄学BUG
 	speaker.Play(beep.Seq(streamer, beep.Callback(func() {
 		done <- true
 	})))
