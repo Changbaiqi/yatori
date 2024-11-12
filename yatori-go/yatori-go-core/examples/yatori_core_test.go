@@ -18,7 +18,7 @@ import (
 func TestLogin(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
-	testData := readAccount()
+	testData := ReadConfig("./")
 	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
 
 	error := yinghua.LoginAction(&cache)
@@ -31,7 +31,7 @@ func TestLogin(t *testing.T) {
 func TestPullCourseList(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
-	testData := readAccount()
+	testData := ReadConfig("./")
 	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
 
 	error := yinghua.LoginAction(&cache)
@@ -49,7 +49,7 @@ func TestPullCourseList(t *testing.T) {
 func TestPullCourseVideoList(t *testing.T) {
 	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
-	testData := readAccount()
+	testData := ReadConfig("./")
 	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
 
 	error := yinghua.LoginAction(&cache)
@@ -114,7 +114,7 @@ func TestBrushOneLesson(t *testing.T) {
 	utils.YatoriCoreInit()
 	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
-	testData := readAccount()
+	testData := ReadConfig("./")
 	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
 
 	error := yinghua.LoginAction(&cache) // 登录
@@ -135,7 +135,7 @@ func TestBrushOneLesson(t *testing.T) {
 func TestCourseDetail(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
-	testData := readAccount()
+	testData := ReadConfig("./")
 	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
 
 	error := yinghua.LoginAction(&cache) // 登录
@@ -155,7 +155,7 @@ func TestCourseDetail(t *testing.T) {
 func TestExamDetail(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
-	testData := readAccount()
+	testData := ReadConfig("./")
 	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
 
 	error := yinghua.LoginAction(&cache) // 登录
@@ -180,4 +180,18 @@ func TestExamDetail(t *testing.T) {
 		fmt.Println(detailAction)
 		fmt.Println(exam)
 	}
+}
+
+func TestAiAnswer(t *testing.T) {
+	//测试账号
+	testData := ReadConfig("./")
+	messages := utils.AIChatMessages{Messages: []utils.Message{
+		utils.Message{
+			Role:    "user",
+			Content: "你好,你叫什么名字",
+		},
+	}}
+	api, _ := utils.TongYiChatReplyApi(testData.Setting.AiSetting.APIKEY, messages)
+	yinghua.YingHuaAiAnswer("TONGYI", testData.Setting.AiSetting.APIKEY, yinghua.YingHuaExam{Title: "测试试卷名称"}, utils.ExamTopic{Content: "测试题目内容", Type: "单选题"})
+	fmt.Println(api)
 }
