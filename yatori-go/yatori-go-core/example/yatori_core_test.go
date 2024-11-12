@@ -10,6 +10,7 @@ import (
 	time2 "time"
 	yinghua "yatori-go-core/aggregation/yinghua"
 	yinghuaApi "yatori-go-core/api/yinghua"
+	"yatori-go-core/utils"
 	log2 "yatori-go-core/utils/log"
 )
 
@@ -102,6 +103,7 @@ func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse
 
 // 测试获取指定视屏并且刷课
 func TestBrushOneLesson(t *testing.T) {
+	utils.YatoriCoreInit()
 	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
 	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
@@ -117,4 +119,21 @@ func TestBrushOneLesson(t *testing.T) {
 		go videoListStudy(cache, item) //多携程刷课
 	}
 	wg.Wait()
+}
+
+func TestCourseDetail(t *testing.T) {
+	utils.YatoriCoreInit()
+	cache := yinghuaApi.UserCache{PreUrl: "https://swxymooc.csuft.edu.cn", Account: "2023021990", Password: "a047846"}
+
+	error := yinghua.LoginAction(&cache) // 登录
+	if error != nil {
+		log.Fatal(error) //登录失败则直接退出
+	}
+	fmt.Println(cache.GetToken())
+	action, _ := yinghua.CourseDetailAction(cache, "1012027")
+	fmt.Println(action)
+	if error != nil {
+		log.Fatal(error)
+	}
+
 }
