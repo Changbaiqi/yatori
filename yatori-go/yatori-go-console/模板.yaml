@@ -16,6 +16,7 @@ users:
     coursesCustom:
       videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
       autoExam: 0 #是否自动考试，0代表不考试，1代表考试
+# 添加多个账号的时候像下面这样接着添加多个用户信息就行
 # - accountType: "YINGHUA" #平台类型
 #   url: "xxx" #密码
 #   account: "xxx" #账号
