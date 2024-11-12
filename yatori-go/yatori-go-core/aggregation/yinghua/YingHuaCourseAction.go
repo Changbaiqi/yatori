@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/thedevsaddam/gojsonq"
 	"strconv"
+	"strings"
 	"time"
 	"yatori-go-core/api/yinghua"
 	"yatori-go-core/utils/log"
@@ -22,6 +23,7 @@ type YingHuaCourse struct {
 	VideoLearned int       //已学习视屏数量
 }
 
+// 英华节点
 type YingHuaVideo struct {
 	Id            string    //视屏Id
 	CourseId      string    //对应课程的ID
@@ -38,6 +40,20 @@ type YingHuaVideo struct {
 	TabVote        bool //是否有投票
 	TabWork        bool //是否有作业
 	TabExam        bool //是否有考试
+}
+
+// 考试节点信息
+type YingHuaExam struct {
+	Id          string    //ID
+	ExamId      string    //考试ID
+	NodeId      string    //节点ID
+	CourseId    string    //课程ID
+	Title       string    //考试标题名称
+	StartTime   time.Time //考试开始时间
+	EndTime     time.Time //考试结束时间
+	LimitedTime float32   //考试限时
+	Score       float32   //试卷总分
+
 }
 
 // 课程列表
@@ -175,4 +191,35 @@ func VideosListAction(userCache yinghua.UserCache, course YingHuaCourse) ([]Ying
 	}
 
 	return videoList, nil
+}
+
+// 获取考试节点对应信息
+// {"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
+func ExamDetailAction(userCache yinghua.UserCache, nodeId string) ([]YingHuaExam, error) {
+	var examList []YingHuaExam
+	jsonStr := yinghua.ExamDetailApi(userCache, nodeId)
+	jsonData := gojsonq.New().JSONString(jsonStr).Find("result.list")
+
+	log.Print(log.DEBUG, `[`, userCache.Account, `] `, `CourseListAction---`, jsonData)
+
+	//如果获取失败
+	if gojsonq.New().JSONString(jsonStr).Find("msg") != "获取数据成功" {
+		return []YingHuaExam{}, errors.New("获取数据失败")
+	}
+	jsonList := gojsonq.New().JSONString(jsonStr).Find("result.list")
+	// 断言为切片并遍历
+	if items, ok := jsonList.([]interface{}); ok {
+		for _, item := range items {
+			// 每个 item 是 map[string]interface{} 类型
+			if obj, ok := item.(map[string]interface{}); ok {
+				startTime, _ := time.Parse("2006-01-02 00:00:00", obj["startTime"].(string)) //时间转换
+				endTime, _ := time.Parse("2006-01-02 00:00:00", obj["endTime"].(string))     //时间转换
+				examId := strings.Split(strings.Split(obj["url"].(string), "examId=")[1], "&token")[0]
+				examList = append(examList, YingHuaExam{Id: strconv.Itoa(int(obj["id"].(float64))), Title: obj["title"].(string), Score: float32(obj["score"].(float64)), LimitedTime: float32(obj["limitedTime"].(float64)), StartTime: startTime, EndTime: endTime, CourseId: strconv.Itoa(int(obj["courseId"].(float64))), NodeId: strconv.Itoa(int(obj["nodeId"].(float64))), ExamId: examId})
+			}
+		}
+	} else {
+		fmt.Println("无法将数据转换为预期的类型")
+	}
+	return examList, nil
 }
