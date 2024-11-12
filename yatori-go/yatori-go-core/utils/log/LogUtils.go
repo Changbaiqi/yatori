@@ -33,12 +33,23 @@ func (level LOGLEVEL) Index() int {
 	return int(level)
 }
 
+// 通过字符串返回对应枚举值
+func StringToLOGLEVEL(str string) LOGLEVEL {
+	for i, v := range LOGLEVELSTR {
+		if v == str {
+			return LOGLEVEL(i)
+		}
+	}
+	return INFO
+}
+
 var logFile *os.File         //输出日志路径
 var outFlag bool = false     //是否输出日志到本地
 var consoleColorFlag int = 1 //彩色控制台日志
 
 // 日志初始化
-func LogInit(isOutFile bool /*是否输出到文件*/, isColorConsole int /*是否彩色控制台颜色0代表默认色，1代表彩色*/, outPath string /*日志输出路径*/) {
+func LogInit(logLevel LOGLEVEL, isOutFile bool /*是否输出到文件*/, isColorConsole int /*是否彩色控制台颜色0代表默认色，1代表彩色*/, outPath string /*日志输出路径*/) {
+	NOWLOGLEVEL = logLevel
 	outFlag = isOutFile
 	consoleColorFlag = isColorConsole
 	if outFlag {

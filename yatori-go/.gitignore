@@ -6,3 +6,9 @@ assets/*
 */config.json
 */*/config.yaml
 */*/config.json
+./assets
+/yatori-go-core/examples/TestData.yaml
+/yatori-go-console/assets/*
+/config.yaml
+/yatori-go-core/examples/assets/common_old1.onnx
+/yatori-go-core/examples/assets/onnxruntime.dll
