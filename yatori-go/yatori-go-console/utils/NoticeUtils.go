@@ -6,11 +6,14 @@ import (
 	"github.com/faiface/beep/speaker"
 	"log"
 	"os"
+	"sync"
 	"time"
 	lg "yatori-go-core/utils/log"
 )
 
-// 播放通知音频
+var NSMutex sync.Mutex
+
+// PlayNoticeSound 播放通知音频
 func PlayNoticeSound() {
 	f, err := os.Open("./assets/sound/finishNotice.mp3")
 	defer f.Close()
@@ -20,6 +23,7 @@ func PlayNoticeSound() {
 		log.Fatal(err)
 	}
 	defer streamer.Close()
+	NSMutex.Lock()
 	speaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))
 	lg.Print(lg.DEBUG, "music length :", streamer.Len())
 	done := make(chan bool)
@@ -28,4 +32,5 @@ func PlayNoticeSound() {
 		done <- true
 	})))
 	<-done
+	NSMutex.Unlock()
 }

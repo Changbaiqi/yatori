@@ -16,12 +16,7 @@ import (
 	"yatori-go-core/utils"
 )
 
-type LoginYingHua interface {
-	LoginApi() string
-	VerificationCodeApi() (string, string)
-}
-
-type UserCache struct {
+type YingHuaUserCache struct {
 	PreUrl   string //前置url
 	Account  string //账号
 	Password string //用户密码
@@ -31,36 +26,36 @@ type UserCache struct {
 	sign     string //签名
 }
 
-func (cache UserCache) GetVerCode() string {
+func (cache *YingHuaUserCache) GetVerCode() string {
 	return cache.verCode
 }
-func (cache *UserCache) SetVerCode(verCode string) {
+func (cache *YingHuaUserCache) SetVerCode(verCode string) {
 	cache.verCode = verCode
 }
 
-func (cache UserCache) GetCookie() string {
+func (cache *YingHuaUserCache) GetCookie() string {
 	return cache.cookie
 }
-func (cache *UserCache) SetCookie(cookie string) {
+func (cache *YingHuaUserCache) SetCookie(cookie string) {
 	cache.cookie = cookie
 }
 
-func (cache UserCache) GetToken() string {
+func (cache *YingHuaUserCache) GetToken() string {
 	return cache.token
 }
-func (cache *UserCache) SetToken(token string) {
+func (cache *YingHuaUserCache) SetToken(token string) {
 	cache.token = token
 }
 
-func (cache UserCache) GetSign() string {
+func (cache *YingHuaUserCache) GetSign() string {
 	return cache.token
 }
-func (cache *UserCache) SetSign(sign string) {
+func (cache *YingHuaUserCache) SetSign(sign string) {
 	cache.sign = sign
 }
 
 // LoginApi 登录接口
-func (cache UserCache) LoginApi() string {
+func (cache *YingHuaUserCache) LoginApi() (string, error) {
 
 	url := cache.PreUrl + "/user/login.json"
 	method := "POST"
@@ -74,7 +69,7 @@ func (cache UserCache) LoginApi() string {
 	err := writer.Close()
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", err
 	}
 
 	client := &http.Client{}
@@ -82,7 +77,7 @@ func (cache UserCache) LoginApi() string {
 
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	req.Header.Add("Cookie", cache.cookie)
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
@@ -91,21 +86,21 @@ func (cache UserCache) LoginApi() string {
 	res, err := client.Do(req)
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	//fmt.Println(string(body))
-	return string(body)
+	return string(body), nil
 }
 
 // VerificationCodeApi 获取验证码和SESSION验证码,并返回文件路径和SESSION字符串
-func (cache UserCache) VerificationCodeApi() (string, string) {
+func (cache *YingHuaUserCache) VerificationCodeApi() (string, string) {
 
 	url := cache.PreUrl + "/service/code?r=%7Btime()%7D"
 	method := "GET"
@@ -146,16 +141,16 @@ func (cache UserCache) VerificationCodeApi() (string, string) {
 }
 
 // KeepAliveApi 登录心跳保活
-func KeepAliveApi(userCache UserCache) string {
+func KeepAliveApi(UserCache YingHuaUserCache) string {
 
-	url := userCache.PreUrl + "/api/online.json"
+	url := UserCache.PreUrl + "/api/online.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
-	_ = writer.WriteField("token", userCache.token)
+	_ = writer.WriteField("token", UserCache.token)
 	//_ = writer.WriteField("schoolId", "7")
 	err := writer.Close()
 	if err != nil {
@@ -189,7 +184,7 @@ func KeepAliveApi(userCache UserCache) string {
 }
 
 // 拉取课程列表API
-func CourseListApi(cache UserCache) string {
+func CourseListApi(cache YingHuaUserCache) string {
 
 	url := cache.PreUrl + "/api/course/list.json"
 	method := "POST"
@@ -233,9 +228,9 @@ func CourseListApi(cache UserCache) string {
 }
 
 // CourseDetailApi 获取课程详细信息API
-func CourseDetailApi(userCache UserCache, courseId string) string {
+func CourseDetailApi(UserCache YingHuaUserCache, courseId string) string {
 
-	url := userCache.PreUrl + "/api/course/detail.json"
+	url := UserCache.PreUrl + "/api/course/detail.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
@@ -243,7 +238,7 @@ func CourseDetailApi(userCache UserCache, courseId string) string {
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
 	_ = writer.WriteField("courseId", courseId)
-	_ = writer.WriteField("token", userCache.token)
+	_ = writer.WriteField("token", UserCache.token)
 	err := writer.Close()
 	if err != nil {
 		fmt.Println(err)
@@ -252,7 +247,7 @@ func CourseDetailApi(userCache UserCache, courseId string) string {
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
-	req.Header.Add("Cookie", userCache.cookie)
+	req.Header.Add("Cookie", UserCache.cookie)
 
 	if err != nil {
 		fmt.Println(err)
@@ -278,16 +273,16 @@ func CourseDetailApi(userCache UserCache, courseId string) string {
 }
 
 // CourseVideListApi 对应课程的视屏列表
-func CourseVideListApi(userCache UserCache, courseId string /*课程ID*/) string {
+func CourseVideListApi(UserCache YingHuaUserCache, courseId string /*课程ID*/) string {
 
-	url := userCache.PreUrl + "/api/course/chapter.json"
+	url := UserCache.PreUrl + "/api/course/chapter.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
-	_ = writer.WriteField("token", userCache.token)
+	_ = writer.WriteField("token", UserCache.token)
 	_ = writer.WriteField("courseId", courseId)
 	err := writer.Close()
 	if err != nil {
@@ -297,7 +292,7 @@ func CourseVideListApi(userCache UserCache, courseId string /*课程ID*/) string
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
-	req.Header.Set("Cookie", userCache.cookie)
+	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
 		fmt.Println(err)
 		return ""
@@ -321,16 +316,16 @@ func CourseVideListApi(userCache UserCache, courseId string /*课程ID*/) string
 }
 
 // SubmitStudyTimeApi 提交学时
-func SubmitStudyTimeApi(userCache UserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/) string {
+func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/) string {
 
-	url := userCache.PreUrl + "/api/node/study.json"
+	url := UserCache.PreUrl + "/api/node/study.json"
 	method := "POST"
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
 	_ = writer.WriteField("nodeId", nodeId)
-	_ = writer.WriteField("token", userCache.token)
+	_ = writer.WriteField("token", UserCache.token)
 	_ = writer.WriteField("terminal", "Android")
 	_ = writer.WriteField("studyTime", strconv.Itoa(studyTime))
 	_ = writer.WriteField("studyId", studyId)
@@ -409,16 +404,16 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 }
 
 // VideWatchRecodeApi 获取指定课程视屏观看记录
-func VideWatchRecodeApi(userCache UserCache, courseId string, page int) string {
+func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int) string {
 
-	url := userCache.PreUrl + "/api/record/video.json"
+	url := UserCache.PreUrl + "/api/record/video.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
-	_ = writer.WriteField("token", userCache.token)
+	_ = writer.WriteField("token", UserCache.token)
 	_ = writer.WriteField("courseId", courseId)
 	_ = writer.WriteField("page", strconv.Itoa(page))
 	err := writer.Close()
@@ -429,7 +424,7 @@ func VideWatchRecodeApi(userCache UserCache, courseId string, page int) string {
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
-	req.Header.Set("Cookie", userCache.cookie)
+	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
 		fmt.Println(err)
 		return ""
@@ -453,9 +448,9 @@ func VideWatchRecodeApi(userCache UserCache, courseId string, page int) string {
 }
 
 // ExamDetailApi 获取考试信息
-func ExamDetailApi(userCache UserCache, nodeId string) string {
+func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 
-	url := userCache.PreUrl + "/api/node/exam.json?nodeId=" + nodeId
+	url := UserCache.PreUrl + "/api/node/exam.json?nodeId=" + nodeId
 	method := "POST"
 
 	payload := &bytes.Buffer{}
@@ -463,7 +458,7 @@ func ExamDetailApi(userCache UserCache, nodeId string) string {
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
 	_ = writer.WriteField("nodeId", nodeId)
-	_ = writer.WriteField("token", userCache.token)
+	_ = writer.WriteField("token", UserCache.token)
 	_ = writer.WriteField("terminal", "Android")
 	err := writer.Close()
 	if err != nil {
@@ -473,7 +468,7 @@ func ExamDetailApi(userCache UserCache, nodeId string) string {
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
-	req.Header.Add("Cookie", userCache.cookie)
+	req.Header.Add("Cookie", UserCache.cookie)
 
 	if err != nil {
 		fmt.Println(err)
@@ -499,7 +494,7 @@ func ExamDetailApi(userCache UserCache, nodeId string) string {
 
 // StartExam 开始考试接口
 // {"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, error) {
+func StartExam(UserCache YingHuaUserCache, courseId, nodeId, examId string) (string, error) {
 	// Creating a custom HTTP client with timeout and SSL context
 	client := &http.Client{
 		Timeout: 30 * time.Second,
@@ -513,7 +508,7 @@ func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, er
 	writer.WriteField("platform", "Android").Error()
 	writer.WriteField("version", "1.4.8").Error()
 	writer.WriteField("nodeId", nodeId).Error()
-	writer.WriteField("token", userCache.token).Error()
+	writer.WriteField("token", UserCache.token).Error()
 	writer.WriteField("terminal", "Android").Error()
 	writer.WriteField("examId", examId).Error()
 	writer.WriteField("courseId", courseId).Error()
@@ -522,16 +517,16 @@ func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, er
 	writer.Close()
 
 	// Create the request
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/exam/start.json", userCache.PreUrl), body)
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/exam/start.json", UserCache.PreUrl), body)
 	if err != nil {
 		return "", err
 	}
 
 	// Set the headers
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
-	req.Header.Add("Cookie", userCache.cookie)
+	req.Header.Add("Cookie", UserCache.cookie)
 	req.Header.Add("Accept", "*/*")
-	req.Header.Add("Host", userCache.PreUrl)
+	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
 	req.Header.Add("Content-Type", writer.FormDataContentType())
 
@@ -552,7 +547,7 @@ func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, er
 }
 
 // GetExamTopicApi 获取所有考试题目，但是HTML，建议配合TurnExamTopic函数使用将题目html转成结构体
-func GetExamTopicApi(userCache UserCache, nodeId, examId string) (string, error) {
+func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string, error) {
 
 	// Creating a custom HTTP client with timeout and SSL context (skip SSL setup for simplicity)
 	client := &http.Client{
@@ -563,7 +558,7 @@ func GetExamTopicApi(userCache UserCache, nodeId, examId string) (string, error)
 	body := []byte("{}")
 
 	// Create the request
-	url := fmt.Sprintf("%s/api/exam.json?nodeId=%s&examId=%s&token=%s", userCache.PreUrl, nodeId, examId, userCache.token)
+	url := fmt.Sprintf("%s/api/exam.json?nodeId=%s&examId=%s&token=%s", UserCache.PreUrl, nodeId, examId, UserCache.token)
 	req, err := http.NewRequest("POST", url, bytes.NewReader(body))
 	if err != nil {
 		return "", err
@@ -572,7 +567,7 @@ func GetExamTopicApi(userCache UserCache, nodeId, examId string) (string, error)
 	// Set the headers
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 	req.Header.Add("Accept", "*/*")
-	req.Header.Add("Host", userCache.PreUrl)
+	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
 	req.Header.Add("Content-Type", "application/json; charset=utf-8")
 
@@ -592,7 +587,7 @@ func GetExamTopicApi(userCache UserCache, nodeId, examId string) (string, error)
 }
 
 // SubmitExamApi 提交考试答案接口
-func SubmitExamApi(userCache UserCache, examId, answerId, answer, finish string) error {
+func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish string) error {
 	// Creating the HTTP client with a timeout (30 seconds)
 	client := &http.Client{
 		Timeout: 30 * time.Second,
@@ -609,7 +604,7 @@ func SubmitExamApi(userCache UserCache, examId, answerId, answer, finish string)
 	writer.WriteField("terminal", "Android")
 	writer.WriteField("answerId", answerId)
 	writer.WriteField("finish", finish)
-	writer.WriteField("token", userCache.token)
+	writer.WriteField("token", UserCache.token)
 
 	// Add the answer fields
 	if len(answer) == 1 {
@@ -624,7 +619,7 @@ func SubmitExamApi(userCache UserCache, examId, answerId, answer, finish string)
 	writer.Close()
 
 	// Create the request with the necessary headers
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/exam/submit.json", userCache.PreUrl), body)
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/exam/submit.json", UserCache.PreUrl), body)
 	if err != nil {
 		return err
 	}
@@ -632,7 +627,7 @@ func SubmitExamApi(userCache UserCache, examId, answerId, answer, finish string)
 	// Set the headers
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 	req.Header.Add("Accept", "*/*")
-	req.Header.Add("Host", userCache.PreUrl)
+	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
 	req.Header.Add("Content-Type", writer.FormDataContentType())
 
@@ -655,7 +650,7 @@ func SubmitExamApi(userCache UserCache, examId, answerId, answer, finish string)
 }
 
 // GetWorkApi 获取所有作业题目
-func GetWorkApi(userCache UserCache, nodeId string) (string, error) {
+func GetWorkApi(UserCache YingHuaUserCache, nodeId string) (string, error) {
 
 	// Creating the HTTP client with a timeout (30 seconds)
 	client := &http.Client{
@@ -670,14 +665,14 @@ func GetWorkApi(userCache UserCache, nodeId string) (string, error) {
 	writer.WriteField("platform", "Android")
 	writer.WriteField("version", "1.4.8")
 	writer.WriteField("nodeId", nodeId)
-	writer.WriteField("token", userCache.token)
+	writer.WriteField("token", UserCache.token)
 	writer.WriteField("terminal", "Android")
 
 	// Close the writer to finalize the multipart form data
 	writer.Close()
 
 	// Create the request with the necessary headers
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/node/work.json", userCache.PreUrl), body)
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/node/work.json", UserCache.PreUrl), body)
 	if err != nil {
 		return "", err
 	}
@@ -685,7 +680,7 @@ func GetWorkApi(userCache UserCache, nodeId string) (string, error) {
 	// Set the headers
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 	req.Header.Add("Accept", "*/*")
-	req.Header.Add("Host", userCache.PreUrl)
+	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
 	req.Header.Add("Content-Type", writer.FormDataContentType())
 
@@ -706,7 +701,7 @@ func GetWorkApi(userCache UserCache, nodeId string) (string, error) {
 }
 
 // SubmitWorkApi 提交作业答案接口
-func SubmitWorkApi(userCache UserCache, workId, answerId, answer, finish string) (string, error) {
+func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish string) (string, error) {
 
 	// Creating the HTTP client with a timeout (30 seconds)
 	client := &http.Client{
@@ -724,7 +719,7 @@ func SubmitWorkApi(userCache UserCache, workId, answerId, answer, finish string)
 	writer.WriteField("terminal", "Android")
 	writer.WriteField("answerId", answerId)
 	writer.WriteField("finish", finish)
-	writer.WriteField("token", userCache.token)
+	writer.WriteField("token", UserCache.token)
 
 	// Add the answer(s)
 	if len(answer) == 1 {
@@ -739,7 +734,7 @@ func SubmitWorkApi(userCache UserCache, workId, answerId, answer, finish string)
 	writer.Close()
 
 	// Create the request with the necessary headers
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/work/submit.json", userCache.PreUrl), body)
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/work/submit.json", UserCache.PreUrl), body)
 	if err != nil {
 		return "", err
 	}
@@ -747,7 +742,7 @@ func SubmitWorkApi(userCache UserCache, workId, answerId, answer, finish string)
 	// Set the headers
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 	req.Header.Add("Accept", "*/*")
-	req.Header.Add("Host", userCache.PreUrl)
+	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
 	req.Header.Add("Content-Type", writer.FormDataContentType())
 
