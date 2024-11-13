@@ -650,7 +650,7 @@ func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish 
 }
 
 // WorkDetailApi 获取作业信息
-func WorkDetailApi(userCache UserCache, nodeId string) string {
+func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 
 	url := userCache.PreUrl + "/api/node/work.json?nodeId=" + nodeId
 	method := "POST"
@@ -695,7 +695,7 @@ func WorkDetailApi(userCache UserCache, nodeId string) string {
 }
 
 // StartWork 开始做作业接口
-func StartWork(userCache UserCache, courseId, nodeId, workId string) (string, error) {
+func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
 	url := userCache.PreUrl + "/api/work/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&workId=" + workId
 	method := "GET"
 

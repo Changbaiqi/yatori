@@ -5,7 +5,7 @@ import (
 	"github.com/thedevsaddam/gojsonq"
 	"os"
 	"strings"
-	yinghua2 "yatori-go-core/api/yinghua"
+	yinghuaApi "yatori-go-core/api/yinghua"
 	"yatori-go-core/utils"
 	"yatori-go-core/utils/log"
 )
@@ -13,7 +13,7 @@ import (
 // YingHuaLoginAction 登录API聚合整理
 // {"refresh_code":1,"status":false,"msg":"账号密码不正确"}
 // {"_code": 1, "status": false,"msg": "账号登录超时，请重新登录", "result": {}}
-func YingHuaLoginAction(cache *yinghua2.YingHuaUserCache) error {
+func YingHuaLoginAction(cache *yinghuaApi.YingHuaUserCache) error {
 	for {
 		path, cookie := cache.VerificationCodeApi() //获取验证码
 		cache.SetCookie(cookie)
@@ -43,7 +43,7 @@ func YingHuaLoginAction(cache *yinghua2.YingHuaUserCache) error {
 }
 
 // LoginTimeoutAfreshAction 超时重登逻辑
-func LoginTimeoutAfreshAction(cache *yinghua2.YingHuaUserCache, backJson string) {
+func LoginTimeoutAfreshAction(cache *yinghuaApi.YingHuaUserCache, backJson string) {
 	//未超时则直接return
 	if !strings.Contains(backJson, "账号登录超时，请重新登录") {
 		return

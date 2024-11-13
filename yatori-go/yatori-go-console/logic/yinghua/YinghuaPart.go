@@ -12,7 +12,7 @@ import (
 	utils2 "yatori-go-console/utils"
 	modelLog "yatori-go-console/utils/log"
 	"yatori-go-core/aggregation/yinghua"
-	yinghua2 "yatori-go-core/api/yinghua"
+	yinghuaApi "yatori-go-core/api/yinghua"
 	lg "yatori-go-core/utils/log"
 )
 
@@ -31,7 +31,7 @@ func FilterAccount(configData *config.JSONDataForConfig) []config.Users {
 }
 
 // 开始刷课模块
-func RunBrushOperation(setting config.Setting, users []*yinghua2.YingHuaUserCache) {
+func RunBrushOperation(setting config.Setting, users []*yinghuaApi.YingHuaUserCache) {
 	//开始刷课
 	for _, user := range users {
 		usersLock.Add(1)
@@ -42,11 +42,11 @@ func RunBrushOperation(setting config.Setting, users []*yinghua2.YingHuaUserCach
 }
 
 // 用户登录模块
-func UserLoginOperation(users []config.Users) []*yinghua2.YingHuaUserCache {
-	var UserCaches []*yinghua2.YingHuaUserCache
+func UserLoginOperation(users []config.Users) []*yinghuaApi.YingHuaUserCache {
+	var UserCaches []*yinghuaApi.YingHuaUserCache
 	for _, user := range users {
 		if user.AccountType == "YINGHUA" {
-			cache := &yinghua2.YingHuaUserCache{PreUrl: user.URL, Account: user.Account, Password: user.Password}
+			cache := &yinghuaApi.YingHuaUserCache{PreUrl: user.URL, Account: user.Account, Password: user.Password}
 			error := yinghua.YingHuaLoginAction(cache) // 登录
 			if error != nil {
 				lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.White, "] ", lg.Red, error.Error())
@@ -63,7 +63,7 @@ func UserLoginOperation(users []config.Users) []*yinghua2.YingHuaUserCache {
 // 以用户作为刷课单位的基本块
 var soundMut sync.Mutex
 
-func userBlock(setting config.Setting, cache *yinghua2.YingHuaUserCache) {
+func userBlock(setting config.Setting, cache *yinghuaApi.YingHuaUserCache) {
 	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
 	for _, item := range list {                //遍历所有待刷视屏
 		videosLock.Add(1)
@@ -80,16 +80,16 @@ func userBlock(setting config.Setting, cache *yinghua2.YingHuaUserCache) {
 }
 
 // 用于登录保活
-func keepAliveLogin(UserCache *yinghua2.YingHuaUserCache) {
+func keepAliveLogin(UserCache *yinghuaApi.YingHuaUserCache) {
 	for {
-		api := yinghua2.KeepAliveApi(*UserCache)
+		api := yinghuaApi.KeepAliveApi(*UserCache)
 		lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.DarkGray, "登录心跳保活状态：", api)
 		time2.Sleep(time2.Minute * 5) //每隔五分钟一次心跳保活
 	}
 }
 
 // 刷视频的抽离函数
-func videoListStudy(setting config.Setting, UserCache *yinghua2.YingHuaUserCache, course *yinghua.YingHuaCourse) {
+func videoListStudy(setting config.Setting, UserCache *yinghuaApi.YingHuaUserCache, course *yinghua.YingHuaCourse) {
 	videoList, _ := yinghua.VideosListAction(UserCache, *course) //拉取对应课程的视屏列表
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", "正在学习课程：", lg.Yellow, " 【"+course.Name+"】 ")
 	// 提交学时
@@ -108,7 +108,7 @@ func videoListStudy(setting config.Setting, UserCache *yinghua2.YingHuaUserCache
 				lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", video.Name, "】 ", " ", lg.Red, "该节点没有视屏可能是作业或者是考试，Yatori当前版本并不支撑自动考试所以会自动跳过，若需要自动考试可以先用yatori-java版本")
 				break
 			}
-			sub := yinghua2.SubmitStudyTimeApi(*UserCache, video.Id, studyId, time) //提交学时
+			sub := yinghuaApi.SubmitStudyTimeApi(*UserCache, video.Id, studyId, time) //提交学时
 			//超时重登检测
 			yinghua.LoginTimeoutAfreshAction(UserCache, sub)
 			lg.Print(lg.DEBUG, "---", video.Id, sub)

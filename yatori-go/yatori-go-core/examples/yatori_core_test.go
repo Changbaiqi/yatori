@@ -10,8 +10,8 @@ import (
 	time2 "time"
 	"yatori-go-core/aggregation/xuexitong"
 	yinghua "yatori-go-core/aggregation/yinghua"
-	xuexitong2 "yatori-go-core/api/xuexitong"
-	yinghua2 "yatori-go-core/api/yinghua"
+	xuexitongApi "yatori-go-core/api/xuexitong"
+	yinghuaApi "yatori-go-core/api/yinghua"
 	"yatori-go-core/common"
 	"yatori-go-core/global"
 	"yatori-go-core/utils"
@@ -28,7 +28,7 @@ func TestLogin(t *testing.T) {
 	//测试账号
 	setup()
 	user := global.Config.Users[0]
-	cache := yinghua2.YingHuaUserCache{
+	cache := yinghuaApi.YingHuaUserCache{
 		PreUrl:   user.URL,
 		Account:  user.Account,
 		Password: user.Password,
@@ -40,7 +40,7 @@ func TestLogin(t *testing.T) {
 }
 
 func TestLoginXueXiTo(t *testing.T) {
-	err := xuexitong.XueXiTLoginAction(&xuexitong2.XueXiTUserCache{
+	err := xuexitong.XueXiTLoginAction(&xuexitongApi.XueXiTUserCache{
 		Name:     "17353878918",
 		Password: "zxd2839182980.",
 	})
@@ -61,7 +61,7 @@ func TestPullCourseList(t *testing.T) {
 	//测试账号
 	setup()
 	user := global.Config.Users[0]
-	cache := yinghua2.YingHuaUserCache{
+	cache := yinghuaApi.YingHuaUserCache{
 		PreUrl:   user.URL,
 		Account:  user.Account,
 		Password: user.Password,
@@ -84,7 +84,7 @@ func TestPullCourseVideoList(t *testing.T) {
 	//测试账号
 	setup()
 	user := global.Config.Users[0]
-	cache := yinghua2.YingHuaUserCache{
+	cache := yinghuaApi.YingHuaUserCache{
 		PreUrl:   user.URL,
 		Account:  user.Account,
 		Password: user.Password,
@@ -106,9 +106,9 @@ func TestPullCourseVideoList(t *testing.T) {
 }
 
 // 用于登录保活
-func keepAliveLogin(UserCache yinghua2.YingHuaUserCache) {
+func keepAliveLogin(UserCache yinghuaApi.YingHuaUserCache) {
 	for {
-		api := yinghua2.KeepAliveApi(UserCache)
+		api := yinghuaApi.KeepAliveApi(UserCache)
 		log2.Print(log2.INFO, " ", "登录保活状态：", api)
 		time2.Sleep(time2.Second * 60)
 	}
@@ -117,7 +117,7 @@ func keepAliveLogin(UserCache yinghua2.YingHuaUserCache) {
 var wg sync.WaitGroup
 
 // 刷视频的抽离函数
-func videoListStudy(UserCache yinghua2.YingHuaUserCache, course yinghua.YingHuaCourse) {
+func videoListStudy(UserCache yinghuaApi.YingHuaUserCache, course yinghua.YingHuaCourse) {
 	videoList, _ := yinghua.VideosListAction(&UserCache, course) //拉取对应课程的视屏列表
 
 	// 提交学时
@@ -129,7 +129,7 @@ func videoListStudy(UserCache yinghua2.YingHuaUserCache, course yinghua.YingHuaC
 			if video.Progress == 100 {
 				break //如果看完了，也就是进度为100那么直接跳过
 			}
-			sub := yinghua2.SubmitStudyTimeApi(UserCache, video.Id, studyId, time) //提交学时
+			sub := yinghuaApi.SubmitStudyTimeApi(UserCache, video.Id, studyId, time) //提交学时
 			if gojsonq.New().JSONString(sub).Find("msg") != "提交学时成功!" {
 				time2.Sleep(5 * time2.Second)
 				continue
@@ -154,7 +154,7 @@ func TestBrushOneLesson(t *testing.T) {
 	//测试账号
 	setup()
 	user := global.Config.Users[0]
-	cache := yinghua2.YingHuaUserCache{
+	cache := yinghuaApi.YingHuaUserCache{
 		PreUrl:   user.URL,
 		Account:  user.Account,
 		Password: user.Password,
@@ -180,7 +180,7 @@ func TestCourseDetail(t *testing.T) {
 	//测试账号
 	setup()
 	user := global.Config.Users[0]
-	cache := yinghua2.YingHuaUserCache{
+	cache := yinghuaApi.YingHuaUserCache{
 		PreUrl:   user.URL,
 		Account:  user.Account,
 		Password: user.Password,
@@ -205,7 +205,7 @@ func TestExamDetail(t *testing.T) {
 	//测试账号
 	setup()
 	user := global.Config.Users[0]
-	cache := yinghua2.YingHuaUserCache{
+	cache := yinghuaApi.YingHuaUserCache{
 		PreUrl:   user.URL,
 		Account:  user.Account,
 		Password: user.Password,
@@ -229,7 +229,7 @@ func TestExamDetail(t *testing.T) {
 		//api := yinghuaApi.ExamDetailApi(cache, node.Id)
 		detailAction, _ := yinghua.ExamDetailAction(&cache, node.Id)
 		//{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-		exam, _ := yinghua2.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId)
+		exam, _ := yinghuaApi.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId)
 		fmt.Println(detailAction)
 		fmt.Println(exam)
 	}
@@ -241,13 +241,13 @@ func TestWorkDetail(t *testing.T) {
 	//测试账号
 	setup()
 	user := global.Config.Users[0]
-	cache := yinghuaApi.UserCache{
+	cache := yinghuaApi.YingHuaUserCache{
 		PreUrl:   user.URL,
 		Account:  user.Account,
 		Password: user.Password,
 	}
 
-	error := yinghua.LoginAction(&cache) // 登录
+	error := yinghua.YingHuaLoginAction(&cache) // 登录
 	if error != nil {
 		log.Fatal(error) //登录失败则直接退出
 	}
