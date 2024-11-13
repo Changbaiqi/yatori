@@ -229,3 +229,17 @@ func ExamDetailAction(userCache *yinghua.UserCache, nodeId string) ([]YingHuaExa
 	}
 	return examList, nil
 }
+
+// 开始考试
+func StartExamAction(userCache *yinghua.UserCache, exam YingHuaExam) error {
+	//开始考试
+	startExam, err := yinghua.StartExam(*userCache, exam.CourseId, exam.NodeId, exam.ExamId)
+	if err != nil {
+		log.Print(log.INFO, err.Error())
+		return errors.New(err.Error())
+	}
+	fmt.Println(startExam)
+	//开始答题
+	//结束考试
+	return nil
+}
