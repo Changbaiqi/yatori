@@ -649,6 +649,80 @@ func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish 
 	return nil
 }
 
+// WorkDetailApi 获取作业信息
+func WorkDetailApi(userCache UserCache, nodeId string) string {
+
+	url := userCache.PreUrl + "/api/node/work.json?nodeId=" + nodeId
+	method := "POST"
+
+	payload := &bytes.Buffer{}
+	writer := multipart.NewWriter(payload)
+	_ = writer.WriteField("platform", "Android")
+	_ = writer.WriteField("version", "1.4.8")
+	_ = writer.WriteField("nodeId", nodeId)
+	_ = writer.WriteField("token", userCache.token)
+	_ = writer.WriteField("terminal", "Android")
+	err := writer.Close()
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+	req.Header.Add("Cookie", userCache.cookie)
+
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
+	return string(body)
+}
+
+// StartWork 开始做作业接口
+func StartWork(userCache UserCache, courseId, nodeId, workId string) (string, error) {
+	url := userCache.PreUrl + "/api/work/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&workId=" + workId
+	method := "GET"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, nil)
+
+	if err != nil {
+		fmt.Println(err)
+		return "", nil
+	}
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return "", nil
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return "", nil
+	}
+	return string(body), nil
+}
+
 // GetWorkApi 获取所有作业题目
 func GetWorkApi(UserCache YingHuaUserCache, nodeId string) (string, error) {
 

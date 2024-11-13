@@ -217,12 +217,12 @@ func TestExamDetail(t *testing.T) {
 	}
 	list, _ := yinghua.CourseListAction(&cache) //拉取课程列表
 	//list[0]
-	action, error := yinghua.VideosListAction(&cache, list[0])
+	action, error := yinghua.VideosListAction(&cache, list[2])
 	if error != nil {
 		log.Fatal(error)
 	}
 	for _, node := range action {
-		if node.Name != "考试" {
+		if node.Name != "第一单元 章节测试" {
 			continue
 		}
 		fmt.Println(node)
@@ -232,6 +232,41 @@ func TestExamDetail(t *testing.T) {
 		exam, _ := yinghua2.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId)
 		fmt.Println(detailAction)
 		fmt.Println(exam)
+	}
+}
+
+// 测试获取作业的信息
+func TestWorkDetail(t *testing.T) {
+	utils.YatoriCoreInit()
+	//测试账号
+	setup()
+	user := global.Config.Users[0]
+	cache := yinghuaApi.UserCache{
+		PreUrl:   user.URL,
+		Account:  user.Account,
+		Password: user.Password,
+	}
+
+	error := yinghua.LoginAction(&cache) // 登录
+	if error != nil {
+		log.Fatal(error) //登录失败则直接退出
+	}
+	list, _ := yinghua.CourseListAction(&cache) //拉取课程列表
+	//list[0]
+	action, error := yinghua.VideosListAction(&cache, list[2])
+	if error != nil {
+		log.Fatal(error)
+	}
+	for _, node := range action {
+		if node.Name != "第一单元 章节测试" {
+			continue
+		}
+		fmt.Println(node)
+		detailAction, _ := yinghua.WorkDetailAction(&cache, node.Id)
+		//{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
+		work, _ := yinghuaApi.StartWork(cache, node.CourseId, node.Id, detailAction[0].Id)
+		fmt.Println(detailAction)
+		fmt.Println(work)
 	}
 }
 
