@@ -10,35 +10,57 @@ import (
 	time2 "time"
 	yinghua "yatori-go-core/aggregation/yinghua"
 	yinghuaApi "yatori-go-core/api/yinghua"
+	"yatori-go-core/common"
+	"yatori-go-core/global"
 	"yatori-go-core/utils"
 	log2 "yatori-go-core/utils/log"
 )
+
+func setup() {
+	common.InitConfig("./")
+}
 
 // 账号登录测试
 func TestLogin(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
-	testData := ReadConfig("./")
-	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
-
+	//testData := ReadConfig("./")
+	setup()
+	user := global.Config.Users[0]
+	cache := yinghuaApi.UserCache{
+		PreUrl:   user.URL,
+		Account:  user.Account,
+		Password: user.Password,
+	}
 	error := yinghua.LoginAction(&cache)
 	if error != nil {
 
 	}
 }
 
+func TestInitConfig(T *testing.T) {
+	setup()
+	users := global.Config.Users
+	println(users)
+}
+
 // 测试获取课程列表
 func TestPullCourseList(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
-	testData := ReadConfig("./")
-	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+	setup()
+	user := global.Config.Users[0]
+	cache := yinghuaApi.UserCache{
+		PreUrl:   user.URL,
+		Account:  user.Account,
+		Password: user.Password,
+	}
 
 	error := yinghua.LoginAction(&cache)
 	if error != nil {
 
 	}
-	list, _ := yinghua.CourseListAction(cache)
+	list, _ := yinghua.CourseListAction(&cache)
 	for _, item := range list {
 		log2.Print(log2.INFO, "课程：", item.Id, " ", item.Name, " ", strconv.FormatFloat(item.Progress, 'b', 5, 32), " ", item.StartDate.String(), " ", strconv.Itoa(item.VideoCount), " ", strconv.Itoa(item.VideoLearned))
 
@@ -49,17 +71,22 @@ func TestPullCourseList(t *testing.T) {
 func TestPullCourseVideoList(t *testing.T) {
 	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
-	testData := ReadConfig("./")
-	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+	setup()
+	user := global.Config.Users[0]
+	cache := yinghuaApi.UserCache{
+		PreUrl:   user.URL,
+		Account:  user.Account,
+		Password: user.Password,
+	}
 
 	error := yinghua.LoginAction(&cache)
 	if error != nil {
 
 	}
-	list, _ := yinghua.CourseListAction(cache)
+	list, _ := yinghua.CourseListAction(&cache)
 	for _, courseItem := range list {
 		log2.Print(log2.INFO, " ", courseItem.Id, " ", courseItem.Name, " ", strconv.FormatFloat(courseItem.Progress, 'b', 5, 32), " ", courseItem.StartDate.String(), " ", strconv.Itoa(courseItem.VideoCount), " ", strconv.Itoa(courseItem.VideoLearned))
-		videoList, _ := yinghua.VideosListAction(cache, courseItem) //拉取视屏列表动作
+		videoList, _ := yinghua.VideosListAction(&cache, courseItem) //拉取视屏列表动作
 		for _, videoItem := range videoList {
 			log2.Print(log2.INFO, " ", "视屏：", videoItem.CourseId, " ", videoItem.Id, " ", videoItem.Name, " ", strconv.Itoa(int(videoItem.VideoDuration)))
 		}
@@ -80,7 +107,7 @@ var wg sync.WaitGroup
 
 // 刷视频的抽离函数
 func videoListStudy(userCache yinghuaApi.UserCache, course yinghua.YingHuaCourse) {
-	videoList, _ := yinghua.VideosListAction(userCache, course) //拉取对应课程的视屏列表
+	videoList, _ := yinghua.VideosListAction(&userCache, course) //拉取对应课程的视屏列表
 
 	// 提交学时
 	for _, video := range videoList {
@@ -114,15 +141,20 @@ func TestBrushOneLesson(t *testing.T) {
 	utils.YatoriCoreInit()
 	log2.NOWLOGLEVEL = log2.INFO //设置日志登记为DEBUG
 	//测试账号
-	testData := ReadConfig("./")
-	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+	setup()
+	user := global.Config.Users[0]
+	cache := yinghuaApi.UserCache{
+		PreUrl:   user.URL,
+		Account:  user.Account,
+		Password: user.Password,
+	}
 
 	error := yinghua.LoginAction(&cache) // 登录
 	if error != nil {
 		log.Fatal(error) //登录失败则直接退出
 	}
-	go keepAliveLogin(cache)                   //携程保活
-	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
+	go keepAliveLogin(cache)                    //携程保活
+	list, _ := yinghua.CourseListAction(&cache) //拉取课程列表
 	for _, item := range list {
 		wg.Add(1)
 		log2.Print(log2.INFO, " ", item.Id, " ", item.Name, " ", strconv.FormatFloat(item.Progress, 'b', 5, 32), " ", item.StartDate.String(), " ", strconv.Itoa(item.VideoCount), " ", strconv.Itoa(item.VideoLearned))
@@ -135,15 +167,20 @@ func TestBrushOneLesson(t *testing.T) {
 func TestCourseDetail(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
-	testData := ReadConfig("./")
-	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+	setup()
+	user := global.Config.Users[0]
+	cache := yinghuaApi.UserCache{
+		PreUrl:   user.URL,
+		Account:  user.Account,
+		Password: user.Password,
+	}
 
 	error := yinghua.LoginAction(&cache) // 登录
 	if error != nil {
 		log.Fatal(error) //登录失败则直接退出
 	}
 	fmt.Println(cache.GetToken())
-	action, _ := yinghua.CourseDetailAction(cache, "1012027")
+	action, _ := yinghua.CourseDetailAction(&cache, "1012027")
 	fmt.Println(action)
 	if error != nil {
 		log.Fatal(error)
@@ -155,16 +192,21 @@ func TestCourseDetail(t *testing.T) {
 func TestExamDetail(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
-	testData := ReadConfig("./")
-	cache := yinghuaApi.UserCache{PreUrl: testData.Users[0].URL, Account: testData.Users[0].Account, Password: testData.Users[0].Password}
+	setup()
+	user := global.Config.Users[0]
+	cache := yinghuaApi.UserCache{
+		PreUrl:   user.URL,
+		Account:  user.Account,
+		Password: user.Password,
+	}
 
 	error := yinghua.LoginAction(&cache) // 登录
 	if error != nil {
 		log.Fatal(error) //登录失败则直接退出
 	}
-	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
+	list, _ := yinghua.CourseListAction(&cache) //拉取课程列表
 	//list[0]
-	action, error := yinghua.VideosListAction(cache, list[0])
+	action, error := yinghua.VideosListAction(&cache, list[0])
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -174,7 +216,7 @@ func TestExamDetail(t *testing.T) {
 		}
 		fmt.Println(node)
 		//api := yinghuaApi.ExamDetailApi(cache, node.Id)
-		detailAction, _ := yinghua.ExamDetailAction(cache, node.Id)
+		detailAction, _ := yinghua.ExamDetailAction(&cache, node.Id)
 		//{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
 		exam, _ := yinghuaApi.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId)
 		fmt.Println(detailAction)
@@ -184,14 +226,17 @@ func TestExamDetail(t *testing.T) {
 
 func TestAiAnswer(t *testing.T) {
 	//测试账号
-	testData := ReadConfig("./")
+	setup()
+	setting := global.Config.Setting
 	messages := utils.AIChatMessages{Messages: []utils.Message{
-		utils.Message{
+		{
 			Role:    "user",
 			Content: "你好,你叫什么名字",
 		},
 	}}
-	api, _ := utils.TongYiChatReplyApi(testData.Setting.AiSetting.APIKEY, messages)
-	yinghua.YingHuaAiAnswer("TONGYI", testData.Setting.AiSetting.APIKEY, yinghua.YingHuaExam{Title: "测试试卷名称"}, utils.ExamTopic{Content: "测试题目内容", Type: "单选题"})
+	api, _ := utils.TongYiChatReplyApi(setting.AiSetting.APIKEY, messages)
+	yinghua.YingHuaAiAnswer("TONGYI", setting.AiSetting.APIKEY,
+		yinghua.YingHuaExam{Title: "测试试卷名称"},
+		utils.ExamTopic{Content: "测试题目内容", Type: "单选题"})
 	fmt.Println(api)
 }
