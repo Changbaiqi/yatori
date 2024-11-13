@@ -3,6 +3,7 @@ package yinghua
 import (
 	"errors"
 	"github.com/thedevsaddam/gojsonq"
+	"os"
 	"strings"
 	"yatori-go-core/api/yinghua"
 	"yatori-go-core/utils"
@@ -32,18 +33,21 @@ func LoginAction(cache *yinghua.UserCache) error {
 		cache.SetSign(strings.Split(gojsonq.New().JSONString(jsonStr).Find("redirect").(string), "&sign=")[1])                         //设置签名
 		log.Print(log.INFO, "["+cache.Account+"] "+" 登录成功")
 		break
-		//if gojsonq.New().JSONString(jsonStr).Find("msg") == "验证码有误！" {
-		//	continue
-		//} else if gojsonq.New().JSONString(jsonStr).Find("msg") == "学生信息不存在" {
-		//	return errors.New("学生信息不存在")
-		//} else if gojsonq.New().JSONString(jsonStr).Find("msg") == "账号密码不正确" {
-		//	return errors.New("账号密码不正确")
-		//} else if gojsonq.New().JSONString(jsonStr).Find("msg") == "尝试密码错误超过5次，账号已被锁定." {
-		//	return errors.New("尝试密码错误超过5次，账号已被锁定.")
-		//} else {
-		//
-		//}
-
 	}
 	return nil
+}
+
+// 超时重登逻辑
+func LoginTimeoutAfreshAction(cache *yinghua.UserCache, backJson string) {
+	//未超时则直接return
+	if !strings.Contains(backJson, "账号登录超时，请重新登录") {
+		return
+	}
+	log.Print(log.INFO, "["+cache.Account+"] ", log.BoldRed, "检测到登录超时，进行重新登录逻辑...")
+	err := LoginAction(cache)
+	if err != nil {
+		log.Print(log.INFO, "["+cache.Account+"] ", log.BoldRed, "超时重登失败")
+		os.Exit(0)
+	}
+	log.Print(log.INFO, "["+cache.Account+"] ", log.BoldGreen, "超时重登成功")
 }
