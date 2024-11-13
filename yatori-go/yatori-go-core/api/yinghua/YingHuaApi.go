@@ -16,7 +16,7 @@ import (
 	"yatori-go-core/utils"
 )
 
-type YingHuaLogin interface {
+type LoginYingHua interface {
 	LoginApi() string
 	VerificationCodeApi() (string, string)
 }
@@ -59,7 +59,7 @@ func (cache *UserCache) SetSign(sign string) {
 	cache.sign = sign
 }
 
-// 登录接口
+// LoginApi 登录接口
 func (cache UserCache) LoginApi() string {
 
 	url := cache.PreUrl + "/user/login.json"
@@ -104,7 +104,7 @@ func (cache UserCache) LoginApi() string {
 	return string(body)
 }
 
-// 获取验证码和SESSION验证码,并返回文件路径和SESSION字符串
+// VerificationCodeApi 获取验证码和SESSION验证码,并返回文件路径和SESSION字符串
 func (cache UserCache) VerificationCodeApi() (string, string) {
 
 	url := cache.PreUrl + "/service/code?r=%7Btime()%7D"
@@ -145,7 +145,7 @@ func (cache UserCache) VerificationCodeApi() (string, string) {
 	return filepath, res.Header.Get("Set-Cookie")
 }
 
-// 登录心跳保活
+// KeepAliveApi 登录心跳保活
 func KeepAliveApi(userCache UserCache) string {
 
 	url := userCache.PreUrl + "/api/online.json"
@@ -232,7 +232,7 @@ func CourseListApi(cache UserCache) string {
 	return string(body)
 }
 
-// 获取课程详细信息API
+// CourseDetailApi 获取课程详细信息API
 func CourseDetailApi(userCache UserCache, courseId string) string {
 
 	url := userCache.PreUrl + "/api/course/detail.json"
@@ -277,7 +277,7 @@ func CourseDetailApi(userCache UserCache, courseId string) string {
 	return string(body)
 }
 
-// 对应课程的视屏列表
+// CourseVideListApi 对应课程的视屏列表
 func CourseVideListApi(userCache UserCache, courseId string /*课程ID*/) string {
 
 	url := userCache.PreUrl + "/api/course/chapter.json"
@@ -320,7 +320,7 @@ func CourseVideListApi(userCache UserCache, courseId string /*课程ID*/) string
 	return string(body)
 }
 
-// 提交学时
+// SubmitStudyTimeApi 提交学时
 func SubmitStudyTimeApi(userCache UserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/) string {
 
 	url := userCache.PreUrl + "/api/node/study.json"
@@ -365,7 +365,7 @@ func SubmitStudyTimeApi(userCache UserCache, nodeId string /*对应视屏节点I
 	return string(body)
 }
 
-// 获取单个视屏的学习进度
+// VideStudyTimeApi 获取单个视屏的学习进度
 func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 
 	url := userEntity.PreUrl + "/api/node/video.json"
@@ -408,7 +408,7 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 	return string(body)
 }
 
-// 获取指定课程视屏观看记录
+// VideWatchRecodeApi 获取指定课程视屏观看记录
 func VideWatchRecodeApi(userCache UserCache, courseId string, page int) string {
 
 	url := userCache.PreUrl + "/api/record/video.json"
@@ -452,7 +452,7 @@ func VideWatchRecodeApi(userCache UserCache, courseId string, page int) string {
 	return string(body)
 }
 
-// 获取考试信息
+// ExamDetailApi 获取考试信息
 func ExamDetailApi(userCache UserCache, nodeId string) string {
 
 	url := userCache.PreUrl + "/api/node/exam.json?nodeId=" + nodeId
@@ -497,10 +497,9 @@ func ExamDetailApi(userCache UserCache, nodeId string) string {
 	return string(body)
 }
 
-// 开始考试接口
+// StartExam 开始考试接口
 // {"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
 func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, error) {
-
 	// Creating a custom HTTP client with timeout and SSL context
 	client := &http.Client{
 		Timeout: 30 * time.Second,
@@ -511,13 +510,13 @@ func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, er
 	writer := multipart.NewWriter(body)
 
 	// Add form data to the multipart request
-	writer.WriteField("platform", "Android")
-	writer.WriteField("version", "1.4.8")
-	writer.WriteField("nodeId", nodeId)
-	writer.WriteField("token", userCache.token)
-	writer.WriteField("terminal", "Android")
-	writer.WriteField("examId", examId)
-	writer.WriteField("courseId", courseId)
+	writer.WriteField("platform", "Android").Error()
+	writer.WriteField("version", "1.4.8").Error()
+	writer.WriteField("nodeId", nodeId).Error()
+	writer.WriteField("token", userCache.token).Error()
+	writer.WriteField("terminal", "Android").Error()
+	writer.WriteField("examId", examId).Error()
+	writer.WriteField("courseId", courseId).Error()
 
 	// Close the writer to finalize the multipart data
 	writer.Close()
@@ -552,7 +551,7 @@ func StartExam(userCache UserCache, courseId, nodeId, examId string) (string, er
 	return string(bodyBytes), nil
 }
 
-// 获取所有考试题目，但是HTML，建议配合TurnExamTopic函数使用将题目html转成结构体
+// GetExamTopicApi 获取所有考试题目，但是HTML，建议配合TurnExamTopic函数使用将题目html转成结构体
 func GetExamTopicApi(userCache UserCache, nodeId, examId string) (string, error) {
 
 	// Creating a custom HTTP client with timeout and SSL context (skip SSL setup for simplicity)
@@ -592,9 +591,8 @@ func GetExamTopicApi(userCache UserCache, nodeId, examId string) (string, error)
 	return string(bodyBytes), nil
 }
 
-// 提交考试答案接口
+// SubmitExamApi 提交考试答案接口
 func SubmitExamApi(userCache UserCache, examId, answerId, answer, finish string) error {
-
 	// Creating the HTTP client with a timeout (30 seconds)
 	client := &http.Client{
 		Timeout: 30 * time.Second,
@@ -656,7 +654,7 @@ func SubmitExamApi(userCache UserCache, examId, answerId, answer, finish string)
 	return nil
 }
 
-// 获取所有作业题目
+// GetWorkApi 获取所有作业题目
 func GetWorkApi(userCache UserCache, nodeId string) (string, error) {
 
 	// Creating the HTTP client with a timeout (30 seconds)
@@ -707,7 +705,7 @@ func GetWorkApi(userCache UserCache, nodeId string) (string, error) {
 	return string(bodyBytes), nil
 }
 
-// 提交作业答案接口
+// SubmitWorkApi 提交作业答案接口
 func SubmitWorkApi(userCache UserCache, workId, answerId, answer, finish string) (string, error) {
 
 	// Creating the HTTP client with a timeout (30 seconds)
