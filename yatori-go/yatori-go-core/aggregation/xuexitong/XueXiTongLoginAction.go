@@ -21,3 +21,8 @@ func XueXiTPullCourseAction(cache *xuexitong.XueXiTUserCache) error {
 	log2.Print(log2.INFO, "["+cache.Name+"] "+courses)
 	return nil
 }
+
+// 拉取学习通章节信息
+func XueXiTPullCourseChapterAction(cache *xuexitong.XueXiTUserCache) error {
+	return nil
+}
