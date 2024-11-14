@@ -16,8 +16,9 @@ import (
 )
 
 const (
-	API_LOGIN_WEB = "https://passport2.chaoxing.com/fanyalogin"
-	KEY           = "u2oh6Vu^HWe4_AES" // 注意 Go 语言中字符串默认就是 UTF-8 编码
+	API_LOGIN_WEB    = "https://passport2.chaoxing.com/fanyalogin"
+	API_PULL_COURSES = "https://mooc1-api.chaoxing.com/mycourse/backclazzdata"
+	KEY              = "u2oh6Vu^HWe4_AES" // 注意 Go 语言中字符串默认就是 UTF-8 编码
 )
 
 type XueXiTUserCache struct {

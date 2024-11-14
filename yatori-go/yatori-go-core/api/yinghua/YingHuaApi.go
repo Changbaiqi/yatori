@@ -183,8 +183,8 @@ func KeepAliveApi(UserCache YingHuaUserCache) string {
 	return string(body)
 }
 
-// 拉取课程列表API
-func CourseListApi(cache YingHuaUserCache) string {
+// CourseListApi 拉取课程列表API
+func (cache *YingHuaUserCache) CourseListApi() (string, error) {
 
 	url := cache.PreUrl + "/api/course/list.json"
 	method := "POST"
@@ -197,16 +197,14 @@ func CourseListApi(cache YingHuaUserCache) string {
 	_ = writer.WriteField("token", cache.token)
 	err := writer.Close()
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", err
 	}
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", cache.cookie)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	req.Header.Add("Cookie", "tgw_I7_route=3d5c4e13e7d88bb6849295ab943042a2")
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
@@ -214,23 +212,21 @@ func CourseListApi(cache YingHuaUserCache) string {
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", err
 	}
-	return string(body)
+	return string(body), nil
 }
 
 // CourseDetailApi 获取课程详细信息API
-func CourseDetailApi(UserCache YingHuaUserCache, courseId string) string {
+func (cache *YingHuaUserCache) CourseDetailApi(courseId string) (string, error) {
 
-	url := UserCache.PreUrl + "/api/course/detail.json"
+	url := cache.PreUrl + "/api/course/detail.json"
 	method := "POST"
 
 	payload := &bytes.Buffer{}
@@ -238,20 +234,18 @@ func CourseDetailApi(UserCache YingHuaUserCache, courseId string) string {
 	_ = writer.WriteField("platform", "Android")
 	_ = writer.WriteField("version", "1.4.8")
 	_ = writer.WriteField("courseId", courseId)
-	_ = writer.WriteField("token", UserCache.token)
+	_ = writer.WriteField("token", cache.token)
 	err := writer.Close()
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", err
 	}
 
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
-	req.Header.Add("Cookie", UserCache.cookie)
+	req.Header.Add("Cookie", cache.cookie)
 
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	req.Header.Add("Cookie", "tgw_I7_route=3d5c4e13e7d88bb6849295ab943042a2")
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
@@ -259,17 +253,15 @@ func CourseDetailApi(UserCache YingHuaUserCache, courseId string) string {
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		return "", err
 	}
-	return string(body)
+	return string(body), err
 }
 
 // CourseVideListApi 对应课程的视屏列表
