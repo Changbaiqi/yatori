@@ -57,6 +57,24 @@ func TestLoginXueXiTo(t *testing.T) {
 	xuexitong.XueXiTPullCourseAction(&userCache)
 }
 
+// 测试学习通单课程详情
+func TestCourseDetailXueXiTo(t *testing.T) {
+	utils.YatoriCoreInit()
+	//测试账号
+	setup()
+	user := global.Config.Users[1]
+	userCache := xuexitongApi.XueXiTUserCache{
+		Name:     user.Account,
+		Password: user.Password,
+	}
+	err := xuexitong.XueXiTLoginAction(&userCache)
+	if err != nil {
+		log.Fatal(err)
+	}
+	xuexitong.XueXiTCourseDetailAction(&userCache, "260159398019074")
+
+}
+
 // 用于测试Config遵旨的初始化
 func TestInitConfig(T *testing.T) {
 	setup()

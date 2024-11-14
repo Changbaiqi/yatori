@@ -12,12 +12,3 @@ func XueXiTLoginAction(cache *xuexitong.XueXiTUserCache) error {
 	}
 	return nil
 }
-
-func XueXiTPullCourseAction(cache *xuexitong.XueXiTUserCache) error {
-	courses, err := cache.PullCourses()
-	if err != nil {
-		log2.Print(log2.INFO, "["+cache.Name+"] "+" 拉取失败")
-	}
-	log2.Print(log2.INFO, "["+cache.Name+"] "+courses)
-	return nil
-}
