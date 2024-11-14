@@ -40,9 +40,13 @@ func TestLogin(t *testing.T) {
 }
 
 func TestLoginXueXiTo(t *testing.T) {
+	utils.YatoriCoreInit()
+	//测试账号
+	setup()
+	user := global.Config.Users[1]
 	err := xuexitong.XueXiTLoginAction(&xuexitongApi.XueXiTUserCache{
-		Name:     "17353878918",
-		Password: "zxd2839182980.",
+		Name:     user.Account,
+		Password: user.Password,
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -263,10 +267,8 @@ func TestWorkDetail(t *testing.T) {
 		}
 		fmt.Println(node)
 		detailAction, _ := yinghua.WorkDetailAction(&cache, node.Id)
-		//{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-		work, _ := yinghuaApi.StartWork(cache, node.CourseId, node.Id, detailAction[0].Id)
-		fmt.Println(detailAction)
-		fmt.Println(work)
+		////{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
+		yinghua.StartWorkAction(&cache, detailAction[0])
 	}
 }
 
