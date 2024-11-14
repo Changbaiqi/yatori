@@ -14,8 +14,9 @@ import (
 )
 
 const (
-	API_LOGIN_WEB = "https://passport2.chaoxing.com/fanyalogin"
-	KEY           = "u2oh6Vu^HWe4_AES" // 注意 Go 语言中字符串默认就是 UTF-8 编码
+	API_LOGIN_WEB    = "https://passport2.chaoxing.com/fanyalogin"
+	API_PULL_COURSES = "https://mooc1-api.chaoxing.com/mycourse/backclazzdata"
+	KEY              = "u2oh6Vu^HWe4_AES" // 注意 Go 语言中字符串默认就是 UTF-8 编码
 )
 
 type XueXiTUserCache struct {
@@ -90,37 +91,6 @@ func (cache *XueXiTUserCache) LoginApi() (string, error) {
 	}
 
 	cache.JsonContent = jsonContent
-	return string(body), nil
-}
-
-// PullCourses 拉取对应账号的课程数据
-func (cache *XueXiTUserCache) PullCourses() (string, error) {
-
-	url := "https://mooc1-api.chaoxing.com/mycourse/backclazzdata"
-	method := "GET"
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, nil)
-
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	req.Header.Add("Cookie", cache.cookie)
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
-
-	res, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
 	return string(body), nil
 }
 
