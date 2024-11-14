@@ -695,6 +695,7 @@ func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 }
 
 // StartWork 开始做作业接口
+// {"_code":9,"status":false,"msg":"您已完成作业，该作业仅可答题1次","result":{}}
 func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
 	url := userCache.PreUrl + "/api/work/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&workId=" + workId
 	method := "GET"
@@ -724,54 +725,43 @@ func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (str
 }
 
 // GetWorkApi 获取所有作业题目
-func GetWorkApi(UserCache YingHuaUserCache, nodeId string) (string, error) {
+func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, error) {
 
-	// Creating the HTTP client with a timeout (30 seconds)
-	client := &http.Client{
-		Timeout: 30 * time.Second,
-	}
+	url := UserCache.PreUrl + "/api/work.json?nodeId=" + nodeId + "&workId=" + workId + "&token=" + UserCache.token
+	method := "POST"
 
-	// Create a buffer to hold the multipart form data
-	body := &bytes.Buffer{}
-	writer := multipart.NewWriter(body)
-
-	// Add form fields to the multipart data
-	writer.WriteField("platform", "Android")
-	writer.WriteField("version", "1.4.8")
-	writer.WriteField("nodeId", nodeId)
-	writer.WriteField("token", UserCache.token)
-	writer.WriteField("terminal", "Android")
-
-	// Close the writer to finalize the multipart form data
-	writer.Close()
-
-	// Create the request with the necessary headers
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/node/work.json", UserCache.PreUrl), body)
+	payload := &bytes.Buffer{}
+	writer := multipart.NewWriter(payload)
+	err := writer.Close()
 	if err != nil {
-		return "", err
+		fmt.Println(err)
+		return "", nil
 	}
 
-	// Set the headers
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+
+	if err != nil {
+		fmt.Println(err)
+		return "", nil
+	}
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
-	req.Header.Add("Accept", "*/*")
-	req.Header.Add("Host", UserCache.PreUrl)
-	req.Header.Add("Connection", "keep-alive")
-	req.Header.Add("Content-Type", writer.FormDataContentType())
 
-	// Perform the request
-	resp, err := client.Do(req)
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+	res, err := client.Do(req)
 	if err != nil {
-		return "", err
+		fmt.Println(err)
+		return "", nil
 	}
-	defer resp.Body.Close()
+	defer res.Body.Close()
 
-	// Read the response body
-	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return "", err
+		fmt.Println(err)
+		return "", nil
 	}
 
-	return string(bodyBytes), nil
+	return string(body), nil
 }
 
 // SubmitWorkApi 提交作业答案接口
@@ -819,6 +809,7 @@ func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish 
 	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
 	req.Header.Add("Content-Type", writer.FormDataContentType())
+	req.Header.Add("Cookie", UserCache.cookie)
 
 	// Perform the request
 	resp, err := client.Do(req)
@@ -830,4 +821,35 @@ func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish 
 	// Optionally, read the response body
 	bodyBytes, _ := ioutil.ReadAll(resp.Body)
 	return string(bodyBytes), nil
+}
+
+// WorkedDetail 获取最后作业得分接口
+// {"_code":9,"status":false,"msg":"您已完成作业，该作业仅可答题1次","result":{}}
+func WorkedDetail(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
+	url := userCache.PreUrl + "/user/work.json?nodeId=" + nodeId + "&workId=" + workId + "&token=" + userCache.token
+	method := "GET"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, nil)
+
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	req.Header.Add("Cookie", userCache.cookie)
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	return string(body), nil
 }
