@@ -39,6 +39,7 @@ func TestLogin(t *testing.T) {
 	}
 }
 
+// 测试学习通登录
 func TestLoginXueXiTo(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
@@ -53,6 +54,7 @@ func TestLoginXueXiTo(t *testing.T) {
 	}
 }
 
+// 用于测试Config遵旨的初始化
 func TestInitConfig(T *testing.T) {
 	setup()
 	users := global.Config.Users
@@ -266,12 +268,15 @@ func TestWorkDetail(t *testing.T) {
 			continue
 		}
 		fmt.Println(node)
+		//获取作业详细信息
 		detailAction, _ := yinghua.WorkDetailAction(&cache, node.Id)
 		////{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
+		//开始写作业
 		yinghua.StartWorkAction(&cache, detailAction[0])
 	}
 }
 
+// ai自动回复测试，使用时请先自己配置好对应TestData里面的API_KEY
 func TestAiAnswer(t *testing.T) {
 	//测试账号
 	setup()
