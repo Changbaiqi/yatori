@@ -74,7 +74,7 @@ type YingHuaWork struct {
 // 课程列表
 func CourseListAction(cache *yinghuaApi.YingHuaUserCache) ([]YingHuaCourse, error) {
 	var courseList []YingHuaCourse
-	listJson := yinghuaApi.CourseListApi(*cache)
+	listJson, _ := cache.CourseListApi()
 	log.Print(log.DEBUG, `[`, cache.Account, `] `, `CourseListAction---`, listJson)
 	//超时重登检测
 	LoginTimeoutAfreshAction(cache, listJson)
@@ -99,9 +99,9 @@ func CourseListAction(cache *yinghuaApi.YingHuaUserCache) ([]YingHuaCourse, erro
 	return courseList, nil
 }
 
-// 获取指定课程的信息
+// CourseDetailAction 获取指定课程的信息
 func CourseDetailAction(cache *yinghuaApi.YingHuaUserCache, courseId string) (YingHuaCourse, error) {
-	courseDetailJson := yinghuaApi.CourseDetailApi(*cache, courseId)
+	courseDetailJson, _ := cache.CourseDetailApi(courseId)
 	//超时重登检测
 	LoginTimeoutAfreshAction(cache, courseDetailJson)
 	//如果获取失败
