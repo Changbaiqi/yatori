@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 const (
@@ -83,9 +84,43 @@ func (cache *XueXiTUserCache) LoginApi() (string, error) {
 	if status, ok := jsonContent["status"].(bool); !ok || !status {
 		return "", err
 	}
-	cookie := resp.Header.Get("Set-Cookie")
-	cache.cookie = cookie
+	values := resp.Header.Values("Set-Cookie")
+	for _, v := range values {
+		cache.cookie += strings.ReplaceAll(strings.ReplaceAll(v, "HttpOnly", ""), "Path=/", "")
+	}
+
 	cache.JsonContent = jsonContent
+	return string(body), nil
+}
+
+// PullCourses 拉取对应账号的课程数据
+func (cache *XueXiTUserCache) PullCourses() (string, error) {
+
+	url := "https://mooc1-api.chaoxing.com/mycourse/backclazzdata"
+	method := "GET"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, nil)
+
+	if err != nil {
+		fmt.Println(err)
+		return "", nil
+	}
+	req.Header.Add("Cookie", cache.cookie)
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return "", nil
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return "", nil
+	}
 	return string(body), nil
 }
 

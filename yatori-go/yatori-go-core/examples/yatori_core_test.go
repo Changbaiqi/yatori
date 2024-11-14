@@ -39,19 +39,22 @@ func TestLogin(t *testing.T) {
 	}
 }
 
-// 测试学习通登录
+// 测试学习通登录以及课程数据拉取
 func TestLoginXueXiTo(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
 	setup()
 	user := global.Config.Users[1]
-	err := xuexitong.XueXiTLoginAction(&xuexitongApi.XueXiTUserCache{
+	userCache := xuexitongApi.XueXiTUserCache{
 		Name:     user.Account,
 		Password: user.Password,
-	})
+	}
+	err := xuexitong.XueXiTLoginAction(&userCache)
 	if err != nil {
 		log.Fatal(err)
 	}
+	//拉取课程列表并打印
+	xuexitong.XueXiTPullCourseAction(&userCache)
 }
 
 // 用于测试Config遵旨的初始化
