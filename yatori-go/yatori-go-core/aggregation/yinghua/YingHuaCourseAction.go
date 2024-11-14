@@ -65,9 +65,9 @@ type YingHuaWork struct {
 	Title     string    //考试标题名称
 	StartTime time.Time //考试开始时间
 	EndTime   time.Time //考试结束时间
-	//LimitedTime float32   //考试限时
-	Score float32 //试卷总分
-
+	Score     float32   //试卷总分
+	Allow     int       //允许做题次数
+	Frequency int       //已答题次数
 }
 
 // 课程列表
@@ -149,7 +149,7 @@ func VideosListAction(UserCache *yinghuaApi.YingHuaUserCache, course YingHuaCour
 								res, _ := strconv.Atoi(obj1["videoDuration"].(string))
 								videoDuration = res
 							}
-							unlockTime, _ := time.Parse("2006-01-02 00:00:00", obj1["unlockTime"].(string)) //时间转换
+							unlockTime, _ := time.Parse("2006-01-02 15:04", obj1["unlockTime"].(string)) //时间转换
 							videoList = append(videoList, YingHuaVideo{
 								Id: strconv.Itoa(int(obj1["id"].(float64))),
 								//CourseId:
@@ -262,7 +262,7 @@ func StartExamAction(UserCache *yinghuaApi.YingHuaUserCache, exam YingHuaExam) e
 	return nil
 }
 
-// 获取作业节点对应信息
+// WorkDetailAction 获取作业节点对应信息
 func WorkDetailAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]YingHuaWork, error) {
 	var workList []YingHuaWork
 	jsonStr := yinghuaApi.WorkDetailApi(*userCache, nodeId)
@@ -282,10 +282,12 @@ func WorkDetailAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 		for _, item := range items {
 			// 每个 item 是 map[string]interface{} 类型
 			if obj, ok := item.(map[string]interface{}); ok {
-				startTime, _ := time.Parse("2006-01-02 00:00:00", obj["startTime"].(string)) //时间转换
-				endTime, _ := time.Parse("2006-01-02 00:00:00", obj["endTime"].(string))     //时间转换
+				startTime, _ := time.Parse("2006-01-02 15:04:05", obj["startTime"].(string)) //时间转换
+				endTime, _ := time.Parse("2006-01-02 15:04:05", obj["endTime"].(string))     //时间转换
 				workId := strings.Split(strings.Split(obj["url"].(string), "workId=")[1], "&token")[0]
-				workList = append(workList, YingHuaWork{Id: strconv.Itoa(int(obj["id"].(float64))), Title: obj["title"].(string), Score: float32(obj["score"].(float64)), StartTime: startTime, EndTime: endTime, CourseId: strconv.Itoa(int(obj["courseId"].(float64))), NodeId: strconv.Itoa(int(obj["nodeId"].(float64))), WorkId: workId})
+				allow, _ := strconv.Atoi(obj["nodeId"].(string))
+				frequency, _ := strconv.Atoi(obj["frequency"].(string))
+				workList = append(workList, YingHuaWork{Id: strconv.Itoa(int(obj["id"].(float64))), Title: obj["title"].(string), Score: float32(obj["score"].(float64)), StartTime: startTime, EndTime: endTime, CourseId: strconv.Itoa(int(obj["courseId"].(float64))), NodeId: strconv.Itoa(int(obj["nodeId"].(float64))), WorkId: workId, Allow: allow, Frequency: frequency})
 			}
 		}
 	} else {
@@ -294,16 +296,20 @@ func WorkDetailAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 	return workList, nil
 }
 
-// 开始写作业
-func StartWorkAction(userCache *yinghuaApi.YingHuaUserCache, exam YingHuaExam) error {
+// StartWorkAction 开始写作业
+func StartWorkAction(userCache *yinghuaApi.YingHuaUserCache, exam YingHuaWork) error {
 	//开始考试
-	startExam, err := yinghuaApi.StartExam(*userCache, exam.CourseId, exam.NodeId, exam.ExamId)
+	startWork, err := yinghuaApi.StartWork(*userCache, exam.CourseId, exam.NodeId, exam.WorkId)
 	if err != nil {
 		log.Print(log.INFO, err.Error())
 		return errors.New(err.Error())
 	}
-	fmt.Println(startExam)
+	//如果开始考试状态异常则直接抛错
+	if gojsonq.New().JSONString(startWork).Find("_code") == 9 {
+		return errors.New(gojsonq.New().JSONString(startWork).Find("msg").(string))
+	}
 	//开始答题
+
 	//结束考试
 	return nil
 }

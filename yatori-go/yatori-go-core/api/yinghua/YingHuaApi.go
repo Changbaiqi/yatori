@@ -695,6 +695,7 @@ func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 }
 
 // StartWork 开始做作业接口
+// {"_code":9,"status":false,"msg":"您已完成作业，该作业仅可答题1次","result":{}}
 func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
 	url := userCache.PreUrl + "/api/work/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&workId=" + workId
 	method := "GET"
@@ -830,4 +831,35 @@ func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish 
 	// Optionally, read the response body
 	bodyBytes, _ := ioutil.ReadAll(resp.Body)
 	return string(bodyBytes), nil
+}
+
+// WorkedDetail 获取最后作业得分接口
+// {"_code":9,"status":false,"msg":"您已完成作业，该作业仅可答题1次","result":{}}
+func WorkedDetail(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
+	url := userCache.PreUrl + "/user/work.json?nodeId=" + nodeId + "&workId=" + workId + "&token=" + userCache.token
+	method := "GET"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, nil)
+
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	req.Header.Add("Cookie", "token=sid.43IK6VYaqxdC07teaYu5Jt0Wm4hzao")
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	return string(body), nil
 }
