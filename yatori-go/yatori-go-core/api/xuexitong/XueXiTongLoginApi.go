@@ -10,11 +10,11 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strconv"
 	"strings"
-	"time"
 )
 
+// 注意Api类文件主需要写最原始的接口请求和最后的json的string形式返回，不需要用结构体序列化。
+// 序列化和具体的功能实现请移步到Action代码文件中
 const (
 	API_LOGIN_WEB    = "https://passport2.chaoxing.com/fanyalogin"
 	API_PULL_COURSES = "https://mooc1-api.chaoxing.com/mycourse/backclazzdata"
@@ -110,38 +110,6 @@ func (cache *XueXiTUserCache) PullCourses() (string, error) {
 		return "", nil
 	}
 	req.Header.Add("Cookie", cache.cookie)
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
-
-	res, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	return string(body), nil
-}
-
-// PullCourseChapter 获取对应课程的章节信息包括节点信息
-func (cache *XueXiTUserCache) PullCourseChapter(courseId, personId, classId, userId string) (string, error) {
-
-	//必要参数/courseId/personId/classId/userId/时间戳/timeid
-	url := "https://tsjy.chaoxing.com/plaza/course/" + courseId + "/classify-list?classId=" + classId
-	method := "GET"
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, nil)
-
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	req.Header.Add("Referer", "https://tsjy.chaoxing.com/plaza/app.html?/"+courseId+"/"+personId+"/"+classId+"/"+userId+"/"+strconv.FormatInt(time.Now().Unix(), 32)+"timeid")
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 
 	res, err := client.Do(req)

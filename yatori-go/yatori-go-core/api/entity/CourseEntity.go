@@ -1,7 +1,7 @@
 package entity
 
 // XueXiTCourse 课程所有信息
-type XueXiTCourse struct {
+type XueXiTCourseJson struct {
 	Result           int           `json:"result"`
 	Msg              string        `json:"msg"`
 	ChannelList      []ChannelItem `json:"channelList"`
@@ -54,4 +54,14 @@ type ChannelItem struct {
 		IsSquare int    `json:"isSquare"`
 	} `json:"content"`
 	Topsign int `json:"topsign"`
+}
+
+// 关键信息过滤截取最终的实体
+type XueXiTCourse struct {
+	CourseName string //课程名称
+	ClassId    string //classId
+	CourseId   string //课程Id
+	Cpi        string //不知道是啥玩意，反正需要
+	PersonId   string //个人Id
+	UserId     string //UserId
 }
