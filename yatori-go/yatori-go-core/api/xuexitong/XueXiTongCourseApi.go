@@ -1,11 +1,10 @@
 package xuexitong
 
+//注意Api类文件主需要写最原始的接口请求和最后的json的string形式返回，不需要用结构体序列化。
+//序列化和具体的功能实现请移步到Action代码文件中
 import (
-	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"yatori-go-core/api/entity"
-	log2 "yatori-go-core/utils/log"
 )
 
 // CourseListApi 拉取对应账号的课程数据
@@ -33,24 +32,4 @@ func (cache *XueXiTUserCache) CourseListApi() (string, error) {
 		return "", err
 	}
 	return string(body), nil
-}
-
-// CourseDetailApi 拉取对应课程的详细信息
-// 此处courseId 为 对应channelList中的 **chatid**
-// TODO 目前是通过获得全部账号课程查找 暂不知是否有单独获得接口
-func (cache *XueXiTUserCache) CourseDetailApi(courseId string) (string, error) {
-	courses, err := cache.CourseListApi()
-	if err != nil {
-		return "", err
-	}
-	var xueXiTCourse entity.XueXiTCourse
-	err = json.Unmarshal([]byte(courses), &xueXiTCourse)
-	for channel := range xueXiTCourse.ChannelList {
-		if xueXiTCourse.ChannelList[channel].Content.Chatid == courseId {
-			marshal, _ := json.Marshal(xueXiTCourse.ChannelList[channel])
-			return string(marshal), nil
-		}
-	}
-	log2.Print(log2.INFO, "["+cache.Name+"] "+" 课程不存在")
-	return "", nil
 }

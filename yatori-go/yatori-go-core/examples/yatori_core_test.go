@@ -71,8 +71,36 @@ func TestCourseDetailXueXiTo(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	xuexitong.XueXiTCourseDetailAction(&userCache, "260159398019074")
+	action, err := xuexitong.XueXiTCourseDetailForCourseIdAction(&userCache, "260159398019074")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(action)
 
+}
+
+// 用于测试学习通对应课程章节信息拉取
+func TestCourseXueXiToChapter(t *testing.T) {
+	utils.YatoriCoreInit()
+	//测试账号
+	setup()
+	user := global.Config.Users[1]
+	userCache := xuexitongApi.XueXiTUserCache{
+		Name:     user.Account,
+		Password: user.Password,
+	}
+	err := xuexitong.XueXiTLoginAction(&userCache)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//拉取对应课程信息
+	action, err := xuexitong.XueXiTCourseDetailForCourseIdAction(&userCache, "260159398019074")
+	//拉取对应课程的章节信息
+	chapterAction, err := xuexitong.PullCourseChapterAction(&userCache, action.CourseId, action.PersonId, action.ClassId, action.UserId)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(chapterAction)
 }
 
 // 用于测试Config遵旨的初始化

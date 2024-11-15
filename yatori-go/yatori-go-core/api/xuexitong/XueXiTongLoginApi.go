@@ -13,6 +13,8 @@ import (
 	"strings"
 )
 
+// 注意Api类文件主需要写最原始的接口请求和最后的json的string形式返回，不需要用结构体序列化。
+// 序列化和具体的功能实现请移步到Action代码文件中
 const (
 	API_LOGIN_WEB    = "https://passport2.chaoxing.com/fanyalogin"
 	API_PULL_COURSES = "https://mooc1-api.chaoxing.com/mycourse/backclazzdata"
