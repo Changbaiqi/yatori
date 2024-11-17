@@ -170,7 +170,7 @@ func workAction(setting config.Setting, user *config.Users, userCache *yinghuaAp
 		return
 	}
 	//检测AI可用性
-	err := utils.AICheck(setting.AiSetting.Model, setting.AiSetting.AiType, setting.AiSetting.APIKEY)
+	err := utils.AICheck(setting.AiSetting.AiUrl, setting.AiSetting.Model, setting.AiSetting.AiType, setting.AiSetting.APIKEY)
 	if err != nil {
 		lg.Print(lg.INFO, lg.BoldRed, "AI不可用，错误信息："+err.Error())
 		os.Exit(0)
@@ -210,7 +210,7 @@ func examAction(setting config.Setting, user *config.Users, userCache *yinghuaAp
 		return
 	}
 	//检测AI可用性
-	err := utils.AICheck(setting.AiSetting.Model, setting.AiSetting.AiType, setting.AiSetting.APIKEY)
+	err := utils.AICheck(setting.AiSetting.AiUrl, setting.AiSetting.Model, setting.AiSetting.AiType, setting.AiSetting.APIKEY)
 	if err != nil {
 		lg.Print(lg.INFO, lg.BoldRed, "<"+setting.AiSetting.AiType+">", "AI不可用，错误信息："+err.Error())
 		os.Exit(0)
