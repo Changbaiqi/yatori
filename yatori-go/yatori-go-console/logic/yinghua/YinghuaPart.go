@@ -176,24 +176,27 @@ func workAction(setting config.Setting, user *config.Users, userCache *yinghuaAp
 		os.Exit(0)
 	}
 
-	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Yellow, "正在AI自动写章节作业：", lg.Default, " 【"+node.Name+"】 ")
 	//获取作业详细信息
 	detailAction, _ := yinghua.WorkDetailAction(userCache, node.Id)
 	////{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
+	if len(detailAction) == 0 { //过滤没有作业内容的
+		return
+	}
+	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "<"+setting.AiSetting.AiType+">", lg.Default, " 【"+node.Name+"】 ", lg.Yellow, "正在AI自动写章节作业...")
 	//开始写作业
 	for _, work := range detailAction {
 		err := yinghua.StartWorkAction(userCache, work, setting.AiSetting.AiType, setting.AiSetting.APIKEY)
 		if err != nil {
-			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", node.Name, "】 ", lg.BoldRed, "该章节作业无法正常执行，服务器返回信息：", err.Error())
+			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "<"+setting.AiSetting.AiType+">", " 【", node.Name, "】 ", lg.BoldRed, "该章节作业无法正常执行，服务器返回信息：", err.Error())
 			continue
 		}
 		//打印最终分数
-		scoreAction, s, error := yinghua.WorkedFinallyScoreAction(userCache, work)
+		s, error := yinghua.WorkedFinallyScoreAction(userCache, work)
 		if error != nil {
-			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", node.Name, "】 ", lg.BoldRed, error)
+			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "<"+setting.AiSetting.AiType+">", " 【", node.Name, "】 ", lg.BoldRed, error)
 			continue
 		}
-		lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", node.Name, "】", lg.Green, "章节作业AI答题完毕,最高分答题次数：", scoreAction, "次", " 最高分：", s, "分")
+		lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "<"+setting.AiSetting.AiType+">", " 【", node.Name, "】", lg.Green, "章节作业AI答题完毕，最高分：", s, "分")
 	}
 
 }
@@ -209,27 +212,30 @@ func examAction(setting config.Setting, user *config.Users, userCache *yinghuaAp
 	//检测AI可用性
 	err := utils.AICheck(setting.AiSetting.AiType, setting.AiSetting.APIKEY)
 	if err != nil {
-		lg.Print(lg.INFO, lg.BoldRed, "AI不可用，错误信息："+err.Error())
+		lg.Print(lg.INFO, lg.BoldRed, "<"+setting.AiSetting.AiType+">", "AI不可用，错误信息："+err.Error())
 		os.Exit(0)
 	}
 
-	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Yellow, "正在AI自动写章节作业：", lg.Default, " 【"+node.Name+"】 ")
 	//获取作业详细信息
 	detailAction, _ := yinghua.ExamDetailAction(userCache, node.Id)
 	////{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-	//开始写作业
+	if len(detailAction) == 0 { //过滤没有考试内容的
+		return
+	}
+	//开始考试
+	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "<"+setting.AiSetting.AiType+">", lg.Default, " 【"+node.Name+"】 ", lg.Yellow, "正在AI自动考试...")
 	for _, exam := range detailAction {
 		err := yinghua.StartExamAction(userCache, exam, setting.AiSetting.AiType, setting.AiSetting.APIKEY)
 		if err != nil {
-			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", node.Name, "】 ", lg.BoldRed, "该章节作业无法正常执行，服务器返回信息：", err.Error())
+			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "<"+setting.AiSetting.AiType+">", " 【", node.Name, "】 ", lg.BoldRed, "该考试无法正常执行，服务器返回信息：", err.Error())
 			continue
 		}
 		//打印最终分数
-		scoreAction, s, error := yinghua.ExamFinallyScoreAction(userCache, exam)
+		s, error := yinghua.ExamFinallyScoreAction(userCache, exam)
 		if error != nil {
-			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", node.Name, "】 ", lg.BoldRed, error)
+			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "<"+setting.AiSetting.AiType+">", " 【", node.Name, "】 ", lg.BoldRed, error.Error())
 			continue
 		}
-		lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", " 【", node.Name, "】", lg.Green, "章节作业AI答题完毕,最高分答题次数：", scoreAction, "次", " 最高分：", s, "分")
+		lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "<"+setting.AiSetting.AiType+">", " 【", node.Name, "】", lg.Green, "AI考试完毕,最终分：", s, "分")
 	}
 }

@@ -491,56 +491,33 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 
 // StartExam 开始考试接口
 // {"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-func StartExam(UserCache YingHuaUserCache, courseId, nodeId, examId string) (string, error) {
-	// Creating a custom HTTP client with timeout and SSL context
-	client := &http.Client{
-		Timeout: 30 * time.Second,
-	}
+func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string) (string, error) {
 
-	// Set up the multipart form data
-	body := &bytes.Buffer{}
-	writer := multipart.NewWriter(body)
+	url := userCache.PreUrl + "/api/exam/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&examId=" + examId
+	method := "GET"
 
-	// Add form data to the multipart request
-	writer.WriteField("platform", "Android").Error()
-	writer.WriteField("version", "1.4.8").Error()
-	writer.WriteField("nodeId", nodeId).Error()
-	writer.WriteField("token", UserCache.token).Error()
-	writer.WriteField("terminal", "Android").Error()
-	writer.WriteField("examId", examId).Error()
-	writer.WriteField("courseId", courseId).Error()
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, nil)
 
-	// Close the writer to finalize the multipart data
-	writer.Close()
-
-	// Create the request
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/exam/start.json", UserCache.PreUrl), body)
 	if err != nil {
-		return "", err
+		fmt.Println(err)
+		return "", nil
 	}
-
-	// Set the headers
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
-	req.Header.Add("Cookie", UserCache.cookie)
-	req.Header.Add("Accept", "*/*")
-	req.Header.Add("Host", UserCache.PreUrl)
-	req.Header.Add("Connection", "keep-alive")
-	req.Header.Add("Content-Type", writer.FormDataContentType())
 
-	// Perform the request
-	resp, err := client.Do(req)
+	res, err := client.Do(req)
 	if err != nil {
-		return "", err
+		fmt.Println(err)
+		return "", nil
 	}
-	defer resp.Body.Close()
+	defer res.Body.Close()
 
-	// Read the response body
-	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return "", err
+		fmt.Println(err)
+		return "", nil
 	}
-	fmt.Println(string(bodyBytes))
-	return string(bodyBytes), nil
+	return string(body), nil
 }
 
 // GetExamTopicApi 获取所有考试题目，但是HTML，建议配合TurnExamTopic函数使用将题目html转成结构体
@@ -823,7 +800,7 @@ func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish 
 // WorkedDetail 获取最后作业得分接口
 // {"_code":9,"status":false,"msg":"您已完成作业，该作业仅可答题1次","result":{}}
 func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
-	url := userCache.PreUrl + "/user/work.json?nodeId=" + nodeId + "&workId=" + workId + "&token=" + userCache.token
+	url := userCache.PreUrl + "/api/work.json?nodeId=" + nodeId + "&workId=" + workId + "&token=" + userCache.token
 	method := "GET"
 
 	client := &http.Client{}
@@ -854,7 +831,7 @@ func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId
 // WorkedDetail 获取最后作业得分接口
 // {"_code":9,"status":false,"msg":"您已完成作业，该作业仅可答题1次","result":{}}
 func ExamFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
-	url := userCache.PreUrl + "/user/exam.json?nodeId=" + nodeId + "&examId=" + workId + "&token=" + userCache.token
+	url := userCache.PreUrl + "/api/exam.json?nodeId=" + nodeId + "&examId=" + workId + "&token=" + userCache.token
 	method := "GET"
 
 	client := &http.Client{}

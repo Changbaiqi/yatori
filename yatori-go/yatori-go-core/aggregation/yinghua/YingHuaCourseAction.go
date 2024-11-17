@@ -239,8 +239,8 @@ func ExamDetailAction(UserCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 		for _, item := range items {
 			// 每个 item 是 map[string]interface{} 类型
 			if obj, ok := item.(map[string]interface{}); ok {
-				startTime, _ := time.Parse("2006-01-02 00:00:00", obj["startTime"].(string)) //时间转换
-				endTime, _ := time.Parse("2006-01-02 00:00:00", obj["endTime"].(string))     //时间转换
+				startTime, _ := time.Parse("2006-01-02 15:04:05", obj["startTime"].(string)) //时间转换
+				endTime, _ := time.Parse("2006-01-02 15:04:05", obj["endTime"].(string))     //时间转换
 				examId := strings.Split(strings.Split(obj["url"].(string), "examId=")[1], "&token")[0]
 				examList = append(examList, YingHuaExam{Id: strconv.Itoa(int(obj["id"].(float64))), Title: obj["title"].(string), Score: float32(obj["score"].(float64)), LimitedTime: float32(obj["limitedTime"].(float64)), StartTime: startTime, EndTime: endTime, CourseId: strconv.Itoa(int(obj["courseId"].(float64))), NodeId: strconv.Itoa(int(obj["nodeId"].(float64))), ExamId: examId})
 			}
@@ -297,28 +297,26 @@ func StartExamAction(userCache *yinghuaApi.YingHuaUserCache, exam YingHuaExam, a
 	//结束考试
 	subWorkApi, err := yinghuaApi.SubmitExamApi(*userCache, exam.ExamId, lastProblem, lastAnswer, "1")
 	//如果结束做题服务器端返回信息异常
-	if gojsonq.New().JSONString(subWorkApi).Find("msg") != "提交作业成功" {
+	if gojsonq.New().JSONString(subWorkApi).Find("msg") != "提交试卷成功" {
 		log.Print(log.INFO, log.BoldRed, `[`, userCache.Account, `] `, log.BoldRed, "提交试卷异常，返回信息：", subWorkApi)
 	}
 	return nil
 }
 
 // ExamFinallyScoreAction 获取最终作业分数
-func ExamFinallyScoreAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaExam) (string, string, error) {
+func ExamFinallyScoreAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaExam) (string, error) {
 	detail, err := yinghuaApi.ExamFinallyDetailApi(*userCache, work.CourseId, work.NodeId, work.ExamId)
 	if err != nil {
 		log.Print(log.INFO, `[`, userCache.Account, `] `, log.BoldRed, err.Error())
 	}
-	//fmt.Println(detail)
-	scorePattern := `<td >第 ([\d]+) 次答题</td>[^<]*<td >([\d]+)分</td>`
-	scoreRegexp := regexp.MustCompile(scorePattern)
-	scoreMatches := scoreRegexp.FindAllStringSubmatch(detail, -1)
-	for _, scoreMatch := range scoreMatches {
-		number := scoreMatch[1] //最高分答题次数
-		score := scoreMatch[2]  //分数
-		return number, score, nil
+	scorePattern1 := `最终得分：[^\d]*([\d]+)[^分]*分`
+	scoreRegexp1 := regexp.MustCompile(scorePattern1)
+	scoreMatches1 := scoreRegexp1.FindAllStringSubmatch(detail, -1)
+	for _, scoreMatch := range scoreMatches1 {
+		score := scoreMatch[1] //最高分答题次数
+		return score, nil
 	}
-	return "", "", errors.New("没有找到分数")
+	return "", errors.New("没有找到分数，可能成绩还未出")
 }
 
 // WorkDetailAction 获取作业节点对应信息
@@ -409,19 +407,18 @@ func StartWorkAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaWork, a
 }
 
 // WorkedFinallyScoreAction 获取最终作业分数
-func WorkedFinallyScoreAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaWork) (string, string, error) {
+func WorkedFinallyScoreAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaWork) (string, error) {
 	detail, err := yinghuaApi.WorkedFinallyDetailApi(*userCache, work.CourseId, work.NodeId, work.WorkId)
 	if err != nil {
 		log.Print(log.INFO, `[`, userCache.Account, `] `, log.BoldRed, err.Error())
 	}
 	//fmt.Println(detail)
-	scorePattern := `<td >第 ([\d]+) 次答题</td>[^<]*<td >([\d]+)分</td>`
+	scorePattern := `最高分：[^\d]*([\d]+)[^分]*分`
 	scoreRegexp := regexp.MustCompile(scorePattern)
-	scoreMatches := scoreRegexp.FindAllStringSubmatch(detail, -1)
+	scoreMatches := scoreRegexp.FindAllStringSubmatch(strings.ReplaceAll(detail, "&nbsp;", ""), -1)
 	for _, scoreMatch := range scoreMatches {
-		number := scoreMatch[1] //最高分答题次数
-		score := scoreMatch[2]  //分数
-		return number, score, nil
+		score := scoreMatch[1] //分数
+		return score, nil
 	}
-	return "", "", errors.New("没有找到分数")
+	return "", errors.New("没有找到分数")
 }
