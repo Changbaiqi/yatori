@@ -252,7 +252,7 @@ func ExamDetailAction(UserCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 }
 
 // 开始考试
-func StartExamAction(userCache *yinghuaApi.YingHuaUserCache, exam YingHuaExam, model, aiType, apiKey string) error {
+func StartExamAction(userCache *yinghuaApi.YingHuaUserCache, exam YingHuaExam, url, model, aiType, apiKey string) error {
 	//开始考试
 	startExam, err := yinghuaApi.StartExam(*userCache, exam.CourseId, exam.NodeId, exam.ExamId)
 	if err != nil {
@@ -277,7 +277,7 @@ func StartExamAction(userCache *yinghuaApi.YingHuaUserCache, exam YingHuaExam, m
 	for k, v := range topic.ExamTopics {
 		//构建统一AI消息
 		aiMessage := utils.AIProblemMessage(exam.Title, v)
-		aiAnswer, err := utils.AggregationAIApi(model, aiType, aiMessage, apiKey)
+		aiAnswer, err := utils.AggregationAIApi(url, model, aiType, aiMessage, apiKey)
 		if err != nil {
 			log.Print(log.INFO, `[`, userCache.Account, `] `, log.BoldRed, "Ai异常，返回信息：", err.Error())
 			os.Exit(0)
@@ -354,7 +354,7 @@ func WorkDetailAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 }
 
 // StartWorkAction 开始写作业
-func StartWorkAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaWork, model, aiType, apiKey string) error {
+func StartWorkAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaWork, url, model, aiType, apiKey string) error {
 	//开始考试
 	startWork, err := yinghuaApi.StartWork(*userCache, work.CourseId, work.NodeId, work.WorkId)
 	if err != nil {
@@ -379,7 +379,7 @@ func StartWorkAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaWork, m
 	for k, v := range topic.ExamTopics {
 		//构建统一AI消息
 		aiMessage := utils.AIProblemMessage(work.Title, v)
-		aiAnswer, err := utils.AggregationAIApi(model, aiType, aiMessage, apiKey)
+		aiAnswer, err := utils.AggregationAIApi(url, model, aiType, aiMessage, apiKey)
 		if err != nil {
 			log.Print(log.INFO, `[`, userCache.Account, `] `, log.BoldRed, "Ai异常，返回信息：", err.Error())
 			os.Exit(0)
