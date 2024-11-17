@@ -20,7 +20,7 @@ func FilterAccount(configData *config.JSONDataForConfig) []config.Users {
 }
 
 // 开始刷课模块
-func RunBrushOperation(setting config.Setting, users []*yinghuaApi.YingHuaUserCache) {
+func RunBrushOperation(setting config.Setting, users []config.Users, userCaches []*yinghuaApi.YingHuaUserCache) {
 
 }
 

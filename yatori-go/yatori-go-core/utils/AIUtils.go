@@ -3,10 +3,12 @@ package utils
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"sync"
 	"time"
 )
 
@@ -19,6 +21,54 @@ type AIChatMessages struct {
 type Message struct {
 	Role    string `json:"role"`
 	Content string `json:"content"`
+}
+
+// AI锁，防止同时过多调用
+var mut sync.Mutex
+
+// AggregationAIApi 聚合所有AI接口，直接通过aiType判断然后返回内容
+func AggregationAIApi(aiType string, aiChatMessages AIChatMessages, apiKey string) (string, error) {
+	mut.Lock()
+	defer mut.Unlock()
+	if aiType == "CHATGLM" {
+		return ChatGLMChatReplyApi(apiKey, aiChatMessages)
+	} else if aiType == "XINGHUO" {
+		return XingHuoChatReplyApi(apiKey, aiChatMessages)
+	} else if aiType == "TONGYI" {
+		return TongYiChatReplyApi(apiKey, aiChatMessages)
+	}
+	return "", errors.New("AI Type: " + aiType)
+}
+
+// AICheck AI可用性检测
+func AICheck(aiType string, apiKey string) error {
+	aiChatMessages := AIChatMessages{
+		Messages: []Message{
+			{
+				Role:    "user",
+				Content: "你好",
+			},
+		},
+	}
+
+	if aiType == "" {
+		return errors.New("AI Type: " + "请先填写AIType参数")
+	}
+	if apiKey == "" {
+		return errors.New("无效apiKey，请检查apiKey是否正确填写")
+	}
+
+	if aiType == "CHATGLM" {
+		_, err := ChatGLMChatReplyApi(apiKey, aiChatMessages)
+		return err
+	} else if aiType == "XINGHUO" {
+		_, err := XingHuoChatReplyApi(apiKey, aiChatMessages)
+		return err
+	} else if aiType == "TONGYI" {
+		_, err := TongYiChatReplyApi(apiKey, aiChatMessages)
+		return err
+	}
+	return errors.New("AI Type: " + aiType)
 }
 
 // 通义千问API

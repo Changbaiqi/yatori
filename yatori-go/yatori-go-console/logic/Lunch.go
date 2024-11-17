@@ -7,7 +7,6 @@ import (
 	"yatori-go-console/config"
 	"yatori-go-console/logic/xuexitong"
 	"yatori-go-console/logic/yinghua"
-	yinghua2 "yatori-go-core/api/yinghua"
 	lg "yatori-go-core/utils/log"
 )
 
@@ -22,29 +21,26 @@ func Lunch() {
 var platformLock sync.WaitGroup //平台锁
 // 刷课执行块
 func brushBlock(configData *config.JSONDataForConfig) {
-	yingHuaBlock, xueXiTongBlock := loginBlock(configData) //英华统一登录模块
+	//统一登录模块------------------------------------------------------------------
+	yingHuaAccount := yinghua.FilterAccount(configData)
+	yingHuaOperation := yinghua.UserLoginOperation(yingHuaAccount)
+	xueXiTongAccount := xuexitong.FilterAccount(configData)
+	xueXiTongOperation := xuexitong.UserLoginOperation(xueXiTongAccount)
+
+	//统一刷课---------------------------------------------------------------------
 	//英华
 	platformLock.Add(1)
 	go func() {
-		yinghua.RunBrushOperation(configData.Setting, yingHuaBlock) //英华统一刷课模块
+		yinghua.RunBrushOperation(configData.Setting, yingHuaAccount, yingHuaOperation) //英华统一刷课模块
 		platformLock.Done()
 	}()
 	//学习通
 	platformLock.Add(1)
 	go func() {
-		xuexitong.RunBrushOperation(configData.Setting, xueXiTongBlock) //英华统一刷课模块
+		xuexitong.RunBrushOperation(configData.Setting, xueXiTongAccount, xueXiTongOperation) //英华统一刷课模块
 		platformLock.Done()
 	}()
 	platformLock.Wait()
-}
-
-// 登录块
-func loginBlock(configData *config.JSONDataForConfig) ([]*yinghua2.UserCache, []*yinghua2.UserCache) {
-	yingHuaAccount := yinghua.FilterAccount(configData)
-	yingHuaOperation := yinghua.UserLoginOperation(yingHuaAccount)
-	xueXiTongAccount := xuexitong.FilterAccount(configData)
-	xueXiTongOperation := xuexitong.UserLoginOperation(xueXiTongAccount)
-	return yingHuaOperation, xueXiTongOperation
 }
 
 // 配置文件检测检验

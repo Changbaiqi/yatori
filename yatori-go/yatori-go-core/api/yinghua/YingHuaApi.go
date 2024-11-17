@@ -54,6 +54,11 @@ func (cache *YingHuaUserCache) SetSign(sign string) {
 	cache.sign = sign
 }
 
+//func (cache YingHuaUserCache) String() string {
+//
+//	return ""
+//}
+
 // LoginApi 登录接口
 func (cache *YingHuaUserCache) LoginApi() (string, error) {
 
@@ -579,7 +584,7 @@ func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string,
 }
 
 // SubmitExamApi 提交考试答案接口
-func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish string) error {
+func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish string) (string, error) {
 	// Creating the HTTP client with a timeout (30 seconds)
 	client := &http.Client{
 		Timeout: 30 * time.Second,
@@ -613,7 +618,7 @@ func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish 
 	// Create the request with the necessary headers
 	req, err := http.NewRequest("POST", fmt.Sprintf("%s/api/exam/submit.json", UserCache.PreUrl), body)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	// Set the headers
@@ -626,19 +631,19 @@ func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish 
 	// Perform the request
 	resp, err := client.Do(req)
 	if err != nil {
-		return err
+		return "", err
 	}
 	defer resp.Body.Close()
 
 	// Read the response body (we're not using the body here, just ensuring the request goes through)
-	_, err = ioutil.ReadAll(resp.Body)
+	bodyStr, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	// You can handle the response here if necessary
 
-	return nil
+	return string(bodyStr), nil
 }
 
 // WorkDetailApi 获取作业信息
@@ -757,7 +762,7 @@ func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, erro
 }
 
 // SubmitWorkApi 提交作业答案接口
-func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish string) (string, error) {
+func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish string /*finish代表是否是最后提交并且结束考试，0代表不是，1代表是*/) (string, error) {
 
 	// Creating the HTTP client with a timeout (30 seconds)
 	client := &http.Client{
@@ -817,8 +822,39 @@ func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish 
 
 // WorkedDetail 获取最后作业得分接口
 // {"_code":9,"status":false,"msg":"您已完成作业，该作业仅可答题1次","result":{}}
-func WorkedDetail(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
+func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
 	url := userCache.PreUrl + "/user/work.json?nodeId=" + nodeId + "&workId=" + workId + "&token=" + userCache.token
+	method := "GET"
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, nil)
+
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	req.Header.Add("Cookie", userCache.cookie)
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	return string(body), nil
+}
+
+// WorkedDetail 获取最后作业得分接口
+// {"_code":9,"status":false,"msg":"您已完成作业，该作业仅可答题1次","result":{}}
+func ExamFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId string) (string, error) {
+	url := userCache.PreUrl + "/user/exam.json?nodeId=" + nodeId + "&examId=" + workId + "&token=" + userCache.token
 	method := "GET"
 
 	client := &http.Client{}

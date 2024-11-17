@@ -265,6 +265,7 @@ func TestExamDetail(t *testing.T) {
 		Account:  user.Account,
 		Password: user.Password,
 	}
+	fmt.Println(cache)
 
 	error := yinghua.YingHuaLoginAction(&cache) // 登录
 	if error != nil {
@@ -295,7 +296,7 @@ func TestWorkDetail(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
 	setup()
-	user := global.Config.Users[0]
+	user := global.Config.Users[2]
 	cache := yinghuaApi.YingHuaUserCache{
 		PreUrl:   user.URL,
 		Account:  user.Account,
@@ -308,12 +309,12 @@ func TestWorkDetail(t *testing.T) {
 	}
 	list, _ := yinghua.CourseListAction(&cache) //拉取课程列表
 	//list[0]
-	action, error := yinghua.VideosListAction(&cache, list[2])
+	action, error := yinghua.VideosListAction(&cache, list[0])
 	if error != nil {
 		log.Fatal(error)
 	}
 	for _, node := range action {
-		if node.Name != "第一单元 章节测试" {
+		if node.Name != "作业" {
 			continue
 		}
 		fmt.Println(node)
@@ -321,7 +322,14 @@ func TestWorkDetail(t *testing.T) {
 		detailAction, _ := yinghua.WorkDetailAction(&cache, node.Id)
 		////{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
 		//开始写作业
-		yinghua.StartWorkAction(&cache, detailAction[0])
+		//yinghua.StartWorkAction(&cache, detailAction[0], global.Config.Setting.AiSetting.AiType, global.Config.Setting.AiSetting.APIKEY)
+		fmt.Println(detailAction)
+		//打印最终分数
+		scoreAction, s, error := yinghua.WorkedFinallyScoreAction(&cache, detailAction[0])
+		if error != nil {
+			log.Fatal(error)
+		}
+		fmt.Println("最高分对应答题次数：", scoreAction, "最高分：", s)
 	}
 }
 
@@ -337,8 +345,8 @@ func TestAiAnswer(t *testing.T) {
 		},
 	}}
 	api, _ := utils.TongYiChatReplyApi(setting.AiSetting.APIKEY, messages)
-	yinghua.YingHuaAiAnswer("TONGYI", setting.AiSetting.APIKEY,
-		yinghua.YingHuaExam{Title: "测试试卷名称"},
-		utils.ExamTopic{Content: "测试题目内容", Type: "单选题"})
+	//yinghua.YingHuaAiAnswer("TONGYI", setting.AiSetting.APIKEY,
+	//	yinghua.YingHuaExam{Title: "测试试卷名称"},
+	//	utils.ExamTopic{Content: "测试题目内容", Type: "单选题"})
 	fmt.Println(api)
 }
