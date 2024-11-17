@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 	"sync"
 	"time"
 )
@@ -24,12 +25,12 @@ type Message struct {
 }
 
 // AI锁，防止同时过多调用
-var mut sync.Mutex
+var AiMut sync.Mutex
 
 // AggregationAIApi 聚合所有AI接口，直接通过aiType判断然后返回内容
 func AggregationAIApi(url, model, aiType string, aiChatMessages AIChatMessages, apiKey string) (string, error) {
-	mut.Lock()
-	defer mut.Unlock()
+	AiMut.Lock()
+	defer AiMut.Unlock()
 	if aiType == "CHATGLM" {
 		return ChatGLMChatReplyApi(model, apiKey, aiChatMessages)
 	} else if aiType == "XINGHUO" {
@@ -46,6 +47,8 @@ func AggregationAIApi(url, model, aiType string, aiChatMessages AIChatMessages, 
 
 // AICheck AI可用性检测
 func AICheck(url, model, aiType string, apiKey string) error {
+	AiMut.Lock()
+	defer AiMut.Unlock()
 	aiChatMessages := AIChatMessages{
 		Messages: []Message{
 			{
@@ -256,6 +259,11 @@ func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (s
 
 	choices, ok := responseMap["choices"].([]interface{})
 	if !ok || len(choices) == 0 {
+		//防止傻逼星火认为频繁调用报错的问题，踏马老子都加锁了还频繁调用，我频繁密码了
+		if strings.Contains(responseMap["error"].(map[string]interface{})["message"].(string), "AppIdQpsOverFlow") {
+			time.Sleep(time.Millisecond * 50)
+			return XingHuoChatReplyApi(model, apiKey, aiChatMessages)
+		}
 		log.Printf("unexpected response structure: %v", responseMap)
 		return "", fmt.Errorf("no choices in response")
 	}
