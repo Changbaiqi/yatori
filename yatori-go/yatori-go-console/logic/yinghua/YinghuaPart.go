@@ -92,6 +92,18 @@ func keepAliveLogin(UserCache *yinghuaApi.YingHuaUserCache) {
 
 // 章节节点的抽离函数
 func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghuaApi.YingHuaUserCache, course *yinghua.YingHuaCourse) {
+	//过滤课程---------------------------------
+	//排除指定课程
+	if len(user.CoursesCustom.ExcludeCourses) != 0 && config.CmpCourse(course.Name, user.CoursesCustom.ExcludeCourses) {
+		videosLock.Done()
+		return
+	}
+	//包含指定课程
+	if len(user.CoursesCustom.IncludeCourses) != 0 && !config.CmpCourse(course.Name, user.CoursesCustom.IncludeCourses) {
+		videosLock.Done()
+		return
+	}
+	//执行刷课---------------------------------
 	nodeList, _ := yinghua.VideosListAction(userCache, *course) //拉取对应课程的视屏列表
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "正在学习课程：", lg.Yellow, " 【"+course.Name+"】 ")
 	// 提交学时

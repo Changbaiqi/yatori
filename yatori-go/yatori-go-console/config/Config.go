@@ -92,3 +92,13 @@ func ReadConfig(filePath string) JSONDataForConfig {
 	}
 	return configJson
 }
+
+// CmpCourse 比较是否存在对应课程
+func CmpCourse(course string, courseList []string) bool {
+	for i := range courseList {
+		if courseList[i] == course {
+			return true
+		}
+	}
+	return false
+}
