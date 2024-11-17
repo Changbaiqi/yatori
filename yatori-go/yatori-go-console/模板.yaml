@@ -21,11 +21,13 @@ users:
 #   url: "xxx" #密码
 #   account: "xxx" #账号
 #   password: "xxx" #密码
-# - accountType: "YINGHUA" #平台类型
+#   coursesCustom:
+#     videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
+#     autoExam: 0 #是否自动考试，0代表不考试，1代表考试
+# - accountType: "CANGHUI" #平台类型
 #   url: "xxx" #密码
 #   account: "xxx" #账号
 #   password: "xxx" #密码
-# - accountType: "YINGHUA" #平台类型
-#   url: "xxx" #密码
-#   account: "xxx" #账号
-#   password: "xxx" #密码
+#   coursesCustom:
+#     videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
+#     autoExam: 0 #是否自动考试，0代表不考试，1代表考试
