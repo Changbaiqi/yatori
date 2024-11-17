@@ -325,11 +325,11 @@ func TestWorkDetail(t *testing.T) {
 		//yinghua.StartWorkAction(&cache, detailAction[0], global.Config.Setting.AiSetting.AiType, global.Config.Setting.AiSetting.APIKEY)
 		fmt.Println(detailAction)
 		//打印最终分数
-		scoreAction, s, error := yinghua.WorkedFinallyScoreAction(&cache, detailAction[0])
+		s, error := yinghua.WorkedFinallyScoreAction(&cache, detailAction[0])
 		if error != nil {
 			log.Fatal(error)
 		}
-		fmt.Println("最高分对应答题次数：", scoreAction, "最高分：", s)
+		fmt.Println("最高分：", s)
 	}
 }
 
@@ -344,9 +344,8 @@ func TestAiAnswer(t *testing.T) {
 			Content: "你好,你叫什么名字",
 		},
 	}}
-	api, _ := utils.TongYiChatReplyApi(setting.AiSetting.APIKEY, messages)
-	//yinghua.YingHuaAiAnswer("TONGYI", setting.AiSetting.APIKEY,
-	//	yinghua.YingHuaExam{Title: "测试试卷名称"},
-	//	utils.ExamTopic{Content: "测试题目内容", Type: "单选题"})
+	//api, _ := utils.TongYiChatReplyApi(setting.AiSetting.APIKEY, messages)
+	api, _ := utils.AggregationAIApi(setting.AiSetting.Model, setting.AiSetting.AiType, messages, setting.AiSetting.APIKEY)
+
 	fmt.Println(api)
 }
