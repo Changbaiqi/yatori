@@ -12,3 +12,4 @@ assets/*
 /config.yaml
 /yatori-go-core/examples/assets/common_old1.onnx
 /yatori-go-core/examples/assets/onnxruntime.dll
+/yatori-go-console/ip.txt

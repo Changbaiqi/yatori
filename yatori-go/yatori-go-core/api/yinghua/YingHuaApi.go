@@ -107,7 +107,7 @@ func (cache *YingHuaUserCache) LoginApi() (string, error) {
 // VerificationCodeApi 获取验证码和SESSION验证码,并返回文件路径和SESSION字符串
 func (cache *YingHuaUserCache) VerificationCodeApi() (string, string) {
 
-	url := cache.PreUrl + "/service/code?r=%7Btime()%7D"
+	url := cache.PreUrl + fmt.Sprintf("/service/code?r=%d", time.Now().Unix())
 	method := "GET"
 
 	client := &http.Client{}

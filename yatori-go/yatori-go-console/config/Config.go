@@ -25,6 +25,7 @@ type BasicSetting struct {
 	LogOutFileSw   int    `json:"logOutFileSw,omitempty"`               //是否输出日志文件0代表不输出，1代表输出，默认为1
 	LogLevel       string `json:"logLevel,omitempty"`                   //日志等级，默认INFO，DEBUG为找BUG调式用的，日志内容较详细，默认为INFO
 	LogModel       int    `json:"logModel"`                             //日志模式，0代表以视屏提交学时基准打印日志，1代表以一个课程为基准打印信息，默认为0
+	IpProxySw      int    `json:"ipProxySw,omitempty"`                  //是否开启IP代理，0代表关，1代表开，默认为关
 }
 type AiSetting struct {
 	AiType string `json:"aiType"`
