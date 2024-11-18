@@ -5,6 +5,7 @@ setting:
     logOutFileSw: 1 #是否开启日志文件输出，0为关闭，1为开启
     logLevel: "INFO" #日志类型，一般INFO即可
     logModel: 0 #日志输出模式，0为以视屏提交学时为单位进行日志输出，1为以课程信息为单位进行输出
+    ipProxySw: 0 #是否开启IP代理，0代表关闭，1代表开启
   aiSetting:
     aiType: "TONGYI" #智普：CHATGLM、星火：XINGHUO、通义千问：TONGYI、豆包：DOUBAO、其他模型：OTHER
     aiUrl: "" #默认不填，除非你用的不是上面所指明的AI模型，比如ChatGPT
