@@ -1,11 +1,13 @@
 package enaea
 
 import (
+	"bytes"
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 	"time"
 )
@@ -135,5 +137,94 @@ func PullCourseVideoListApi(cache *EnaeaUserCache, circleId, courseId string) (s
 		return "", err
 	}
 
+	return string(body), nil
+}
+
+// StatisticTicForCCVideApi 在观看视屏前一定要先调用这个函数，相当于告诉后端，我要看这个视屏了，请对这个视屏开始计时
+func StatisticTicForCCVideApi(cache *EnaeaUserCache, courseId, courseContentId, circleId string) (string, error) {
+	// Construct the URL
+	url := fmt.Sprintf("https://study.enaea.edu.cn/course.do?action=statisticForCCVideo&courseId=%d&coursecontentId=%d&circleId=%d&_=%d",
+		courseId, courseContentId, circleId, time.Now().UnixMilli())
+
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return "", err
+	}
+
+	// Add headers
+	req.Header.Add("Cookie", "ASUSS="+cache.ASUSS+";")
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("Accept", "*/*")
+	req.Header.Add("Host", "study.enaea.edu.cn")
+	req.Header.Add("Connection", "keep-alive")
+
+	// Execute the HTTP request
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+
+	// Process headers to extract SCFUCKP values
+	//for _, cookie := range resp.Cookies() {
+	//	if strings.HasPrefix(cookie.Name, "SCFUCKP") {
+	//		ccVideoRequest.SetSCFUCKPKey(cookie.Name)
+	//		ccVideoRequest.SetSCFUCKPValue(cookie.Value)
+	//	}
+	//}
+
+	return string(body), nil
+}
+
+// SubmitStudyTimeApi 提交学时
+func SubmitStudyTimeApi(cache *EnaeaUserCache, circleId, SCFUCKPKey, SCFUCKPValue, id string, studyTime int) (string, error) {
+	// Create form data
+	data := url.Values{}
+	data.Set("id", id)
+	data.Set("circleId", circleId)
+	data.Set("ct", fmt.Sprintf("%d", studyTime))
+	data.Set("finish", "false")
+
+	// Create the HTTP request
+	client := &http.Client{}
+	req, err := http.NewRequest("POST", "https://study.enaea.edu.cn/studyLog.do", bytes.NewBufferString(data.Encode()))
+	if err != nil {
+		return "", err
+	}
+
+	// Add headers
+	cookie := fmt.Sprintf("ASUSS=%s;%s=%s", cache.ASUSS, SCFUCKPKey, SCFUCKPValue)
+	req.Header.Add("Cookie", cookie)
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("Accept", "*/*")
+	req.Header.Add("Host", "study.enaea.edu.cn")
+	req.Header.Add("Connection", "keep-alive")
+	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+
+	// Execute the HTTP request
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+
+	// Convert JSON string to SubmitLearnTimeRequest struct
+	//submitLearnTimeRequest, err := FromJsonString(string(body))
+	//if err != nil {
+	//	return nil, err
+	//}
 	return string(body), nil
 }
