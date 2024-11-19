@@ -1,25 +1,34 @@
 package logic
 
 import (
+	"math/rand"
 	"os"
 	"strings"
 	"sync"
+	"time"
 	"yatori-go-console/config"
 	"yatori-go-console/logic/xuexitong"
 	"yatori-go-console/logic/yinghua"
+	"yatori-go-console/utils"
 	lg "yatori-go-core/utils/log"
 )
 
 func Lunch() {
-	configJson := config.ReadConfig("./config.yaml")                                                                                                                                       //读取配置文件
-	lg.LogInit(lg.StringToLOGLEVEL(configJson.Setting.BasicSetting.LogLevel), configJson.Setting.BasicSetting.LogOutFileSw == 1, configJson.Setting.BasicSetting.ColorLog, "./assets/log") //初始化日志配置
-	configJsonCheck(&configJson)                                                                                                                                                           //配置文件检查模块
+	//读取配置文件
+	configJson := config.ReadConfig("./config.yaml")
+	//初始化日志配置
+	lg.LogInit(lg.StringToLOGLEVEL(configJson.Setting.BasicSetting.LogLevel), configJson.Setting.BasicSetting.LogOutFileSw == 1, configJson.Setting.BasicSetting.ColorLog, "./assets/log")
+	//配置文件检查模块
+	configJsonCheck(&configJson)
+	//是否开启IP代理池
+	isIpProxy(&configJson)
+
 	brushBlock(&configJson)
 	lg.Print(lg.INFO, lg.Red, "Yatori --- ", "所有任务执行完毕")
 }
 
 var platformLock sync.WaitGroup //平台锁
-// 刷课执行块
+// brushBlock 刷课执行块
 func brushBlock(configData *config.JSONDataForConfig) {
 	//统一登录模块------------------------------------------------------------------
 	yingHuaAccount := yinghua.FilterAccount(configData)
@@ -43,7 +52,7 @@ func brushBlock(configData *config.JSONDataForConfig) {
 	platformLock.Wait()
 }
 
-// 配置文件检测检验
+// configJsonCheck 配置文件检测检验
 func configJsonCheck(configData *config.JSONDataForConfig) {
 	if len(configData.Users) == 0 {
 		lg.Print(lg.INFO, lg.BoldRed, "请先在config文件中配置好相应账号")
@@ -57,4 +66,43 @@ func configJsonCheck(configData *config.JSONDataForConfig) {
 		split := strings.Split(v.URL, "/")
 		(*configData).Users[i].URL = (split[0] + "/" + split[1] + "/" + split[2])
 	}
+}
+
+// isIpProxy 是否开启IP池代理
+func isIpProxy(configData *config.JSONDataForConfig) {
+	if configData.Setting.BasicSetting.IpProxySw == 0 {
+		return
+	}
+	lg.Print(lg.INFO, lg.Yellow, "正在开启IP池代理...")
+	lg.Print(lg.INFO, lg.Yellow, "正在检查IP池IP可用性...")
+	reader, err := utils.IpFilesReader("./ip.txt")
+	if err != nil {
+		lg.Print(lg.INFO, lg.BoldRed, "IP代理池文件ip.txt读取失败，请确认文件格式或者内容是否正确")
+		os.Exit(0)
+	}
+
+	for _, v := range reader {
+		_, state, err := utils.CheckProxyIp(v)
+		if err != nil {
+			lg.Print(lg.INFO, " ["+v+"] ", lg.BoldRed, "该IP代理不可用，错误信息：", err.Error())
+			continue
+		}
+		lg.Print(lg.INFO, " ["+v+"] ", lg.Green, "检测通过，状态：", state)
+		utils.IPProxyPool = append(utils.IPProxyPool, v) //添加到IP代理池里面
+	}
+	lg.Print(lg.INFO, lg.BoldGreen, "IP检查完毕")
+	//若无可用IP代理则直接退出
+	if len(utils.IPProxyPool) == 0 {
+		lg.Print(lg.INFO, lg.BoldRed, "无可用IP代理池，若要继续使用请先检查IP代理池文件内的IP可用性，或者在配置文件关闭IP代理功能")
+		os.Exit(0)
+	}
+	//每隔一定时间切换IP
+	go func() {
+		for {
+			time.Sleep(10 * time.Second)
+			proxyIp := utils.IPProxyPool[rand.Intn(len(utils.IPProxyPool))]
+			os.Setenv("HTTP_PROXY", "http://"+proxyIp)
+			os.Setenv("HTTPS_PROXY", "https://"+proxyIp)
+		}
+	}()
 }
