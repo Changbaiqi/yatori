@@ -218,6 +218,18 @@ func VideosListAction(UserCache *yinghuaApi.YingHuaUserCache, course YingHuaCour
 	return videoList, nil
 }
 
+// SubmitStudyTimeAction 提交学时
+func SubmitStudyTimeAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/) (string, error) {
+	//提交学时
+	sub := yinghuaApi.SubmitStudyTimeApi(*userCache, nodeId, studyId, studyTime)
+	//避免502情况
+	if strings.Contains(sub, "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime)
+	}
+	return sub, nil
+}
+
 // ExamDetailAction 获取考试节点对应信息
 // {"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
 func ExamDetailAction(UserCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]YingHuaExam, error) {

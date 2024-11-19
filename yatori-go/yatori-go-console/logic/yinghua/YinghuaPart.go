@@ -143,7 +143,8 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaA
 			modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.Name, "】 ", " ", lg.Blue, "学习完毕")
 			break //如果看完了，也就是进度为100那么直接跳过
 		}
-		sub := yinghuaApi.SubmitStudyTimeApi(*UserCache, node.Id, studyId, time) //提交学时
+		//提交学时
+		sub, _ := yinghua.SubmitStudyTimeAction(UserCache, node.Id, studyId, time)
 		//超时重登检测
 		yinghua.LoginTimeoutAfreshAction(UserCache, sub)
 		lg.Print(lg.DEBUG, "---", node.Id, sub)
