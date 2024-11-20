@@ -37,6 +37,7 @@ func pad(src []byte, blockSize int) []byte {
 	return append(src, padText...)
 }
 
+// LoginApi 登录Api
 func (cache *XueXiTUserCache) LoginApi() (string, error) {
 	key := []byte(KEY)
 	block, err := aes.NewCipher(key)
