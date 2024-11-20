@@ -9,11 +9,6 @@ import (
 	"runtime"
 )
 
-// 初始化
-//
-//go:embed third_party/onnxruntime.dll
-var onnxruntimeDLL []byte
-
 //go:embed third_party/onnxruntime.dll
 //go:embed third_party/onnxruntime_arm64.so
 //go:embed third_party/onnxruntime_arm64.dylib
@@ -39,7 +34,11 @@ func writeDLLToDisk() {
 	PathExistForCreate("./assets")
 	libPath := "./assets/" + getSharedLibPath()
 	onnx := "./assets/common_old1.onnx"
-	f1 := os.WriteFile(libPath, onnxruntimeDLL, 0644)
+	data, err := onnxruntime.ReadFile("third_party/" + getSharedLibPath())
+	if err != nil {
+		log.Println(err)
+	}
+	f1 := os.WriteFile(libPath, data, 0644)
 	if f1 != nil {
 		log.Fatal(f1)
 	}
