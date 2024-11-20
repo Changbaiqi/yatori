@@ -20,9 +20,13 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.22.4'
-      - name: Set up the working directory
+      # 切换到项目目录并安装依赖
+      - name: Install dependencies
         run: |
-          mkdir ./yatori/yatori-go/yatori-go-console
-        working-directory: ./yatori/yatori-go/yatori-go-console
-      - name: Build
-        run: go build .
+          cd ./yatori-go/yatori-go-console
+          go mod tidy
+      # 构建项目
+      - name: Build project
+        run: |
+          cd ./yatori-go/yatori-go-console
+          go build -v
