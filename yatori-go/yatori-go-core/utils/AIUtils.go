@@ -32,15 +32,15 @@ func AggregationAIApi(url, model, aiType string, aiChatMessages AIChatMessages, 
 	AiMut.Lock()
 	defer AiMut.Unlock()
 	if aiType == "CHATGLM" {
-		return ChatGLMChatReplyApi(model, apiKey, aiChatMessages)
+		return ChatGLMChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 	} else if aiType == "XINGHUO" {
-		return XingHuoChatReplyApi(model, apiKey, aiChatMessages)
+		return XingHuoChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 	} else if aiType == "TONGYI" {
-		return TongYiChatReplyApi(model, apiKey, aiChatMessages)
+		return TongYiChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 	} else if aiType == "DOUBAO" {
-		return DouBaoChatReplyApi(model, apiKey, aiChatMessages)
+		return DouBaoChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 	} else if aiType == "OTHER" {
-		return OtherChatReplyApi(url, model, apiKey, aiChatMessages)
+		return OtherChatReplyApi(url, model, apiKey, aiChatMessages, 3, nil)
 	}
 	return "", errors.New("AI Type: " + aiType)
 }
@@ -66,26 +66,29 @@ func AICheck(url, model, aiType string, apiKey string) error {
 	}
 
 	if aiType == "CHATGLM" {
-		_, err := ChatGLMChatReplyApi(model, apiKey, aiChatMessages)
+		_, err := ChatGLMChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 		return err
 	} else if aiType == "XINGHUO" {
-		_, err := XingHuoChatReplyApi(model, apiKey, aiChatMessages)
+		_, err := XingHuoChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 		return err
 	} else if aiType == "TONGYI" {
-		_, err := TongYiChatReplyApi(model, apiKey, aiChatMessages)
+		_, err := TongYiChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 		return err
 	} else if aiType == "DOUBAO" {
-		_, err := DouBaoChatReplyApi(model, apiKey, aiChatMessages)
+		_, err := DouBaoChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 		return err
 	} else if aiType == "OTHER" {
-		_, err := OtherChatReplyApi(url, model, apiKey, aiChatMessages)
+		_, err := OtherChatReplyApi(url, model, apiKey, aiChatMessages, 3, nil)
 		return err
 	}
 	return errors.New("AI Type: " + aiType)
 }
 
 // 通义千问API
-func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (string, error) {
+func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+	if retryNum < 0 { //重连次数用完直接返回
+		return "", lastErr
+	}
 	if model == "" {
 		model = "qwen-plus"
 	}
@@ -114,17 +117,23 @@ func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (st
 
 	resp, err := client.Do(req)
 	if err != nil {
+		time.Sleep(100 * time.Millisecond)
+		TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, err)
 		return "", fmt.Errorf("failed to execute HTTP request: %v", err)
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
+		time.Sleep(100 * time.Millisecond)
+		TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, err)
 		return "", fmt.Errorf("failed to read response body: %v", err)
 	}
 
 	var responseMap map[string]interface{}
 	if err := json.Unmarshal(body, &responseMap); err != nil {
+		time.Sleep(100 * time.Millisecond)
+		TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, err)
 		log.Printf("response body: %s", body)
 		return "", fmt.Errorf("failed to parse JSON response: %v", err)
 	}
@@ -149,12 +158,15 @@ func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (st
 }
 
 // ChatGLM API
-func ChatGLMChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (string, error) {
+func ChatGLMChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+	if retryNum < 0 { //重连次数用完直接返回
+		return "", lastErr
+	}
 	if model == "" {
 		model = "glm-4"
 	}
 	client := &http.Client{
-		Timeout: 30 * time.Second, // Set connection and read timeout
+		Timeout: 40 * time.Second, // Set connection and read timeout
 	}
 
 	url := "https://open.bigmodel.cn/api/paas/v4/chat/completions"
@@ -178,19 +190,21 @@ func ChatGLMChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (s
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return "", fmt.Errorf("failed to execute HTTP request: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return ChatGLMChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to execute HTTP request: %v", err))
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return ChatGLMChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to read response body: %v", err))
 	}
 
 	var responseMap map[string]interface{}
 	if err := json.Unmarshal(body, &responseMap); err != nil {
-		log.Printf("response body: %s", body)
-		return "", fmt.Errorf("failed to parse JSON response: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return ChatGLMChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to parse JSON response: %v   response body: %s", err, body))
 	}
 
 	choices, ok := responseMap["choices"].([]interface{})
@@ -213,12 +227,15 @@ func ChatGLMChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (s
 }
 
 // 星火API
-func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (string, error) {
+func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+	if retryNum < 0 { //重连次数用完直接返回
+		return "", lastErr
+	}
 	if model == "" {
 		model = "generalv3.5" //默认模型
 	}
 	client := &http.Client{
-		Timeout: 30 * time.Second, // Set connection and read timeout
+		Timeout: 40 * time.Second, // Set connection and read timeout
 	}
 
 	url := "https://spark-api-open.xf-yun.com/v1/chat/completions"
@@ -229,12 +246,14 @@ func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (s
 
 	jsonData, err := json.Marshal(requestBody)
 	if err != nil {
-		return "", fmt.Errorf("failed to marshal JSON data: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return XingHuoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to marshal JSON data: %v", err))
 	}
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
 	if err != nil {
-		return "", fmt.Errorf("failed to create HTTP request: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return XingHuoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to create HTTP request: %v", err))
 	}
 
 	req.Header.Set("Authorization", "Bearer "+apiKey)
@@ -242,27 +261,29 @@ func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (s
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return "", fmt.Errorf("failed to execute HTTP request: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return XingHuoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to execute HTTP request: %v", err))
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return XingHuoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, err)
 	}
 
 	var responseMap map[string]interface{}
 	if err := json.Unmarshal(body, &responseMap); err != nil {
-		log.Printf("response body: %s", body)
-		return "", fmt.Errorf("failed to parse JSON response: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return XingHuoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to parse JSON response: %v   response body: %s", err, body))
 	}
 
 	choices, ok := responseMap["choices"].([]interface{})
 	if !ok || len(choices) == 0 {
 		//防止傻逼星火认为频繁调用报错的问题，踏马老子都加锁了还频繁调用，我频繁密码了
 		if strings.Contains(responseMap["error"].(map[string]interface{})["message"].(string), "AppIdQpsOverFlow") {
-			time.Sleep(time.Millisecond * 50)
-			return XingHuoChatReplyApi(model, apiKey, aiChatMessages)
+			time.Sleep(100 * time.Millisecond)
+			return XingHuoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, err)
 		}
 		log.Printf("unexpected response structure: %v", responseMap)
 		return "", fmt.Errorf("no choices in response")
@@ -282,9 +303,12 @@ func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (s
 }
 
 // DouBaoChatReplyApi 豆包API
-func DouBaoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (string, error) {
+func DouBaoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+	if retryNum < 0 { //重连次数用完直接返回
+		return "", lastErr
+	}
 	client := &http.Client{
-		Timeout: 30 * time.Second, // Set connection and read timeout
+		Timeout: 40 * time.Second, // Set connection and read timeout
 	}
 
 	url := "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
@@ -308,19 +332,22 @@ func DouBaoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (st
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return "", fmt.Errorf("failed to execute HTTP request: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return DouBaoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to execute HTTP request: %v", err))
+
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return DouBaoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to read response body: %v", err))
 	}
 
 	var responseMap map[string]interface{}
 	if err := json.Unmarshal(body, &responseMap); err != nil {
-		log.Printf("response body: %s", body)
-		return "", fmt.Errorf("failed to parse JSON response: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return DouBaoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to parse JSON response: %v    response body: %s", err, body))
 	}
 
 	choices, ok := responseMap["choices"].([]interface{})
@@ -343,9 +370,12 @@ func DouBaoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages) (st
 }
 
 // OtherChatReplyApi 其他支持CHATGPT API格式的AI模型接入
-func OtherChatReplyApi(url, model, apiKey string, aiChatMessages AIChatMessages) (string, error) {
+func OtherChatReplyApi(url, model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+	if retryNum < 0 { //重连次数用完直接返回
+		return "", lastErr
+	}
 	client := &http.Client{
-		Timeout: 30 * time.Second, // Set connection and read timeout
+		Timeout: 40 * time.Second, // Set connection and read timeout
 	}
 	requestBody := map[string]interface{}{
 		"model":    model,
@@ -367,19 +397,21 @@ func OtherChatReplyApi(url, model, apiKey string, aiChatMessages AIChatMessages)
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return "", fmt.Errorf("failed to execute HTTP request: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return OtherChatReplyApi(url, model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to execute HTTP request: %v", err))
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", fmt.Errorf("failed to read response body: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return OtherChatReplyApi(url, model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to read response body: %v", err))
 	}
 
 	var responseMap map[string]interface{}
 	if err := json.Unmarshal(body, &responseMap); err != nil {
-		log.Printf("response body: %s", body)
-		return "", fmt.Errorf("failed to parse JSON response: %v", err)
+		time.Sleep(100 * time.Millisecond)
+		return OtherChatReplyApi(url, model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to parse JSON response: %v    response body: %s", err, body))
 	}
 
 	choices, ok := responseMap["choices"].([]interface{})
