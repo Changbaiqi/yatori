@@ -55,4 +55,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: myapp-binary
-          path: ./yatori-go/yatori-go-console/yatori-go-console-x64
+          path: ./yatori-go/yatori-go-console/yatori-go-console
