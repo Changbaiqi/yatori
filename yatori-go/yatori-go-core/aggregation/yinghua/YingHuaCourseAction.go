@@ -219,13 +219,20 @@ func VideosListAction(UserCache *yinghuaApi.YingHuaUserCache, course YingHuaCour
 }
 
 // SubmitStudyTimeAction 提交学时
-func SubmitStudyTimeAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/) (string, error) {
+func SubmitStudyTimeAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/, retryNum int /*学时提交失败重连次数*/, lastError error) (string, error) {
+	if retryNum < 0 { //如果达到最大重试次数则直接抛错
+		return "", lastError
+	}
 	//提交学时
-	sub := yinghuaApi.SubmitStudyTimeApi(*userCache, nodeId, studyId, studyTime)
+	sub, err := yinghuaApi.SubmitStudyTimeApi(*userCache, nodeId, studyId, studyTime)
 	//避免502情况
 	if strings.Contains(sub, "502 Bad Gateway") {
 		time.Sleep(time.Millisecond * 150) //延迟
-		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime)
+		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum-1, err)
+	}
+	if err != nil {
+		time.Sleep(time.Millisecond * 150) //延迟
+		SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum-1, err)
 	}
 	return sub, nil
 }
@@ -263,7 +270,7 @@ func ExamDetailAction(UserCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 	return examList, nil
 }
 
-// 开始考试
+// StartExamAction 开始考试
 func StartExamAction(userCache *yinghuaApi.YingHuaUserCache, exam YingHuaExam, url, model, aiType, apiKey string) error {
 	//开始考试
 	startExam, err := yinghuaApi.StartExam(*userCache, exam.CourseId, exam.NodeId, exam.ExamId)

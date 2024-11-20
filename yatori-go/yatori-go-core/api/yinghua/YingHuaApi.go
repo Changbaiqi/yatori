@@ -313,7 +313,7 @@ func CourseVideListApi(UserCache YingHuaUserCache, courseId string /*课程ID*/)
 }
 
 // SubmitStudyTimeApi 提交学时
-func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/) string {
+func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏节点ID*/, studyId string /*学习分配ID*/, studyTime int /*提交的学时*/) (string, error) {
 
 	url := UserCache.PreUrl + "/api/node/study.json"
 	method := "POST"
@@ -329,7 +329,7 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 	err := writer.Close()
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", err
 	}
 
 	client := &http.Client{}
@@ -337,7 +337,7 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 
@@ -345,16 +345,16 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 	res, err := client.Do(req)
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", err
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "", err
 	}
-	return string(body)
+	return string(body), nil
 }
 
 // VideStudyTimeApi 获取单个视屏的学习进度

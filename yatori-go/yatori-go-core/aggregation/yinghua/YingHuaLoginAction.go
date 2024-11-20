@@ -48,7 +48,7 @@ func LoginTimeoutAfreshAction(cache *yinghuaApi.YingHuaUserCache, backJson strin
 	if !strings.Contains(backJson, "账号登录超时，请重新登录") {
 		return
 	}
-	log.Print(log.INFO, "["+cache.Account+"] ", log.BoldRed, "检测到登录超时，进行重新登录逻辑...")
+	log.Print(log.INFO, "["+cache.Account+"] ", log.BoldRed, "检测到登录超时，正在进行重新登录逻辑...")
 	err := YingHuaLoginAction(cache)
 	if err != nil {
 		log.Print(log.INFO, "["+cache.Account+"] ", log.BoldRed, "超时重登失败")
