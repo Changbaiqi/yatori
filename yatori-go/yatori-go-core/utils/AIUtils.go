@@ -93,7 +93,7 @@ func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, ret
 		model = "qwen-plus"
 	}
 	client := &http.Client{
-		Timeout: 30 * time.Second, // Set connection and read timeout
+		Timeout: 40 * time.Second, // Set connection and read timeout
 	}
 
 	url := "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
@@ -118,24 +118,20 @@ func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, ret
 	resp, err := client.Do(req)
 	if err != nil {
 		time.Sleep(100 * time.Millisecond)
-		TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, err)
-		return "", fmt.Errorf("failed to execute HTTP request: %v", err)
+		return TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to execute HTTP request: %v", err))
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		time.Sleep(100 * time.Millisecond)
-		TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, err)
-		return "", fmt.Errorf("failed to read response body: %v", err)
+		return TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to read response body: %v", err))
 	}
 
 	var responseMap map[string]interface{}
 	if err := json.Unmarshal(body, &responseMap); err != nil {
 		time.Sleep(100 * time.Millisecond)
-		TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, err)
-		log.Printf("response body: %s", body)
-		return "", fmt.Errorf("failed to parse JSON response: %v", err)
+		return TongYiChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to parse JSON response: %v  response body: %s", err, body))
 	}
 
 	choices, ok := responseMap["choices"].([]interface{})
