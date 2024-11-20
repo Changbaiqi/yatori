@@ -186,7 +186,7 @@ func videoListStudy(UserCache yinghuaApi.YingHuaUserCache, course yinghua.YingHu
 			if video.Progress == 100 {
 				break //如果看完了，也就是进度为100那么直接跳过
 			}
-			sub := yinghuaApi.SubmitStudyTimeApi(UserCache, video.Id, studyId, time) //提交学时
+			sub, _ := yinghuaApi.SubmitStudyTimeApi(UserCache, video.Id, studyId, time) //提交学时
 			if gojsonq.New().JSONString(sub).Find("msg") != "提交学时成功!" {
 				time2.Sleep(5 * time2.Second)
 				continue
