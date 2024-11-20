@@ -48,4 +48,11 @@ jobs:
       - name: Build project
         run: |
           cd ./yatori-go/yatori-go-console
-          go build -v
+          go build -o myapp
+
+      # 上传二进制文件作为 Artifact
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: myapp-binary
+          path: ./yatori-go/yatori-go-console/myapp
