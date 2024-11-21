@@ -30,6 +30,10 @@ type XueXiTUserCache struct {
 	cookie      string //验证码用的session
 }
 
+func (cache *XueXiTUserCache) GetCookie() string {
+	return cache.cookie
+}
+
 // pad 确保数据长度是块大小的整数倍，以便符合块加密算法的要求
 func pad(src []byte, blockSize int) []byte {
 	padding := blockSize - len(src)%blockSize
@@ -96,37 +100,6 @@ func (cache *XueXiTUserCache) LoginApi() (string, error) {
 	}
 
 	cache.JsonContent = jsonContent
-	return string(body), nil
-}
-
-// PullCourses 拉取对应账号的课程数据
-func (cache *XueXiTUserCache) PullCourses() (string, error) {
-
-	url := "https://mooc1-api.chaoxing.com/mycourse/backclazzdata"
-	method := "GET"
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, nil)
-
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	req.Header.Add("Cookie", cache.cookie)
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
-
-	res, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
 	return string(body), nil
 }
 

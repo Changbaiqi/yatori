@@ -41,7 +41,7 @@ func TestLogin(t *testing.T) {
 	}
 }
 
-// 测试学习通登录以及课程数据拉取
+// TestLoginXueXiTo 测试学习通登录以及课程数据拉取
 func TestLoginXueXiTo(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
@@ -81,7 +81,7 @@ func TestCourseDetailXueXiTo(t *testing.T) {
 
 }
 
-// 用于测试学习通对应课程章节信息拉取
+// TestCourseXueXiToChapter 用于测试学习通对应课程章节信息拉取
 func TestCourseXueXiToChapter(t *testing.T) {
 	utils.YatoriCoreInit()
 	//测试账号
@@ -91,6 +91,7 @@ func TestCourseXueXiToChapter(t *testing.T) {
 		Name:     user.Account,
 		Password: user.Password,
 	}
+
 	err := xuexitong.XueXiTLoginAction(&userCache)
 	if err != nil {
 		log.Fatal(err)
