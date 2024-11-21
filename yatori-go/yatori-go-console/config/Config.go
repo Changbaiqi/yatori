@@ -5,6 +5,7 @@ import (
 	"github.com/spf13/viper"
 	"log"
 	"os"
+	"yatori-go-core/models/ctype"
 	log2 "yatori-go-core/utils/log"
 )
 
@@ -28,10 +29,10 @@ type BasicSetting struct {
 	IpProxySw      int    `json:"ipProxySw,omitempty"`                  //是否开启IP代理，0代表关，1代表开，默认为关
 }
 type AiSetting struct {
-	AiType string `json:"aiType"`
-	AiUrl  string `json:"aiUrl"`
-	Model  string `json:"model"`
-	APIKEY string `json:"API_KEY" yaml:"API_KEY" mapstructure:"API_KEY"`
+	AiType ctype.AiType `json:"aiType"`
+	AiUrl  string       `json:"aiUrl"`
+	Model  string       `json:"model"`
+	APIKEY string       `json:"API_KEY" yaml:"API_KEY" mapstructure:"API_KEY"`
 }
 type Setting struct {
 	BasicSetting BasicSetting `json:"basicSetting"`

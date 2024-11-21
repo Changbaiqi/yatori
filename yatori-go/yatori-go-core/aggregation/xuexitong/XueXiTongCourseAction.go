@@ -47,14 +47,20 @@ func XueXiTCourseDetailForCourseIdAction(cache *xuexitong.XueXiTUserCache, cours
 		personId := strings.Split(strings.Split(sqUrl, "personId=")[1], "&classId")[0]
 		classId := strings.Split(strings.Split(sqUrl, "classId=")[1], "&userId")[0]
 		userId := strings.Split(sqUrl, "userId=")[1]
-		course := entity.XueXiTCourse{CourseName: channel.Content.Name, ClassId: classId, CourseId: courseId, Cpi: strconv.FormatInt(channel.Cpi, 32), PersonId: personId, UserId: userId}
+		course := entity.XueXiTCourse{
+			CourseName: channel.Content.Name,
+			ClassId:    classId,
+			CourseId:   courseId,
+			Cpi:        strconv.FormatInt(channel.Cpi, 32),
+			PersonId:   personId,
+			UserId:     userId}
 		return course, nil
 	}
 	log2.Print(log2.INFO, "["+cache.Name+"] "+" 课程不存在")
 	return entity.XueXiTCourse{}, nil
 }
 
-// PullCourseChapter 获取对应课程的章节信息包括节点信息
+// PullCourseChapterAction 获取对应课程的章节信息包括节点信息
 func PullCourseChapterAction(cache *xuexitong.XueXiTUserCache, courseId, personId, classId, userId string) (string, error) {
 
 	//必要参数/courseId/personId/classId/userId/时间戳/timeid
