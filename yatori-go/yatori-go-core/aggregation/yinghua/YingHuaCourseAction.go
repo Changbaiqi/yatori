@@ -180,7 +180,10 @@ func VideosListAction(UserCache *yinghuaApi.YingHuaUserCache, course YingHuaCour
 	//接口二而爬取视屏信息
 	signalSet := make(map[string]bool)
 	for i := 1; i < 999; i++ {
-		listJson1 := yinghuaApi.VideWatchRecodeApi(*UserCache, course.Id, i)
+		listJson1, err := yinghuaApi.VideWatchRecodeApi(*UserCache, course.Id, i, 10, nil)
+		if err != nil {
+			log.Print(log.INFO, `[`, UserCache.Account, `] `, log.BoldRed, err)
+		}
 		log.Print(log.DEBUG, `[`, UserCache.Account, `] `, `CourseListAction---`, listJson1)
 		//如果获取失败
 		if gojsonq.New().JSONString(listJson).Find("msg") != "获取数据成功" {
@@ -231,15 +234,16 @@ func SubmitStudyTimeAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string
 	if strings.Contains(sub, "502 Bad Gateway") {
 		time.Sleep(time.Millisecond * 150) //延迟
 		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum-1, err)
-	}
-	if err != nil {
+	} else if err != nil {
 		time.Sleep(time.Millisecond * 150) //延迟
 		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum-1, err)
-	}
-	if err != nil && strings.Contains(err.Error(), "Timeout") {
+	} else if err != nil && strings.Contains(err.Error(), "Timeout") { //超时则直接重试
 		time.Sleep(time.Millisecond * 150) //延迟
 		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum, err)
+	} else if err != nil { //其他错误
+		return "", err
 	}
+
 	return sub, nil
 }
 
@@ -302,7 +306,7 @@ func StartExamAction(
 	url, model, apiKey string,
 	aiType ctype.AiType) error {
 	//开始考试
-	startExam, err := yinghuaApi.StartExam(*userCache, exam.CourseId, exam.NodeId, exam.ExamId)
+	startExam, err := yinghuaApi.StartExam(*userCache, exam.CourseId, exam.NodeId, exam.ExamId, 10, nil)
 	if err != nil {
 		log.Print(log.INFO, err.Error())
 		return errors.New(err.Error())

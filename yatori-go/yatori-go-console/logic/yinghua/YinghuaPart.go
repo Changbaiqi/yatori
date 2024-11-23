@@ -144,7 +144,10 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaA
 			break //如果看完了，也就是进度为100那么直接跳过
 		}
 		//提交学时
-		sub, _ := yinghua.SubmitStudyTimeAction(UserCache, node.Id, studyId, time, 6, nil)
+		sub, err := yinghua.SubmitStudyTimeAction(UserCache, node.Id, studyId, time, 6, nil)
+		if err != nil {
+			lg.Print(lg.INFO, `[`, UserCache.Account, `] `, lg.BoldRed, "提交学时接口访问异常，返回信息：", err.Error())
+		}
 		//超时重登检测
 		yinghua.LoginTimeoutAfreshAction(UserCache, sub)
 		lg.Print(lg.DEBUG, "---", node.Id, sub)

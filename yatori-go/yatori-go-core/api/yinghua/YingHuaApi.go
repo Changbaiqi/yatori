@@ -365,7 +365,7 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 	_ = writer.WriteField("studyId", studyId)
 	err := writer.Close()
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return "", err
 	}
 
@@ -379,7 +379,7 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return "", err
 	}
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
@@ -387,14 +387,14 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return "", err
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return "", err
 	}
 	return string(body), nil
@@ -447,8 +447,10 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 }
 
 // VideWatchRecodeApi 获取指定课程视屏观看记录
-func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int) string {
-
+func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int, retry int, lastError error) (string, error) {
+	if retry < 0 {
+		return "", lastError
+	}
 	url := UserCache.PreUrl + "/api/record/video.json"
 	method := "POST"
 
@@ -461,8 +463,8 @@ func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int) s
 	_ = writer.WriteField("page", strconv.Itoa(page))
 	err := writer.Close()
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
 
 	tr := &http.Transport{
@@ -472,25 +474,25 @@ func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int) s
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
-	return string(body)
+	return string(body), nil
 }
 
 // ExamDetailApi 获取考试信息
@@ -543,8 +545,10 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 
 // StartExam 开始考试接口
 // {"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string) (string, error) {
-
+func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string, retryNum int, lastError error) (string, error) {
+	if retryNum < 0 {
+		return "", lastError
+	}
 	url := userCache.PreUrl + "/api/exam/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&examId=" + examId
 	method := "GET"
 
@@ -556,21 +560,24 @@ func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string) (str
 
 	if err != nil {
 		fmt.Println(err)
-		return "", nil
+		time.Sleep(100 * time.Millisecond)
+		return StartExam(userCache, courseId, nodeId, examId, retryNum-1, err)
 	}
 	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {
 		fmt.Println(err)
-		return "", nil
+		time.Sleep(100 * time.Millisecond)
+		return StartExam(userCache, courseId, nodeId, examId, retryNum-1, err)
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println(err)
-		return "", nil
+		time.Sleep(100 * time.Millisecond)
+		return StartExam(userCache, courseId, nodeId, examId, retryNum-1, err)
 	}
 	return string(body), nil
 }
