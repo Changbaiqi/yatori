@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 	yinghuaApi "yatori-go-core/api/yinghua"
+	"yatori-go-core/models/ctype"
 	"yatori-go-core/utils"
 	"yatori-go-core/utils/log"
 )
@@ -271,7 +272,11 @@ func ExamDetailAction(UserCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 }
 
 // StartExamAction 开始考试
-func StartExamAction(userCache *yinghuaApi.YingHuaUserCache, exam YingHuaExam, url, model, aiType, apiKey string) error {
+func StartExamAction(
+	userCache *yinghuaApi.YingHuaUserCache,
+	exam YingHuaExam,
+	url, model, apiKey string,
+	aiType ctype.AiType) error {
 	//开始考试
 	startExam, err := yinghuaApi.StartExam(*userCache, exam.CourseId, exam.NodeId, exam.ExamId)
 	if err != nil {
@@ -373,7 +378,10 @@ func WorkDetailAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 }
 
 // StartWorkAction 开始写作业
-func StartWorkAction(userCache *yinghuaApi.YingHuaUserCache, work YingHuaWork, url, model, aiType, apiKey string) error {
+func StartWorkAction(userCache *yinghuaApi.YingHuaUserCache,
+	work YingHuaWork,
+	url, model, apiKey string,
+	aiType ctype.AiType) error {
 	//开始考试
 	startWork, err := yinghuaApi.StartWork(*userCache, work.CourseId, work.NodeId, work.WorkId)
 	if err != nil {

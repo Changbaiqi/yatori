@@ -11,9 +11,10 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"yatori-go-core/models/ctype"
 )
 
-// ChatGLMChat struct that holds the chat messages.
+// AIChatMessages ChatGLMChat struct that holds the chat messages.
 type AIChatMessages struct {
 	Messages []Message `json:"messages"`
 }
@@ -24,29 +25,35 @@ type Message struct {
 	Content string `json:"content"`
 }
 
-// AI锁，防止同时过多调用
+// AiMut AI锁，防止同时过多调用
 var AiMut sync.Mutex
 
 // AggregationAIApi 聚合所有AI接口，直接通过aiType判断然后返回内容
-func AggregationAIApi(url, model, aiType string, aiChatMessages AIChatMessages, apiKey string) (string, error) {
+func AggregationAIApi(url,
+	model string,
+	aiType ctype.AiType,
+	aiChatMessages AIChatMessages,
+	apiKey string) (string, error) {
 	AiMut.Lock()
 	defer AiMut.Unlock()
-	if aiType == "CHATGLM" {
+	switch aiType {
+	case ctype.ChatGLM:
 		return ChatGLMChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
-	} else if aiType == "XINGHUO" {
+	case ctype.XingHuo:
 		return XingHuoChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
-	} else if aiType == "TONGYI" {
+	case ctype.TongYi:
 		return TongYiChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
-	} else if aiType == "DOUBAO" {
+	case ctype.DouBao:
 		return DouBaoChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
-	} else if aiType == "OTHER" {
+	case ctype.Other:
 		return OtherChatReplyApi(url, model, apiKey, aiChatMessages, 3, nil)
+	default:
+		return "", errors.New(string("AI Type: " + aiType))
 	}
-	return "", errors.New("AI Type: " + aiType)
 }
 
 // AICheck AI可用性检测
-func AICheck(url, model, aiType string, apiKey string) error {
+func AICheck(url, model, apiKey string, aiType ctype.AiType) error {
 	AiMut.Lock()
 	defer AiMut.Unlock()
 	aiChatMessages := AIChatMessages{
@@ -65,27 +72,35 @@ func AICheck(url, model, aiType string, apiKey string) error {
 		return errors.New("无效apiKey，请检查apiKey是否正确填写")
 	}
 
-	if aiType == "CHATGLM" {
+	switch aiType {
+	case ctype.ChatGLM:
 		_, err := ChatGLMChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 		return err
-	} else if aiType == "XINGHUO" {
+	case ctype.XingHuo:
 		_, err := XingHuoChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 		return err
-	} else if aiType == "TONGYI" {
+	case ctype.TongYi:
 		_, err := TongYiChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 		return err
-	} else if aiType == "DOUBAO" {
+	case ctype.DouBao:
 		_, err := DouBaoChatReplyApi(model, apiKey, aiChatMessages, 3, nil)
 		return err
-	} else if aiType == "OTHER" {
+	case ctype.Other:
 		_, err := OtherChatReplyApi(url, model, apiKey, aiChatMessages, 3, nil)
 		return err
+	default:
+		return errors.New(string("AI Type: " + aiType))
 	}
-	return errors.New("AI Type: " + aiType)
 }
 
-// 通义千问API
-func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+// TongYiChatReplyApi 通义千问API
+func TongYiChatReplyApi(
+	model,
+	apiKey string,
+	aiChatMessages AIChatMessages,
+	retryNum int, /*最大重连次数*/
+	lastErr error,
+) (string, error) {
 	if retryNum < 0 { //重连次数用完直接返回
 		return "", lastErr
 	}
@@ -93,7 +108,7 @@ func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, ret
 		model = "qwen-plus"
 	}
 	client := &http.Client{
-		Timeout: 40 * time.Second, // Set connection and read timeout
+		Timeout: 30 * time.Second, // Set connection and read timeout
 	}
 
 	url := "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
@@ -154,15 +169,21 @@ func TongYiChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, ret
 }
 
 // ChatGLM API
-func ChatGLMChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
-	if retryNum < 0 { //重连次数用完直接返回
-		return "", lastErr
-	}
+func ChatGLMChatReplyApi(
+	model,
+	apiKey string,
+	aiChatMessages AIChatMessages,
+	retryNum int, /*最大重连次数*/
+	lastErr error,
+) (string, error) {
 	if model == "" {
 		model = "glm-4"
 	}
+	if retryNum < 0 { //重连次数用完直接返回
+		return "", lastErr
+	}
 	client := &http.Client{
-		Timeout: 40 * time.Second, // Set connection and read timeout
+		Timeout: 30 * time.Second, // Set connection and read timeout
 	}
 
 	url := "https://open.bigmodel.cn/api/paas/v4/chat/completions"
@@ -223,7 +244,12 @@ func ChatGLMChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, re
 }
 
 // 星火API
-func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+func XingHuoChatReplyApi(model,
+	apiKey string,
+	aiChatMessages AIChatMessages,
+	retryNum int, /*最大重连次数*/
+	lastErr error,
+) (string, error) {
 	if retryNum < 0 { //重连次数用完直接返回
 		return "", lastErr
 	}
@@ -231,7 +257,7 @@ func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, re
 		model = "generalv3.5" //默认模型
 	}
 	client := &http.Client{
-		Timeout: 40 * time.Second, // Set connection and read timeout
+		Timeout: 30 * time.Second, // Set connection and read timeout
 	}
 
 	url := "https://spark-api-open.xf-yun.com/v1/chat/completions"
@@ -250,6 +276,7 @@ func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, re
 	if err != nil {
 		time.Sleep(100 * time.Millisecond)
 		return XingHuoChatReplyApi(model, apiKey, aiChatMessages, retryNum-1, fmt.Errorf("failed to create HTTP request: %v", err))
+
 	}
 
 	req.Header.Set("Authorization", "Bearer "+apiKey)
@@ -299,7 +326,12 @@ func XingHuoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, re
 }
 
 // DouBaoChatReplyApi 豆包API
-func DouBaoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+func DouBaoChatReplyApi(model,
+	apiKey string,
+	aiChatMessages AIChatMessages,
+	retryNum int, /*最大重连次数*/
+	lastErr error,
+) (string, error) {
 	if retryNum < 0 { //重连次数用完直接返回
 		return "", lastErr
 	}
@@ -366,7 +398,13 @@ func DouBaoChatReplyApi(model, apiKey string, aiChatMessages AIChatMessages, ret
 }
 
 // OtherChatReplyApi 其他支持CHATGPT API格式的AI模型接入
-func OtherChatReplyApi(url, model, apiKey string, aiChatMessages AIChatMessages, retryNum int /*最大重连次数*/, lastErr error) (string, error) {
+func OtherChatReplyApi(url,
+	model,
+	apiKey string,
+	aiChatMessages AIChatMessages,
+	retryNum int, /*最大重连次数*/
+	lastErr error,
+) (string, error) {
 	if retryNum < 0 { //重连次数用完直接返回
 		return "", lastErr
 	}
