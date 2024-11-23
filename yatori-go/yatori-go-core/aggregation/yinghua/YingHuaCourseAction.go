@@ -236,7 +236,7 @@ func SubmitStudyTimeAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string
 		time.Sleep(time.Millisecond * 150) //延迟
 		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum-1, err)
 	}
-	if strings.Contains(err.Error(), "Timeout") {
+	if err != nil && strings.Contains(err.Error(), "Timeout") {
 		time.Sleep(time.Millisecond * 150) //延迟
 		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum, err)
 	}
