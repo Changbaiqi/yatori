@@ -78,7 +78,15 @@ func (cache *YingHuaUserCache) LoginApi() (string, error) {
 		return "", err
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -111,7 +119,16 @@ func (cache *YingHuaUserCache) VerificationCodeApi() (string, string) {
 	url := cache.PreUrl + fmt.Sprintf("/service/code?r=%d", time.Now().Unix())
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
+
 	req, err := http.NewRequest(method, url, nil)
 	req.Header.Add("Cookie", cache.cookie)
 
@@ -339,14 +356,17 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
 		fmt.Println(err)
 		return "", err
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -392,7 +412,7 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 		fmt.Println(err)
 		return ""
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -439,7 +459,7 @@ func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int) s
 		fmt.Println(err)
 		return ""
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -487,7 +507,7 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 		fmt.Println(err)
 		return ""
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -522,7 +542,7 @@ func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string) (str
 		fmt.Println(err)
 		return "", nil
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {
@@ -562,7 +582,7 @@ func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string,
 	}
 
 	// Set the headers
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
@@ -626,7 +646,7 @@ func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish 
 	}
 
 	// Set the headers
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
@@ -680,7 +700,7 @@ func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 		fmt.Println(err)
 		return ""
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -714,7 +734,7 @@ func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (str
 		fmt.Println(err)
 		return "", nil
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {
@@ -755,7 +775,7 @@ func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, erro
 		fmt.Println(err)
 		return "", nil
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -818,7 +838,7 @@ func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish 
 	}
 
 	// Set the headers
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
@@ -854,7 +874,7 @@ func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId
 		return "", err
 	}
 	req.Header.Add("Cookie", userCache.cookie)
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {
@@ -888,7 +908,7 @@ func ExamFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId s
 		return "", err
 	}
 	req.Header.Add("Cookie", userCache.cookie)
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {
