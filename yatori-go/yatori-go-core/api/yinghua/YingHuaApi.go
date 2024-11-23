@@ -285,7 +285,15 @@ func (cache *YingHuaUserCache) CourseDetailApi(courseId string) (string, error) 
 		return "", err
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Add("Cookie", cache.cookie)
 
@@ -328,9 +336,14 @@ func CourseVideListApi(UserCache YingHuaUserCache, courseId string /*课程ID*/)
 	}
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
@@ -425,9 +438,14 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 	}
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -474,9 +492,14 @@ func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int, r
 	}
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
@@ -521,9 +544,14 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 	}
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Add("Cookie", UserCache.cookie)
 
@@ -559,9 +587,14 @@ func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string, retr
 	method := "GET"
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
@@ -757,9 +790,14 @@ func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (str
 	method := "GET"
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
@@ -798,9 +836,14 @@ func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, erro
 	}
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -896,9 +939,14 @@ func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId
 	method := "GET"
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
@@ -930,9 +978,14 @@ func ExamFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId s
 	method := "GET"
 
 	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
