@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/thedevsaddam/gojsonq"
+	"math/rand"
 	"os"
 	"regexp"
 	"strconv"
@@ -233,7 +234,11 @@ func SubmitStudyTimeAction(userCache *yinghuaApi.YingHuaUserCache, nodeId string
 	}
 	if err != nil {
 		time.Sleep(time.Millisecond * 150) //延迟
-		SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum-1, err)
+		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum-1, err)
+	}
+	if strings.Contains(err.Error(), "Timeout") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return SubmitStudyTimeAction(userCache, nodeId, studyId, studyTime, retryNum, err)
 	}
 	return sub, nil
 }
@@ -271,6 +276,25 @@ func ExamDetailAction(UserCache *yinghuaApi.YingHuaUserCache, nodeId string) ([]
 	return examList, nil
 }
 
+// randomAnswer 如果AI出问题那么直接随机返回答案
+func randomAnswer(topic utils.ExamTopic) string {
+	if topic.Type == "单选" {
+		sct := rand.Intn(len(topic.Selects))
+		return "[" + topic.Selects[sct].Value + "]"
+	} else if topic.Type == "多选" {
+		sct := "["
+		for i := 0; i < len(topic.Selects); i++ {
+			sct = sct + topic.Selects[i].Value
+			if i != len(topic.Selects)-1 {
+				sct += " "
+			}
+		}
+		sct = sct + "]"
+		return sct
+	}
+	return ""
+}
+
 // StartExamAction 开始考试
 func StartExamAction(
 	userCache *yinghuaApi.YingHuaUserCache,
@@ -304,7 +328,9 @@ func StartExamAction(
 		aiAnswer, err := utils.AggregationAIApi(url, model, aiType, aiMessage, apiKey)
 		if err != nil {
 			log.Print(log.INFO, `[`, userCache.Account, `] `, log.BoldRed, "Ai异常，返回信息：", err.Error())
-			os.Exit(0)
+			//os.Exit(0)
+			log.Print(log.INFO, `[`, userCache.Account, `] `, log.BoldRed, "Ai异常", exam.Title, "第", v.Index, "随机填写答案", "题目内容：", v.Content)
+			aiAnswer = randomAnswer(v)
 		}
 		//fmt.Println(aiAnswer)
 		subWorkApi, err := yinghuaApi.SubmitExamApi(*userCache, exam.ExamId, k, aiAnswer, "0")
