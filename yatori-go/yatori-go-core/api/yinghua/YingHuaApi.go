@@ -2,6 +2,7 @@ package yinghua
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -287,7 +288,10 @@ func CourseVideListApi(UserCache YingHuaUserCache, courseId string /*课程ID*/)
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
@@ -332,7 +336,10 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 		return "", err
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -375,7 +382,10 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -419,7 +429,10 @@ func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int) s
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
@@ -463,7 +476,10 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Add("Cookie", UserCache.cookie)
 
@@ -496,7 +512,10 @@ func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string) (str
 	url := userCache.PreUrl + "/api/exam/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&examId=" + examId
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
@@ -524,8 +543,12 @@ func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string) (str
 func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string, error) {
 
 	// Creating a custom HTTP client with timeout and SSL context (skip SSL setup for simplicity)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
 	client := &http.Client{
-		Timeout: 30 * time.Second,
+		Transport: tr,
+		Timeout:   30 * time.Second,
 	}
 
 	// Creating the request body (empty JSON object)
@@ -563,8 +586,12 @@ func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string,
 // SubmitExamApi 提交考试答案接口
 func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish string) (string, error) {
 	// Creating the HTTP client with a timeout (30 seconds)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
 	client := &http.Client{
-		Timeout: 30 * time.Second,
+		Timeout:   30 * time.Second,
+		Transport: tr,
 	}
 
 	// Create a buffer to hold the multipart form data
@@ -642,7 +669,10 @@ func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Add("Cookie", userCache.cookie)
 
@@ -674,7 +704,10 @@ func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (str
 	url := userCache.PreUrl + "/api/work/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&workId=" + workId
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
@@ -712,7 +745,10 @@ func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, erro
 		return "", nil
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -741,9 +777,13 @@ func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, erro
 // SubmitWorkApi 提交作业答案接口
 func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish string /*finish代表是否是最后提交并且结束考试，0代表不是，1代表是*/) (string, error) {
 
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
 	// Creating the HTTP client with a timeout (30 seconds)
 	client := &http.Client{
-		Timeout: 30 * time.Second,
+		Timeout:   30 * time.Second,
+		Transport: tr,
 	}
 
 	// Create a buffer to hold the multipart form data
@@ -803,7 +843,10 @@ func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId
 	url := userCache.PreUrl + "/api/work.json?nodeId=" + nodeId + "&workId=" + workId + "&token=" + userCache.token
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
@@ -834,7 +877,10 @@ func ExamFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId s
 	url := userCache.PreUrl + "/api/exam.json?nodeId=" + nodeId + "&examId=" + workId + "&token=" + userCache.token
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{Transport: tr}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
