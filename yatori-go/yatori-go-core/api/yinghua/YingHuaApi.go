@@ -181,7 +181,15 @@ func KeepAliveApi(UserCache YingHuaUserCache) string {
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -223,7 +231,15 @@ func (cache *YingHuaUserCache) CourseListApi() (string, error) {
 		return "", err
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", cache.cookie)
 	if err != nil {
@@ -692,7 +708,10 @@ func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
 	}
-	client := &http.Client{Transport: tr}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Add("Cookie", userCache.cookie)
 
