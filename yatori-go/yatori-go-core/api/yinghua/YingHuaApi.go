@@ -114,6 +114,8 @@ func (cache *YingHuaUserCache) LoginApi() (string, error) {
 }
 
 // VerificationCodeApi 获取验证码和SESSION验证码,并返回文件路径和SESSION字符串
+var randChar []string = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F"}
+
 func (cache *YingHuaUserCache) VerificationCodeApi() (string, string) {
 
 	url := cache.PreUrl + fmt.Sprintf("/service/code?r=%d", time.Now().Unix())
@@ -145,8 +147,12 @@ func (cache *YingHuaUserCache) VerificationCodeApi() (string, string) {
 	}
 	defer res.Body.Close()
 
-	codeFileName := "code" + strconv.Itoa(rand.Intn(99999)) + ".png" //生成验证码文件名称
-	utils.PathExistForCreate("./assets/code/")                       //检测是否存在路径，如果不存在则创建
+	codeFileName := "code" + randChar[rand.Intn(len(randChar))] //生成验证码文件名称
+	for i := 0; i < 10; i++ {
+		codeFileName += randChar[rand.Intn(len(randChar))]
+	}
+	codeFileName += ".png"
+	utils.PathExistForCreate("./assets/code/") //检测是否存在路径，如果不存在则创建
 	filepath := fmt.Sprintf("./assets/code/%s", codeFileName)
 	file, err := os.Create(filepath)
 	if err != nil {
