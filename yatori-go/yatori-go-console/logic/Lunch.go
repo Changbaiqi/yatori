@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 	"yatori-go-console/config"
+	"yatori-go-console/logic/enaea"
 	"yatori-go-console/logic/xuexitong"
 	"yatori-go-console/logic/yinghua"
 	"yatori-go-console/utils"
@@ -33,6 +34,8 @@ func brushBlock(configData *config.JSONDataForConfig) {
 	//统一登录模块------------------------------------------------------------------
 	yingHuaAccount := yinghua.FilterAccount(configData)
 	yingHuaOperation := yinghua.UserLoginOperation(yingHuaAccount)
+	enaeaAccount := enaea.FilterAccount(configData)
+	enaeaOperation := enaea.UserLoginOperation(enaeaAccount)
 	xueXiTongAccount := xuexitong.FilterAccount(configData)
 	xueXiTongOperation := xuexitong.UserLoginOperation(xueXiTongAccount)
 
@@ -41,6 +44,12 @@ func brushBlock(configData *config.JSONDataForConfig) {
 	platformLock.Add(1)
 	go func() {
 		yinghua.RunBrushOperation(configData.Setting, yingHuaAccount, yingHuaOperation) //英华统一刷课模块
+		platformLock.Done()
+	}()
+	//学习公社
+	platformLock.Add(1)
+	go func() {
+		enaea.RunBrushOperation(configData.Setting, enaeaAccount, enaeaOperation) //学习公社统一刷课模块
 		platformLock.Done()
 	}()
 	//学习通

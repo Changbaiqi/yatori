@@ -177,3 +177,11 @@ func SubmitStudyTimeAction(cache *enaea.EnaeaUserCache, video *EnaeaVideo, time 
 	fmt.Println(api)
 	return nil
 }
+
+// 超时重登
+func LoginTimeoutAfreshAction(cache *enaea.EnaeaUserCache, err error) {
+	if err == nil {
+		return
+	}
+	EnaeaLoginAction(cache)
+}
