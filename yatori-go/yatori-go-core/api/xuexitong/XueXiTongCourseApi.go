@@ -22,7 +22,7 @@ func (cache *XueXiTUserCache) CourseListApi() (string, error) {
 	method := "GET"
 
 	client := &http.Client{}
-	req, err := http.NewRequest(method, API_PULL_COURSES, nil)
+	req, err := http.NewRequest(method, ApiPullCourses, nil)
 
 	if err != nil {
 		return "", err

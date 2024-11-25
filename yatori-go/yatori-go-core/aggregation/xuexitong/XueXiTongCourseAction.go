@@ -2,12 +2,8 @@ package xuexitong
 
 import (
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
 	"strconv"
 	"strings"
-	"time"
 	"yatori-go-core/api/entity"
 	"yatori-go-core/api/xuexitong"
 	log2 "yatori-go-core/utils/log"
@@ -61,33 +57,12 @@ func XueXiTCourseDetailForCourseIdAction(cache *xuexitong.XueXiTUserCache, cours
 }
 
 // PullCourseChapterAction 获取对应课程的章节信息包括节点信息
-func PullCourseChapterAction(cache *xuexitong.XueXiTUserCache, courseId, personId, classId, userId string) (string, error) {
-
-	//必要参数/courseId/personId/classId/userId/时间戳/timeid
-	url := "https://tsjy.chaoxing.com/plaza/course/" + courseId + "/classify-list?classId=" + classId
-	method := "GET"
-
-	client := &http.Client{}
-	req, err := http.NewRequest(method, url, nil)
-
+func PullCourseChapterAction(cache *xuexitong.XueXiTUserCache, cpi, key int) (string, error) {
+	//拉取对应课程的章节信息
+	chapter, err := cache.PullChapter(cpi, key)
 	if err != nil {
-		fmt.Println(err)
-		return "", nil
+		log2.Print(log2.INFO, "["+cache.Name+"] "+" 拉取章节失败")
+		return "", err
 	}
-	req.Header.Add("Referer", "https://tsjy.chaoxing.com/plaza/app.html?/"+courseId+"/"+personId+"/"+classId+"/"+userId+"/"+strconv.FormatInt(time.Now().Unix(), 32)+"timeid")
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
-
-	res, err := client.Do(req)
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	defer res.Body.Close()
-
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-		return "", nil
-	}
-	return string(body), nil
+	return chapter, nil
 }
