@@ -11,18 +11,17 @@ import (
 	modelLog "yatori-go-console/utils/log"
 	"yatori-go-core/aggregation/enaea"
 	enaeaApi "yatori-go-core/api/enaea"
-	yinghuaApi "yatori-go-core/api/yinghua"
 	lg "yatori-go-core/utils/log"
 )
 
 var videosLock sync.WaitGroup //视屏锁
 var usersLock sync.WaitGroup  //用户锁
 
-// 用于过滤英华账号
+// 用于过滤学习公社账号
 func FilterAccount(configData *config.JSONDataForConfig) []config.Users {
 	var users []config.Users //用于收集英华账号
 	for _, user := range configData.Users {
-		if user.AccountType == "YINGHUA" {
+		if user.AccountType == "ENAEA" {
 			users = append(users, user)
 		}
 	}
@@ -46,7 +45,7 @@ func UserLoginOperation(users []config.Users) []*enaeaApi.EnaeaUserCache {
 	for _, user := range users {
 		if user.AccountType == "ENAEA" {
 			cache := &enaeaApi.EnaeaUserCache{Account: user.Account, Password: user.Password}
-			error := enaea.EnaeaLoginAction(cache) // 登录
+			_, error := enaea.EnaeaLoginAction(cache) // 登录
 			if error != nil {
 				lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.White, "] ", lg.Red, error.Error())
 				log.Fatal(error) //登录失败则直接退出
@@ -69,10 +68,14 @@ func userBlock(setting config.Setting, user *config.Users, cache *enaeaApi.Enaea
 			lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.Default, "] ", lg.BoldRed, "拉取课程列表错误", err.Error())
 			os.Exit(0)
 		}
-		for _, item := range courseList { //遍历所有待刷视屏
-			videosLock.Add(1)
-			go nodeListStudy(setting, user, cache, &item) //多携程刷课
-		}
+		videosLock.Add(1)
+		go func() {
+			for _, item := range courseList { //遍历所有待刷视屏
+				nodeListStudy(setting, user, cache, &item) //多携程刷课
+			}
+			videosLock.Done()
+		}()
+
 	}
 
 	videosLock.Wait()
@@ -83,15 +86,6 @@ func userBlock(setting config.Setting, user *config.Users, cache *enaeaApi.Enaea
 		soundMut.Unlock()
 	}
 	usersLock.Done()
-}
-
-// 用于登录保活
-func keepAliveLogin(UserCache *yinghuaApi.YingHuaUserCache) {
-	for {
-		api := yinghuaApi.KeepAliveApi(*UserCache)
-		lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.DarkGray, "登录心跳保活状态：", api)
-		time2.Sleep(time2.Minute * 5) //每隔五分钟一次心跳保活
-	}
 }
 
 // 章节节点的抽离函数
@@ -108,7 +102,14 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *enaeaA
 		return
 	}
 	//执行刷课---------------------------------
-	nodeList, _ := enaea.VideoListAction(userCache, course.CircleId, course.CourseId) //拉取对应课程的视屏列表
+	nodeList, err := enaea.VideoListAction(userCache, course.CircleId, course.CourseId) //拉取对应课程的视屏列表
+	//失效重登检测
+	for err != nil {
+		enaea.LoginTimeoutAfreshAction(userCache, err)
+		nodeList1, err1 := enaea.VideoListAction(userCache, course.CircleId, course.CourseId) //拉取对应课程的视屏列表
+		nodeList = nodeList1
+		err = err1
+	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "正在学习课程：", lg.Yellow, " 【"+course.CourseTitle+"】 ")
 	// 提交学时
 	for _, node := range nodeList {
@@ -116,7 +117,7 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *enaeaA
 		videoAction(setting, user, userCache, node)
 	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Green, "课程", " 【"+course.CourseTitle+"】 ", "学习完毕")
-	videosLock.Done()
+
 }
 
 // videoAction 刷视频逻辑抽离
@@ -126,6 +127,10 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *enaeaApi
 	}
 
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视屏：", lg.Default, " 【"+node.FileName+"】 ")
+	err := enaea.StatisticTicForCCVideAction(UserCache, &node)
+	if err != nil {
+		lg.Print(lg.INFO, `[`, UserCache.Account, `] `, lg.BoldRed, "提交学时接口访问异常，返回信息：", err.Error())
+	}
 	for {
 		if node.StudyProgress >= 100 {
 			modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.FileName, "】 ", " ", lg.Blue, "学习完毕")
@@ -135,11 +140,12 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *enaeaApi
 		err := enaea.SubmitStudyTimeAction(UserCache, &node, time2.Now().UnixMilli())
 		if err != nil {
 			lg.Print(lg.INFO, `[`, UserCache.Account, `] `, lg.BoldRed, "提交学时接口访问异常，返回信息：", err.Error())
+
 		}
-		//超时重登检测
+		//失效重登检测
 		enaea.LoginTimeoutAfreshAction(UserCache, err)
 
-		modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.FileName, "】 >>> ", "提交状态：", "成功", lg.Default, " ", "观看进度：", fmt.Sprintf("%.2f", node.StudyProgress, "%"))
+		modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.FileName, "】 >>> ", "提交状态：", "成功", lg.Default, " ", "观看进度：", fmt.Sprintf("%.2f", node.StudyProgress), "%")
 		time2.Sleep(60 * time2.Second)
 		if node.StudyProgress >= 100 {
 			break //如果看完该视屏则直接下一个

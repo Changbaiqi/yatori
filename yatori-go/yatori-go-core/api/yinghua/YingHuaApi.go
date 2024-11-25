@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 	"yatori-go-core/api/entity"
 	"yatori-go-core/utils"
@@ -217,6 +218,10 @@ func KeepAliveApi(UserCache YingHuaUserCache) string {
 		fmt.Println(err)
 		return ""
 	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return KeepAliveApi(UserCache)
+	}
 	return string(body)
 }
 
@@ -264,6 +269,10 @@ func (cache *YingHuaUserCache) CourseListApi() (string, error) {
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return "", err
+	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return cache.CourseListApi()
 	}
 	return string(body), nil
 }
@@ -313,6 +322,10 @@ func (cache *YingHuaUserCache) CourseDetailApi(courseId string) (string, error) 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return "", err
+	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return cache.CourseDetailApi(courseId)
 	}
 	return string(body), err
 }
@@ -364,6 +377,10 @@ func CourseVideListApi(UserCache YingHuaUserCache, courseId string /*课程ID*/)
 	if err != nil {
 		fmt.Println(err)
 		return ""
+	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return CourseVideListApi(UserCache, courseId)
 	}
 	return string(body)
 }
@@ -467,6 +484,10 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 		fmt.Println(err)
 		return ""
 	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return VideStudyTimeApi(userEntity, nodeId)
+	}
 	return string(body)
 }
 
@@ -521,6 +542,10 @@ func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int, r
 		//fmt.Println(err)
 		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return VideWatchRecodeApi(UserCache, courseId, page, retry, lastError)
+	}
 	return string(body), nil
 }
 
@@ -574,6 +599,10 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 		fmt.Println(err)
 		return ""
 	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return ExamDetailApi(UserCache, nodeId)
+	}
 	return string(body)
 }
 
@@ -618,6 +647,10 @@ func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string, retr
 		time.Sleep(100 * time.Millisecond)
 		return StartExam(userCache, courseId, nodeId, examId, retryNum-1, err)
 	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return StartExam(userCache, courseId, nodeId, examId, retryNum, lastError)
+	}
 	return string(body), nil
 }
 
@@ -661,6 +694,10 @@ func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string,
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
+	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return GetExamTopicApi(UserCache, nodeId, examId)
 	}
 	return string(bodyBytes), nil
 }
@@ -727,8 +764,10 @@ func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish 
 		return "", err
 	}
 
-	// You can handle the response here if necessary
-
+	if strings.Contains(string(bodyStr), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return SubmitExamApi(UserCache, examId, answerId, answer, finish)
+	}
 	return string(bodyStr), nil
 }
 
@@ -780,6 +819,10 @@ func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 		fmt.Println(err)
 		return ""
 	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return WorkDetailApi(userCache, nodeId)
+	}
 	return string(body)
 }
 
@@ -817,6 +860,10 @@ func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (str
 	if err != nil {
 		fmt.Println(err)
 		return "", nil
+	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return StartWork(userCache, courseId, nodeId, workId)
 	}
 	return string(body), nil
 }
@@ -864,6 +911,10 @@ func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, erro
 	if err != nil {
 		fmt.Println(err)
 		return "", nil
+	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return GetWorkApi(UserCache, nodeId, workId)
 	}
 
 	return string(body), nil
@@ -926,9 +977,12 @@ func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish 
 		return "", err
 	}
 	defer resp.Body.Close()
-
 	// Optionally, read the response body
 	bodyBytes, _ := ioutil.ReadAll(resp.Body)
+	if strings.Contains(string(bodyBytes), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return SubmitWorkApi(UserCache, workId, answer, answer, finish)
+	}
 	return string(bodyBytes), nil
 }
 
@@ -968,6 +1022,10 @@ func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId
 		fmt.Println(err)
 		return "", err
 	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return WorkedFinallyDetailApi(userCache, courseId, nodeId, workId)
+	}
 	return string(body), nil
 }
 
@@ -1006,6 +1064,10 @@ func ExamFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId s
 	if err != nil {
 		fmt.Println(err)
 		return "", err
+	}
+	if strings.Contains(string(body), "502 Bad Gateway") {
+		time.Sleep(time.Millisecond * 150) //延迟
+		return ExamFinallyDetailApi(userCache, courseId, nodeId, workId)
 	}
 	return string(body), nil
 }

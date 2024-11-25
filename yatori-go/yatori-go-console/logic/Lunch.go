@@ -66,12 +66,16 @@ func configJsonCheck(configData *config.JSONDataForConfig) {
 	if len(configData.Users) == 0 {
 		lg.Print(lg.INFO, lg.BoldRed, "请先在config文件中配置好相应账号")
 		os.Exit(0)
-	} else if configData.Users[0].URL == "url" {
-		lg.Print(lg.INFO, lg.BoldRed, "请先在config文件中配置好相应账号")
-		os.Exit(0)
 	}
+
 	//防止用户填完整url
 	for i, v := range configData.Users {
+		if v.AccountType == "ENAEA" { //跳过学习公社
+			continue
+		} else if v.URL == "url" {
+			lg.Print(lg.INFO, lg.BoldRed, "请先在config文件中配置好相应账号")
+			os.Exit(0)
+		}
 		split := strings.Split(v.URL, "/")
 		(*configData).Users[i].URL = (split[0] + "/" + split[1] + "/" + split[2])
 	}

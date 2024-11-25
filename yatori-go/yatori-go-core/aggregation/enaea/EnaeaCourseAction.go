@@ -174,14 +174,6 @@ func SubmitStudyTimeAction(cache *enaea.EnaeaUserCache, video *EnaeaVideo, time 
 		return errors.New(gojsonq.New().JSONString(api).Find("message").(string))
 	}
 	video.StudyProgress = float32(gojsonq.New().JSONString(api).Find("progress").(float64))
-	fmt.Println(api)
+	//fmt.Println(api)
 	return nil
-}
-
-// 超时重登
-func LoginTimeoutAfreshAction(cache *enaea.EnaeaUserCache, err error) {
-	if err == nil {
-		return
-	}
-	EnaeaLoginAction(cache)
 }
