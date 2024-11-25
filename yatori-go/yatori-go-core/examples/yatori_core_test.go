@@ -97,13 +97,13 @@ func TestCourseXueXiToChapter(t *testing.T) {
 		log.Fatal(err)
 	}
 	//拉取对应课程信息
-	action, err := xuexitong.XueXiTCourseDetailForCourseIdAction(&userCache, "260159398019074")
+	_, err = xuexitong.XueXiTCourseDetailForCourseIdAction(&userCache, "260159398019074")
 	//拉取对应课程的章节信息
-	chapterAction, err := xuexitong.PullCourseChapterAction(&userCache, action.CourseId, action.PersonId, action.ClassId, action.UserId)
+	chapter, err := xuexitong.PullCourseChapterAction(&userCache, 283918535, 107333284)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(chapterAction)
+	fmt.Println(chapter)
 }
 
 // 用于测试Config遵旨的初始化
