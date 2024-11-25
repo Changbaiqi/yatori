@@ -78,7 +78,6 @@ func TestCourseDetailXueXiTo(t *testing.T) {
 		log.Fatal(err)
 	}
 	fmt.Println(action)
-
 }
 
 // TestCourseXueXiToChapter 用于测试学习通对应课程章节信息拉取
@@ -97,13 +96,13 @@ func TestCourseXueXiToChapter(t *testing.T) {
 		log.Fatal(err)
 	}
 	//拉取对应课程信息
-	action, err := xuexitong.XueXiTCourseDetailForCourseIdAction(&userCache, "260159398019074")
+	_, err = xuexitong.XueXiTCourseDetailForCourseIdAction(&userCache, "260159398019074")
 	//拉取对应课程的章节信息
-	chapterAction, err := xuexitong.PullCourseChapterAction(&userCache, action.CourseId, action.PersonId, action.ClassId, action.UserId)
+	chapter, err := xuexitong.PullCourseChapterAction(&userCache, 283918535, 107333284)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(chapterAction)
+	fmt.Println(chapter)
 }
 
 // 用于测试Config遵旨的初始化
@@ -288,7 +287,7 @@ func TestExamDetail(t *testing.T) {
 		//api := yinghuaApi.ExamDetailApi(cache, node.Id)
 		detailAction, _ := yinghua.ExamDetailAction(&cache, node.Id)
 		//{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-		exam, _ := yinghuaApi.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId)
+		exam, _ := yinghuaApi.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId, 3, nil)
 		fmt.Println(detailAction)
 		fmt.Println(exam)
 	}
