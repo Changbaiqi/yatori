@@ -288,7 +288,7 @@ func TestExamDetail(t *testing.T) {
 		//api := yinghuaApi.ExamDetailApi(cache, node.Id)
 		detailAction, _ := yinghua.ExamDetailAction(&cache, node.Id)
 		//{"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-		exam, _ := yinghuaApi.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId)
+		exam, _ := yinghuaApi.StartExam(cache, node.CourseId, node.Id, detailAction[0].ExamId, 5, nil)
 		fmt.Println(detailAction)
 		fmt.Println(exam)
 	}
