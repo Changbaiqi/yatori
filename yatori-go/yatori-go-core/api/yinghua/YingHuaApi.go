@@ -2,6 +2,7 @@ package yinghua
 
 import (
 	"bytes"
+	"crypto/tls"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -77,7 +78,15 @@ func (cache *YingHuaUserCache) LoginApi() (string, error) {
 		return "", err
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -105,12 +114,23 @@ func (cache *YingHuaUserCache) LoginApi() (string, error) {
 }
 
 // VerificationCodeApi 获取验证码和SESSION验证码,并返回文件路径和SESSION字符串
+var randChar []string = []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F"}
+
 func (cache *YingHuaUserCache) VerificationCodeApi() (string, string) {
 
 	url := cache.PreUrl + fmt.Sprintf("/service/code?r=%d", time.Now().Unix())
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
+
 	req, err := http.NewRequest(method, url, nil)
 	req.Header.Add("Cookie", cache.cookie)
 
@@ -127,8 +147,12 @@ func (cache *YingHuaUserCache) VerificationCodeApi() (string, string) {
 	}
 	defer res.Body.Close()
 
-	codeFileName := "code" + strconv.Itoa(rand.Intn(99999)) + ".png" //生成验证码文件名称
-	utils.PathExistForCreate("./assets/code/")                       //检测是否存在路径，如果不存在则创建
+	codeFileName := "code" + randChar[rand.Intn(len(randChar))] //生成验证码文件名称
+	for i := 0; i < 10; i++ {
+		codeFileName += randChar[rand.Intn(len(randChar))]
+	}
+	codeFileName += ".png"
+	utils.PathExistForCreate("./assets/code/") //检测是否存在路径，如果不存在则创建
 	filepath := fmt.Sprintf("./assets/code/%s", codeFileName)
 	file, err := os.Create(filepath)
 	if err != nil {
@@ -163,7 +187,15 @@ func KeepAliveApi(UserCache YingHuaUserCache) string {
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
@@ -205,7 +237,15 @@ func (cache *YingHuaUserCache) CourseListApi() (string, error) {
 		return "", err
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", cache.cookie)
 	if err != nil {
@@ -245,7 +285,15 @@ func (cache *YingHuaUserCache) CourseDetailApi(courseId string) (string, error) 
 		return "", err
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Add("Cookie", cache.cookie)
 
@@ -287,7 +335,15 @@ func CourseVideListApi(UserCache YingHuaUserCache, courseId string /*课程ID*/)
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
@@ -328,30 +384,36 @@ func SubmitStudyTimeApi(UserCache YingHuaUserCache, nodeId string /*对应视屏
 	_ = writer.WriteField("studyId", studyId)
 	err := writer.Close()
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return "", err
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return "", err
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return "", err
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
+		//fmt.Println(err)
 		return "", err
 	}
 	return string(body), nil
@@ -375,14 +437,22 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
 		fmt.Println(err)
 		return ""
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -401,8 +471,10 @@ func VideStudyTimeApi(userEntity entity.UserEntity, nodeId string) string {
 }
 
 // VideWatchRecodeApi 获取指定课程视屏观看记录
-func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int) string {
-
+func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int, retry int, lastError error) (string, error) {
+	if retry < 0 {
+		return "", lastError
+	}
 	url := UserCache.PreUrl + "/api/record/video.json"
 	method := "POST"
 
@@ -415,33 +487,41 @@ func VideWatchRecodeApi(UserCache YingHuaUserCache, courseId string, page int) s
 	_ = writer.WriteField("page", strconv.Itoa(page))
 	err := writer.Close()
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Set("Cookie", UserCache.cookie)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		return VideWatchRecodeApi(UserCache, courseId, page, retry-1, err)
 	}
-	return string(body)
+	return string(body), nil
 }
 
 // ExamDetailApi 获取考试信息
@@ -463,7 +543,15 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Add("Cookie", UserCache.cookie)
 
@@ -471,7 +559,7 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 		fmt.Println(err)
 		return ""
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -491,31 +579,44 @@ func ExamDetailApi(UserCache YingHuaUserCache, nodeId string) string {
 
 // StartExam 开始考试接口
 // {"_code":9,"status":false,"msg":"考试测试时间还未开始","result":{}}
-func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string) (string, error) {
-
+func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string, retryNum int, lastError error) (string, error) {
+	if retryNum < 0 {
+		return "", lastError
+	}
 	url := userCache.PreUrl + "/api/exam/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&examId=" + examId
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
 		fmt.Println(err)
-		return "", nil
+		time.Sleep(100 * time.Millisecond)
+		return StartExam(userCache, courseId, nodeId, examId, retryNum-1, err)
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {
 		fmt.Println(err)
-		return "", nil
+		time.Sleep(100 * time.Millisecond)
+		return StartExam(userCache, courseId, nodeId, examId, retryNum-1, err)
 	}
 	defer res.Body.Close()
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println(err)
-		return "", nil
+		time.Sleep(100 * time.Millisecond)
+		return StartExam(userCache, courseId, nodeId, examId, retryNum-1, err)
 	}
 	return string(body), nil
 }
@@ -524,8 +625,12 @@ func StartExam(userCache YingHuaUserCache, courseId, nodeId, examId string) (str
 func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string, error) {
 
 	// Creating a custom HTTP client with timeout and SSL context (skip SSL setup for simplicity)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
 	client := &http.Client{
-		Timeout: 30 * time.Second,
+		Transport: tr,
+		Timeout:   30 * time.Second,
 	}
 
 	// Creating the request body (empty JSON object)
@@ -539,7 +644,7 @@ func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string,
 	}
 
 	// Set the headers
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
@@ -563,8 +668,12 @@ func GetExamTopicApi(UserCache YingHuaUserCache, nodeId, examId string) (string,
 // SubmitExamApi 提交考试答案接口
 func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish string) (string, error) {
 	// Creating the HTTP client with a timeout (30 seconds)
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
 	client := &http.Client{
-		Timeout: 30 * time.Second,
+		Timeout:   30 * time.Second,
+		Transport: tr,
 	}
 
 	// Create a buffer to hold the multipart form data
@@ -599,7 +708,7 @@ func SubmitExamApi(UserCache YingHuaUserCache, examId, answerId, answer, finish 
 	}
 
 	// Set the headers
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
@@ -642,7 +751,13 @@ func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 		return ""
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 	req.Header.Add("Cookie", userCache.cookie)
 
@@ -650,7 +765,7 @@ func WorkDetailApi(userCache YingHuaUserCache, nodeId string) string {
 		fmt.Println(err)
 		return ""
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -674,14 +789,22 @@ func StartWork(userCache YingHuaUserCache, courseId, nodeId, workId string) (str
 	url := userCache.PreUrl + "/api/work/start.json?nodeId=" + nodeId + "&courseId=" + courseId + "&token=" + userCache.token + "&workId=" + workId
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
 		fmt.Println(err)
 		return "", nil
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {
@@ -712,14 +835,22 @@ func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, erro
 		return "", nil
 	}
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
 		fmt.Println(err)
 		return "", nil
 	}
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
@@ -741,9 +872,13 @@ func GetWorkApi(UserCache YingHuaUserCache, nodeId, workId string) (string, erro
 // SubmitWorkApi 提交作业答案接口
 func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish string /*finish代表是否是最后提交并且结束考试，0代表不是，1代表是*/) (string, error) {
 
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // 跳过证书验证
+	}
 	// Creating the HTTP client with a timeout (30 seconds)
 	client := &http.Client{
-		Timeout: 30 * time.Second,
+		Timeout:   30 * time.Second,
+		Transport: tr,
 	}
 
 	// Create a buffer to hold the multipart form data
@@ -778,7 +913,7 @@ func SubmitWorkApi(UserCache YingHuaUserCache, workId, answerId, answer, finish 
 	}
 
 	// Set the headers
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", UserCache.PreUrl)
 	req.Header.Add("Connection", "keep-alive")
@@ -803,7 +938,15 @@ func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId
 	url := userCache.PreUrl + "/api/work.json?nodeId=" + nodeId + "&workId=" + workId + "&token=" + userCache.token
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
@@ -811,7 +954,7 @@ func WorkedFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId
 		return "", err
 	}
 	req.Header.Add("Cookie", userCache.cookie)
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {
@@ -834,7 +977,15 @@ func ExamFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId s
 	url := userCache.PreUrl + "/api/exam.json?nodeId=" + nodeId + "&examId=" + workId + "&token=" + userCache.token
 	method := "GET"
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // 跳过证书验证，仅用于开发环境
+		},
+	}
+	client := &http.Client{
+		Timeout:   30 * time.Second,
+		Transport: tr,
+	}
 	req, err := http.NewRequest(method, url, nil)
 
 	if err != nil {
@@ -842,7 +993,7 @@ func ExamFinallyDetailApi(userCache YingHuaUserCache, courseId, nodeId, workId s
 		return "", err
 	}
 	req.Header.Add("Cookie", userCache.cookie)
-	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:88.0) Gecko/20100101 Firefox/88.0")
 
 	res, err := client.Do(req)
 	if err != nil {

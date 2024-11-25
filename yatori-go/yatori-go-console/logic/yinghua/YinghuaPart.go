@@ -117,7 +117,7 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghu
 
 		action, err := yinghua.CourseDetailAction(userCache, course.Id)
 		if err != nil {
-			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", lg.Red, "拉取课程进度失败")
+			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", lg.Red, "拉取课程进度失败", err.Error())
 			break
 		}
 		modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", "视屏学习进度：", strconv.Itoa(action.VideoLearned), "/", strconv.Itoa(action.VideoCount), " ", "课程总学习进度：", fmt.Sprintf("%.2f", action.Progress*100), "%")
@@ -144,7 +144,10 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaA
 			break //如果看完了，也就是进度为100那么直接跳过
 		}
 		//提交学时
-		sub, _ := yinghua.SubmitStudyTimeAction(UserCache, node.Id, studyId, time, 6, nil)
+		sub, err := yinghua.SubmitStudyTimeAction(UserCache, node.Id, studyId, time, 6, nil)
+		if err != nil {
+			lg.Print(lg.INFO, `[`, UserCache.Account, `] `, lg.BoldRed, "提交学时接口访问异常，返回信息：", err.Error())
+		}
 		//超时重登检测
 		yinghua.LoginTimeoutAfreshAction(UserCache, sub)
 		lg.Print(lg.DEBUG, "---", node.Id, sub)
