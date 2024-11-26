@@ -56,6 +56,7 @@ func XueXiTCourseDetailForCourseIdAction(cache *xuexitong.XueXiTUserCache, cours
 	return entity.XueXiTCourse{}, nil
 }
 
+
 // PullCourseChapterAction 获取对应课程的章节信息包括节点信息
 func PullCourseChapterAction(cache *xuexitong.XueXiTUserCache, cpi, key int) (string, error) {
 	//拉取对应课程的章节信息
