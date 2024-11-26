@@ -34,6 +34,7 @@ type EnaeaCourse struct {
 	SyllabusId        string
 }
 type EnaeaVideo struct {
+	TitleTag         string  //标签，选修还是必修
 	CourseName       string  //课程名称
 	CourseContentStr string  //视屏标签名称
 	FileName         string  //视频文件名称
@@ -140,6 +141,7 @@ func VideoListAction(cache *enaea.EnaeaUserCache, course *EnaeaCourse) ([]EnaeaV
 				}
 				courseContentStr, _ := url.QueryUnescape(obj["courseContentStr"].(string))
 				videos = append(videos, EnaeaVideo{
+					TitleTag:         course.TitleTag,
 					CourseName:       course.Remark,
 					TccId:            obj["tccId"].(string),
 					FileName:         obj["filename"].(string),
