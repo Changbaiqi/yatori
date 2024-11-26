@@ -7,7 +7,7 @@
 
 <div align="center"><h1>Yatori课程助手</h1></div>
 
-<div align="center"><img width="100px" src="https://img.shields.io/badge/Java17-passing-r.svg?logo=java"></img> <img width="125px" src="https://img.shields.io/badge/Maven3.8.1-building-r.svg?logo=maven"></img> <img width="125px" src="https://img.shields.io/badge/GO1.22.4-building-r.svg?logo=go"></img></div>
+<div align="center"><img width="100px" src="https://img.shields.io/badge/Java17-passing-r.svg?logo=java"></img> <img width="125px" src="https://img.shields.io/badge/Maven3.8.1-building-r.svg?logo=maven"></img> <img width="125px" src="https://img.shields.io/badge/GO1.22.4-building-r.svg?logo=go"></img> <img width="80px" src="https://img.shields.io/github/stars/Changbaiqi/yatori.svg"></img> <img width="90px" src="https://img.shields.io/github/downloads/Changbaiqi/yatori/total.svg"></img> <img width="70px" src="https://img.shields.io/github/license/Changbaiqi/yatori.svg"></img></div>
 
 ## 📢作者有话说
 
