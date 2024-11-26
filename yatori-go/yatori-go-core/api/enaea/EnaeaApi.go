@@ -16,7 +16,7 @@ type EnaeaUserCache struct {
 	Account  string //账号
 	Password string //密码
 	cookie   string //cookie
-	ASUSS    string //token
+	asuss    string //token
 }
 
 // LoginApi 学习公社登录
@@ -59,7 +59,7 @@ func LoginApi(cache *EnaeaUserCache) (string, error) {
 	}
 	for _, cookie := range resp.Cookies() {
 		if cookie.Name == "ASUSS" {
-			cache.ASUSS = cookie.Value
+			cache.asuss = cookie.Value
 			break
 		}
 	}
@@ -83,7 +83,7 @@ func PullProjectsApi(cache *EnaeaUserCache) (string, error) {
 	}
 
 	// Add headers
-	req.Header.Add("Cookie", "ASUSS="+cache.ASUSS+";")
+	req.Header.Add("Cookie", "ASUSS="+cache.asuss+";")
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", "study.enaea.edu.cn")
@@ -105,6 +105,71 @@ func PullProjectsApi(cache *EnaeaUserCache) (string, error) {
 	return string(body), nil
 }
 
+// 获取对应项目的页面的HTML，用于截取侧边栏菜单栏
+func PullStudyCourseHTMLApi(cache *EnaeaUserCache, circleId string) (string, error) {
+	client := &http.Client{}
+	url := fmt.Sprintf("https://study.enaea.edu.cn/circleIndexRedirect.do?action=toCircleIndex&circleId=%s&ct=%d", circleId, time.Now().UnixMilli())
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return "", err
+	}
+
+	// Set the headers
+	req.Header.Add("Cookie", "ASUSS="+cache.asuss+";")
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("Accept", "*/*")
+	req.Header.Add("Host", "study.enaea.edu.cn")
+	req.Header.Add("Connection", "keep-alive")
+
+	// Make the HTTP request
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+
+	return string(body), nil
+}
+
+// 获取对项目课程列表
+func PullStudyCourseListApi(cache *EnaeaUserCache, circleId, syllabusId string) (string, error) {
+	client := &http.Client{}
+	url := fmt.Sprintf("https://study.enaea.edu.cn/circleIndex.do?action=getMyClass&start=0&limit=200&isCompleted=&circleId=%s&syllabusId=%s&categoryRemark=all&_=%d", circleId, syllabusId, time.Now().UnixMilli())
+
+	// Create the HTTP request
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return "", err
+	}
+
+	// Set headers
+	req.Header.Add("Cookie", "ASUSS="+cache.asuss+";")
+	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
+	req.Header.Add("Accept", "*/*")
+	req.Header.Add("Host", "study.enaea.edu.cn")
+	req.Header.Add("Connection", "keep-alive")
+
+	// Execute the HTTP request
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	return string(body), nil
+}
+
 // PullCourseVideoListApi 拉取课程对应视屏列表
 func PullCourseVideoListApi(cache *EnaeaUserCache, circleId, courseId string) (string, error) {
 	// Construct the URL with courseId, circleId, and timestamp
@@ -118,7 +183,7 @@ func PullCourseVideoListApi(cache *EnaeaUserCache, circleId, courseId string) (s
 	}
 
 	// Add headers
-	req.Header.Add("Cookie", "ASUSS="+cache.ASUSS+";")
+	req.Header.Add("Cookie", "ASUSS="+cache.asuss+";")
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", "study.enaea.edu.cn")
@@ -141,19 +206,19 @@ func PullCourseVideoListApi(cache *EnaeaUserCache, circleId, courseId string) (s
 }
 
 // StatisticTicForCCVideApi 在观看视屏前一定要先调用这个函数，相当于告诉后端，我要看这个视屏了，请对这个视屏开始计时
-func StatisticTicForCCVideApi(cache *EnaeaUserCache, courseId, courseContentId, circleId string) (string, error) {
+func StatisticTicForCCVideApi(cache *EnaeaUserCache, courseId, courseContentId, circleId string) (string /*json*/, string /*key*/, string /*value*/, error) {
 	// Construct the URL
-	url := fmt.Sprintf("https://study.enaea.edu.cn/course.do?action=statisticForCCVideo&courseId=%d&coursecontentId=%d&circleId=%d&_=%d",
+	url := fmt.Sprintf("https://study.enaea.edu.cn/course.do?action=statisticForCCVideo&courseId=%s&coursecontentId=%s&circleId=%s&_=%d",
 		courseId, courseContentId, circleId, time.Now().UnixMilli())
 
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		return "", err
+		return "", "", "", err
 	}
 
 	// Add headers
-	req.Header.Add("Cookie", "ASUSS="+cache.ASUSS+";")
+	req.Header.Add("Cookie", "ASUSS="+cache.asuss+";")
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 	req.Header.Add("Accept", "*/*")
 	req.Header.Add("Host", "study.enaea.edu.cn")
@@ -162,29 +227,31 @@ func StatisticTicForCCVideApi(cache *EnaeaUserCache, courseId, courseContentId, 
 	// Execute the HTTP request
 	resp, err := client.Do(req)
 	if err != nil {
-		return "", err
+		return "", "", "", err
 	}
 	defer resp.Body.Close()
 
 	// Read the response body
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", err
+		return "", "", "", err
 	}
 
-	// Process headers to extract SCFUCKP values
-	//for _, cookie := range resp.Cookies() {
-	//	if strings.HasPrefix(cookie.Name, "SCFUCKP") {
-	//		ccVideoRequest.SetSCFUCKPKey(cookie.Name)
-	//		ccVideoRequest.SetSCFUCKPValue(cookie.Value)
-	//	}
-	//}
+	SCFUCKP_K := ""
+	SCFUCKP_V := ""
+	for _, cookie := range resp.Cookies() {
+		if strings.HasPrefix(cookie.Name, "SCFUCKP") {
+			SCFUCKP_K = cookie.Name
+			SCFUCKP_V = cookie.Value
+			break
+		}
+	}
 
-	return string(body), nil
+	return string(body), SCFUCKP_K, SCFUCKP_V, nil
 }
 
 // SubmitStudyTimeApi 提交学时
-func SubmitStudyTimeApi(cache *EnaeaUserCache, circleId, SCFUCKPKey, SCFUCKPValue, id string, studyTime int) (string, error) {
+func SubmitStudyTimeApi(cache *EnaeaUserCache, circleId, SCFUCKPKey, SCFUCKPValue, id string, studyTime int64) (string, error) {
 	// Create form data
 	data := url.Values{}
 	data.Set("id", id)
@@ -195,12 +262,13 @@ func SubmitStudyTimeApi(cache *EnaeaUserCache, circleId, SCFUCKPKey, SCFUCKPValu
 	// Create the HTTP request
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", "https://study.enaea.edu.cn/studyLog.do", bytes.NewBufferString(data.Encode()))
+	//req, err := http.NewRequest("POST", "https://study.enaea.edu.cn/thirdPlatform/record", bytes.NewBufferString(data.Encode()))
 	if err != nil {
 		return "", err
 	}
 
 	// Add headers
-	cookie := fmt.Sprintf("ASUSS=%s;%s=%s", cache.ASUSS, SCFUCKPKey, SCFUCKPValue)
+	cookie := fmt.Sprintf("ASUSS=%s;%s=%s", cache.asuss, SCFUCKPKey, SCFUCKPValue)
 	req.Header.Add("Cookie", cookie)
 	req.Header.Add("User-Agent", "Apifox/1.0.0 (https://apifox.com)")
 	req.Header.Add("Accept", "*/*")

@@ -75,7 +75,7 @@ public class CourseAction {
         try {
             Response response = client.newCall(request).execute();
             String string = response.body().string();
-            Pattern pattern = Pattern.compile("<a title=\""+title+"\" href=\"circleIndexRedirect.do\\?action=toNewMyClass&type=course&circleId="+circleId+"&syllabusId=([^&]*?)&isRequired=true&studentProgress=[\\d]+\">"+title+"</a>");
+            Pattern pattern = Pattern.compile("<a title=\""+title+"\" href=\"circleIndexRedirect.do\\?action=toNewMyClass&type=course&circleId="+circleId+"&syllabusId=([^&]*?)&isRequired=[^&]*&studentProgress=[\\d]+\">"+title+"</a>");
             Matcher matcher = pattern.matcher(string);
             if(matcher.find()){
                 return matcher.group(1);
