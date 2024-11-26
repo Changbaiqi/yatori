@@ -19,8 +19,8 @@ users:
     coursesCustom:
       videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
       autoExam: 0 #是否自动考试，0代表不考试，1代表考试
-      includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]
-      excludeCourses: []  #include和exclude填一个即可，exclude代表除了这里面的课程其他都刷，填课程名称，比如["xxxx","xxxx"]
+      includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
+      excludeCourses: []  #include和exclude填一个即可，exclude代表除了这里面的课程其他都刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
 # 添加多个账号的时候像下面这样接着添加多个用户信息就行
 #  - accountType: "YINGHUA" #平台类型，英华学堂：YINGHUA、仓辉：CANGHUI、学习公社：ENAEA（注：目前暂时只支持英华，并且有些学校可能是英华套壳的仓辉，所以如果填仓辉刷不了可以尝试改英华
 #    url: "url" #对应平台的url链接
@@ -29,8 +29,8 @@ users:
 #    coursesCustom:
 #      videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
 #      autoExam: 0 #是否自动考试，0代表不考试，1代表考试
-#      includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]
-#      excludeCourses: []  #include和exclude填一个即可，exclude代表除了这里面的课程其他都刷，填课程名称，比如["xxxx","xxxx"]
+#      includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
+#      excludeCourses: []  #include和exclude填一个即可，exclude代表除了这里面的课程其他都刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
 #  - accountType: "YINGHUA" #平台类型，英华学堂：YINGHUA、仓辉：CANGHUI、学习公社：ENAEA（注：目前暂时只支持英华，并且有些学校可能是英华套壳的仓辉，所以如果填仓辉刷不了可以尝试改英华
 #    url: "url" #对应平台的url链接
 #    account: "账号" #账号
@@ -38,5 +38,5 @@ users:
 #    coursesCustom:
 #      videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
 #      autoExam: 0 #是否自动考试，0代表不考试，1代表考试
-#      includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]
-#      excludeCourses: []  #include和exclude填一个即可，exclude代表除了这里面的课程其他都刷，填课程名称，比如["xxxx","xxxx"]
+#      includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
+#      excludeCourses: []  #include和exclude填一个即可，exclude代表除了这里面的课程其他都刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
