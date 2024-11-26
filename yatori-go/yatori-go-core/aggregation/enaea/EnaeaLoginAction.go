@@ -26,6 +26,9 @@ func LoginTimeoutAfreshAction(cache *enaea.EnaeaUserCache, err error) {
 	if err == nil {
 		return
 	}
+	if err.Error() != "nologin" {
+		return
+	}
 	log.Print(log.INFO, "["+cache.Account+"] ", log.BoldRed, "检测到登录失效，正在进行重新登录逻辑...")
 	_, err1 := EnaeaLoginAction(cache)
 	if err1 != nil {

@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/thedevsaddam/gojsonq"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
@@ -33,14 +34,16 @@ type EnaeaCourse struct {
 	SyllabusId        string
 }
 type EnaeaVideo struct {
-	FileName      string  //视频文件名称
-	TccId         string  //视频的TccID
-	StudyProgress float32 //视频学习进度
-	Id            string  //Id
-	CourseId      string
-	CircleId      string
-	SCFUCKPKey    string //key
-	SCFUCKPValue  string //value
+	CourseName       string  //课程名称
+	CourseContentStr string  //视屏标签名称
+	FileName         string  //视频文件名称
+	TccId            string  //视频的TccID
+	StudyProgress    float32 //视频学习进度
+	Id               string  //Id
+	CourseId         string
+	CircleId         string
+	SCFUCKPKey       string //key
+	SCFUCKPValue     string //value
 }
 
 // ProjectListAction 获取所需要学习的工程列表
@@ -120,9 +123,9 @@ func CourseListAction(cache *enaea.EnaeaUserCache, circleId string) ([]EnaeaCour
 }
 
 // 拉取对应课程的视频
-func VideoListAction(cache *enaea.EnaeaUserCache, circleId, courseId string) ([]EnaeaVideo, error) {
+func VideoListAction(cache *enaea.EnaeaUserCache, course *EnaeaCourse) ([]EnaeaVideo, error) {
 	var videos []EnaeaVideo
-	api, err := enaea.PullCourseVideoListApi(cache, circleId, courseId)
+	api, err := enaea.PullCourseVideoListApi(cache, course.CircleId, course.CourseId)
 	if err != nil {
 		return nil, err
 	}
@@ -135,13 +138,16 @@ func VideoListAction(cache *enaea.EnaeaUserCache, circleId, courseId string) ([]
 				if obj["filename"] == nil {
 					fmt.Println("空")
 				}
+				courseContentStr, _ := url.QueryUnescape(obj["courseContentStr"].(string))
 				videos = append(videos, EnaeaVideo{
-					TccId:         obj["tccId"].(string),
-					FileName:      obj["filename"].(string),
-					StudyProgress: float32(studyProgress),
-					Id:            strconv.Itoa(int(obj["id"].(float64))),
-					CourseId:      courseId,
-					CircleId:      circleId,
+					CourseName:       course.Remark,
+					TccId:            obj["tccId"].(string),
+					FileName:         obj["filename"].(string),
+					CourseContentStr: courseContentStr,
+					StudyProgress:    float32(studyProgress),
+					Id:               strconv.Itoa(int(obj["id"].(float64))),
+					CourseId:         course.CourseId,
+					CircleId:         course.CircleId,
 				})
 			}
 		}
