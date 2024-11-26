@@ -45,6 +45,5 @@ func (cache *XueXiTUserCache) PullChapter(cpi int, key int) (string, error) {
 		fmt.Println(err)
 		return "", err
 	}
-	fmt.Println(string(body))
 	return string(body), nil
 }

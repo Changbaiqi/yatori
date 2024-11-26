@@ -102,7 +102,12 @@ func TestCourseXueXiToChapter(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(chapter)
+	fmt.Println("chatid:" + chapter.ChatID)
+	for _, item := range chapter.Knowledge {
+		fmt.Println("章节名称:" + item.Name)
+		fmt.Println("标签:" + item.Label)
+		fmt.Println("层级" + strconv.Itoa(item.Layer))
+	}
 }
 
 // 用于测试Config遵旨的初始化
