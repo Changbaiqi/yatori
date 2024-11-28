@@ -57,9 +57,11 @@ jobs:
       # Set CGO environment variables to avoid using unsupported flags on Windows
       - name: Set CGO environment variables for Windows
         run: |
-          if [ "${{ matrix.goos }}" == "windows" ]; then
-            export CGO_CFLAGS="-pthread"  # Force the use of pthread instead of mthreads on Windows
-            export CGO_LDFLAGS="-pthread"  # Force the use of pthread instead of mthreads on Windows
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            echo "Setting CGO environment variables for Windows"
+            export CGO_ENABLED=1
+            export CGO_CFLAGS="-pthread"  # Use pthread instead of mthreads on Windows
+            export CGO_LDFLAGS="-pthread"  # Use pthread instead of mthreads on Windows
           fi
 
       # Build steps for different platforms
