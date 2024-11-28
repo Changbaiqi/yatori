@@ -82,10 +82,11 @@ jobs:
 
       - name: Get dependencies
         run: |
-          set GOPROXY=https://proxy.golang.org,direct
+          set GOPROXY=direct
           set GONOSUMDB=*
           go clean -modcache
           del go.sum
+          go get -u ./...
           go mod tidy
 
       - name: Prepare Release Directory
