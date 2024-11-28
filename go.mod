@@ -1,19 +1,18 @@
 module yatori-go-console
 
-go 1.22
-
-replace yatori-go-core => github.com/Yatori-Dev/yatori-go-core v1.0.0
+go 1.22.4
 
 require (
 	github.com/faiface/beep v1.1.0
 	github.com/spf13/viper v1.19.0
 	github.com/thedevsaddam/gojsonq v1.9.1
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
-	yatori-go-core v0.0.0-00010101000000-000000000000
-//github.com/Yatori-Dev/yatori-go-core v0.0.0-20241128062333-62529e779228
 )
 
+require github.com/Yatori-Dev/yatori-go-core v1.0.0
+
 require (
+	//github.com/Yatori-Dev/yatori-go-core v1.0.1-0.20241128132014-0686bf0299db // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/hajimehoshi/go-mp3 v0.3.4 // indirect
 	github.com/hajimehoshi/oto v0.7.1 // indirect

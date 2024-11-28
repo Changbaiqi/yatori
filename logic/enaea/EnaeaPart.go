@@ -2,6 +2,9 @@ package enaea
 
 import (
 	"fmt"
+	"github.com/Yatori-Dev/yatori-go-core/aggregation/enaea"
+	enaeaApi "github.com/Yatori-Dev/yatori-go-core/api/enaea"
+	lg "github.com/Yatori-Dev/yatori-go-core/utils/log"
 	"log"
 	"os"
 	"sync"
@@ -9,9 +12,6 @@ import (
 	"yatori-go-console/config"
 	utils2 "yatori-go-console/utils"
 	modelLog "yatori-go-console/utils/log"
-	"yatori-go-core/aggregation/enaea"
-	enaeaApi "yatori-go-core/api/enaea"
-	lg "yatori-go-core/utils/log"
 )
 
 var videosLock sync.WaitGroup //视屏锁

@@ -2,9 +2,9 @@ package utils
 
 import (
 	_ "embed"
+	"github.com/Yatori-Dev/yatori-go-core/utils"
 	"log"
 	"os"
-	"yatori-go-core/utils"
 )
 
 //go:embed finishNotice.mp3

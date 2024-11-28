@@ -1,11 +1,11 @@
 package xuexitong
 
 import (
+	"github.com/Yatori-Dev/yatori-go-core/aggregation/yinghua"
+	yinghuaApi "github.com/Yatori-Dev/yatori-go-core/api/yinghua"
+	lg "github.com/Yatori-Dev/yatori-go-core/utils/log"
 	"log"
 	"yatori-go-console/config"
-	"yatori-go-core/aggregation/yinghua"
-	yinghuaApi "yatori-go-core/api/yinghua"
-	lg "yatori-go-core/utils/log"
 )
 
 // 用于过滤英华账号

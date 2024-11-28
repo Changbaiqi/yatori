@@ -1,6 +1,6 @@
 package log
 
-import lg "yatori-go-core/utils/log"
+import lg "github.com/Yatori-Dev/yatori-go-core/utils/log"
 
 func ModelPrint(isSw bool, LOGLEVEL lg.LOGLEVEL, logText ...interface{}) {
 	if isSw {
