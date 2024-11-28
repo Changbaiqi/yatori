@@ -82,8 +82,9 @@ jobs:
 
       - name: Get dependencies
         run: |
-          set GOPROXY=direct
+          set GOPROXY=https://proxy.golang.org,direct
           set GONOSUMDB=*
+          go clean -modcache
           del go.sum
           go mod tidy
 
