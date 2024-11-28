@@ -114,6 +114,11 @@ jobs:
       - name: Prepare Release Directory
         run: mkdir -p ${{ env.RELEASE_DIR }}
 
+      # List files to verify the release directory contains binaries
+      - name: List files in release directory
+        run: |
+          ls -l ${{ env.RELEASE_DIR }}
+
       # Create Source Code Tarball
       - name: Create Source Code Tarball
         run: |
@@ -142,7 +147,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ${{ env.RELEASE_DIR }}/*
+          files: ${{ env.RELEASE_DIR }}/*  # Ensure the files exist in the release directory
           generate_release_notes: true  # Auto-generate release notes
           draft: false  # Do not create a draft release
           prerelease: false  # Do not mark as a pre-release
