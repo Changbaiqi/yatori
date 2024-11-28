@@ -45,7 +45,7 @@ jobs:
           cache: true  # 启用依赖缓存
 
       - name: Get dependencies
-        run: |
+        run: | # 这里使用直连主要防止傻逼代理服务器拉取的不是最新依赖导致相同版本hash不同问题
           export GOPROXY=direct
           export GONOSUMDB=*
           go mod tidy
