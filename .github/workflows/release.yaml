@@ -3,7 +3,7 @@ name: Go Build and Release
 on:
   push:
     tags:
-      - 'v*'  # Trigger on version tags (比如 v1.2.3)
+      - 'v*'  # Trigger on version tags (例如 v1.2.3)
     branches:
       - main  # 在主分支的推送时也触发
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
         default: 'v1.2.3'  # 默认版本号
 
 permissions:
-  contents: write  # Allow writing to GitHub releases
+  contents: write  # 允许写入 GitHub releases
 
 env:
   PROJECT_NAME: ${{ github.event.repository.name }}
@@ -26,6 +26,25 @@ jobs:
   build:
     name: Build and Release
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [linux, windows, darwin]  # 定义操作系统列表
+        arch: [amd64, arm64]  # 定义架构列表
+        include:
+          - os: linux
+            arch: amd64
+          - os: linux
+            arch: arm64
+          - os: windows
+            arch: amd64
+          - os: windows
+            arch: arm64
+          - os: darwin
+            arch: amd64
+          - os: darwin
+            arch: arm64
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -45,7 +64,7 @@ jobs:
           cache: true  # 启用依赖缓存
 
       - name: Get dependencies
-        run: | # 这里使用直连主要防止傻逼代理服务器拉取的不是最新依赖导致相同版本hash不同问题
+        run: |
           export GOPROXY=direct
           export GONOSUMDB=*
           go mod tidy
@@ -54,40 +73,11 @@ jobs:
         run: mkdir -p ${{ env.RELEASE_DIR }}
 
       # Build steps for different platforms
-      - name: Build Linux AMD64
+      - name: Build ${{ matrix.os }} ${{ matrix.arch }}
         run: |
-          CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build \
-            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_linux_amd64
-
-      - name: Build Linux ARM64
-        run: |
-          CGO_ENABLED=1 GOOS=linux GOARCH=arm64 go build \
+          GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} CGO_ENABLED=1 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
-            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_linux_arm64
-
-      - name: Build Windows AMD64
-        run: |
-          CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build \
-            -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
-            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_windows_amd64.exe
-
-      - name: Build Windows ARM64
-        run: |
-          CGO_ENABLED=1 GOOS=windows GOARCH=arm64 go build \
-            -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
-            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_windows_arm64.exe
-
-      - name: Build macOS AMD64
-        run: |
-          CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build \
-            -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
-            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_darwin_amd64
-
-      - name: Build macOS ARM64
-        run: |
-          CGO_ENABLED=1 GOOS=darwin GOARCH=arm64 go build \
-            -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
-            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_darwin_arm64
+            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_${{ matrix.os }}_${{ matrix.arch }}${{ 'exe' if matrix.os == 'windows' else '' }}
 
       # Create Source Code Tarball
       - name: Create Source Code Tarball
