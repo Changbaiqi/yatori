@@ -3,15 +3,15 @@ name: Go Build and Release
 on:
   push:
     tags:
-      - 'v*'  # Trigger on version tags (比如 v1.2.3)
+      - 'v*'  # Trigger on version tags (e.g., v1.2.3)
     branches:
-      - main  # 在主分支的推送时也触发
+      - main  # Trigger on push to main branch as well
   workflow_dispatch:
     inputs:
       tag_name:
         description: 'Tag name for the release'
         required: true
-        default: 'v1.2.3'  # 默认版本号
+        default: 'v1.2.3'  # Default tag name
 
 permissions:
   contents: write  # Allow writing to GitHub releases
@@ -19,7 +19,7 @@ permissions:
 env:
   PROJECT_NAME: ${{ github.event.repository.name }}
   BUILD_DATE: ${{ github.run_id }}
-  VERSION: 'v2.0.0-beta.3'  # 固定版本号
+  VERSION: ${{ github.ref_name }}  # Dynamic version based on the tag name
   RELEASE_DIR: release
 
 jobs:
@@ -30,22 +30,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 获取完整的 Git 历史
+          fetch-depth: 0  # Fetch full git history for versioning
 
-      # 安装必要依赖
+      # Install necessary dependencies
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y libasound2-dev pkg-config gcc-aarch64-linux-gnu
 
+      # Set up Go
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version-file: 'go.mod'  # 使用 go.mod 文件指定 Go 版本
-          cache: true  # 启用依赖缓存
+          go-version-file: 'go.mod'  # Use Go version from go.mod
+          cache: true  # Enable dependency caching
 
       - name: Get dependencies
-        run: | # 这里使用直连主要防止傻逼代理服务器拉取的不是最新依赖导致相同版本hash不同问题
+        run: |
           export GOPROXY=direct
           export GONOSUMDB=*
           go mod tidy
@@ -53,12 +54,21 @@ jobs:
       - name: Prepare Release Directory
         run: mkdir -p ${{ env.RELEASE_DIR }}
 
+      # Set CGO environment variables to avoid using unsupported flags on Windows
+      - name: Set CGO environment variables for Windows
+        run: |
+          if [ "${{ matrix.goos }}" == "windows" ]; then
+            export CGO_CFLAGS="-pthread"  # Force the use of pthread instead of mthreads on Windows
+            export CGO_LDFLAGS="-pthread"  # Force the use of pthread instead of mthreads on Windows
+          fi
+
       # Build steps for different platforms
       - name: Build Linux AMD64
         run: |
           CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_linux_amd64
+
       - name: Build Windows AMD64
         run: |
           CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build \
@@ -94,7 +104,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: ${{ env.RELEASE_DIR }}/*
-          generate_release_notes: true  # 自动生成发行说明
-          draft: false  # 不创建草稿
-          prerelease: false  # 不标记为预发布
-          tag_name: ${{ env.VERSION }}  # 使用固定版本号作为发布标签
+          generate_release_notes: true  # Auto-generate release notes
+          draft: false  # Do not create a draft release
+          prerelease: false  # Do not mark as a pre-release
+          tag_name: ${{ env.VERSION }}  # Use dynamic version from the tag
