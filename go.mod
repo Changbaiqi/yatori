@@ -1,6 +1,7 @@
 module yatori-go-console
 
 go 1.22.4
+
 // 若出现hash校验错误请使用以下指令
 // set GONOSUMDB=*
 // set GOPROXY=direct
@@ -11,10 +12,9 @@ require (
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 )
 
-require github.com/Yatori-Dev/yatori-go-core v1.0.0
+require github.com/Yatori-Dev/yatori-go-core v1.0.1
 
 require (
-
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/hajimehoshi/go-mp3 v0.3.4 // indirect
 	github.com/hajimehoshi/oto v0.7.1 // indirect
