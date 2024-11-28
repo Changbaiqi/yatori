@@ -39,7 +39,7 @@ jobs:
           cache: true  # 启用依赖缓存
 
       - name: Get dependencies
-        run: go mod download
+        run: go mod tidy
 
       - name: Prepare Release Directory
         run: mkdir -p ${{ env.RELEASE_DIR }}
