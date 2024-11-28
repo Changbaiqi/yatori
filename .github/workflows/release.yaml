@@ -46,6 +46,7 @@ jobs:
 
       - name: Get dependencies
         run: |
+          export GOPROXY=direct
           export GONOSUMDB=*
           go mod tidy
 

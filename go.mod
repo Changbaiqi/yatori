@@ -12,7 +12,7 @@ require (
 require github.com/Yatori-Dev/yatori-go-core v1.0.0
 
 require (
-	//github.com/Yatori-Dev/yatori-go-core v1.0.1-0.20241128132014-0686bf0299db // indirect
+
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/hajimehoshi/go-mp3 v0.3.4 // indirect
 	github.com/hajimehoshi/oto v0.7.1 // indirect
