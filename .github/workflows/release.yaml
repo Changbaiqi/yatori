@@ -82,8 +82,8 @@ jobs:
 
       - name: Get dependencies
         run: |
-          export GOPROXY=direct
-          export GONOSUMDB=*
+          set GOPROXY=direct
+          set GONOSUMDB=*
           go mod tidy
 
       - name: Prepare Release Directory
