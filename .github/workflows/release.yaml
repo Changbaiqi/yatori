@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libasound2-dev pkg-config
+          sudo apt-get install -y libasound2-dev pkg-config gcc-aarch64-linux-gnu
 
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -56,7 +56,7 @@ jobs:
       # Build steps for different platforms
       - name: Build Linux ARM64
         run: |
-          CGO_ENABLED=1 GOOS=linux GOARCH=arm64 go build \
+          GOOS=linux GOARCH=arm64 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_linux_arm64
 
