@@ -2,13 +2,15 @@ module yatori-go-console
 
 go 1.22
 
-replace yatori-go-core => ../yatori-go-core
+replace yatori-go-core => github.com/Yatori-Dev/yatori-go-core v1.0.0
 
 require (
 	github.com/faiface/beep v1.1.0
 	github.com/spf13/viper v1.19.0
 	github.com/thedevsaddam/gojsonq v1.9.1
+	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 	yatori-go-core v0.0.0-00010101000000-000000000000
+//github.com/Yatori-Dev/yatori-go-core v0.0.0-20241128062333-62529e779228
 )
 
 require (
@@ -41,7 +43,6 @@ require (
 	golang.org/x/sys v0.27.0 // indirect
 	golang.org/x/text v0.20.0 // indirect
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
-	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/gorm v1.25.12 // indirect
