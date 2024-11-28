@@ -73,7 +73,7 @@
 >
 > 配置文件说明（==注意==！！！其实大部分参数可以根据需求进行省略不写，以下只是对于各参数的例子罢了！）：
 >
-> ```json
+> ```yaml
 > setting:
 >   basicSetting:
 >     completionTone: 1 #是否开启完成提示音，0为关闭，1为开启
@@ -122,7 +122,7 @@
 >
 > 示例1：
 >
-> ```json
+> ```yaml
 > setting:
 >   basicSetting:
 >     completionTone: 1
