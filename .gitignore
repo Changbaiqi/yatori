@@ -1,0 +1,4 @@
+# exclude exe
+*.exe
+config/config.*
+assets/*

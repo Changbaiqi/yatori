@@ -1,0 +1,23 @@
+{
+  "setting":{
+    "emailInform":{
+      "sw": 0,
+      "smtpHost": "",
+      "smtpPort": "",
+      "email":"",
+      "password":""
+    },
+    "aiSetting": {
+      "aiType": "CHATGLM",
+      "API_KEY": ""
+    }
+  },
+  "users": [
+    {
+      "accountType": "CANGHUI",
+      "url": "url",
+      "account": "账号",
+      "password": "密码"
+    }
+  ]
+}
