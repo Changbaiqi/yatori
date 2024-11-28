@@ -53,35 +53,41 @@ jobs:
       # Build steps for different platforms
       - name: Build Linux AMD64
         run: |
+          export GONOSUMDB=*
           CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_linux_amd64
 
       - name: Build Linux ARM64
         run: |
+          export GONOSUMDB=*
           CGO_ENABLED=1 GOOS=linux GOARCH=arm64 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_linux_arm64
 
       - name: Build Windows AMD64
         run: |
+          export GONOSUMDB=*
           CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_windows_amd64.exe
 
       - name: Build Windows ARM64
         run: |
+          export GONOSUMDB=*
           CGO_ENABLED=1 GOOS=windows GOARCH=arm64 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_windows_arm64.exe
 
       - name: Build macOS AMD64
         run: |
+          export GONOSUMDB=*
           CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_darwin_amd64
 
       - name: Build macOS ARM64
         run: |
+          export GONOSUMDB=*
           CGO_ENABLED=1 GOOS=darwin GOARCH=arm64 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_darwin_arm64
