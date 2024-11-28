@@ -84,6 +84,7 @@ jobs:
         run: |
           set GOPROXY=direct
           set GONOSUMDB=*
+          del go.sum
           go mod tidy
 
       - name: Prepare Release Directory
