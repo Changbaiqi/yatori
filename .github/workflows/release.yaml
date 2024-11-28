@@ -54,11 +54,16 @@ jobs:
         run: mkdir -p ${{ env.RELEASE_DIR }}
 
       # Build steps for different platforms
-      - name: Build Linux ARM64
+      - name: Build Linux AMD64
         run: |
-          go build \
+          CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build \
             -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
-            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_linux_arm64
+            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_linux_amd64
+      - name: Build Windows AMD64
+        run: |
+          CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build \
+            -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
+            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_windows_amd64.exe
 
       # Create Source Code Tarball
       - name: Create Source Code Tarball
