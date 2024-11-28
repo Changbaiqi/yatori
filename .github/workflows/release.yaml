@@ -48,7 +48,6 @@ jobs:
       - name: Build Linux AMD64
         run: |
           CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build \
-            -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_${{ env.BUILD_DATE }}_linux_amd64
 
       - name: Build Linux ARM64
