@@ -119,7 +119,7 @@ jobs:
       - name: Create Release zip
         run: |
           copy command\config.yaml ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
-          copy command\start.bat {{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
+          copy command\start.bat ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
           cd {{ env.RELEASE_DIR }}
           zip -r yatori-go-console.${{env.VERSION}}-windows-amd64-release.zip yatori-go-console.${{env.VERSION}}-windows-amd64-release
           rmdir /s/q yatori-go-console.${{env.VERSION}}-windows-amd64-release
