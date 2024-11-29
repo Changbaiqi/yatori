@@ -23,6 +23,19 @@ env:
   RELEASE_DIR: release
 
 jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full git history for versioning
+      - name: Read release notes from file
+        id: read_release_notes
+        run: | # 发布的说明文件名为 release_notes.md
+          RELEASE_NOTES=$(cat ./release_notes.md)
+          echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
   # Linux build job
   build-linux:
     name: Build Linux
@@ -78,16 +91,7 @@ jobs:
           draft: false  # 不创建草稿发布
           prerelease: false  # 不标记为预发布
           tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
-          body: |
-            # Custom Release Notes
-            
-            ## What's New:
-            - Added feature X
-            - Fixed bug Y
-            - Improved performance of Z
-            
-            ## Breaking Changes:
-            - API endpoint `/old-endpoint` is now deprecated. Use `/new-endpoint` instead.
+          body: ${{env.RELEASE_NOTES}} # 使用读取到的发布说明内容
 
   # Windows build job
   build-windows:
