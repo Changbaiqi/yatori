@@ -52,14 +52,19 @@ jobs:
           export GONOSUMDB=*
           go mod tidy
 
-      - name: Prepare Release Directory
-        run: mkdir -p ${{ env.RELEASE_DIR }}
+      - name: Prepare Release Directory #创建压缩目录
+        run: mkdir -p ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release
 
       # Build Linux AMD64
       - name: Build Linux AMD64
         run: |
           CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build \
-            -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_linux_amd64
+            -o ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release/${{ env.PROJECT_NAME }}
+      - name: Create release tar
+        run: | # 打包发布版本压缩包
+          cp command/config.yaml ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release 
+          tar -czvf ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release.tar.gz
+          rm -rf ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release
       # Create GitHub Release
       - name: Create Release
         uses: softprops/action-gh-release@v2
@@ -108,7 +113,7 @@ jobs:
           set CGO_ENABLED=1
           set GOOS=windows 
           set GOARCH=amd64 
-          go build -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_windows_amd64.exe
+          go build -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}.exe
       # Create GitHub Release
       - name: Create Release
         uses: softprops/action-gh-release@v2
