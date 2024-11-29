@@ -36,8 +36,9 @@ jobs:
         id: set_release_notes
         run: |
           if [ -f release_notes.md ]; then
-            RELEASE_NOTES=$(<release_notes.md)
-            echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
+            echo "RELEASE_NOTES<<EOF" >> $GITHUB_ENV
+            cat release_notes.md >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
           else
             echo "release_notes.md file not found!"
             exit 1
