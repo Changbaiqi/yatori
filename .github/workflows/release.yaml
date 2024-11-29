@@ -62,9 +62,11 @@ jobs:
             -o ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release/${{ env.PROJECT_NAME }}
       - name: Create release tar
         run: | # 打包发布版本压缩包
-          cp command/config.yaml ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release 
-          tar -czvf ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release.tar.gz
-          rm -rf ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release
+          cp command/config.yaml ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release
+          cd ${{ env.RELEASE_DIR }}
+          tar -czvf yatori-go-console.${{env.VERSION}}-linux-amd64-release.tar.gz ${{ env.RELEASE_DIR }}/yatori-go-console.${{env.VERSION}}-linux-amd64-release
+          rm -rf yatori-go-console.${{env.VERSION}}-linux-amd64-release
+          cd ..
       # Create GitHub Release
       - name: Create Release
         uses: softprops/action-gh-release@v2
