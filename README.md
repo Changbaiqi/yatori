@@ -72,18 +72,18 @@
 >
 > ```yaml
 > setting:
-> basicSetting:
-> completionTone: 1 #是否开启完成提示音，0为关闭，1为开启
-> colorLog: 1 #是否开启彩色日志，0为关闭，1为开启，如果控制台乱码可以尝试改为0关闭
-> logOutFileSw: 1 #是否开启日志文件输出，0为关闭，1为开启
-> logLevel: "INFO" #日志类型，一般INFO即可
-> logModel: 0 #日志输出模式，0为以视屏提交学时为单位进行日志输出，1为以课程信息为单位进行输出
-> ipProxySw: 0 #是否开启IP代理，0代表关闭，1代表开启，开启后一定要子当前启动目录下创建ip.txt这个ip池文件，里面填写对应的代理IP即可，一行一个。注意，代理的IP一定要支持Https
-> aiSetting:
-> aiType: "TONGYI" #智普：CHATGLM、星火：XINGHUO、通义千问：TONGYI、豆包：DOUBAO、其他模型：OTHER
-> aiUrl: "" #默认不填，除非你用的不是上面所指明的AI模型，比如ChatGPT
-> model: "" #AI模型，不填则使用yatori默认选择的模型，如果你用的豆包则必填并且填的是接入点ID非模型名称，比如ep-2024xxxxx
-> API_KEY: "" #AI平台对应的apikey
+>   basicSetting:
+>     completionTone: 1 #是否开启完成提示音，0为关闭，1为开启
+>     colorLog: 1 #是否开启彩色日志，0为关闭，1为开启，如果控制台乱码可以尝试改为0关闭
+>     logOutFileSw: 1 #是否开启日志文件输出，0为关闭，1为开启
+>     logLevel: "INFO" #日志类型，一般INFO即可
+>     logModel: 0 #日志输出模式，0为以视屏提交学时为单位进行日志输出，1为以课程信息为单位进行输出
+>     ipProxySw: 0 #是否开启IP代理，0代表关闭，1代表开启，开启后一定要子当前启动目录下创建ip.txt这个ip池文件，里面填写对应的代理IP即可，一行一个。注意，代理的IP一定要支持Https
+>   aiSetting:
+>     aiType: "TONGYI" #智普：CHATGLM、星火：XINGHUO、通义千问：TONGYI、豆包：DOUBAO、其他模型：OTHER
+>     aiUrl: "" #默认不填，除非你用的不是上面所指明的AI模型，比如ChatGPT
+>     model: "" #AI模型，不填则使用yatori默认选择的模型，如果你用的豆包则必填并且填的是接入点ID非模型名称，比如ep-2024xxxxx
+>     API_KEY: "" #AI平台对应的apikey
 > users:
 >   - accountType: "YINGHUA" #平台类型，英华学堂：YINGHUA、仓辉：CANGHUI、学习公社：ENAEA
 >     url: "url" #对应平台的url链接,学习公社可以不用填且可以直接把这一行去掉
