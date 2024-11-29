@@ -116,7 +116,7 @@ jobs:
           set GOOS=windows 
           set GOARCH=amd64 
           go build -o ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release\${{ env.PROJECT_NAME }}.exe
-      #          tar -czvf yatori-go-console.${{env.VERSION}}-windows-amd64-release.tar.gz yatori-go-console.${{env.VERSION}}-windows-amd64-release
+      #          tar -czvf yatori-go-console.${{env.VERSION}}-windows-amd64-release.tar.gz yatori-go-console.${{env.VERSION}}-windows-amd64-release 这个是windows打包tar.gz包的
       - name: Create Release zip
         run: |
           copy command\config.yaml ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
