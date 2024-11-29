@@ -21,7 +21,7 @@ env:
   BUILD_DATE: ${{ github.run_id }}
   VERSION: ${{ github.ref_name }}  # Dynamic version based on the tag name
   RELEASE_DIR: release
-
+  RELEASE_NOTES:
 jobs:
   set-release-notes:
     runs-on: ubuntu-latest
