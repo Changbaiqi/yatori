@@ -60,6 +60,17 @@ jobs:
         run: |
           CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_linux_amd64
+      # Create GitHub Release
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ${{ env.RELEASE_DIR }}/*  # 文件发布目录
+          generate_release_notes: true  # 自动发行说明
+          draft: false  # 不创建草稿发布
+          prerelease: false  # 不标记为预发布
+          tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
 
   # Windows build job
   build-windows:
@@ -98,6 +109,17 @@ jobs:
           set GOOS=windows 
           set GOARCH=amd64 
           go build -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_windows_amd64.exe
+      # Create GitHub Release
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ${{ env.RELEASE_DIR }}/*  # 文件发布目录
+          generate_release_notes: true  # 自动发行说明
+          draft: false  # 不创建草稿发布
+          prerelease: false  # 不标记为预发布
+          tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
 
   # Create release on GitHub
   release:
@@ -109,6 +131,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Prepare Release Directory
+        run: mkdir -p ${{ env.RELEASE_DIR }}
 
       # List files to verify the release directory contains binaries
       - name: List files in release directory
