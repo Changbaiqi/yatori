@@ -121,7 +121,8 @@ jobs:
           copy command\config.yaml ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
           copy command\start.bat ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
           cd ${{ env.RELEASE_DIR }}
-          tar -czvf yatori-go-console.${{env.VERSION}}-windows-amd64-release.zip yatori-go-console.${{env.VERSION}}-windows-amd64-release
+          Compress-Archive -Path "yatori-go-console.${{env.VERSION}}-windows-amd64-release" -DestinationPath "yatori-go-console.${{env.VERSION}}-windows-amd64-release.zip"
+#          tar -czvf yatori-go-console.${{env.VERSION}}-windows-amd64-release.tar.gz yatori-go-console.${{env.VERSION}}-windows-amd64-release
           Remove-Item -Recurse -Force "yatori-go-console.${{env.VERSION}}-windows-amd64-release"
           cd ..
       # Create GitHub Release
