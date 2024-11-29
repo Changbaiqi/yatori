@@ -122,7 +122,7 @@ jobs:
           copy command\start.bat ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
           cd ${{ env.RELEASE_DIR }}
           tar -czvf yatori-go-console.${{env.VERSION}}-windows-amd64-release.zip yatori-go-console.${{env.VERSION}}-windows-amd64-release
-          rmdir /s/q yatori-go-console.${{env.VERSION}}-windows-amd64-release
+          rd /s /q yatori-go-console.${{env.VERSION}}-windows-amd64-release
           cd ..
       # Create GitHub Release
       - name: Create Release
