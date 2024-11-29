@@ -32,18 +32,15 @@ jobs:
 
       - name: Read release_notes.md and set as environment variable
         id: set_release_notes
-        run: | # 这里采用base64编码，是因为环境不允许直接使用多行变量，所以直接编译成base64之后使用的时候解码
-          if [ -f release_notes.md ]; then
-            # 使用 base64 编码将内容传输为单行字符串
-            RELEASE_NOTES=$(base64 release_notes.md)
-            echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
-          else
-            echo "release_notes.md file not found!"
-            exit 1
-          fi
+        run: |
+          echo 'RELEASE_NOTES<<EOF' >> $GITHUB_ENV
+          cat ./release_notes.md >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
       - name: Display the release notes
         run: |
-          echo "Release Notes (base64 encoded): $RELEASE_NOTES"
+          echo "Release Notes: $RELEASE_NOTES"
+
   # Linux build job
   build-linux:
     name: Build Linux
