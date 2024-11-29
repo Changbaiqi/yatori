@@ -34,7 +34,7 @@ jobs:
         id: set_release_notes
         run: |
           echo 'RELEASE_NOTES<<EOF' >> $GITHUB_ENV
-          cat ./release_notes.md >> $GITHUB_ENV
+          cat ./file.txt >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
       - name: Display the release notes
