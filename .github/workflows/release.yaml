@@ -107,7 +107,7 @@ jobs:
           go mod tidy
 
       - name: Prepare Release Directory
-        run: mkdir -p ${{ env.RELEASE_DIR }}
+        run: mkdir -p ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
 
       # Build Windows AMD64
       - name: Build Windows AMD64
@@ -115,7 +115,15 @@ jobs:
           set CGO_ENABLED=1
           set GOOS=windows 
           set GOARCH=amd64 
-          go build -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}.exe
+          go build -o ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release\${{ env.PROJECT_NAME }}.exe
+      - name: Create Release zip
+        run: |
+          copy command\config.yaml ${{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
+          copy command\start.bat {{ env.RELEASE_DIR }}\yatori-go-console.${{env.VERSION}}-windows-amd64-release
+          cd {{ env.RELEASE_DIR }}
+          zip -r yatori-go-console.${{env.VERSION}}-windows-amd64-release.zip yatori-go-console.${{env.VERSION}}-windows-amd64-release
+          rmdir /s/q yatori-go-console.${{env.VERSION}}-windows-amd64-release
+          cd ..
       # Create GitHub Release
       - name: Create Release
         uses: softprops/action-gh-release@v2
