@@ -22,10 +22,12 @@ env:
   VERSION: ${{ github.ref_name }}  # Dynamic version based on the tag name
   RELEASE_DIR: release
   RELEASE_NOTICES: |
-    # 更新内容
-    - [🧑‍🔧] 学习公社部分BUG
+    - [👏] 更新支持学习公社
     - [👏] 项目规范化迁移
-
+    - [👏] 支持IP代理池文件接入(挂服务器减少封号风险，挂服务器的请务必使用ip代理池，因为服务器公网IP是固定的，很容易会被侦测到)
+    - [‍🔧] 修复部分BUG，提高稳定性
+    
+    注：等GO版本追平Java版本功能后Java版本将不再进行维护，后续将主要针对GO版本进行维护，Java将不会更新新功能和适配新平台。
 jobs:
   # Linux build job
   build-linux:
