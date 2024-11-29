@@ -21,26 +21,12 @@ env:
   BUILD_DATE: ${{ github.run_id }}
   VERSION: ${{ github.ref_name }}  # Dynamic version based on the tag name
   RELEASE_DIR: release
-  RELEASE_NOTES:
+  RELEASE_NOTICES: |
+    # 更新内容
+    - [🧑‍🔧] 学习公社部分BUG
+    - [👏] 项目规范化迁移
+
 jobs:
-  set-release-notes:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-
-      - name: Read release_notes.md and set as environment variable
-        id: set_release_notes
-        run: |
-          echo 'RELEASE_NOTES<<EOF' >> $GITHUB_ENV
-          cat ./file.txt >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-
-      - name: Display the release notes
-        run: |
-          echo "Release Notes: $RELEASE_NOTES"
-
   # Linux build job
   build-linux:
     name: Build Linux
@@ -96,7 +82,7 @@ jobs:
           draft: false  # 不创建草稿发布
           prerelease: false  # 不标记为预发布
           tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
-          body: ${{env.RELEASE_NOTES}} # 使用读取到的发布说明内容
+          body: ${{env.RELEASE_NOTICES}} # 使用读取到的发布说明内容
 
   # Windows build job
   build-windows:
