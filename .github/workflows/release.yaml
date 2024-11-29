@@ -4,8 +4,8 @@ on:
   push:
     tags:
       - 'v*'  # Trigger on version tags (e.g., v1.2.3)
-    branches:
-      - main  # Trigger on push to main branch as well
+#    branches:
+#      - main  # Trigger on push to main branch as well
   workflow_dispatch:
     inputs:
       tag_name:
