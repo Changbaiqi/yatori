@@ -68,16 +68,26 @@ jobs:
           rm -rf yatori-go-console.${{env.VERSION}}-linux-amd64-release
           cd ..
       # Create GitHub Release
-      - name: Create Release
+      - name: Create GitHub Release with custom notes
         uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: ${{ env.RELEASE_DIR }}/*  # 文件发布目录
-          generate_release_notes: true  # 自动发行说明
+#          generate_release_notes: true  # 自动发行说明
           draft: false  # 不创建草稿发布
           prerelease: false  # 不标记为预发布
           tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
+          body: |
+            # Custom Release Notes
+            
+            ## What's New:
+            - Added feature X
+            - Fixed bug Y
+            - Improved performance of Z
+            
+            ## Breaking Changes:
+            - API endpoint `/old-endpoint` is now deprecated. Use `/new-endpoint` instead.
 
   # Windows build job
   build-windows:
@@ -136,7 +146,6 @@ jobs:
           draft: false  # 不创建草稿发布
           prerelease: false  # 不标记为预发布
           tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
-
 #  # Create release on GitHub
 #  release:
 #    name: Create Release
