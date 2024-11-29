@@ -36,16 +36,13 @@ jobs:
         id: set_release_notes
         run: |
           if [ -f release_notes.md ]; then
-            RELEASE_NOTES=$(<release_notes.md)
-            echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
+            echo "RELEASE_NOTES<<EOF" >> $GITHUB_ENV
+            cat release_notes.md >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
           else
             echo "release_notes.md file not found!"
             exit 1
           fi
-
-      - name: Display the release notes
-        run: |
-          echo "Release Notes: $RELEASE_NOTES"
 
   # Linux build job
   build-linux:
@@ -102,7 +99,7 @@ jobs:
           draft: false  # 不创建草稿发布
           prerelease: false  # 不标记为预发布
           tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
-          body: ${{env.RELEASE_NOTICES}} # 使用读取到的发布说明内容
+          body: ${{env.RELEASE_NOTES}} # 使用读取到的发布说明内容
 
   # Windows build job
   build-windows:
