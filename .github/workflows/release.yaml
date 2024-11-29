@@ -59,7 +59,6 @@ jobs:
       - name: Build Linux AMD64
         run: |
           CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build \
-            -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" \
             -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_linux_amd64
 
   # Windows build job
@@ -98,7 +97,7 @@ jobs:
           set CGO_ENABLED=1
           set GOOS=windows 
           set GOARCH=amd64 
-          go build -ldflags="-X 'main.Version=${{ env.VERSION }}' -X 'main.BuildDate=${{ env.BUILD_DATE }}'" -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_windows_amd64.exe
+          go build -o ${{ env.RELEASE_DIR }}/${{ env.PROJECT_NAME }}_windows_amd64.exe
 
   # Create release on GitHub
   release:
@@ -110,9 +109,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Prepare Release Directory
-        run: mkdir -p ${{ env.RELEASE_DIR }}
 
       # List files to verify the release directory contains binaries
       - name: List files in release directory
@@ -147,8 +143,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ${{ env.RELEASE_DIR }}/*  # Ensure the files exist in the release directory
-          generate_release_notes: true  # Auto-generate release notes
-          draft: false  # Do not create a draft release
-          prerelease: false  # Do not mark as a pre-release
-          tag_name: ${{ env.VERSION }}  # Use dynamic version from the tag
+          files: ${{ env.RELEASE_DIR }}/*  # 文件发布目录
+          generate_release_notes: true  # 自动发行说明
+          draft: false  # 不创建草稿发布
+          prerelease: false  # 不标记为预发布
+          tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
