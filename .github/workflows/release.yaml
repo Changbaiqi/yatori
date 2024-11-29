@@ -35,7 +35,18 @@ jobs:
         id: read_release_notes
         run: | # 发布的说明文件名为 release_notes.md
           RELEASE_NOTES=$(cat ./release_notes.md)
-          echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
+          ENCODED_RELEASE_NOTES=$(echo "$RELEASE_NOTES" | base64)
+          echo "ENCODED_RELEASE_NOTES=$ENCODED_RELEASE_NOTES" >> $GITHUB_ENV
+      - name: Create GitHub Release with custom notes
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          draft: false  # 不创建草稿发布
+          prerelease: false  # 不标记为预发布
+          tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
+          body: ${{ steps.create_release.outputs.RELEASE_NOTES }}  # 使用解码后的发布说明内容
+
   # Linux build job
   build-linux:
     name: Build Linux
@@ -51,7 +62,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libasound2-dev pkg-config gcc-aarch64-linux-gnu
-
+      - name: Decode release notes and create GitHub release
+        id: create_release
+        run: |
+          RELEASE_NOTES=$(echo "${{ env.ENCODED_RELEASE_NOTES }}" | base64 --decode)
+          echo "Release Notes: $RELEASE_NOTES"
       # Set up Go
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -87,7 +102,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: ${{ env.RELEASE_DIR }}/*  # 文件发布目录
-#          generate_release_notes: true  # 自动发行说明
+          #          generate_release_notes: true  # 自动发行说明
           draft: false  # 不创建草稿发布
           prerelease: false  # 不标记为预发布
           tag_name: ${{ env.VERSION }}  # 从标签中使用动态版本
