@@ -23,10 +23,30 @@ env:
   RELEASE_DIR: release
   RELEASE_NOTICES: |
     # 更新内容
-    - [🧑‍🔧] 学习公社部分BUG
-    - [👏] 项目规范化迁移
 
 jobs:
+  set-release-notes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Read release_notes.md and set as environment variable
+        id: set_release_notes
+        run: |
+          if [ -f release_notes.md ]; then
+            RELEASE_NOTES=$(<release_notes.md)
+            echo "RELEASE_NOTES=$RELEASE_NOTES" >> $GITHUB_ENV
+          else
+            echo "release_notes.md file not found!"
+            exit 1
+          fi
+
+      - name: Display the release notes
+        run: |
+          echo "Release Notes: $RELEASE_NOTES"
+
   # Linux build job
   build-linux:
     name: Build Linux
