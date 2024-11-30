@@ -1,0 +1,6 @@
+# exclude exe
+*.exe
+assets/*
+./ip.txt
+./logo.txt
+./.idea/*
