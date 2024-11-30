@@ -12,7 +12,7 @@ require (
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 )
 
-require github.com/Yatori-Dev/yatori-go-core v1.0.1
+require github.com/Yatori-Dev/yatori-go-core v1.0.2
 
 require (
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
