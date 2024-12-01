@@ -12,8 +12,6 @@ require (
 	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 )
 
-require github.com/yatori-dev/yatori-go-core v1.0.2
-
 require (
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
 	github.com/hajimehoshi/go-mp3 v0.3.4 // indirect
@@ -35,6 +33,7 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/tjfoc/gmsm v1.4.1 // indirect
 	github.com/yalue/onnxruntime_go v1.12.1 // indirect
+	github.com/yatori-dev/yatori-go-core v1.0.3 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9 // indirect
