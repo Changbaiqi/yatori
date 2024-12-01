@@ -4,3 +4,5 @@ assets/*
 ./ip.txt
 ./logo.txt
 ./.idea/*
+config.yaml
+.idea
