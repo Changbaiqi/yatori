@@ -1,7 +1,6 @@
 package logic
 
 import (
-	lg "github.com/Yatori-Dev/yatori-go-core/utils/log"
 	"math/rand"
 	"os"
 	"strings"
@@ -12,6 +11,8 @@ import (
 	"yatori-go-console/logic/xuexitong"
 	"yatori-go-console/logic/yinghua"
 	"yatori-go-console/utils"
+
+	lg "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
 func Lunch() {

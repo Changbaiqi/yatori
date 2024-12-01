@@ -1,14 +1,15 @@
 package utils
 
 import (
-	lg "github.com/Yatori-Dev/yatori-go-core/utils/log"
-	"github.com/faiface/beep"
-	"github.com/faiface/beep/mp3"
-	"github.com/faiface/beep/speaker"
 	"log"
 	"os"
 	"sync"
 	"time"
+
+	"github.com/faiface/beep"
+	"github.com/faiface/beep/mp3"
+	"github.com/faiface/beep/speaker"
+	lg "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
 var NSMutex sync.Mutex

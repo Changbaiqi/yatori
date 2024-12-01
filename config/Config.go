@@ -2,11 +2,12 @@ package config
 
 import (
 	"encoding/json"
-	"github.com/Yatori-Dev/yatori-go-core/models/ctype"
-	log2 "github.com/Yatori-Dev/yatori-go-core/utils/log"
-	"github.com/spf13/viper"
 	"log"
 	"os"
+
+	"github.com/spf13/viper"
+	"github.com/yatori-dev/yatori-go-core/models/ctype"
+	log2 "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
 type JSONDataForConfig struct {

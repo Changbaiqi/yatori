@@ -2,11 +2,6 @@ package yinghua
 
 import (
 	"fmt"
-	"github.com/Yatori-Dev/yatori-go-core/aggregation/yinghua"
-	yinghuaApi "github.com/Yatori-Dev/yatori-go-core/api/yinghua"
-	"github.com/Yatori-Dev/yatori-go-core/utils"
-	lg "github.com/Yatori-Dev/yatori-go-core/utils/log"
-	"github.com/thedevsaddam/gojsonq"
 	"log"
 	"os"
 	"regexp"
@@ -16,6 +11,12 @@ import (
 	"yatori-go-console/config"
 	utils2 "yatori-go-console/utils"
 	modelLog "yatori-go-console/utils/log"
+
+	"github.com/thedevsaddam/gojsonq"
+	"github.com/yatori-dev/yatori-go-core/aggregation/yinghua"
+	yinghuaApi "github.com/yatori-dev/yatori-go-core/api/yinghua"
+	"github.com/yatori-dev/yatori-go-core/utils"
+	lg "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
 var videosLock sync.WaitGroup //视屏锁
