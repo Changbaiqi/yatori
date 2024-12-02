@@ -7,6 +7,7 @@ import (
 	"sync"
 	"time"
 	"yatori-go-console/config"
+	"yatori-go-console/logic/cqie"
 	"yatori-go-console/logic/enaea"
 	"yatori-go-console/logic/xuexitong"
 	"yatori-go-console/logic/yinghua"
@@ -37,6 +38,8 @@ func brushBlock(configData *config.JSONDataForConfig) {
 	yingHuaOperation := yinghua.UserLoginOperation(yingHuaAccount)
 	enaeaAccount := enaea.FilterAccount(configData)
 	enaeaOperation := enaea.UserLoginOperation(enaeaAccount)
+	cqieAccount := cqie.FilterAccount(configData)
+	cqieOpertation := cqie.UserLoginOperation(cqieAccount)
 	xueXiTongAccount := xuexitong.FilterAccount(configData)
 	xueXiTongOperation := xuexitong.UserLoginOperation(xueXiTongAccount)
 
@@ -51,6 +54,11 @@ func brushBlock(configData *config.JSONDataForConfig) {
 	platformLock.Add(1)
 	go func() {
 		enaea.RunBrushOperation(configData.Setting, enaeaAccount, enaeaOperation) //学习公社统一刷课模块
+		platformLock.Done()
+	}()
+	platformLock.Add(1)
+	go func() {
+		cqie.RunBrushOperation(configData.Setting, cqieAccount, cqieOpertation) //重庆工程学院CQIE刷课模块
 		platformLock.Done()
 	}()
 	//学习通
@@ -71,7 +79,7 @@ func configJsonCheck(configData *config.JSONDataForConfig) {
 
 	//防止用户填完整url
 	for i, v := range configData.Users {
-		if v.AccountType == "ENAEA" { //跳过学习公社
+		if v.AccountType == "ENAEA" || v.Account == "CQIE" { //跳过学习公社和CQIE
 			continue
 		} else if v.URL == "url" {
 			lg.Print(lg.INFO, lg.BoldRed, "请先在config文件中配置好相应账号")
