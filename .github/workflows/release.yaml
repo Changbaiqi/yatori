@@ -24,7 +24,7 @@ env:
   RELEASE_DIR: release
   RELEASE_NOTICES: |
     - [👏] 更新支持新平台重庆工程学院CQIE
-    - [👏] 更新平台重庆工程学院CQIE支持秒刷
+    - [👏] 更新平台重庆工程学院CQIE支持秒刷（使用暴力模式即可）
     
     
     注：等GO版本追平Java版本功能后Java版本将不再进行维护，后续将主要针对GO版本进行维护，Java将不会更新新功能和适配新平台。
