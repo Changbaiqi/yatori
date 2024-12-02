@@ -2,7 +2,7 @@
 
 
 
-![yatori-go-console](https://socialify.git.ci/Yatori-Dev/yatori-go-console/image?font=Raleway&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FYatori-Dev%2Fyatori-go-console%2Frefs%2Fheads%2Fmain%2FREADME%2Fimages%2F1710254379397-modified.png&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Dark)
+![yatori-go-console](https://socialify.git.ci/yatori-dev/yatori-go-console/image?font=Raleway&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2Fyatori-dev%2Fyatori-go-console%2Frefs%2Fheads%2Fmain%2FREADME%2Fimages%2F1710254379397-modified.png&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Dark)
 
 <div align="center"><h1>Yatori-core系列</h1></div>
 
@@ -50,8 +50,8 @@
 | 创能实训         | 支持暴力模式（会被检测到）             | 已完成 ✅ |
 | 社会公益课       | 支持暴力模式（会被检测到）             | 已完成 ✅ |
 | 学习公社         | 无                                     | 已完成 ✅ |
+| 重庆工业学院CQIE | 无                                     | 已完成 ✅ |
 | 学习通           | 无                                     | 开发中 🚧 |
-| 重庆工业学院CQIE | 无                                     | 开发中 🚧 |
 | 智慧树           | 无                                     | 开发中 🚧 |
 
 > `注：`英华限制性暴力模式指的是如果你学校英华平台的课程视屏没有前置视屏观看限制那么就可以开，这个前置视屏观看限制指的是，一个章节的视屏你要观看必须要先把前面章节的视屏看完才能看，这就叫做前置视屏观看限制。
