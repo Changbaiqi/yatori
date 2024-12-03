@@ -137,10 +137,9 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *cqieApi.
 		if stopPos >= maxPos {
 			maxPos = startPos + 3
 		}
-		fmt.Println(startPos, stopPos, maxPos)
 		err := cqie.SubmitStudyTimeAction(UserCache, &node, nowTime, startPos, stopPos, maxPos)
 		if err != nil {
-			fmt.Println(err)
+			lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", "【"+node.VideoName+"】", lg.BoldRed, "提交学时异常：", err.Error())
 		}
 		modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", "【"+node.VideoName+"】  >>> ", "提交状态：", "成功", lg.Default, " ", "观看进度：", fmt.Sprintf("%.2f", float32(node.StudyTime)/float32(node.TimeLength)), "%")
 		startPos = startPos + 3
@@ -169,7 +168,7 @@ func videoActionSecondBrush(setting config.Setting, user *config.Users, UserCach
 	}
 	err1 := cqie.SubmitStudyTimeAction(UserCache, &node, nowTime, startPos, stopPos, maxPos)
 	if err1 != nil {
-		fmt.Println(err)
+		lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", "【"+node.VideoName+"】", lg.BoldRed, "提交学时异常：", err.Error())
 	}
 	err = cqie.SaveVideoStudyTimeAction(UserCache, &node, startPos, stopPos) //学完之后保存学习点
 	if err != nil {
