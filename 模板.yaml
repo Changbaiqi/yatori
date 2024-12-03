@@ -13,7 +13,7 @@ setting:
     API_KEY: "" #AI平台对应的apikey
 users:
   - accountType: "YINGHUA" #平台类型，英华学堂：YINGHUA、仓辉：CANGHUI、学习公社：ENAEA、学习通：XUEXIT、重庆工业学院：CQIE
-    url: "url" #对应平台的url链接,学习公社可以不用填且可以直接把这一行去掉
+    url: "url" #对应平台的url链接,学习公社和CQIE可以不用填且可以直接把这一行去掉
     account: "账号" #账号
     password: "密码" #密码
     coursesCustom:
