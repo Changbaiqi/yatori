@@ -60,7 +60,7 @@
 
 ### 代码食用：
 
-> 代码食用请转至[Yatori-Dev/yatori-go-core](https://github.com/Yatori-Dev/yatori-go-core)项目
+> 代码食用请转至[yatori-dev/yatori-go-core](https://github.com/yatori-dev/yatori-go-core)项目
 
 ### 直接食用:
 
@@ -154,15 +154,16 @@
 > ```
 >
 
+## 🎉贡献者
+
+<a href="https://github.com/yatori-dev/yatori-go-console/graphs/contributors">   <img src="https://contrib.rocks/image?repo=yatori-dev/yatori-go-console" /></a>
+
 ## 免责声明：
 
 > 代码已开源，程序只供学习使用，严禁贩卖，若对贵公司造成损失立马删库（保命(doge)）。
 
-## 贡献者
 
-<a href="https://github.com/Yatori-Dev/yatori-go-console/graphs/contributors">   <img src="https://contrib.rocks/image?repo=Yatori-Dev/yatori-go-console" /></a>
-
-## 鸣谢
+## 🎉鸣谢
 
 > 感谢[**JetBrains**](https://www.jetbrains.com/zh-cn/community/opensource/#support)提供的开源开发许可证，JetBrains 通过为核心项目贡献者免费提供一套一流的开发者工具来支持非商业开源项目。
 >
