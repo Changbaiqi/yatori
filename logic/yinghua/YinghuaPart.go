@@ -19,7 +19,8 @@ import (
 	lg "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
-var videosLock sync.WaitGroup //视屏锁
+var videosLock sync.WaitGroup //视屏节点锁
+var nodesLock sync.WaitGroup  //节点锁
 var usersLock sync.WaitGroup  //用户锁
 
 // 用于过滤英华账号
@@ -42,6 +43,7 @@ func RunBrushOperation(setting config.Setting, users []config.Users, userCaches 
 
 	}
 	usersLock.Wait()
+
 }
 
 // 用户登录模块
@@ -69,10 +71,11 @@ var soundMut sync.Mutex
 func userBlock(setting config.Setting, user *config.Users, cache *yinghuaApi.YingHuaUserCache) {
 	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
 	for _, item := range list {                //遍历所有待刷视屏
-		videosLock.Add(1)
+		nodesLock.Add(1)
 		go nodeListStudy(setting, user, cache, &item) //多携程刷课
 	}
-	videosLock.Wait()
+	nodesLock.Wait() //等待所有视屏刷完
+	nodesLock.Wait() //等待所有节点结束
 	lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.Default, "] ", lg.Purple, "所有待学习课程学习完毕")
 	if setting.BasicSetting.CompletionTone == 1 { //如果声音提示开启，那么播放
 		soundMut.Lock()
@@ -96,12 +99,12 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghu
 	//过滤课程---------------------------------
 	//排除指定课程
 	if len(user.CoursesCustom.ExcludeCourses) != 0 && config.CmpCourse(course.Name, user.CoursesCustom.ExcludeCourses) {
-		videosLock.Done()
+		nodesLock.Done()
 		return
 	}
 	//包含指定课程
 	if len(user.CoursesCustom.IncludeCourses) != 0 && !config.CmpCourse(course.Name, user.CoursesCustom.IncludeCourses) {
-		videosLock.Done()
+		nodesLock.Done()
 		return
 	}
 	//执行刷课---------------------------------
@@ -110,7 +113,14 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghu
 	// 提交学时
 	for _, node := range nodeList {
 		//视屏处理逻辑
-		videoAction(setting, user, userCache, node)
+		switch user.CoursesCustom.VideoModel { //根据视屏模式进行刷课
+		case 1:
+			videoAction(setting, user, userCache, node)
+			break
+		case 2:
+			videoVioLenceAction(setting, user, userCache, node)
+			break
+		}
 		//作业处理逻辑
 		workAction(setting, user, userCache, node)
 		//考试处理逻辑
@@ -124,14 +134,11 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghu
 		modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", "视屏学习进度：", strconv.Itoa(action.VideoLearned), "/", strconv.Itoa(action.VideoCount), " ", "课程总学习进度：", fmt.Sprintf("%.2f", action.Progress*100), "%")
 	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Green, "课程", " 【"+course.Name+"】 ", "学习完毕")
-	videosLock.Done()
+	nodesLock.Done()
 }
 
 // videoAction 刷视频逻辑抽离
 func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaApi.YingHuaUserCache, node yinghua.YingHuaNode) {
-	if user.CoursesCustom.VideoModel == 0 { //是否打开了自动刷视屏开关
-		return
-	}
 	if !node.TabVideo { //过滤非视屏节点
 		return
 	}
@@ -176,6 +183,58 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaA
 			break //如果看完该视屏则直接下一个
 		}
 	}
+}
+
+// videoAction 刷视频逻辑抽离(暴力模式)
+func videoVioLenceAction(setting config.Setting, user *config.Users, UserCache *yinghuaApi.YingHuaUserCache, node yinghua.YingHuaNode) {
+	if !node.TabVideo { //过滤非视屏节点
+		return
+	}
+	videosLock.Add(1)
+	go func() {
+		modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视屏：", lg.Default, " 【"+node.Name+"】 ")
+		time := node.ViewedDuration //设置当前观看时间为最后看视屏的时间
+		studyId := "0"              //服务器端分配的学习ID
+		for {
+			time += 5
+			if node.Progress == 100 {
+				modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.Name, "】 ", " ", lg.Blue, "学习完毕")
+				break //如果看完了，也就是进度为100那么直接跳过
+			}
+			//提交学时
+			sub, err := yinghua.SubmitStudyTimeAction(UserCache, node.Id, studyId, time)
+			if err != nil {
+				lg.Print(lg.INFO, `[`, UserCache.Account, `] `, lg.BoldRed, "提交学时接口访问异常，返回信息：", err.Error())
+			}
+			//超时重登检测
+			yinghua.LoginTimeoutAfreshAction(UserCache, sub)
+			lg.Print(lg.DEBUG, "---", node.Id, sub)
+			//如果提交学时不成功
+			if gojsonq.New().JSONString(sub).Find("msg") != "提交学时成功!" {
+				lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.Name, "】 >>> ", "提交状态：", lg.Red, sub)
+				//{"_code":9,"status":false,"msg":"该课程解锁时间【2024-11-14 12:00:00】未到!","result":{}}，如果未到解锁时间则跳过
+				reg := regexp.MustCompile(`该课程解锁时间【[^【]*】未到!`)
+				if reg.MatchString(gojsonq.New().JSONString(sub).Find("msg").(string)) {
+					modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.Name, "】 >>> ", lg.Red, "该课程未到解锁时间已自动跳过")
+					break
+				}
+				time2.Sleep(10 * time2.Second)
+				continue
+			}
+			//打印日志部分
+			studyId = strconv.Itoa(int(gojsonq.New().JSONString(sub).Find("result.data.studyId").(float64)))
+			if gojsonq.New().JSONString(sub).Find("msg").(string) == "提交学时成功!" {
+				modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.Name, "】 >>> ", "提交状态：", lg.Green, gojsonq.New().JSONString(sub).Find("msg").(string), lg.Default, " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(node.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(node.VideoDuration)*100), "%")
+			} else {
+				lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【", node.Name, "】 >>> ", "提交状态：", lg.Red, gojsonq.New().JSONString(sub).Find("msg").(string), lg.Default, " ", "观看时间：", strconv.Itoa(time)+"/"+strconv.Itoa(node.VideoDuration), " ", "观看进度：", fmt.Sprintf("%.2f", float32(time)/float32(node.VideoDuration)*100), "%")
+			}
+			time2.Sleep(5 * time2.Second)
+			if time >= node.VideoDuration {
+				break //如果看完该视屏则直接下一个
+			}
+		}
+		videosLock.Done()
+	}()
 }
 
 // workAction 作业处理逻辑
