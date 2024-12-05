@@ -79,7 +79,7 @@ func configJsonCheck(configData *config.JSONDataForConfig) {
 
 	//防止用户填完整url
 	for i, v := range configData.Users {
-		if v.AccountType == "ENAEA" || v.Account == "CQIE" { //跳过学习公社和CQIE
+		if v.AccountType == "ENAEA" || v.AccountType == "CQIE" || v.AccountType == "XUEXITONG" { //跳过学习公社和CQIE
 			continue
 		} else if v.URL == "url" {
 			lg.Print(lg.INFO, lg.BoldRed, "请先在config文件中配置好相应账号")
