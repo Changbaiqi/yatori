@@ -25,7 +25,6 @@ env:
   RELEASE_NOTICES: |
     - [‍🔧] 优化AI提示词提高写题正确率
     
-    
     注：等GO版本追平Java版本功能后Java版本将不再进行维护，后续将主要针对GO版本进行维护，Java将不会更新新功能和适配新平台。
 jobs:
   # Linux build job
