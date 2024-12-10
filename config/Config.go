@@ -46,8 +46,9 @@ type CoursesSettings struct {
 	ExcludeExams []string `json:"excludeExams"`
 }
 type CoursesCustom struct {
-	VideoModel      int               `json:"videoModel"`
-	AutoExam        int               `json:"autoExam"`
+	VideoModel      int               `json:"videoModel"`     //观看视屏模式
+	AutoExam        int               `json:"autoExam"`       //是否自动考试
+	ExamAutoSubmit  int               `json:"examAutoSubmit"` //是否自动提交试卷
 	ExcludeCourses  []string          `json:"excludeCourses"`
 	IncludeCourses  []string          `json:"includeCourses"`
 	CoursesSettings []CoursesSettings `json:"coursesSettings"`
