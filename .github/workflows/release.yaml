@@ -11,7 +11,7 @@ on:
       tag_name:
         description: 'Tag name for the release'
         required: true
-        default: 'v2.0.1-Beta.3'  # Default tag name
+        default: 'v2.0.1-Beta.4'  # Default tag name
 
 permissions:
   contents: write  # Allow writing to GitHub releases
@@ -23,7 +23,7 @@ env:
   VERSION: ${{ github.ref_name }}  # Dynamic version based on the tag name
   RELEASE_DIR: release
   RELEASE_NOTICES: |
-    - [‍🔧] 优化AI提示词提高写题正确率
+    - [‍🔧] 修复英华平台AI答题异常BUG
     
     注：等GO版本追平Java版本功能后Java版本将不再进行维护，后续将主要针对GO版本进行维护，Java将不会更新新功能和适配新平台。
 jobs:
