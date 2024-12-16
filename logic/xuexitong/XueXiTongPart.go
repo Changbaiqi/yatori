@@ -1,10 +1,10 @@
 package xuexitong
 
 import (
-	"fmt"
 	"log"
 	"strconv"
 	"sync"
+	"time"
 	"yatori-go-console/config"
 	utils2 "yatori-go-console/utils"
 
@@ -106,28 +106,47 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *xuexit
 		nodes = append(nodes, item.ID)
 	}
 	courseId, _ := strconv.Atoi(course.CourseId)
-	_, fetchCards, err := xuexitong.ChapterFetchCardsAction(userCache, &action, nodes, 27, courseId, key, cpi)
+	userId, _ := strconv.Atoi(course.UserId)
+	// 检测节点完成情况
+	pointAction, err := xuexitong.ChapterFetchPointAction(userCache, nodes, &action, key, userId, cpi, courseId)
 	if err != nil {
 		log.Fatal(err)
 	}
-	var (
-		videoDTO entity.PointVideoDto
-	)
-	// 处理返回的任务点对象
-	videoDTO = fetchCards[0].PointVideoDto
-	videoCourseId, _ := strconv.Atoi(videoDTO.CourseID)
-	videoClassId, _ := strconv.Atoi(videoDTO.ClassID)
-	if courseId == videoCourseId && key == videoClassId {
-		// 测试只对单独一个卡片测试
-		card, err := xuexitong.PageMobileChapterCardAction(userCache, key, courseId, videoDTO.KnowledgeID, videoDTO.CardIndex, cpi)
+
+	var isFinished = func(index int) bool {
+		if index < 0 || index >= len(pointAction.Knowledge) {
+			return false
+		}
+		i := pointAction.Knowledge[index]
+		return i.PointTotal > 0 && i.PointTotal == i.PointFinished
+	}
+
+	for index, item := range nodes {
+		if pointAction.Knowledge[index].ID == item && !isFinished(index) {
+			log.Println("任务点已完成忽略")
+			time.Sleep(1 * time.Second)
+			continue
+		}
+		_, fetchCards, err := xuexitong.ChapterFetchCardsAction(userCache, &action, nodes, index, courseId, key, cpi)
 		if err != nil {
 			log.Fatal(err)
 		}
-		videoDTO.AttachmentsDetection(card)
-		fmt.Println(videoDTO)
-		point.ExecuteVideo(userCache, &videoDTO)
-	} else {
-		log.Fatal("任务点对象错误")
+		videoDTOs, workDTOs, documentDTOs := entity.ParsePointDto(fetchCards)
+		if videoDTOs == nil && workDTOs == nil && documentDTOs == nil {
+			log.Fatal("没有可学习的内容")
+		}
+		// 暂时只测试视频
+		if videoDTOs != nil {
+			for _, videoDTO := range videoDTOs {
+				card, err := xuexitong.PageMobileChapterCardAction(
+					userCache, key, courseId, videoDTO.KnowledgeID, videoDTO.CardIndex, cpi)
+				if err != nil {
+					log.Fatal(err)
+				}
+				videoDTO.AttachmentsDetection(card)
+				point.ExecuteVideo(userCache, &videoDTO)
+				time.Sleep(5 * time.Second)
+			}
+		}
 	}
-
 }
