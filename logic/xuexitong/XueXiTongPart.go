@@ -15,7 +15,7 @@ import (
 	lg "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
-var videosLock sync.WaitGroup //视屏锁
+var videosLock sync.WaitGroup //视频锁
 var usersLock sync.WaitGroup  //用户锁
 
 // 用于过滤学习通账号

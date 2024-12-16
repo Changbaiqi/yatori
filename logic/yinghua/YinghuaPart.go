@@ -19,7 +19,7 @@ import (
 	lg "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
-var videosLock sync.WaitGroup //视屏节点锁
+var videosLock sync.WaitGroup //视频节点锁
 var nodesLock sync.WaitGroup  //节点锁
 var usersLock sync.WaitGroup  //用户锁
 
@@ -70,11 +70,11 @@ var soundMut sync.Mutex
 
 func userBlock(setting config.Setting, user *config.Users, cache *yinghuaApi.YingHuaUserCache) {
 	list, _ := yinghua.CourseListAction(cache) //拉取课程列表
-	for _, item := range list {                //遍历所有待刷视屏
+	for _, item := range list {                //遍历所有待刷视频
 		nodesLock.Add(1)
 		go nodeListStudy(setting, user, cache, &item) //多携程刷课
 	}
-	nodesLock.Wait() //等待所有视屏刷完
+	nodesLock.Wait() //等待所有视频刷完
 	nodesLock.Wait() //等待所有节点结束
 	lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.Default, "] ", lg.Purple, "所有待学习课程学习完毕")
 	if setting.BasicSetting.CompletionTone == 1 { //如果声音提示开启，那么播放
@@ -108,12 +108,12 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghu
 		return
 	}
 	//执行刷课---------------------------------
-	nodeList, _ := yinghua.VideosListAction(userCache, *course) //拉取对应课程的视屏列表
+	nodeList, _ := yinghua.VideosListAction(userCache, *course) //拉取对应课程的视频列表
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "正在学习课程：", lg.Yellow, " 【"+course.Name+"】 ")
 	// 提交学时
 	for _, node := range nodeList {
-		//视屏处理逻辑
-		switch user.CoursesCustom.VideoModel { //根据视屏模式进行刷课
+		//视频处理逻辑
+		switch user.CoursesCustom.VideoModel { //根据视频模式进行刷课
 		case 1:
 			videoAction(setting, user, userCache, node)
 			break
@@ -131,7 +131,7 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghu
 			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", lg.Red, "拉取课程进度失败", err.Error())
 			break
 		}
-		modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", "视屏学习进度：", strconv.Itoa(action.VideoLearned), "/", strconv.Itoa(action.VideoCount), " ", "课程总学习进度：", fmt.Sprintf("%.2f", action.Progress*100), "%")
+		modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", "视频学习进度：", strconv.Itoa(action.VideoLearned), "/", strconv.Itoa(action.VideoCount), " ", "课程总学习进度：", fmt.Sprintf("%.2f", action.Progress*100), "%")
 	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Green, "课程", " 【"+course.Name+"】 ", "学习完毕")
 	nodesLock.Done()
@@ -139,11 +139,11 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghu
 
 // videoAction 刷视频逻辑抽离
 func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaApi.YingHuaUserCache, node yinghua.YingHuaNode) {
-	if !node.TabVideo { //过滤非视屏节点
+	if !node.TabVideo { //过滤非视频节点
 		return
 	}
-	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视屏：", lg.Default, " 【"+node.Name+"】 ")
-	time := node.ViewedDuration //设置当前观看时间为最后看视屏的时间
+	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视频：", lg.Default, " 【"+node.Name+"】 ")
+	time := node.ViewedDuration //设置当前观看时间为最后看视频的时间
 	studyId := "0"              //服务器端分配的学习ID
 	for {
 		time += 5
@@ -180,20 +180,20 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaA
 		}
 		time2.Sleep(5 * time2.Second)
 		if time >= node.VideoDuration {
-			break //如果看完该视屏则直接下一个
+			break //如果看完该视频则直接下一个
 		}
 	}
 }
 
 // videoAction 刷视频逻辑抽离(暴力模式)
 func videoVioLenceAction(setting config.Setting, user *config.Users, UserCache *yinghuaApi.YingHuaUserCache, node yinghua.YingHuaNode) {
-	if !node.TabVideo { //过滤非视屏节点
+	if !node.TabVideo { //过滤非视频节点
 		return
 	}
 	videosLock.Add(1)
 	go func() {
-		modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视屏：", lg.Default, " 【"+node.Name+"】 ")
-		time := node.ViewedDuration //设置当前观看时间为最后看视屏的时间
+		modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视频：", lg.Default, " 【"+node.Name+"】 ")
+		time := node.ViewedDuration //设置当前观看时间为最后看视频的时间
 		studyId := "0"              //服务器端分配的学习ID
 		for {
 			time += 5
@@ -230,7 +230,7 @@ func videoVioLenceAction(setting config.Setting, user *config.Users, UserCache *
 			}
 			time2.Sleep(5 * time2.Second)
 			if time >= node.VideoDuration {
-				break //如果看完该视屏则直接下一个
+				break //如果看完该视频则直接下一个
 			}
 		}
 		videosLock.Done()

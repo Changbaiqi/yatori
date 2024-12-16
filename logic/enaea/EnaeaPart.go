@@ -15,7 +15,7 @@ import (
 	lg "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
-var videosLock sync.WaitGroup //视屏锁
+var videosLock sync.WaitGroup //视频锁
 var usersLock sync.WaitGroup  //用户锁
 
 // 用于过滤学习公社账号
@@ -70,7 +70,7 @@ func userBlock(setting config.Setting, user *config.Users, cache *enaeaApi.Enaea
 			os.Exit(0)
 		}
 		lg.Print(lg.INFO, "[", lg.Green, cache.Account, lg.Default, "] ", lg.Purple, "正在学习项目", " 【"+course.ClusterName+"】 ")
-		for _, item := range courseList { //遍历所有待刷视屏
+		for _, item := range courseList { //遍历所有待刷视频
 			nodeListStudy(setting, user, cache, &item) //多携程刷课
 		}
 	}
@@ -96,18 +96,18 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *enaeaA
 		return
 	}
 	//执行刷课---------------------------------
-	nodeList, err := enaea.VideoListAction(userCache, course) //拉取对应课程的视屏列表
+	nodeList, err := enaea.VideoListAction(userCache, course) //拉取对应课程的视频列表
 	//失效重登检测
 	for err != nil {
 		enaea.LoginTimeoutAfreshAction(userCache, err)
-		nodeList1, err1 := enaea.VideoListAction(userCache, course) //拉取对应课程的视屏列表
+		nodeList1, err1 := enaea.VideoListAction(userCache, course) //拉取对应课程的视频列表
 		nodeList = nodeList1
 		err = err1
 	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "正在学习课程：", lg.Yellow, "【"+course.TitleTag+"】", "【"+course.CourseTitle+"】 ")
 	// 提交学时
 	for _, node := range nodeList {
-		//视屏处理逻辑
+		//视频处理逻辑
 		videoAction(setting, user, userCache, node)
 	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Green, "课程", " 【"+course.TitleTag+"】", "【"+course.CourseTitle+"】 ", "学习完毕")
@@ -116,11 +116,11 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *enaeaA
 
 // videoAction 刷视频逻辑抽离
 func videoAction(setting config.Setting, user *config.Users, UserCache *enaeaApi.EnaeaUserCache, node enaea.EnaeaVideo) {
-	if user.CoursesCustom.VideoModel == 0 { //是否打开了自动刷视屏开关
+	if user.CoursesCustom.VideoModel == 0 { //是否打开了自动刷视频开关
 		return
 	}
 
-	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视屏：", lg.Default, " 【"+node.TitleTag+"】", "【"+node.CourseName+"】", "【"+node.CourseContentStr+"】 ")
+	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视频：", lg.Default, " 【"+node.TitleTag+"】", "【"+node.CourseName+"】", "【"+node.CourseContentStr+"】 ")
 	err := enaea.StatisticTicForCCVideAction(UserCache, &node)
 	if err != nil {
 		lg.Print(lg.INFO, `[`, UserCache.Account, `] `, lg.BoldRed, "提交学时接口访问异常，返回信息：", err.Error())
@@ -143,7 +143,7 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *enaeaApi
 		modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", " 【"+node.TitleTag+"】", "【"+node.CourseName+"】", "【"+node.CourseContentStr+"】  >>> ", "提交状态：", "成功", lg.Default, " ", "观看进度：", fmt.Sprintf("%.2f", node.StudyProgress), "%")
 		time2.Sleep(16 * time2.Second)
 		if node.StudyProgress >= 100 {
-			break //如果看完该视屏则直接下一个
+			break //如果看完该视频则直接下一个
 		}
 	}
 }

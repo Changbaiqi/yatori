@@ -14,7 +14,7 @@ import (
 	lg "github.com/yatori-dev/yatori-go-core/utils/log"
 )
 
-var videosLock sync.WaitGroup //视屏锁
+var videosLock sync.WaitGroup //视频锁
 var usersLock sync.WaitGroup  //用户锁
 
 // 用于过滤Cqie账号
@@ -93,12 +93,12 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *cqieAp
 		return
 	}
 	//执行刷课---------------------------------
-	nodeList, _ := cqie.PullCourseVideoListAndProgress(userCache, course) //拉取对应课程的视屏列表
+	nodeList, _ := cqie.PullCourseVideoListAndProgress(userCache, course) //拉取对应课程的视频列表
 	//失效重登检测
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "正在学习课程：", lg.Yellow, "【"+course.CourseName+"】 ")
 	// 提交学时
 	for _, node := range nodeList {
-		//视屏处理逻辑
+		//视频处理逻辑
 		switch user.CoursesCustom.VideoModel {
 		case 1:
 			videoAction(setting, user, userCache, node) //常规
@@ -114,11 +114,11 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *cqieAp
 
 // videoAction 刷视频逻辑抽离
 func videoAction(setting config.Setting, user *config.Users, UserCache *cqieApi.CqieUserCache, node cqie.CqieVideo) {
-	if user.CoursesCustom.VideoModel == 0 { //是否打开了自动刷视屏开关
+	if user.CoursesCustom.VideoModel == 0 { //是否打开了自动刷视频开关
 		return
 	}
 
-	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视屏：", lg.Default, "【"+node.VideoName+"】 ")
+	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视频：", lg.Default, "【"+node.VideoName+"】 ")
 	nowTime := time.Now()
 	startPos := node.StudyTime
 	stopPos := node.StudyTime
@@ -150,12 +150,12 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *cqieApi.
 	if err != nil {
 		lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", "【"+node.VideoName+"】", lg.BoldRed, "保存学习点异常：", err.Error())
 	}
-	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "视屏：", lg.Default, "【"+node.VideoName+"】 ", lg.Green, "学习完毕")
+	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "视频：", lg.Default, "【"+node.VideoName+"】 ", lg.Green, "学习完毕")
 }
 
 // videoAction 刷视频逻辑抽离(秒刷版本)
 func videoActionSecondBrush(setting config.Setting, user *config.Users, UserCache *cqieApi.CqieUserCache, node cqie.CqieVideo) {
-	if user.CoursesCustom.VideoModel == 0 { //是否打开了自动刷视屏开关
+	if user.CoursesCustom.VideoModel == 0 { //是否打开了自动刷视频开关
 		return
 	}
 	nowTime := time.Now()
@@ -174,5 +174,5 @@ func videoActionSecondBrush(setting config.Setting, user *config.Users, UserCach
 	if err != nil {
 		lg.Print(lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", "【"+node.VideoName+"】", lg.BoldRed, "保存学习点异常：", err.Error())
 	}
-	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "视屏：", lg.Default, "【"+node.VideoName+"】 ", lg.Green, "学习完毕")
+	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "视频：", lg.Default, "【"+node.VideoName+"】 ", lg.Green, "学习完毕")
 }

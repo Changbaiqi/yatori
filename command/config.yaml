@@ -4,7 +4,7 @@ setting:
     colorLog: 1 #是否开启彩色日志，0为关闭，1为开启，如果控制台乱码可以尝试改为0关闭
     logOutFileSw: 1 #是否开启日志文件输出，0为关闭，1为开启
     logLevel: "INFO" #日志类型，一般INFO即可
-    logModel: 0 #日志输出模式，0为以视屏提交学时为单位进行日志输出，1为以课程信息为单位进行输出
+    logModel: 0 #日志输出模式，0为以视频提交学时为单位进行日志输出，1为以课程信息为单位进行输出
     ipProxySw: 0 #是否开启IP代理，0代表关闭，1代表开启，开启后一定要子当前启动目录下创建ip.txt这个ip池文件，里面填写对应的代理IP即可，一行一个。注意，代理的IP一定要支持Https
   aiSetting:
     aiType: "TONGYI" #智普：CHATGLM、星火：XINGHUO、通义千问：TONGYI、豆包：DOUBAO、其他模型：OTHER
@@ -17,7 +17,7 @@ users:
     account: "账号" #账号
     password: "密码" #密码
     coursesCustom:
-      videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
+      videoModel: 1 #刷视频模式，0代表不刷，1代表普通模式，2代表暴力模式
       autoExam: 0 #是否自动考试，0代表不考试，1代表考试
       examAutoSubmit: 1 #是否考完试自动提交试卷，0代表不自动提交，1代表自动提交
       includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
@@ -28,7 +28,7 @@ users:
   #   account: "账号" #账号
   #   password: "密码" #密码
   #   coursesCustom:
-  #     videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
+  #     videoModel: 1 #刷视频模式，0代表不刷，1代表普通模式，2代表暴力模式
   #     autoExam: 0 #是否自动考试，0代表不考试，1代表考试
   #     examAutoSubmit: 1 #是否考完试自动提交试卷，0代表不自动提交，1代表自动提交
   #     includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
@@ -38,7 +38,7 @@ users:
   #   account: "账号" #账号
   #   password: "密码" #密码
   #   coursesCustom:
-  #     videoModel: 1 #刷视屏模式，0代表不刷，1代表普通模式，2代表暴力模式
+  #     videoModel: 1 #刷视频模式，0代表不刷，1代表普通模式，2代表暴力模式
   #     autoExam: 0 #是否自动考试，0代表不考试，1代表考试
   #     examAutoSubmit: 1 #是否考完试自动提交试卷，0代表不自动提交，1代表自动提交
   #     includeCourses: []  #include和exclude填一个即可，include代表只有这里面的课程才刷，填课程名称，比如["xxxx","xxxx"]，学习公社填必修课程或者选修课程等
