@@ -11,7 +11,7 @@ on:
       tag_name:
         description: 'Tag name for the release'
         required: true
-        default: 'v2.0.1-Beta.5'  # Default tag name
+        default: 'v2.5.0-Beta.1'  # Default tag name
 
 permissions:
   contents: write  # Allow writing to GitHub releases
@@ -23,9 +23,9 @@ env:
   VERSION: ${{ github.ref_name }}  # Dynamic version based on the tag name
   RELEASE_DIR: release
   RELEASE_NOTICES: |
-    - [👏] 更新部分接口失败重发机制使其更稳定
-    
-    注：等GO版本追平Java版本功能后Java版本将不再进行维护，后续将主要针对GO版本进行维护，Java将不会更新新功能和适配新平台。
+    - [👏] 更新支持学习通视屏学习（目前仅支持没有人脸）
+    - [‍🔧] 修改错别字`视屏`->`视频`
+    注：当前学习通功能为测试阶段日志显示比较乱，后续版本更新会调整
 jobs:
   # Linux build job
   build-linux:

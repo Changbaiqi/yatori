@@ -66,10 +66,10 @@ func userBlock(setting config.Setting, user *config.Users, cache *xuexitongApi.X
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, course := range courseList.ChannelList {
+	for _, course := range courseList {
 		videosLock.Add(1)
 		// fmt.Println(course)
-		go nodeListStudy(setting, user, cache, &course)
+		nodeListStudy(setting, user, cache, &course)
 	}
 	videosLock.Wait()
 	lg.Print(lg.INFO, "[", lg.Green, cache.Name, lg.Default, "] ", lg.Purple, "所有待学习课程学习完毕")
@@ -82,52 +82,51 @@ func userBlock(setting config.Setting, user *config.Users, cache *xuexitongApi.X
 }
 
 // 课程节点执行
-func nodeListStudy(setting config.Setting, user *config.Users, userCache *xuexitongApi.XueXiTUserCache, courseItem *entity.ChannelItem) {
+func nodeListStudy(setting config.Setting, user *config.Users, userCache *xuexitongApi.XueXiTUserCache, courseItem *xuexitong.XueXiTCourse) {
 	//过滤课程---------------------------------
 	//排除指定课程
-	if len(user.CoursesCustom.ExcludeCourses) != 0 && config.CmpCourse(courseItem.Content.Course.Data[0].Name, user.CoursesCustom.ExcludeCourses) {
+	if len(user.CoursesCustom.ExcludeCourses) != 0 && config.CmpCourse(courseItem.CourseName, user.CoursesCustom.ExcludeCourses) {
 		videosLock.Done()
 		return
 	}
 	//包含指定课程
-	if len(user.CoursesCustom.IncludeCourses) != 0 && !config.CmpCourse(courseItem.Content.Course.Data[0].Name, user.CoursesCustom.IncludeCourses) {
+	if len(user.CoursesCustom.IncludeCourses) != 0 && !config.CmpCourse(courseItem.CourseName, user.CoursesCustom.IncludeCourses) {
 		videosLock.Done()
 		return
 	}
-	course, err := xuexitong.XueXiTCourseDetailForCourseIdAction(userCache, courseItem.Content.Chatid)
+	key, _ := strconv.Atoi(courseItem.Key)
+	action, err := xuexitong.PullCourseChapterAction(userCache, courseItem.Cpi, key) //获取对应章节信息
 	if err != nil {
 		log.Fatal(err)
 	}
-	cpi, _ := strconv.Atoi(course.Cpi)
-	key, _ := strconv.Atoi(course.ClassId)
-	action, _ := xuexitong.PullCourseChapterAction(userCache, cpi, key)
 	var nodes []int
 	for _, item := range action.Knowledge {
 		nodes = append(nodes, item.ID)
 	}
-	courseId, _ := strconv.Atoi(course.CourseId)
-	userId, _ := strconv.Atoi(course.UserId)
+	courseId, _ := strconv.Atoi(courseItem.CourseID)
+	userId, _ := strconv.Atoi(userCache.UserID)
 	// 检测节点完成情况
-	pointAction, err := xuexitong.ChapterFetchPointAction(userCache, nodes, &action, key, userId, cpi, courseId)
+	pointAction, err := xuexitong.ChapterFetchPointAction(userCache, nodes, &action, key, userId, courseItem.Cpi, courseId)
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	var isFinished = func(index int) bool {
 		if index < 0 || index >= len(pointAction.Knowledge) {
 			return false
 		}
 		i := pointAction.Knowledge[index]
-		return i.PointTotal > 0 && i.PointTotal == i.PointFinished
+		return i.PointTotal >= 0 && i.PointTotal == i.PointFinished
 	}
 
-	for index, item := range nodes {
-		if pointAction.Knowledge[index].ID == item && !isFinished(index) {
-			log.Println("任务点已完成忽略")
-			time.Sleep(1 * time.Second)
+	for index, _ := range nodes {
+		if isFinished(index) { //如果完成了的那么直接跳过
+			//log.Printf("ID.%d(%s/%s)任务点已完成忽略\n",
+			//	item,
+			//	pointAction.Knowledge[index].Label, pointAction.Knowledge[index].Name)
+			//time.Sleep(500 * time.Millisecond)
 			continue
 		}
-		_, fetchCards, err := xuexitong.ChapterFetchCardsAction(userCache, &action, nodes, index, courseId, key, cpi)
+		_, fetchCards, err := xuexitong.ChapterFetchCardsAction(userCache, &action, nodes, index, courseId, key, courseItem.Cpi)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -139,7 +138,7 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *xuexit
 		if videoDTOs != nil {
 			for _, videoDTO := range videoDTOs {
 				card, err := xuexitong.PageMobileChapterCardAction(
-					userCache, key, courseId, videoDTO.KnowledgeID, videoDTO.CardIndex, cpi)
+					userCache, key, courseId, videoDTO.KnowledgeID, videoDTO.CardIndex, courseItem.Cpi)
 				if err != nil {
 					log.Fatal(err)
 				}
@@ -149,4 +148,5 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *xuexit
 			}
 		}
 	}
+	videosLock.Done()
 }
