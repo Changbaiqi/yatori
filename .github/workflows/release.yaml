@@ -11,7 +11,7 @@ on:
       tag_name:
         description: 'Tag name for the release'
         required: true
-        default: 'v2.5.0-Beta.1'  # Default tag name
+        default: 'v2.5.0-Beta.2'  # Default tag name
 
 permissions:
   contents: write  # Allow writing to GitHub releases
@@ -25,7 +25,7 @@ env:
   RELEASE_NOTICES: |
     - [👏] 更新支持学习通视屏学习（目前仅支持没有人脸）
     - [👏] 添加公告功能（可能有BUG）
-    - [‍🔧] 修改错别字`视屏`->`视频`
+    - [‍🔧] 修改
     注：当前学习通功能为测试阶段日志显示比较乱，后续版本更新会调整
 jobs:
   # Linux build job
