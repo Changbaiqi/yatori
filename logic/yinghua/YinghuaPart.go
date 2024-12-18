@@ -142,6 +142,9 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaA
 	if !node.TabVideo { //过滤非视频节点
 		return
 	}
+	if node.Progress == 0 { //过滤看完了的视屏
+		return
+	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视频：", lg.Default, " 【"+node.Name+"】 ")
 	time := node.ViewedDuration //设置当前观看时间为最后看视频的时间
 	studyId := "0"              //服务器端分配的学习ID
@@ -192,6 +195,10 @@ func videoVioLenceAction(setting config.Setting, user *config.Users, UserCache *
 	}
 	videosLock.Add(1)
 	go func() {
+		if node.Progress == 0 { //过滤看完了的视屏
+			videosLock.Done()
+			return
+		}
 		modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视频：", lg.Default, " 【"+node.Name+"】 ")
 		time := node.ViewedDuration //设置当前观看时间为最后看视频的时间
 		studyId := "0"              //服务器端分配的学习ID
