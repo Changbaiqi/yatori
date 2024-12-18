@@ -142,7 +142,7 @@ func videoAction(setting config.Setting, user *config.Users, UserCache *yinghuaA
 	if !node.TabVideo { //过滤非视频节点
 		return
 	}
-	if int(node.Progress) == 1 { //过滤看完了的视屏
+	if int(node.Progress) == 100 { //过滤看完了的视屏
 		return
 	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 0, lg.INFO, "[", lg.Green, UserCache.Account, lg.Default, "] ", lg.Yellow, "正在学习视频：", lg.Default, " 【"+node.Name+"】 ")
@@ -195,7 +195,7 @@ func videoVioLenceAction(setting config.Setting, user *config.Users, UserCache *
 	}
 	videosLock.Add(1)
 	go func() {
-		if int(node.Progress) == 1 { //过滤看完了的视屏
+		if int(node.Progress) == 100 { //过滤看完了的视屏
 			videosLock.Done()
 			return
 		}
