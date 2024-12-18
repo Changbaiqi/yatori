@@ -23,9 +23,9 @@ env:
   VERSION: ${{ github.ref_name }}  # Dynamic version based on the tag name
   RELEASE_DIR: release
   RELEASE_NOTICES: |
-    - [👏] 更新支持学习通视屏学习（目前仅支持没有人脸）
-    - [👏] 添加公告功能（可能有BUG）
-    - [‍🔧] 修改
+    - [‍🔧] 优化英华请求重发机制，多账号更稳定
+    
+    
     注：当前学习通功能为测试阶段日志显示比较乱，后续版本更新会调整
 jobs:
   # Linux build job
