@@ -107,31 +107,33 @@ func nodeListStudy(setting config.Setting, user *config.Users, userCache *yinghu
 		nodesLock.Done()
 		return
 	}
-	//执行刷课---------------------------------
-	nodeList, _ := yinghua.VideosListAction(userCache, *course) //拉取对应课程的视频列表
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", "正在学习课程：", lg.Yellow, " 【"+course.Name+"】 ")
-	// 提交学时
-	for _, node := range nodeList {
-		//视频处理逻辑
-		switch user.CoursesCustom.VideoModel { //根据视频模式进行刷课
-		case 1:
-			videoAction(setting, user, userCache, node)
-			break
-		case 2:
-			videoVioLenceAction(setting, user, userCache, node)
-			break
-		}
-		//作业处理逻辑
-		workAction(setting, user, userCache, node)
-		//考试处理逻辑
-		examAction(setting, user, userCache, node)
+	if int(course.Progress) != 1 { //如果课程没有学完则开始学
+		//执行刷课---------------------------------
+		nodeList, _ := yinghua.VideosListAction(userCache, *course) //拉取对应课程的视频列表
+		// 提交学时
+		for _, node := range nodeList {
+			//视频处理逻辑
+			switch user.CoursesCustom.VideoModel { //根据视频模式进行刷课
+			case 1:
+				videoAction(setting, user, userCache, node)
+				break
+			case 2:
+				videoVioLenceAction(setting, user, userCache, node)
+				break
+			}
+			//作业处理逻辑
+			workAction(setting, user, userCache, node)
+			//考试处理逻辑
+			examAction(setting, user, userCache, node)
 
-		action, err := yinghua.CourseDetailAction(userCache, course.Id)
-		if err != nil {
-			lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", lg.Red, "拉取课程进度失败", err.Error())
-			break
+			action, err := yinghua.CourseDetailAction(userCache, course.Id)
+			if err != nil {
+				lg.Print(lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", lg.Red, "拉取课程进度失败", err.Error())
+				break
+			}
+			modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", "视频学习进度：", strconv.Itoa(action.VideoLearned), "/", strconv.Itoa(action.VideoCount), " ", "课程总学习进度：", fmt.Sprintf("%.2f", action.Progress*100), "%")
 		}
-		modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Default, " 【"+course.Name+"】 ", "视频学习进度：", strconv.Itoa(action.VideoLearned), "/", strconv.Itoa(action.VideoCount), " ", "课程总学习进度：", fmt.Sprintf("%.2f", action.Progress*100), "%")
 	}
 	modelLog.ModelPrint(setting.BasicSetting.LogModel == 1, lg.INFO, "[", lg.Green, userCache.Account, lg.Default, "] ", lg.Green, "课程", " 【"+course.Name+"】 ", "学习完毕")
 	nodesLock.Done()
